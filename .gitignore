@@ -24,3 +24,7 @@ yarn-error.log*
 next-env.d.ts
 .next-verify/
 .env.local
+.next-prod/
+.next-e2e/
+playwright-report/
+test-results/
