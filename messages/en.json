@@ -1,0 +1,47 @@
+{
+  "site": {
+    "name": "Rajmohan Arumugam",
+    "shortName": "Rajmohan",
+    "skipToContent": "Skip to main content"
+  },
+  "nav": {
+    "ariaLabel": "Portal navigation",
+    "heading": "Choose a portal",
+    "enterPortal": "Enter the {portal} portal",
+    "portals": {
+      "schoolEducation": {
+        "index": "01",
+        "title": "School Education",
+        "meta": "Learning · Students · Future"
+      },
+      "tamilDevelopment": {
+        "index": "02",
+        "title": "Tamil Development",
+        "meta": "Language · Literature · Heritage"
+      },
+      "informationPublicity": {
+        "index": "03",
+        "title": "Information & Publicity",
+        "meta": "Information · Media · Public Access"
+      },
+      "mlaEgmore": {
+        "index": "04",
+        "title": "MLA · Egmore",
+        "meta": "People · Representation · Service"
+      }
+    }
+  },
+  "locale": {
+    "switchLabel": "Language",
+    "switchTo": "Switch to {language}"
+  },
+  "common": {
+    "loading": "Loading",
+    "retry": "Try again",
+    "backToNavigation": "Back to portals"
+  },
+  "content": {
+    "unverifiedNotice": "Content pending verification",
+    "unverifiedDescription": "This section is structurally complete. Verified content has not yet been supplied and will not be published until it is."
+  }
+}

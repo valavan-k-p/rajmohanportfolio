@@ -1,0 +1,158 @@
+@import 'tailwindcss';
+
+/* ==========================================================================
+   RAJMOHAN PUBLIC PORTAL — DESIGN TOKENS
+   Authority: design-system/MASTER.md
+   Core colours sampled from public/images/navigation.jpg, then adjusted only
+   as far as the 7:1 contrast floor required. Ratios are recorded in MASTER.md §1.3.
+   ========================================================================== */
+
+@theme {
+  /* --- Sand: sampled from the sky and stone of the navigation asset --- */
+  --color-sand-50: #fffbf0;
+  --color-sand-100: #fff6d9; /* sampled sky — primary editorial ground */
+  --color-sand-200: #f7ddb4; /* sampled building stone */
+  --color-sand-300: #e9c48f;
+
+  /* --- Maroon: flag hue, deepened to clear 7:1 --- */
+  --color-maroon-500: #b3241a; /*  6.10:1 on sand — large text only */
+  --color-maroon-600: #96170f; /*  8.01:1 on sand */
+  --color-maroon-700: #7a100b; /* 10.19:1 on sand */
+  --color-maroon-800: #5e0b08; /* 12.73:1 on sand */
+
+  /* --- Yellow: fills and markers. NEVER carries text on light. --- */
+  --color-yellow-400: #fed427; /* 1.33:1 on sand — decorative only */
+  --color-yellow-600: #c9a200; /* the only yellow safe as a hairline */
+
+  /* --- Charcoal: sampled from the crowd, lifted off pure black --- */
+  --color-charcoal-900: #1a1714; /* 16.52:1 on sand — body */
+  --color-charcoal-700: #3a342d; /* 11.37:1 on sand — secondary */
+  --color-charcoal-500: #6b625a; /* metadata on white only */
+
+  /* --- Emblem colours: photograph and emblem ONLY, never UI --- */
+  --color-emblem-red: #fe4933;
+  --color-emblem-yellow: #fed427;
+
+  /* --- Typography --- */
+  --font-display: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-tamil-display: var(--font-noto-serif-tamil), var(--font-instrument-serif), serif;
+  --font-tamil-sans: var(--font-noto-sans-tamil), var(--font-instrument-sans), sans-serif;
+
+  --text-display: clamp(3.25rem, 7vw, 6.5rem);
+  --text-h1: clamp(2.5rem, 5vw, 4rem);
+  --text-h2: clamp(1.875rem, 3.2vw, 2.75rem);
+  --text-h3: clamp(1.375rem, 1.8vw, 1.75rem);
+  --text-lead: clamp(1.125rem, 1.4vw, 1.375rem);
+  --text-body: 1.0625rem;
+  --text-meta: 0.875rem;
+  --text-micro: 0.75rem;
+
+  /* --- Spacing: 8px base, no values between --- */
+  --spacing-gutter: clamp(1rem, 4vw, 2.5rem);
+  --spacing-section: clamp(4rem, 9vw, 8rem);
+
+  /* --- Motion --- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-micro: 160ms;
+  --duration-ui: 280ms;
+  --duration-portal: 620ms;
+
+  /* --- Breakpoints (composition-derived, see MASTER.md §4) --- */
+  --breakpoint-sm: 30rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 96rem;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-sand-100);
+    color: var(--color-charcoal-900);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Tamil is a parallel first-class stack, not a fallback. +6% size and
+     +0.12 line-height: Tamil glyphs carry more vertical complexity. */
+  :lang(ta) body,
+  :lang(ta) {
+    font-family: var(--font-tamil-sans);
+    font-size: calc(var(--text-body) * 1.06);
+    line-height: 1.77;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  :lang(ta) h1,
+  :lang(ta) h2,
+  :lang(ta) h3 {
+    font-family: var(--font-tamil-display);
+    letter-spacing: 0;
+    line-height: 1.28;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Focus is always visible. MASTER.md §7 — never removed without an
+     equal-or-better replacement. */
+  :focus-visible {
+    outline: 2px solid var(--color-maroon-700);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-yellow-400);
+    color: var(--color-charcoal-900); /* 12.46:1 */
+  }
+
+  /* Reduced motion is a supported mode, not a downgrade. Nothing becomes
+     unreachable and no information is lost. MASTER.md §6. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Eyebrow / index numeral treatment — used by the master nav portals. */
+  .u-eyebrow {
+    font-size: var(--text-micro);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .u-measure {
+    max-width: 68ch;
+  }
+
+  .u-tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}

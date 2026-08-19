@@ -1,0 +1,8 @@
+node_modules
+.next
+out
+build
+.claude
+public/images/navigation.jpg
+pnpm-lock.yaml
+package-lock.json
