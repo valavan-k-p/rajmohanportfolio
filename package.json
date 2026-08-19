@@ -2,7 +2,7 @@
   "name": "rajmohan-platform",
   "version": "0.1.0",
   "private": true,
-  "description": "Rajmohan Arumugam Public Portal — multi-portal public-service platform",
+  "description": "Rajmohan Arumugam Public Portal \u2014 multi-portal public-service platform",
   "engines": {
     "node": ">=20.9.0"
   },
@@ -18,7 +18,8 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "optimize:images": "tsx scripts/optimize-images.ts",
-    "validate:content": "tsx scripts/validate-content.ts"
+    "validate:content": "tsx scripts/validate-content.ts",
+    "verify": "node scripts/verify.mjs"
   },
   "dependencies": {
     "next": "^15.5.4",

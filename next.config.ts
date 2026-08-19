@@ -6,6 +6,12 @@ const withNextIntl = createNextIntlPlugin('./src/lib/i18n/request.ts');
 const nextConfig: NextConfig = {
   reactStrictMode: true,
 
+  // A verification build must not clobber a running dev server's chunks — doing
+  // so leaves `next dev` unable to resolve modules it has already loaded
+  // ("Cannot find module './NNN.js'"). `npm run verify` sets BUILD_DIR so the
+  // phase checkpoint can run while the dev server stays up.
+  distDir: process.env.BUILD_DIR || '.next',
+
   // Standalone output keeps the Docker image minimal (Phase 17).
   output: 'standalone',
 
