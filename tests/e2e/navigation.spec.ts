@@ -176,10 +176,29 @@ test.describe('accessibility', () => {
 });
 
 test.describe('health', () => {
-  test('exposes an ALB health endpoint', async ({ request }) => {
+  test('reports a status the ALB can act on', async ({ request }) => {
     const response = await request.get('/api/health');
-    expect(response.status()).toBe(200);
-    const body = (await response.json()) as { status: string };
-    expect(body.status).toBe('ok');
+
+    const body = (await response.json()) as {
+      status: string;
+      supabase: string;
+      uptimeSeconds: number;
+    };
+
+    // The contract is the STATUS/CODE pairing, not a fixed 200. Reporting 503
+    // when the backend is unconfigured is the point: the ALB drains the
+    // instance instead of routing citizens to a broken page. This suite runs
+    // deliberately unconfigured, so 503 is the correct answer here.
+    if (body.supabase === 'configured') {
+      expect(response.status()).toBe(200);
+      expect(body.status).toBe('ok');
+    } else {
+      expect(response.status()).toBe(503);
+      expect(body.status).toBe('degraded');
+    }
+
+    expect(typeof body.uptimeSeconds).toBe('number');
+    // Must never be cached — a stale health response defeats the check.
+    expect(response.headers()['cache-control']).toContain('no-store');
   });
 });

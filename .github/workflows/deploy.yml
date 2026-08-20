@@ -1,0 +1,133 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Target environment
+        type: choice
+        options: [staging, production]
+        default: staging
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write # OIDC — no long-lived AWS keys stored in GitHub
+
+env:
+  AWS_REGION: ap-south-1
+  ECR_REPOSITORY: rajmohan-platform
+
+jobs:
+  build-and-push:
+    name: Build image · Push to ECR
+    runs-on: ubuntu-latest
+    outputs:
+      image-tag: ${{ steps.meta.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - id: ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - id: meta
+        run: echo "tag=${GITHUB_SHA::12}" >> "$GITHUB_OUTPUT"
+
+      - name: Build and push
+        env:
+          REGISTRY: ${{ steps.ecr.outputs.registry }}
+          TAG: ${{ steps.meta.outputs.tag }}
+        run: |
+          # Only NEXT_PUBLIC_* values are passed as build args. Secrets are
+          # recoverable from image history, so they are never build args —
+          # they arrive as runtime environment on the instance.
+          docker build \
+            --build-arg NEXT_PUBLIC_SUPABASE_URL="${{ vars.NEXT_PUBLIC_SUPABASE_URL }}" \
+            --build-arg NEXT_PUBLIC_SUPABASE_ANON_KEY="${{ vars.NEXT_PUBLIC_SUPABASE_ANON_KEY }}" \
+            --build-arg NEXT_PUBLIC_TURNSTILE_SITE_KEY="${{ vars.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}" \
+            --build-arg NEXT_PUBLIC_SITE_URL="${{ vars.NEXT_PUBLIC_SITE_URL }}" \
+            -t "$REGISTRY/$ECR_REPOSITORY:$TAG" \
+            -t "$REGISTRY/$ECR_REPOSITORY:latest" .
+          docker push "$REGISTRY/$ECR_REPOSITORY:$TAG"
+          docker push "$REGISTRY/$ECR_REPOSITORY:latest"
+
+      - name: Verify the image starts and reports healthy
+        env:
+          REGISTRY: ${{ steps.ecr.outputs.registry }}
+          TAG: ${{ steps.meta.outputs.tag }}
+        run: |
+          # The image has to prove it boots before anything is deployed.
+          docker run -d --name smoke -p 3000:3000 -e NODE_ENV=development \
+            "$REGISTRY/$ECR_REPOSITORY:$TAG"
+          for i in $(seq 1 30); do
+            if curl -fsS http://localhost:3000/api/health > /dev/null; then
+              echo "Image is healthy."; docker rm -f smoke; exit 0
+            fi
+            sleep 2
+          done
+          echo "::error::Image never became healthy."
+          docker logs smoke; docker rm -f smoke; exit 1
+
+  deploy-staging:
+    name: Deploy · staging
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Rolling deploy via SSM
+        env:
+          TAG: ${{ needs.build-and-push.outputs.image-tag }}
+        run: |
+          # One instance at a time. The ALB drains an instance before it is
+          # replaced and only returns it to rotation once /api/health passes,
+          # so a bad image cannot take the whole fleet down.
+          aws ssm send-command \
+            --document-name "AWS-RunShellScript" \
+            --targets "Key=tag:Environment,Values=staging" \
+            --max-concurrency "1" \
+            --max-errors "0" \
+            --parameters "commands=['/opt/rajmohan/deploy.sh ${TAG}']" \
+            --comment "Deploy ${TAG} to staging"
+
+  deploy-production:
+    name: Deploy · production
+    runs-on: ubuntu-latest
+    needs: [build-and-push, deploy-staging]
+    # Requires a reviewer on the GitHub environment. Spec §33/§34: production
+    # is never reached without review.
+    environment: production
+    steps:
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Rolling deploy via SSM
+        env:
+          TAG: ${{ needs.build-and-push.outputs.image-tag }}
+        run: |
+          aws ssm send-command \
+            --document-name "AWS-RunShellScript" \
+            --targets "Key=tag:Environment,Values=production" \
+            --max-concurrency "1" \
+            --max-errors "0" \
+            --parameters "commands=['/opt/rajmohan/deploy.sh ${TAG}']" \
+            --comment "Deploy ${TAG} to production"

@@ -73,6 +73,18 @@ export const isSupabaseConfigured =
 export function assertRuntimeEnv(): void {
   if (process.env.NODE_ENV !== 'production') return;
 
+  // The E2E suite runs a PRODUCTION build to exercise the public surface, which
+  // needs no backend. The opt-out is deliberately explicit and verbose so it
+  // cannot be set by accident, and it announces itself in the logs — an
+  // operator seeing this line on a real server knows something is wrong.
+  if (process.env.ALLOW_UNCONFIGURED_PRODUCTION_BOOT === 'e2e-public-surface-only') {
+    console.warn(
+      '[env] Booting production WITHOUT backend credentials (E2E harness). ' +
+        'Citizen authentication, query submission and admin are non-functional.',
+    );
+    return;
+  }
+
   const missing: string[] = [];
   if (!isSupabaseConfigured) missing.push('NEXT_PUBLIC_SUPABASE_URL');
   if (!env.SUPABASE_SERVICE_ROLE_KEY) missing.push('SUPABASE_SERVICE_ROLE_KEY');

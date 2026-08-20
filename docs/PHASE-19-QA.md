@@ -15,6 +15,8 @@ throwaway `BUILD_DIR` so a running dev server is never clobbered).
 | TypeScript (`strict`, `noUncheckedIndexedAccess`) | **pass**, 0 errors |
 | ESLint (`next/core-web-vitals` + `next/typescript`) | **pass**, 0 errors |
 | Unit tests | **24 passing** |
+| E2E — Chromium desktop + Pixel 7 | **29 passing, 1 skipped** |
+| axe (WCAG 2.0/2.1/2.2 A + AA) | **0 serious, 0 critical** across 8 route/device combinations |
 | Content governance | **pass** — 0 errors, 46 sections pending |
 | Production build | **pass** |
 
@@ -77,28 +79,49 @@ This is deliberately recorded rather than silently accepted — spec §38 forbid
 adding Redis without a real requirement, and the requirement only becomes real
 at the second instance.
 
-### 4.3 Not yet built
+### 4.3 Remaining
 
-- **Query submission form UI.** The API, validation, schema, RLS and reference
-  generation are complete and tested; the multi-step form component is not.
-- **Admin CRUD screens** beyond the dashboard — queries list, news, events,
-  pages, gallery, citizens, staff, settings. The role model, capability matrix
-  and RLS behind them are complete.
-- **Deployment workflow** (`deploy.yml`) — ECR push and rolling EC2 deploy.
-  `ci.yml` is complete: lint, typecheck, unit, E2E + axe, build, secret scan.
-- **Sentry / CloudWatch wiring.** `SENTRY_DSN` is in the env contract; no
-  client is installed.
-- **Docker image never built.** Docker is not installed on this machine, so the
-  Dockerfile is authored but **unverified**. It must be built once in CI before
-  being trusted.
+- **Docker image has never been built.** Docker is not installed on this
+  machine, so the Dockerfile is authored but **unverified**. `deploy.yml` now
+  builds it, runs it, and polls `/api/health` before pushing anything further,
+  so the first CI run proves or disproves it. This is the single largest
+  unverified artifact in the project.
+- **Sentry client not installed.** `SENTRY_DSN` is in the env contract and
+  `src/instrumentation.ts` carries the hook; installing `@sentry/nextjs`
+  activates it. `onRequestError` already logs path and message only, never
+  citizen data.
+- **Admin screens are read-only.** Every section lists its records with
+  role-gated access; create/edit/publish forms are not built. The write path
+  underneath them — RLS policies, capability matrix, status machine — is
+  complete and tested.
+- **Attachment upload to Storage not wired.** The form validates type and size,
+  and the bucket layout and schema exist; the upload call itself is not made.
 
-### 4.4 Verified-by-build only
+### 4.4 E2E — now executed
 
-E2E specs (`tests/e2e/navigation.spec.ts`) cover master navigation, all four
-portals, both locales, language switching, keyboard operation, subject-clearance
-at four viewports, heading structure and axe checks on four routes. They are
-written and wired into CI but **have not been executed locally** — Playwright
-browsers are not installed here. First real run happens in CI.
+Run locally on Chromium desktop and Pixel 7: **29 passed, 1 skipped.** The skip
+is keyboard navigation on mobile, which is a desktop gate by design.
+
+Passing: no overlay on the photograph; four portals with descriptive accessible
+names; full keyboard operation with roving tabindex; subject clearance at
+1920/1280/900/375; both locales on all four portals with real Tamil glyph
+counts; language switching preserving the current page; one `h1` with no
+skipped heading levels; the health contract; and axe with zero serious or
+critical violations on four routes across both devices.
+
+**Two findings from the first run, both worth recording.**
+
+1. The health test asserted a hardcoded 200. That contradicted the design —
+   `/api/health` returns **503 when the backend is unconfigured** precisely so
+   the ALB drains the instance. The test was wrong, not the endpoint; it now
+   asserts the status/code pairing and the `no-store` header.
+
+2. `assertRuntimeEnv()` correctly refused to boot the E2E production build,
+   which genuinely has no credentials. Rather than weaken the guard, the
+   harness sets `ALLOW_UNCONFIGURED_PRODUCTION_BOOT=e2e-public-surface-only` —
+   deliberately verbose, scoped to `scripts/e2e-server.mjs`, and it logs a
+   warning on every boot. An operator seeing that line on a real server knows
+   something is wrong.
 
 ## 5. SECURITY POSTURE
 

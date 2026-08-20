@@ -62,7 +62,7 @@ export function CitizenQueryBlock({ department, locale }: CitizenQueryBlockProps
         </p>
 
         <Link
-          href={`/${locale}/${department}#citizen-query`}
+          href={`/${locale}/citizen/queries?department=${department}`}
           className={[
             'inline-flex min-h-[44px] items-center rounded-[2px] bg-yellow-400 px-6 py-3',
             'font-sans text-meta font-medium text-charcoal-900 no-underline',
