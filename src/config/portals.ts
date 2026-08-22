@@ -3,7 +3,7 @@
  *
  * `position` values are percentages against the navigation IMAGE, not the
  * viewport — they were derived from measured analysis of
- * public/images/navigation.jpg (docs/PHASE-0-AUDIT.md §F) and keep the portals
+ * public/images/navigation.jpeg (docs/PHASE-0-AUDIT.md §F) and keep the portals
  * locked to the composition at every width instead of drifting off it.
  *
  * The subject occupies x 38–63%; every portal here clears that band.
@@ -52,7 +52,7 @@ export const PORTALS: readonly PortalDefinition[] = [
     department: 'school-education',
     column: 'left',
     row: 0,
-    position: { left: '4%', top: '12%', width: '28%' },
+    position: { left: '4%', top: '8%', width: '28%' },
   },
   {
     id: 'tamil-development',
@@ -61,7 +61,7 @@ export const PORTALS: readonly PortalDefinition[] = [
     department: 'tamil-development',
     column: 'left',
     row: 1,
-    position: { left: '4%', top: '31%', width: '28%' },
+    position: { left: '4%', top: '27%', width: '28%' },
   },
   {
     id: 'information-publicity',
@@ -70,7 +70,7 @@ export const PORTALS: readonly PortalDefinition[] = [
     department: 'information-publicity',
     column: 'right',
     row: 0,
-    position: { left: '68%', top: '12%', width: '28%' },
+    position: { left: '68%', top: '8%', width: '28%' },
   },
   {
     id: 'mla-egmore',
@@ -79,7 +79,7 @@ export const PORTALS: readonly PortalDefinition[] = [
     department: 'mla-egmore',
     column: 'right',
     row: 1,
-    position: { left: '68%', top: '31%', width: '28%' },
+    position: { left: '68%', top: '27%', width: '28%' },
   },
 ] as const;
 

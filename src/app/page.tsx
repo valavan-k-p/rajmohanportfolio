@@ -41,9 +41,9 @@ export default async function MasterNavigationPage() {
           {/* Below `md` the image is a fixed upper register cropped to keep the
               subject whole; at `md` and up it is the full 16:9 frame the portals
               are positioned against. */}
-          <div className="relative h-[52dvh] w-full md:h-auto md:aspect-[4095/2305]">
+          <div className="relative h-[52dvh] w-full md:h-dvh md:max-h-[1080px]">
             <Image
-              src="/images/navigation.jpg"
+              src="/images/navigation.jpeg"
               alt=""
               fill
               priority
@@ -53,7 +53,7 @@ export default async function MasterNavigationPage() {
               // Sampled sky (#FFF6D9) as the placeholder, so the load-in is a
               // warm field resolving into the photograph, not a grey flash.
               blurDataURL="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjUiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjUiIGZpbGw9IiNGRkY2RDkiLz48L3N2Zz4="
-              className="object-cover object-[50%_22%] md:object-contain md:object-[50%_30%]"
+              className="object-cover object-[50%_22%] md:object-cover md:object-[50%_30%]"
             />
           </div>
 
