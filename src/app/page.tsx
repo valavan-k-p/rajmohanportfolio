@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { MasterNavigation } from '@/components/navigation/MasterNavigation';
+import { Navbar } from '@/components/navigation/Navbar';
 
 export const metadata: Metadata = {
   title: 'Rajmohan Arumugam',
@@ -34,7 +35,8 @@ export default async function MasterNavigationPage() {
         {t('skipToContent')}
       </a>
 
-      <main id="portals" className="min-h-dvh bg-sand-100">
+      <main id="portals" className="relative min-h-dvh bg-sand-100">
+        <Navbar />
         {/* `@container` establishes the query context the portals size against,
             so their type scales with the photograph rather than the viewport. */}
         <div className="@container relative mx-auto w-full max-w-[1920px]">
