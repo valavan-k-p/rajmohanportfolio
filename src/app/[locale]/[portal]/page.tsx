@@ -13,6 +13,9 @@ import { CitizenQueryBlock } from '@/components/citizen/CitizenQueryBlock';
 import { SiteFooter } from '@/components/common/SiteFooter';
 import { MlaHero } from '@/components/mla-egmore/MlaHero';
 import { MlaSectionShell } from '@/components/mla-egmore/MlaSectionShell';
+import { EduHero } from '@/components/school-education/EduHero';
+import { EduSectionShell } from '@/components/school-education/EduSectionShell';
+import { EduSectionMapper } from '@/components/school-education/EduSectionMapper';
 
 /**
  * All four public portals.
@@ -90,6 +93,15 @@ export default async function PortalPage({ params }: { params: Promise<Params> }
             standfirst={content.standfirst[locale]}
             backLabel={t('backToNavigation')}
           />
+        ) : portal === 'school-education' ? (
+          <EduHero
+            portal={portal}
+            index={String(PORTALS.indexOf(definition) + 1).padStart(2, '0')}
+            title={content.title[locale]}
+            standfirst={content.standfirst[locale]}
+            backLabel={t('backToNavigation')}
+            locale={locale}
+          />
         ) : (
           <PortalHero
             portal={portal}
@@ -116,6 +128,24 @@ export default async function PortalPage({ params }: { params: Promise<Params> }
                   inverted={section.layout === 'data-band' || section.layout === 'full-bleed' || inverted}
                 />
               </MlaSectionShell>
+            );
+          }
+
+          if (portal === 'school-education') {
+            return (
+              <EduSectionShell
+                key={section.id}
+                id={section.id}
+                title={section.title[locale]}
+                layout={section.layout}
+                index={i + 1}
+              >
+                <EduSectionMapper
+                  id={section.id}
+                  locale={locale}
+                  inverted={section.layout === 'data-band'}
+                />
+              </EduSectionShell>
             );
           }
 
