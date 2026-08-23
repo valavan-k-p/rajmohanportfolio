@@ -12,7 +12,7 @@ export function TamilThaaiVaazhthuSection({ locale }: { locale: Locale }) {
 
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      itemsRef.current.forEach((el, index) => {
+      itemsRef.current.forEach((el) => {
         if (!el) return;
         gsap.fromTo(
           el,
@@ -83,7 +83,7 @@ function TimelineItem({
   year, 
   text, 
   statusLabel, 
-  isLast,
+  isLast: _isLast,
   refEl
 }: { 
   year: string; 

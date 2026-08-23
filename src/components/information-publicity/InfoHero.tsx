@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useRef, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useReducedMotion, useSpring, useMotionValue, useTransform, AnimatePresence } from 'motion/react';
-import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react';
+import { motion, useReducedMotion, useSpring, useMotionValue, useTransform } from 'motion/react';
+import { ChevronDown } from 'lucide-react';
 import type { Locale } from '@/lib/i18n/routing';
 
 export interface InfoHeroProps {
@@ -85,46 +85,9 @@ function TamilNaduEmblem({ className = 'w-10 h-10' }: { className?: string }) {
   );
 }
 
-/**
- * Circular Rotating Badge in Upper Right (Media / Information / TN Govt)
- */
-function CircularInfoBadge({ isTa }: { isTa: boolean }) {
-  return (
-    <div className="relative flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 select-none group">
-      {/* Outer Rotating Dashed Ring */}
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 32, ease: 'linear', repeat: Infinity }}
-        className="absolute inset-0 rounded-full border border-dashed border-[#c5a059]/40 group-hover:border-[#c5a059]/80 transition-colors"
-      />
-
-      {/* Inner Concentric Ring */}
-      <div className="absolute inset-2 rounded-full border border-[#c5a059]/25 group-hover:border-[#c5a059]/50 transition-colors" />
-
-      {/* Background Soft Glow */}
-      <div className="absolute inset-3 rounded-full bg-gradient-to-br from-[#2a0c09]/90 to-[#120a08]/95 backdrop-blur-md shadow-2xl" />
-
-      {/* Badge Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-1.5 pointer-events-none">
-        <span className="text-[7px] sm:text-[8px] font-mono uppercase tracking-[0.2em] text-[#c5a059] font-semibold">
-          {isTa ? 'மக்கள் தகவல்' : 'PUBLIC INFO'}
-        </span>
-        <span className="my-0.5 text-[9px] sm:text-[10px] font-serif font-bold tracking-widest text-[#fbf9f4]">
-          {isTa ? 'ஊடகம்' : 'MEDIA'}
-        </span>
-        <div className="w-6 h-[1px] bg-gradient-to-r from-transparent via-[#c5a059] to-transparent my-0.5 opacity-70" />
-        <span className="text-[6.5px] sm:text-[7.5px] uppercase tracking-[0.25em] text-[#e5c786]/90 font-medium">
-          {isTa ? 'தமிழ்நாடு அரசு' : 'TN GOVT'}
-        </span>
-      </div>
-    </div>
-  );
-}
-
 export function InfoHero({ locale }: InfoHeroProps) {
   const isTa = locale === 'ta';
   const prefersReducedMotion = useReducedMotion();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Mouse Parallax Physics
@@ -157,22 +120,11 @@ export function InfoHero({ locale }: InfoHeroProps) {
 
   // Smooth scroll handler
   const scrollToSection = (id: string) => {
-    setMobileMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  // Nav Items
-  const navItems = [
-    { label: isTa ? 'பற்றி' : 'ABOUT', id: 'communication' },
-    { label: isTa ? 'துறை' : 'DEPARTMENT', id: 'latest' },
-    { label: isTa ? 'செய்தி' : 'PRESS', id: 'press-releases' },
-    { label: isTa ? 'ஊடகம்' : 'MEDIA', id: 'media' },
-    { label: isTa ? 'முன்முயற்சிகள்' : 'INITIATIVES', id: 'announcements' },
-    { label: isTa ? 'அறிக்கைகள்' : 'STATEMENTS', id: 'statements' },
-  ];
 
   return (
     <div
@@ -244,7 +196,7 @@ export function InfoHero({ locale }: InfoHeroProps) {
       />
 
       {/* =========================================================================
-          2. HEADER / NAVIGATION: Transparent, uppercase, gold outlined portal button
+          2. HEADER / BRAND BAR: Clean emblem + Language Switcher
          ========================================================================= */}
       <header className="relative z-30 w-full border-b border-[#c5a059]/15 backdrop-blur-[6px] bg-[#070504]/40">
         <div className="mx-auto max-w-[1920px] px-4 sm:px-8 lg:px-12 h-20 sm:h-24 flex items-center justify-between">
@@ -271,121 +223,29 @@ export function InfoHero({ locale }: InfoHeroProps) {
             </Link>
           </motion.div>
 
-          {/* Center: Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-8 xl:gap-10" aria-label="Main Navigation">
-            {navItems.map((item, idx) => (
-              <motion.button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                initial={{ opacity: 0, y: prefersReducedMotion ? 0 : -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 + idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative text-xs uppercase tracking-[0.22em] text-[#d6cdbd] hover:text-[#fff6d9] transition-colors py-2"
-              >
-                <span>{item.label}</span>
-                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gradient-to-r from-[#c5a059] to-[#e5c786] transition-all duration-300 group-hover:w-full" />
-              </motion.button>
-            ))}
-          </nav>
-
-          {/* Right: Outlined "OFFICIAL PORTAL" Button + Mobile Toggle */}
+          {/* Right: Language Switch */}
           <motion.div
             initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center gap-3 sm:gap-4"
           >
-            {/* Language Switch */}
             <Link
               href={isTa ? '/en/information-publicity' : '/ta/information-publicity'}
-              className="hidden sm:inline-flex items-center px-2.5 py-1 text-[11px] font-mono uppercase tracking-widest text-[#c5a059] border border-[#c5a059]/30 rounded-none hover:border-[#c5a059] hover:bg-[#c5a059]/10 transition-colors"
+              className="inline-flex items-center px-3 py-1.5 text-xs font-mono uppercase tracking-widest text-[#c5a059] border border-[#c5a059]/40 hover:border-[#c5a059] hover:bg-[#c5a059]/10 transition-colors"
             >
               {isTa ? 'English' : 'தமிழ்'}
             </Link>
-
-            {/* Outlined "OFFICIAL PORTAL" Button */}
-            <Link
-              href="/"
-              className="group inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 text-[11px] sm:text-xs font-sans font-medium uppercase tracking-[0.24em] text-[#fbf9f4] border border-[#c5a059]/50 hover:border-[#e5c786] bg-[#140806]/60 hover:bg-[#c5a059]/15 shadow-lg shadow-black/40 transition-all duration-300"
-            >
-              <span>{isTa ? 'முதன்மை தளம்' : 'OFFICIAL PORTAL'}</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#c5a059] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-
-            {/* Mobile Hamburger Toggle */}
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-[#e5c786] hover:text-white transition-colors"
-              aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Navigation Menu'}
-              aria-expanded={mobileMenuOpen}
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
           </motion.div>
         </div>
-
-        {/* Mobile Slide-Out Menu Drawer */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="lg:hidden w-full bg-[#0d0908]/98 border-b border-[#c5a059]/30 px-6 py-8 flex flex-col gap-6"
-            >
-              <div className="flex flex-col gap-4">
-                {navItems.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className="text-left text-sm uppercase tracking-[0.2em] text-[#e5c786] hover:text-white py-2 border-b border-[#c5a059]/10"
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-
-              <div className="pt-2 flex items-center justify-between">
-                <Link
-                  href={isTa ? '/en/information-publicity' : '/ta/information-publicity'}
-                  className="text-xs uppercase tracking-widest text-[#c5a059] underline"
-                >
-                  {isTa ? 'Switch to English' : 'தமிழுக்கு மாறவும்'}
-                </Link>
-                <Link
-                  href="/"
-                  className="text-xs uppercase tracking-widest text-white border border-[#c5a059] px-4 py-2"
-                >
-                  {isTa ? 'முதன்மை தளம்' : 'HOME PORTAL'}
-                </Link>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </header>
 
       {/* =========================================================================
           3. MAIN HERO REGION: 16:9 Balanced Composition
              - LEFT: Official Portrait of Raj Mohan (0–30% edge, naturally integrated)
-             - UPPER-RIGHT: Circular Rotating Information Badge
              - CENTER-RIGHT: Dominant Editorial "RAJ MOHAN" Typography
          ========================================================================= */}
       <div className="relative z-10 flex-1 flex items-end justify-between mx-auto max-w-[1920px] w-full px-4 sm:px-8 lg:px-12 pb-12 sm:pb-16 lg:pb-18">
-        
-        {/* UPPER RIGHT: Floating Circular Badge & Subtle Coordinate Marker */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute top-6 sm:top-10 right-4 sm:right-8 lg:right-16 z-20 flex flex-col items-end gap-3"
-        >
-          <CircularInfoBadge isTa={isTa} />
-          <span className="hidden sm:inline-block font-mono text-[9px] uppercase tracking-[0.25em] text-[#8a6c3b]/80">
-            DIPR · CHENNAI · TN
-          </span>
-        </motion.div>
 
         {/* -----------------------------------------------------------------------
             LEFT REGISTER (0–32%): Official Portrait of Raj Mohan

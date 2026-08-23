@@ -1,7 +1,7 @@
 'use client';
 
 import type { InfoSectionProps } from './InfoTypes';
-import { ShieldCheck, MessageSquare, Clock, Users, Building, Layers } from 'lucide-react';
+import { ShieldCheck, Clock, Building, Layers } from 'lucide-react';
 
 export function InfoGovCommunication({ locale }: InfoSectionProps) {
   const isTa = locale === 'ta';

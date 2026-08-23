@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import type { InfoSectionProps } from './InfoTypes';
-import { FileText, ExternalLink, Download, Search, Filter } from 'lucide-react';
+import { FileText, ExternalLink, Search, Filter } from 'lucide-react';
 
 interface PressReleaseItem {
   id: string;

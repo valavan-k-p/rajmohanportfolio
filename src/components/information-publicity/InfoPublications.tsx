@@ -1,7 +1,7 @@
 'use client';
 
 import type { InfoSectionProps } from './InfoTypes';
-import { BookOpen, FileDown, Layers, MapPin, CheckCircle2 } from 'lucide-react';
+import { BookOpen, FileDown, MapPin, CheckCircle2 } from 'lucide-react';
 
 interface PublicationItem {
   id: string;

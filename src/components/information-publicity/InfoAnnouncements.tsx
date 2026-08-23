@@ -1,7 +1,7 @@
 'use client';
 
 import type { InfoSectionProps } from './InfoTypes';
-import { Bell, Calendar, ExternalLink, ShieldCheck, Globe, CheckCircle2, ChevronRight } from 'lucide-react';
+import { Calendar, ExternalLink, Globe } from 'lucide-react';
 
 interface AnnouncementItem {
   id: string;

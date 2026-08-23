@@ -1,4 +1,4 @@
-import type { Bilingual, Verification } from '@/lib/content/types';
+import type { Bilingual } from '@/lib/content/types';
 
 // The strict labels requested by the UI/UX Prompt
 export type ContentStatus = 

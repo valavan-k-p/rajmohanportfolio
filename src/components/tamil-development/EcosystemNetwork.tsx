@@ -18,7 +18,7 @@ export function EcosystemNetwork({ locale, data }: { locale: Locale; data: Ecosy
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // Staggered scroll reveal for nodes
-      nodesRef.current.forEach((node, i) => {
+      nodesRef.current.forEach((node) => {
         if (!node) return;
         
         gsap.fromTo(

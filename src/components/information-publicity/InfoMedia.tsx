@@ -1,7 +1,7 @@
 'use client';
 
 import type { InfoSectionProps } from './InfoTypes';
-import { Newspaper, ExternalLink, Radio, Tv, Camera, Award } from 'lucide-react';
+import { Newspaper, ExternalLink, Radio, Tv, Camera } from 'lucide-react';
 
 interface MediaOutlet {
   name: string;

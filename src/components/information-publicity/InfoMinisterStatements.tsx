@@ -93,7 +93,7 @@ export function InfoMinisterStatements({ locale }: InfoSectionProps) {
 
   return (
     <div className="space-y-8">
-      {STATEMENTS.map((stmt, idx) => (
+      {STATEMENTS.map((stmt) => (
         <article
           key={stmt.id}
           className="relative bg-white border border-sand-300 p-6 sm:p-8 md:p-10 shadow-xs hover:border-maroon-700 transition-colors"

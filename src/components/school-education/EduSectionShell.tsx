@@ -46,15 +46,13 @@ export function EduSectionShell({
   id,
   title,
   layout,
-  index,
+  index: _index,
   children,
 }: EduSectionShellProps) {
   const ground = GROUND[layout] ?? 'bg-white';
   const inner = INNER[layout] ?? 'max-w-[72rem]';
   const inverted = layout === 'data-band';
   const prefersReducedMotion = useReducedMotion();
-
-  const formattedIndex = String(index).padStart(2, '0');
 
   return (
     <section

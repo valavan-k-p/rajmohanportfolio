@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import type { InfoSectionProps } from './InfoTypes';
-import { Camera, Image as ImageIcon, ExternalLink, X as CloseIcon, Share2, Instagram, Facebook, Twitter, MessageCircle } from 'lucide-react';
+import { Camera, Image as ImageIcon, X as CloseIcon, Instagram, Facebook, Twitter, MessageCircle } from 'lucide-react';
 
 interface PhotoItem {
   id: string;

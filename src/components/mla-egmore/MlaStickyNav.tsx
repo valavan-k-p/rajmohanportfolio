@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, useScroll, useTransform, useMotionValueEvent } from 'motion/react';
-import { useState, useEffect } from 'react';
+import { motion, useScroll, useMotionValueEvent } from 'motion/react';
+import { useState } from 'react';
 
 export function MlaStickyNav({ title }: { title: string }) {
   const { scrollY } = useScroll();

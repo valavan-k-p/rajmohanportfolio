@@ -1,7 +1,7 @@
 'use client';
 
 import type { InfoSectionProps } from './InfoTypes';
-import { Play, Youtube, ExternalLink, ShieldCheck, Film } from 'lucide-react';
+import { Play, Youtube, ExternalLink, ShieldCheck } from 'lucide-react';
 
 interface VideoItem {
   id: string;

@@ -1,5 +1,4 @@
 import type { SectionProps } from './SectionMapper';
-import { MlaStaggerContainer, MlaStaggerItem, MlaReveal } from './MlaMotion';
 
 export function EducationInitiatives({ locale }: SectionProps) {
   const content = {
@@ -69,7 +68,7 @@ export function EducationInitiatives({ locale }: SectionProps) {
         <div className="lg:col-span-7 lg:pl-8 relative z-10 flex flex-col justify-center">
           <div className="mb-14 relative">
             <h4 className="text-2xl md:text-3xl font-display text-maroon-800 leading-snug" style={{ fontFamily: 'var(--font-cormorant)' }}>
-              "{content.p1}"
+              &ldquo;{content.p1}&rdquo;
             </h4>
           </div>
           
