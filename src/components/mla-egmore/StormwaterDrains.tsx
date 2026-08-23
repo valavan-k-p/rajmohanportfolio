@@ -1,5 +1,6 @@
 import type { SectionProps } from './SectionMapper';
-import { MlaStaggerContainer, MlaStaggerItem, MlaReveal } from './MlaMotion';
+import { MlaStaggerContainer, MlaStaggerItem, MlaReveal, MlaCounter } from './MlaMotion';
+import { Waves, Banknote } from 'lucide-react';
 
 export function StormwaterDrains({ locale }: SectionProps) {
   const content = {
@@ -95,14 +96,36 @@ export function StormwaterDrains({ locale }: SectionProps) {
           
           <div className="mb-8">
             <MlaReveal scale={0.96}>
-              <div className="font-display text-5xl mb-2">{content.stat1Value}</div>
+              <div className="flex items-center gap-3 mb-2">
+                <Waves size={28} className="text-red-400" strokeWidth={1.5} />
+                <div 
+                  className="text-5xl" 
+                  style={{ 
+                    fontFamily: 'var(--font-cormorant)',
+                    textShadow: '0 0 12px rgba(138, 115, 163, 0.25)' 
+                  }}
+                >
+                  <MlaCounter value={1.91} format="decimal" /> <span className="text-2xl font-sans text-red-500/80">km</span>
+                </div>
+              </div>
             </MlaReveal>
             <div className="text-sand-200">{content.stat1Label}</div>
           </div>
           
           <div>
             <MlaReveal scale={0.96}>
-              <div className="font-display text-4xl mb-2">{content.stat2Value}</div>
+              <div className="flex items-center gap-3 mb-2">
+                <Banknote size={24} className="text-red-400" strokeWidth={1.5} />
+                <div 
+                  className="text-4xl" 
+                  style={{ 
+                    fontFamily: 'var(--font-cormorant)',
+                    textShadow: '0 0 10px rgba(138, 115, 163, 0.25)' 
+                  }}
+                >
+                  <span className="text-2xl font-sans text-red-500/80">₹</span><MlaCounter value={2.06} format="decimal" /> <span className="text-2xl font-sans text-red-500/80">Cr</span>
+                </div>
+              </div>
             </MlaReveal>
             <div className="text-sand-200">{content.stat2Label}</div>
           </div>

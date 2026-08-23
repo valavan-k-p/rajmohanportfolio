@@ -141,7 +141,7 @@ export const PORTAL_CONTENT: Readonly<Record<PortalId, PortalContent>> = {
       ta: 'எழும்பூர் தொகுதி அலுவலகம். கவலையைத் தெரிவியுங்கள், அதன் நிலையைக் கண்காணியுங்கள்.',
     },
     sections: [
-      v('about-egmore', 'About Egmore', 'எழும்பூர் பற்றி', 'prose-columns'),
+      v('about-egmore', 'About Egmore', 'எழும்பூர் பற்றி', 'full-bleed'),
       v('mla-at-a-glance', 'MLA at a Glance', 'எம்.எல்.ஏ ஒரு பார்வை', 'statement'),
       v('constituency-priorities', 'Constituency Priorities', 'தொகுதி முன்னுரிமைகள்', 'category-grid'),
       v('neer-ezhil-palli', 'Neer Ezhil Palli', 'நீர் எழில் பள்ளி', 'full-bleed'),

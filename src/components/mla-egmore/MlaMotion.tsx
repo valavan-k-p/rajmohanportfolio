@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, useReducedMotion } from 'motion/react';
-import type { ReactNode } from 'react';
+import { motion, useReducedMotion, useScroll, useSpring, useInView, animate } from 'motion/react';
+import { type ReactNode, useEffect, useRef } from 'react';
 
 // Common easing (elegant, slow, subtle ease-out)
 const EASE = [0.16, 1, 0.3, 1];
@@ -27,7 +27,7 @@ export function MlaReveal({
     <motion.div
       initial={{ opacity: 0, y: prefersReducedMotion ? 0 : y, x: prefersReducedMotion ? 0 : x, scale: prefersReducedMotion ? 1 : scale }}
       whileInView={{ opacity: 1, y: 0, x: 0, scale: 1 }}
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={{ once: false, amount: 0.15 }}
       transition={{ duration: 0.8, delay, ease: EASE }}
       className={className}
     >
@@ -43,7 +43,7 @@ export function MlaStaggerContainer({ children, className = '' }: { children: Re
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={{ once: false, amount: 0.15 }}
       variants={{
         visible: {
           transition: {
@@ -82,7 +82,7 @@ export function MlaLineReveal({ className = '' }: { className?: string }) {
       aria-hidden="true"
       initial={{ scaleX: prefersReducedMotion ? 1 : 0 }}
       whileInView={{ scaleX: 1 }}
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={{ once: false, amount: 0.15 }}
       transition={{ duration: 0.9, ease: EASE }}
       style={{ transformOrigin: 'left' }}
       className={className}
@@ -98,7 +98,7 @@ export function MlaVerticalLineReveal({ className = '' }: { className?: string }
       aria-hidden="true"
       initial={{ scaleY: prefersReducedMotion ? 1 : 0 }}
       whileInView={{ scaleY: 1 }}
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={{ once: false, amount: 0.15 }}
       transition={{ duration: 0.9, ease: EASE }}
       style={{ transformOrigin: 'top' }}
       className={className}
@@ -128,11 +128,84 @@ export function MlaImageReveal({ children, className = '' }: { children: ReactNo
       <motion.div
         initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 1.05 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, amount: 0.15 }}
+        viewport={{ once: false, amount: 0.15 }}
         transition={{ duration: 1.0, ease: EASE }}
       >
         {children}
       </motion.div>
     </div>
   );
+}
+
+export function MlaTextReveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+  const prefersReducedMotion = useReducedMotion();
+  
+  return (
+    <div className={`overflow-hidden ${className}`}>
+      <motion.div
+        initial={{ y: prefersReducedMotion ? 0 : '100%', opacity: prefersReducedMotion ? 0 : 1 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: false, amount: 0.15 }}
+        transition={{ duration: 0.8, delay, ease: EASE }}
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+}
+
+export function MlaScrollProgress() {
+  const { scrollYProgress } = useScroll();
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  return (
+    <motion.div
+      className="fixed left-0 top-0 bottom-0 w-1 bg-red-600/20 origin-top z-50"
+      style={{ scaleY }}
+    >
+      <motion.div className="w-full h-full bg-maroon-700" />
+    </motion.div>
+  );
+}
+
+export function MlaCounter({ value, className = '', format = 'number' }: { value: number, className?: string, format?: 'number' | 'decimal' }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const prefersReducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (!ref.current) return;
+
+    if (prefersReducedMotion) {
+      if (format === 'decimal') {
+        ref.current.textContent = value.toFixed(2);
+      } else {
+        ref.current.textContent = value.toLocaleString('en-IN');
+      }
+      return;
+    }
+
+    if (isInView) {
+      const controls = animate(0, value, {
+        duration: 1.5,
+        ease: EASE,
+        onUpdate: (v) => {
+          if (ref.current) {
+            if (format === 'decimal') {
+              ref.current.textContent = v.toFixed(2);
+            } else {
+              ref.current.textContent = Math.floor(v).toLocaleString('en-IN');
+            }
+          }
+        }
+      });
+      return () => controls.stop();
+    }
+  }, [isInView, value, prefersReducedMotion, format]);
+
+  return <span ref={ref} className={className}>0</span>;
 }
