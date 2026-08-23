@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { useIsomorphicLayoutEffect } from '@/lib/motion';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export function LivingScriptLine() {
   const svgRef = useRef<SVGSVGElement>(null);

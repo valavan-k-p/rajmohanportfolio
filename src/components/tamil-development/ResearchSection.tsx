@@ -40,7 +40,7 @@ export function ResearchSection({ locale }: { locale: Locale }) {
       bgVariant="cream"
     >
       <div ref={containerRef} className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-        
+
         <InstitutionCard 
           title={locale === 'ta' ? 'உலகத் தமிழாராய்ச்சி நிறுவனம்' : 'International Institute of Tamil Studies'}
           tags={locale === 'ta' ? ['சுவடிகள்', 'ஆராய்ச்சி', 'திருக்குறள்', 'நூலகம்'] : ['Manuscripts', 'Research', 'Thirukkural', 'Library']}
