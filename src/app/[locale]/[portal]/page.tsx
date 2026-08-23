@@ -8,8 +8,11 @@ import { locales, type Locale } from '@/lib/i18n/routing';
 import { PortalHero } from '@/components/portal/PortalHero';
 import { SectionShell } from '@/components/portal/SectionShell';
 import { PendingContent } from '@/components/content/PendingContent';
+import { SectionMapper } from '@/components/mla-egmore/SectionMapper';
 import { CitizenQueryBlock } from '@/components/citizen/CitizenQueryBlock';
 import { SiteFooter } from '@/components/common/SiteFooter';
+import { MlaHero } from '@/components/mla-egmore/MlaHero';
+import { MlaSectionShell } from '@/components/mla-egmore/MlaSectionShell';
 
 /**
  * All four public portals.
@@ -79,29 +82,59 @@ export default async function PortalPage({ params }: { params: Promise<Params> }
   return (
     <>
       <main id="main">
-        <PortalHero
-          portal={portal}
-          index={String(PORTALS.indexOf(definition) + 1).padStart(2, '0')}
-          title={content.title[locale]}
-          standfirst={content.standfirst[locale]}
-          backLabel={t('backToNavigation')}
-        />
+        {portal === 'mla-egmore' ? (
+          <MlaHero
+            portal={portal}
+            index={String(PORTALS.indexOf(definition) + 1).padStart(2, '0')}
+            title={content.title[locale]}
+            standfirst={content.standfirst[locale]}
+            backLabel={t('backToNavigation')}
+          />
+        ) : (
+          <PortalHero
+            portal={portal}
+            index={String(PORTALS.indexOf(definition) + 1).padStart(2, '0')}
+            title={content.title[locale]}
+            standfirst={content.standfirst[locale]}
+            backLabel={t('backToNavigation')}
+          />
+        )}
 
-        {sections.map((section, i) => (
-          <SectionShell
-            key={section.id}
-            id={section.id}
-            title={section.title[locale]}
-            layout={section.layout}
-            index={i + 1}
-          >
-            <PendingContent
-              inverted={
-                section.layout === 'data-band' || section.layout === 'full-bleed' || inverted
-              }
-            />
-          </SectionShell>
-        ))}
+        {sections.map((section, i) => {
+          if (portal === 'mla-egmore') {
+            return (
+              <MlaSectionShell
+                key={section.id}
+                id={section.id}
+                title={section.title[locale]}
+                layout={section.layout}
+                index={i + 1}
+              >
+                <SectionMapper
+                  id={section.id}
+                  locale={locale}
+                  inverted={section.layout === 'data-band' || section.layout === 'full-bleed' || inverted}
+                />
+              </MlaSectionShell>
+            );
+          }
+
+          return (
+            <SectionShell
+              key={section.id}
+              id={section.id}
+              title={section.title[locale]}
+              layout={section.layout}
+              index={i + 1}
+            >
+              <PendingContent
+                inverted={
+                  section.layout === 'data-band' || section.layout === 'full-bleed' || inverted
+                }
+              />
+            </SectionShell>
+          );
+        })}
 
         <CitizenQueryBlock department={portal} locale={locale} />
       </main>

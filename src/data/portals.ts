@@ -60,6 +60,13 @@ const s = (
   layout: SectionLayout,
 ): PortalSection => ({ id, title: { en, ta }, layout, verification: pending });
 
+const v = (
+  id: string,
+  en: string,
+  ta: string,
+  layout: SectionLayout,
+): PortalSection => ({ id, title: { en, ta }, layout, verification: 'editorial' });
+
 export const PORTAL_CONTENT: Readonly<Record<PortalId, PortalContent>> = {
   'school-education': {
     id: 'school-education',
@@ -134,16 +141,21 @@ export const PORTAL_CONTENT: Readonly<Record<PortalId, PortalContent>> = {
       ta: 'எழும்பூர் தொகுதி அலுவலகம். கவலையைத் தெரிவியுங்கள், அதன் நிலையைக் கண்காணியுங்கள்.',
     },
     sections: [
-      s('about-egmore', 'About Egmore', 'எழும்பூர் பற்றி', 'prose-columns'),
-      s('representation', 'My Representation', 'எனது பிரதிநிதித்துவம்', 'statement'),
-      s('development', 'Constituency Development', 'தொகுதி மேம்பாடு', 'table'),
-      s('public-issues', 'Public Issues', 'பொதுப் பிரச்சினைகள்', 'category-grid'),
-      s('initiatives', 'Local Initiatives', 'உள்ளூர் முன்முயற்சிகள்', 'staggered'),
-      s('events', 'Events', 'நிகழ்வுகள்', 'editorial-index'),
-      s('services', 'Citizen Services', 'குடிமக்கள் சேவைகள்', 'numbered-list'),
-      s('news', 'News', 'செய்திகள்', 'editorial-index'),
-      s('track', 'Track Your Query', 'உங்கள் கோரிக்கையைக் கண்காணிக்கவும்', 'tracker'),
-      s('contact', 'Contact', 'தொடர்பு', 'contact'),
+      v('about-egmore', 'About Egmore', 'எழும்பூர் பற்றி', 'prose-columns'),
+      v('mla-at-a-glance', 'MLA at a Glance', 'எம்.எல்.ஏ ஒரு பார்வை', 'statement'),
+      v('constituency-priorities', 'Constituency Priorities', 'தொகுதி முன்னுரிமைகள்', 'category-grid'),
+      v('neer-ezhil-palli', 'Neer Ezhil Palli', 'நீர் எழில் பள்ளி', 'full-bleed'),
+      v('education-initiatives', 'Education & School Initiatives', 'கல்வி & பள்ளி முன்முயற்சிகள்', 'asymmetric-left'),
+      v('assembly-experience', 'Legislative Assembly Experience', 'சட்டமன்ற அனுபவம்', 'statement'),
+      v('assembly-challenges', 'Key Assembly Challenges', 'முக்கிய சட்டமன்ற சவால்கள்', 'staggered'),
+      v('civic-work', 'Civic Work in Egmore', 'எழும்பூரில் குடிமைப் பணிகள்', 'prose-columns'),
+      v('grievance-redressal', 'Grievance Redressal', 'குறை தீர்க்கும் பிரிவு', 'asymmetric-right'),
+      v('housing-regularisation', 'Housing & Land Regularisation', 'வீட்டுவசதி & நில முறைப்படுத்தல்', 'prose-columns'),
+      v('stormwater-drains', 'Stormwater Drains & Flood Mitigation', 'மழைநீர் வடிகால்கள் & வெள்ளத் தடுப்பு', 'asymmetric-left'),
+      v('water-supply', 'Water Supply & Quality', 'நீர் வழங்கல் & தரம்', 'prose-columns'),
+      v('constraints-criticism', 'Constraints & Criticism', 'கட்டுப்பாடுகள் & விமர்சனங்கள்', 'numbered-list'),
+      v('overall-assessment', 'Overall Assessment', 'ஒட்டுமொத்த மதிப்பீடு', 'prose-columns'),
+      v('further-research', 'Further Research', 'மேலும் ஆராய்ச்சி', 'statement'),
     ],
   },
 };
