@@ -6,6 +6,18 @@ const withNextIntl = createNextIntlPlugin('./src/lib/i18n/request.ts');
 const nextConfig: NextConfig = {
   reactStrictMode: true,
 
+  // framer-motion@12 (re-exported by motion@12) references 'motion-utils' and
+  // 'motion-dom' as bare specifiers in its ESM bundle. webpack can't resolve
+  // them unless we explicitly alias them to the hoisted top-level packages.
+  webpack(config) {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'motion-utils': require.resolve('motion-utils'),
+      'motion-dom': require.resolve('motion-dom'),
+    };
+    return config;
+  },
+
   // A verification build must not clobber a running dev server's chunks — doing
   // so leaves `next dev` unable to resolve modules it has already loaded
   // ("Cannot find module './NNN.js'"). `npm run verify` sets BUILD_DIR so the
