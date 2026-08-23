@@ -143,9 +143,8 @@ export default async function PortalPage({ params }: { params: Promise<Params> }
                 index={i + 1}
               >
                 <EduSectionMapper
-                  id={section.id}
+                  sectionId={section.id}
                   locale={locale}
-                  inverted={section.layout === 'data-band'}
                 />
               </EduSectionShell>
             );

@@ -65,32 +65,18 @@ export function EduSectionShell({
       <div className={`mx-auto ${inner}`}>
         {/* Section Header */}
         <div className="mb-10">
-          <div className="flex items-baseline gap-3 mb-3">
-            <motion.span
-              initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -8 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.35, ease: EASE }}
-              aria-hidden="true"
-              className={`u-eyebrow font-bold tracking-widest ${
-                inverted ? 'text-yellow-400' : 'text-maroon-700'
-              }`}
-            >
-              {formattedIndex}
-            </motion.span>
-            <motion.h2
-              id={`${id}-heading`}
-              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.45, delay: 0.05, ease: EASE }}
-              className={`font-display text-h2 ${
-                inverted ? 'text-white' : 'text-charcoal-900'
-              }`}
-            >
-              {title}
-            </motion.h2>
-          </div>
+          <motion.h2
+            id={`${id}-heading`}
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.45, ease: EASE }}
+            className={`font-display text-h2 mb-4 ${
+              inverted ? 'text-white' : 'text-charcoal-900'
+            }`}
+          >
+            {title}
+          </motion.h2>
 
           {/* Full grid width hairline */}
           <motion.div

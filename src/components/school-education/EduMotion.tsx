@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, useReducedMotion } from 'motion/react';
-import type { ReactNode } from 'react';
+import { useRef, useState, useEffect, type ReactNode } from 'react';
+import { motion, useInView, useReducedMotion } from 'motion/react';
 
 // Refined easing curve for education portal (clean, decisive, orderly)
 const EASE = [0.16, 1, 0.3, 1];
@@ -138,5 +138,73 @@ export function EduCard({
     >
       {children}
     </motion.div>
+  );
+}
+
+export interface EduCounterProps {
+  readonly value: number;
+  readonly prefix?: string;
+  readonly suffix?: string;
+  readonly duration?: number;
+  readonly className?: string;
+}
+
+export function EduCounter({
+  value,
+  prefix = '',
+  suffix = '',
+  duration = 1.8,
+  className = '',
+}: EduCounterProps) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const isInView = useInView(ref, { once: true, amount: 0.25 });
+  const [displayValue, setDisplayValue] = useState(prefersReducedMotion ? value : 0);
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setDisplayValue(value);
+      return;
+    }
+
+    if (!isInView) return;
+
+    let startTime: number | null = null;
+    let animationFrameId: number;
+
+    // Smooth easeOutQuart curve for organic deceleration
+    const easeOutQuart = (x: number): number => 1 - Math.pow(1 - x, 4);
+
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / (duration * 1000), 1);
+      const easedProgress = easeOutQuart(progress);
+
+      const current = Math.round(easedProgress * value);
+      setDisplayValue(current);
+
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(step);
+      } else {
+        setDisplayValue(value);
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(step);
+
+    return () => {
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    };
+  }, [isInView, value, duration, prefersReducedMotion]);
+
+  const formattedNumber = displayValue.toLocaleString('en-IN');
+
+  return (
+    <span ref={ref} className={className}>
+      {prefix}
+      {formattedNumber}
+      {suffix}
+    </span>
   );
 }

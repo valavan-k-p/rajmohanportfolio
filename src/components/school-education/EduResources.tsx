@@ -8,10 +8,10 @@ export function EduResources({ locale }: { locale: Locale }) {
     en: {
       headline: 'Public Documentation & Verified Source Index',
       standfirst:
-        'Every claim, metric, and policy development on this portal is drawn from public records, legislative statements, and verified news reporting.',
+        'Every factual claim, budget figure, curriculum decision, and policy development on this portal is drawn from official departmental notifications, legislative records, and published reporting.',
       groups: [
         {
-          category: 'Government Profiles & Official Orders',
+          category: 'Official Government Profiles & Orders',
           items: [
             {
               title: 'Tamil Nadu Government Department Profile & Portfolio Notification',
@@ -140,37 +140,40 @@ export function EduResources({ locale }: { locale: Locale }) {
   }[locale];
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-10 max-w-[72rem] mx-auto">
       <EduReveal className="max-w-[48rem]">
-        <p className="text-charcoal-700 text-base leading-relaxed">
+        <h3 className="font-display text-2xl sm:text-3xl text-charcoal-900 leading-tight font-normal">
+          {content.headline}
+        </h3>
+        <p className="text-charcoal-700 text-base leading-relaxed mt-2">
           {content.standfirst}
         </p>
       </EduReveal>
 
-      {/* Grouped Link List */}
+      {/* Grouped Link List with Clean Hairlines */}
       <div className="space-y-10">
         {content.groups.map((group, gIdx) => (
           <div key={gIdx} className="space-y-4">
-            <h3 className="font-display text-xl text-maroon-700 border-b border-sand-300 pb-2">
+            <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-maroon-700 border-b border-sand-300 pb-2">
               {group.category}
-            </h3>
+            </h4>
 
-            <EduStaggerContainer className="divide-y divide-sand-300">
+            <EduStaggerContainer className="divide-y divide-sand-200">
               {group.items.map((item, idx) => (
                 <EduStaggerItem
                   key={idx}
-                  className="py-4 flex flex-col md:flex-row md:items-center justify-between gap-3 group"
+                  className="py-4 flex flex-col md:flex-row md:items-baseline justify-between gap-3 group"
                 >
-                  <div className="space-y-1 max-w-[48rem]">
+                  <div className="space-y-1 max-w-[46rem]">
                     <a
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-display text-lg text-charcoal-900 group-hover:text-maroon-700 transition-colors no-underline block"
+                      className="font-display text-lg text-charcoal-900 group-hover:text-maroon-700 transition-colors no-underline block font-semibold"
                     >
-                      {item.title} <span className="text-xs font-mono text-charcoal-500">↗</span>
+                      {item.title} <span className="text-xs font-mono text-charcoal-400 group-hover:text-maroon-700">↗</span>
                     </a>
-                    <p className="text-xs text-charcoal-600 font-sans">
+                    <p className="text-xs text-charcoal-600 font-sans leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
@@ -185,12 +188,9 @@ export function EduResources({ locale }: { locale: Locale }) {
         ))}
       </div>
 
-      {/* Governance Notice */}
-      <EduReveal delay={0.15} className="p-4 bg-sand-100 border border-sand-300">
-        <p className="text-xs text-charcoal-700 font-sans italic">
-          {content.notice}
-        </p>
-      </EduReveal>
+      <div className="text-xs text-charcoal-500 font-mono pt-4 border-t border-sand-200">
+        {content.notice}
+      </div>
     </div>
   );
 }
