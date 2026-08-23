@@ -39,7 +39,7 @@ export interface MlaSectionShellProps {
   readonly children?: ReactNode;
 }
 
-const EASE = [0.16, 1, 0.3, 1];
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function MlaSectionShell({ id, title, layout, index, children }: MlaSectionShellProps) {
   const ground = GROUND[layout] ?? 'bg-white';

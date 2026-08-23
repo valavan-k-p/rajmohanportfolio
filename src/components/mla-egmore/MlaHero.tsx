@@ -21,7 +21,7 @@ export interface MlaHeroProps {
   readonly backLabel: string;
 }
 
-const EASE = [0.16, 1, 0.3, 1];
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function MlaHero({ index, title, standfirst, backLabel }: MlaHeroProps) {
   const prefersReducedMotion = useReducedMotion();

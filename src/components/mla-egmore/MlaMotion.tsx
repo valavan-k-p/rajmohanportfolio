@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import type { ReactNode } from 'react';
 
 // Common easing (elegant, slow, subtle ease-out)
-const EASE = [0.16, 1, 0.3, 1];
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function MlaReveal({
   children,

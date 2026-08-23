@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Instrument_Sans, Instrument_Serif, Noto_Sans_Tamil, Noto_Serif_Tamil } from 'next/font/google';
+import { Cormorant_Garamond, Instrument_Sans, Instrument_Serif, Noto_Sans_Tamil, Noto_Serif_Tamil } from 'next/font/google';
 import '@/styles/globals.css';
 
 /**
@@ -7,6 +7,14 @@ import '@/styles/globals.css';
  * Google, no layout shift, no third-party connection on first paint.
  * Tamil is a parallel first-class stack (MASTER.md §2), not a fallback.
  */
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant',
+  display: 'swap',
+});
+
 const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
   weight: '400',
@@ -50,6 +58,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const fontVars = [
+    cormorantGaramond.variable,
     instrumentSerif.variable,
     instrumentSans.variable,
     notoSerifTamil.variable,

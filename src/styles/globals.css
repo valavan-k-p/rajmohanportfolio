@@ -35,6 +35,7 @@
 
   /* --- Typography --- */
   --font-display: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+  --font-serif-editorial: var(--font-cormorant), var(--font-instrument-serif), Georgia, serif;
   --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
   --font-tamil-display: var(--font-noto-serif-tamil), var(--font-instrument-serif), serif;
   --font-tamil-sans: var(--font-noto-sans-tamil), var(--font-instrument-sans), sans-serif;
@@ -75,6 +76,16 @@
   --color-tamil-paper: #f2ebd9; /* Warm parchment / ivory / aged-paper tones */
   --color-tamil-white: #faf7f0; /* Soft cream / warm white */
   --color-tamil-border: #e3dcc5;
+
+  /* --- Information & Publicity Cinematic Tokens --- */
+  --color-cinematic-bg: #090706;
+  --color-cinematic-maroon: #250806;
+  --color-cinematic-brown: #18110b;
+  --color-cinematic-gold: #c5a059;
+  --color-cinematic-gold-light: #e6c888;
+  --color-cinematic-gold-dim: #8a6c3b;
+  --color-cinematic-ivory: #fbf9f4;
+  --color-cinematic-cream: #efe5d0;
 }
 
 @layer base {

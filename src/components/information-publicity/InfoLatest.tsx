@@ -11,55 +11,55 @@ export function InfoLatest({ locale }: InfoSectionProps) {
       {/* 3-Column Newsroom Grid with 2-Column Lead Story */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         {/* Lead Story: Double-width card */}
-        <div className="lg:col-span-8 bg-charcoal-950 text-white p-6 sm:p-8 md:p-10 rounded-sm flex flex-col justify-between relative overflow-hidden border-l-4 border-yellow-400">
+        <div className="lg:col-span-8 bg-sand-50 border border-sand-300 border-l-4 border-l-maroon-700 p-6 sm:p-8 md:p-10 rounded-sm flex flex-col justify-between relative overflow-hidden shadow-xs">
           <div className="space-y-4">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-1.5 bg-yellow-400 text-charcoal-950 font-mono text-xs font-bold px-2.5 py-1 uppercase tracking-wider">
-                <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+              <span className="inline-flex items-center gap-1.5 bg-maroon-700 text-white font-mono text-xs font-bold px-2.5 py-1 uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
                 {isTa ? 'சமீபத்திய அறிவிப்பு' : 'LATEST DISPATCH'}
               </span>
-              <span className="text-xs text-charcoal-300 font-mono">
+              <span className="text-xs text-charcoal-600 font-mono font-medium">
                 {isTa ? 'ஆகஸ்ட் 2026' : 'AUGUST 2026'} · DIPR-IID-01
               </span>
             </div>
 
-            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl text-white leading-tight">
+            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl text-charcoal-950 font-bold leading-tight">
               {isTa
                 ? 'தமிழ்நாடு உண்மை சரிபார்ப்பு பிரிவு "தகவல் ஒருமைப்பாடு பிரிவு (IID)" என மறுபெயரிடப்பட்டு மறுசீரமைப்பு'
                 : 'Tamil Nadu Reconstitutes Fact Check Unit as "Information Integrity Desk (IID)"'}
             </h3>
 
-            <p className="text-charcoal-200 text-base sm:text-lg leading-relaxed font-sans">
+            <p className="text-charcoal-800 text-base sm:text-lg leading-relaxed font-sans font-normal">
               {isTa
                 ? 'தவறான தகவல்கள் மற்றும் போலியான செய்திகளை முறியடிக்க, குரு (குரு தலைவா) தலைமையில் புதிய தகவல் ஒருமைப்பாடு பிரிவு அமைக்கப்பட்டுள்ளது. வெளிப்படைத்தன்மை மற்றும் கணக்குத்தன்மையை உறுதி செய்ய டிக்கெட் அடிப்படையிலான கண்காணிப்பு முறை அமல்படுத்தப்பட்டுள்ளது.'
                 : 'To counter online disinformation and manipulated content, the government has overhauled its fact-checking apparatus under the leadership of Guru (Guru Thalaiva). A new ticket-based tracking mechanism guarantees time-bound verification and swift multi-departmental coordination.'}
             </p>
 
             {/* Metric / SLA badges */}
-            <div className="grid grid-cols-3 gap-3 pt-4 border-t border-charcoal-800">
-              <div className="bg-charcoal-900/80 p-3 border border-charcoal-800">
-                <div className="text-xs text-charcoal-400 font-mono uppercase">{isTa ? 'அதிமுக்கியத்துவம்' : 'High Priority'}</div>
-                <div className="text-lg font-bold text-yellow-400">&lt; 1 {isTa ? 'மணி நேரம்' : 'Hour SLA'}</div>
+            <div className="grid grid-cols-3 gap-3 pt-4 border-t border-sand-200">
+              <div className="bg-white p-3 border border-sand-300 shadow-xs">
+                <div className="text-xs text-charcoal-600 font-mono uppercase">{isTa ? 'அதிமுக்கியத்துவம்' : 'High Priority'}</div>
+                <div className="text-lg font-bold text-maroon-700">&lt; 1 {isTa ? 'மணி நேரம்' : 'Hour SLA'}</div>
               </div>
-              <div className="bg-charcoal-900/80 p-3 border border-charcoal-800">
-                <div className="text-xs text-charcoal-400 font-mono uppercase">{isTa ? 'நடுத்தர முன்னுரிமை' : 'Medium Priority'}</div>
-                <div className="text-lg font-bold text-white">&lt; 3 {isTa ? 'மணி நேரம்' : 'Hours SLA'}</div>
+              <div className="bg-white p-3 border border-sand-300 shadow-xs">
+                <div className="text-xs text-charcoal-600 font-mono uppercase">{isTa ? 'நடுத்தர முன்னுரிமை' : 'Medium Priority'}</div>
+                <div className="text-lg font-bold text-charcoal-900">&lt; 3 {isTa ? 'மணி நேரம்' : 'Hours SLA'}</div>
               </div>
-              <div className="bg-charcoal-900/80 p-3 border border-charcoal-800">
-                <div className="text-xs text-charcoal-400 font-mono uppercase">{isTa ? 'பொது முன்னுரிமை' : 'Standard'}</div>
-                <div className="text-lg font-bold text-charcoal-300">&lt; 7 {isTa ? 'மணி நேரம்' : 'Hours SLA'}</div>
+              <div className="bg-white p-3 border border-sand-300 shadow-xs">
+                <div className="text-xs text-charcoal-600 font-mono uppercase">{isTa ? 'பொது முன்னுரிமை' : 'Standard'}</div>
+                <div className="text-lg font-bold text-charcoal-800">&lt; 7 {isTa ? 'மணி நேரம்' : 'Hours SLA'}</div>
               </div>
             </div>
           </div>
 
-          <div className="mt-8 pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-charcoal-800/80">
-            <div className="flex items-center gap-2 text-xs text-charcoal-400">
-              <ShieldCheck className="w-4 h-4 text-yellow-400" />
+          <div className="mt-8 pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-sand-200">
+            <div className="flex items-center gap-2 text-xs text-charcoal-700 font-medium">
+              <ShieldCheck className="w-4 h-4 text-maroon-700" />
               <span>{isTa ? 'துறை ஒருங்கிணைப்பு வாட்ஸ்அப் நெட்வொர்க் இணைக்கப்பட்டது' : 'Inter-Departmental Nodal WhatsApp Network Active'}</span>
             </div>
             <a
               href="#communication"
-              className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-yellow-400 hover:text-yellow-300 font-semibold transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-maroon-700 hover:text-maroon-900 font-bold transition-colors"
             >
               {isTa ? 'முழு விபரம் வாசிக்க' : 'Read Full Architecture'} <ArrowUpRight className="w-3.5 h-3.5" />
             </a>

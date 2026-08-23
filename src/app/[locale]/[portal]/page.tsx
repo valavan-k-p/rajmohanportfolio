@@ -18,6 +18,7 @@ import { EduSectionShell } from '@/components/school-education/EduSectionShell';
 import { EduSectionMapper } from '@/components/school-education/EduSectionMapper';
 import { InfoSectionShell } from '@/components/information-publicity/InfoSectionShell';
 import { InfoSectionMapper } from '@/components/information-publicity/InfoSectionMapper';
+import { InfoHero } from '@/components/information-publicity/InfoHero';
 
 /**
  * All four public portals.
@@ -103,6 +104,14 @@ export default async function PortalPage({ params }: { params: Promise<Params> }
             standfirst={content.standfirst[locale]}
             backLabel={t('backToNavigation')}
             locale={locale}
+          />
+        ) : portal === 'information-publicity' ? (
+          <InfoHero
+            locale={locale}
+            index={String(PORTALS.indexOf(definition) + 1).padStart(2, '0')}
+            title={content.title[locale]}
+            standfirst={content.standfirst[locale]}
+            backLabel={t('backToNavigation')}
           />
         ) : (
           <PortalHero

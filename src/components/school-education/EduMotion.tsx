@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import type { ReactNode } from 'react';
 
 // Refined easing curve for education portal (clean, decisive, orderly)
-const EASE = [0.16, 1, 0.3, 1];
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function EduReveal({
   children,

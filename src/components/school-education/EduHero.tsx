@@ -14,7 +14,7 @@ export interface EduHeroProps {
   readonly locale: Locale;
 }
 
-const EASE = [0.16, 1, 0.3, 1];
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function EduHero({ index, title, standfirst, backLabel, locale }: EduHeroProps) {
   const prefersReducedMotion = useReducedMotion();
