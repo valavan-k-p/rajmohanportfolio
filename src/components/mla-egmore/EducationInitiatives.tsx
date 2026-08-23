@@ -28,24 +28,67 @@ export function EducationInitiatives({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 lg:gap-24 items-start">
-      <MlaStaggerItem className="bg-sand-100 p-8 border-l-4 border-red-500">
-        <h3 className="font-display text-2xl text-charcoal-900 mb-4">{content.pilotTitle}</h3>
-        <p className="text-charcoal-700 leading-relaxed">{content.pilotBody}</p>
-        <div className="mt-8 text-sm uppercase tracking-widest text-red-600 font-medium">Policy Initiative</div>
-        <MlaReveal scale={0.96}>
-          <div className="font-display text-4xl text-charcoal-900 mt-1">5,000 <span className="text-xl font-sans text-charcoal-600 font-light lowercase">schools planned statewide</span></div>
-        </MlaReveal>
-      </MlaStaggerItem>
+    <div className="relative mt-8 mb-24">
+      {/* Delicate background rule */}
+      <div className="hidden lg:block absolute top-0 bottom-0 left-[41.666%] w-px bg-sand-200/50" />
+      
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 relative">
+        
+        {/* Left column: Cinematic Focus Block */}
+        <div className="lg:col-span-5 relative z-10 lg:pt-16">
+          <div className="bg-charcoal-900 p-10 md:p-14 shadow-2xl relative overflow-hidden group hover:shadow-red-900/10 transition-shadow duration-700">
+            {/* Cinematic subtle glow */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-900/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3 transition-opacity duration-1000 group-hover:opacity-100 opacity-50 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-yellow-900/10 rounded-full blur-[60px] translate-y-1/3 -translate-x-1/3 transition-opacity duration-1000 group-hover:opacity-100 opacity-30 pointer-events-none" />
+            
+            <div className="flex items-center gap-4 mb-8 relative z-10">
+              <div className="w-8 h-px bg-red-500/80" />
+              <span className="text-[0.65rem] uppercase tracking-[0.2em] text-red-400 font-medium">Policy Initiative</span>
+            </div>
+            
+            <h3 className="font-display text-4xl md:text-5xl text-sand-50 mb-6 leading-tight relative z-10" style={{ fontFamily: 'var(--font-cormorant)' }}>
+              {content.pilotTitle}
+            </h3>
+            
+            <p className="text-sand-100/70 leading-relaxed font-light mb-14 text-lg relative z-10">
+              {content.pilotBody}
+            </p>
+            
+            <div className="pt-8 border-t border-white/10 relative z-10 flex items-baseline gap-4">
+              <div className="font-display text-6xl text-white tracking-tight" style={{ fontFamily: 'var(--font-cormorant)' }}>
+                5,000
+              </div>
+              <div className="text-xs uppercase tracking-[0.2em] text-sand-200/50 max-w-[100px] leading-relaxed">
+                Schools planned statewide
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <MlaStaggerContainer className="prose prose-lg text-charcoal-800 prose-headings:font-display prose-headings:font-normal prose-li:marker:text-red-600">
-        <MlaStaggerItem><p className="text-xl leading-relaxed mb-8">{content.p1}</p></MlaStaggerItem>
-        <ul className="list-disc pl-6 space-y-4">
-          {content.list.map((item, idx) => (
-            <MlaStaggerItem key={idx} y={0} x={15}><li>{item}</li></MlaStaggerItem>
-          ))}
-        </ul>
-      </MlaStaggerContainer>
-    </MlaStaggerContainer>
+        {/* Right column: Flowing Editorial Text */}
+        <div className="lg:col-span-7 lg:pl-8 relative z-10 flex flex-col justify-center">
+          <div className="mb-14 relative">
+            <h4 className="text-2xl md:text-3xl font-display text-maroon-800 leading-snug" style={{ fontFamily: 'var(--font-cormorant)' }}>
+              "{content.p1}"
+            </h4>
+          </div>
+          
+          <div className="space-y-10">
+            {content.list.map((item, idx) => (
+              <div key={idx} className="flex gap-6 md:gap-8 group cursor-default">
+                <div className="text-sm font-display text-red-600/40 pt-1 shrink-0 transition-colors duration-500 group-hover:text-red-600" style={{ fontFamily: 'var(--font-cormorant)' }}>
+                  {String(idx + 1).padStart(2, '0')}
+                </div>
+                <div className="relative pb-6 border-b border-sand-200 group-hover:border-red-200 transition-colors duration-700">
+                  <p className="text-lg md:text-xl text-charcoal-700 leading-relaxed group-hover:text-charcoal-900 transition-colors duration-500">
+                    {item}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

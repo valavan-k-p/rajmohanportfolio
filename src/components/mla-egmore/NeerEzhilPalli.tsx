@@ -1,5 +1,6 @@
 import type { SectionProps } from './SectionMapper';
-import { MlaStaggerContainer, MlaStaggerItem, MlaReveal } from './MlaMotion';
+import { MlaStaggerContainer, MlaStaggerItem, MlaReveal, MlaCounter } from './MlaMotion';
+import { Droplets } from 'lucide-react';
 
 export function NeerEzhilPalli({ locale, inverted }: SectionProps) {
   const content = {
@@ -100,7 +101,18 @@ export function NeerEzhilPalli({ locale, inverted }: SectionProps) {
               <div className={`p-6 border-l-4 border-red-500 ${inverted ? 'bg-white/5' : 'bg-sand-100'}`}>
                 <div className="text-sm uppercase tracking-widest text-red-500 mb-2">{content.capacityLabel}</div>
                 <MlaReveal scale={0.96}>
-                  <div className="font-display text-4xl mb-1">{content.capacityValue} <span className="text-xl font-sans text-red-400">{content.capacityUnit}</span></div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <Droplets size={24} className="text-red-400" strokeWidth={1.5} />
+                    <div 
+                      className="text-4xl text-white" 
+                      style={{ 
+                        fontFamily: 'var(--font-cormorant)', 
+                        textShadow: '0 0 10px rgba(138, 115, 163, 0.3)' 
+                      }}
+                    >
+                      <MlaCounter value={25000} format="number" /> <span className="text-xl font-sans text-red-400">{content.capacityUnit}</span>
+                    </div>
+                  </div>
                 </MlaReveal>
               </div>
             </MlaStaggerItem>

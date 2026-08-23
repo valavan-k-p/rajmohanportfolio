@@ -7,60 +7,54 @@ export function EduStudents({ locale }: { locale: Locale }) {
   const content = {
     en: {
       leadQuote:
-        '“Students deserve nutrition, freedom from unnecessary legal intimidation, and an environment dedicated entirely to curiosity and learning.”',
-      initiatives: [
+        '“Students thrive when nutrition is dignified, legal anxieties are removed, and the classroom remains an uninterrupted space for curiosity and growth.”',
+      cards: [
         {
-          tag: 'Student Nutrition Proposal',
-          title: 'Weekly Chicken Biryani in School Meals',
-          detail:
-            'A proposal to introduce chicken biryani once a week in government-school noon meal programmes is under serious consideration by the government, aimed at enhancing child nutrition, student welfare, and attendance.',
-          statusNote: 'Proposal under ministerial review & final Chief Minister consideration.',
-          source: 'New Indian Express, August 2026',
-        },
-        {
-          tag: 'Student Rights & Legal Relief',
+          tag: 'LEGAL RELIEF · OFFICIAL ORDER',
           title: 'Withdrawal of Cases Against Anti-NEET Student Protesters',
           detail:
-            'In August 2026, the School Education Minister announced the government’s decision—under Chief Minister direction—to formally withdraw all criminal cases registered against students who participated in democratic anti-NEET protests.',
-          statusNote: 'Executive policy action to protect student futures and career prospects.',
+            'Following directions from the Chief Minister, the Minister announced the formal withdrawal of all police cases registered against students who participated in democratic anti-NEET demonstrations, safeguarding their academic and career records.',
           source: 'The Hindu, August 2026',
         },
         {
-          tag: 'Campus Safety & Mental Space',
-          title: 'Sanctuary Classrooms & Visitor Restrictions',
+          tag: 'POLICY PROPOSAL · UNDER REVIEW',
+          title: 'Weekly Chicken Biryani in Noon Meals',
           detail:
-            'Regulating entry into government school grounds to prevent political-party representatives, commercial entities, or unauthorized visitors from engaging students during instructional hours.',
-          statusNote: 'Policy directive to maintain institutional neutrality and pupil safety.',
+            'A proposal to introduce chicken biryani once weekly in government-school noon meals is under ministerial review and final Chief Minister consideration to bolster child nutrition and attendance.',
+          source: 'New Indian Express, August 2026',
+        },
+        {
+          tag: 'CAMPUS NEUTRALITY · EXECUTIVE NORMS',
+          title: 'Preserving Classrooms as Learning Sanctuaries',
+          detail:
+            'Implemented strict guidelines prohibiting political party events, commercial intrusions, and unauthorized outside visitors inside government school grounds to preserve safety and instructional focus.',
           source: 'New Indian Express, July 2026',
         },
       ],
     },
     ta: {
       leadQuote:
-        '“மாணவர்களுக்குச் சத்தான உணவு, தேவையின்றி பதியப்பட்ட வழக்குகளிலிருந்து விடுதலை மற்றும் கற்றலுக்கேற்ற அமைதியான சூழல் ஆகியவை அவசியமானவை.”',
-      initiatives: [
+        '“சத்தான உணவு, சட்டரீதியான பாதுகாப்பும், அமைதியான கற்றல் சூழலும் இருக்கும்போதுதான் மாணவர்களின் எதிர்காலம் சிறக்கும்.”',
+      cards: [
         {
-          tag: 'ஊட்டச்சத்து முன்மொழிவு',
-          title: 'வாரம் ஒரு முறை சிக்கன் பிரியாணி திட்டம்',
-          detail:
-            'அரசுப் பள்ளி மதிய உணவுத் திட்டத்தில் வாரம் ஒரு முறை சிக்கன் பிரியாணி வழங்கும் முன்மொழிவு அரசின் தீவிரப் பரிசீலனையில் உள்ளது; இது மாணவர்களின் ஊட்டச்சத்து மற்றும் வருகையை அதிகரிக்க உதவும் எனத் தெரிவிக்கப்பட்டுள்ளது.',
-          statusNote: 'அமைச்சகப் பரிசீலனை மற்றும் முதலமைச்சரின் இறுதி முடிவுக்கான முன்மொழிவு.',
-          source: 'நியூ இந்தியன் எக்ஸ்பிரஸ், ஆகஸ்ட் 2026',
-        },
-        {
-          tag: 'மாணவர் உரிமை & சட்டப் பாதுகாப்பு',
+          tag: 'சட்டப் பாதுகாப்பு · அரசு ஆணை',
           title: 'நீட் எதிர்ப்பு போராட்டத்தில் ஈடுபட்ட மாணவர்கள் மீதான வழக்குகள் வாபஸ்',
           detail:
-            'நீட் தேர்வுக்கு எதிராக ஜனநாயக வழியில் போராடிய மாணவர்கள் மீது பதியப்பட்ட வழக்குகளைத் திரும்பப் பெற முதலமைச்சரின் வழிகாட்டுதலின்படி பள்ளிக் கல்வித்துறை அமைச்சர் ராஜ்மோகன் அறிவித்தார்.',
-          statusNote: 'மாணவர்களின் எதிர்காலம் மற்றும் கல்வி நலனைக் காக்கும் கொள்கை முடிவு.',
+            'நீட் தேர்வுக்கு எதிராக அமைதியான முறையில் போராடிய மாணவர்கள் மீது பதியப்பட்ட அனைத்து வழக்குகளையும் முதலமைச்சரின் வழிகாட்டுதலின்படி திரும்பப் பெற அமைச்சர் அறிவித்தார்.',
           source: 'தி இந்து, ஆகஸ்ட் 2026',
         },
         {
-          tag: 'வளாகப் பாதுகாப்பு & கற்றல் சூழல்',
-          title: 'அரசியல் தலையீடற்ற பாதுகாப்பான வகுப்பறைகள்',
+          tag: 'முன்மொழிவு · அரசின் பரிசீலனையில்',
+          title: 'வாரம் ஒரு முறை சிக்கன் பிரியாணி திட்டம்',
           detail:
-            'பள்ளி வளாகங்களுக்குள் அரசியல் கட்சியினர், தனியார் அமைப்புகள் அல்லது அனுமதியற்ற நபர்கள் நுழைந்து மாணவர்களை ஈடுபடுத்துவதைத் தடை செய்து கற்றல் நேரத்தைப் பாதுகாத்தல்.',
-          statusNote: 'பள்ளி அமைதியைப் பேண வெளியிடப்பட்ட வழிகாட்டு நெறிமுறை.',
+            'அரசுப் பள்ளி மதிய உணவுத் திட்டத்தில் வாரம் ஒரு முறை சிக்கன் பிரியாணி வழங்கும் முன்மொழிவு ஊட்டச்சத்து மற்றும் வருகையை அதிகரிக்க அரசின் தீவிரப் பரிசீலனையில் உள்ளது.',
+          source: 'நியூ இந்தியன் எக்ஸ்பிரஸ், ஆகஸ்ட் 2026',
+        },
+        {
+          tag: 'வளாகப் பாதுகாப்பு · நிர்வாக நெறிமுறை',
+          title: 'அரசியல் தலையீடற்ற அமைதியான வகுப்பறைகள்',
+          detail:
+            'பள்ளி வளாகங்களுக்குள் அரசியல் கட்சிகள், தனியார் அமைப்புகள் அல்லது அனுமதியற்ற நபர்கள் நுழைவதைத் தடை செய்து கற்றல் நேரமும் மாணவர் பாதுகாப்பும் உறுதி செய்யப்பட்டுள்ளது.',
           source: 'நியூ இந்தியன் எக்ஸ்பிரஸ், ஜூலை 2026',
         },
       ],
@@ -68,40 +62,37 @@ export function EduStudents({ locale }: { locale: Locale }) {
   }[locale];
 
   return (
-    <div className="space-y-12">
-      {/* Pull Quote Header */}
-      <EduReveal className="max-w-[48rem] mx-auto text-center">
-        <p className="font-serif italic text-2xl md:text-3xl text-charcoal-900 leading-snug">
-          {content.leadQuote}
-        </p>
+    <div className="space-y-12 max-w-[72rem] mx-auto">
+      {/* Pull Quote */}
+      <EduReveal className="max-w-[48rem]">
+        <div className="pl-6 border-l-2 border-maroon-700 py-1">
+          <p className="font-serif italic text-xl sm:text-2xl text-charcoal-900 leading-relaxed font-normal">
+            {content.leadQuote}
+          </p>
+        </div>
       </EduReveal>
 
-      {/* 3 Welfare & Protection Cards */}
-      <EduStaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {content.initiatives.map((item, idx) => (
+      {/* 3 Welfare Columns with Top Hairlines (No Heavy Cards) */}
+      <EduStaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 pt-2">
+        {content.cards.map((card, idx) => (
           <EduStaggerItem
             key={idx}
-            className="bg-white p-8 border border-sand-300 flex flex-col justify-between shadow-sm"
+            className="border-t border-sand-300 pt-5 flex flex-col justify-between space-y-4"
           >
-            <div>
-              <span className="inline-block px-3 py-1 bg-sand-100 text-xs font-semibold uppercase tracking-wider text-maroon-700 mb-4 border border-sand-300">
-                {item.tag}
+            <div className="space-y-2.5">
+              <span className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700 block">
+                {card.tag}
               </span>
-              <h3 className="font-display text-2xl text-charcoal-900 mb-3 leading-snug">
-                {item.title}
-              </h3>
-              <p className="text-charcoal-700 text-sm leading-relaxed mb-6">
-                {item.detail}
+              <h4 className="font-display text-xl text-charcoal-900 leading-snug font-semibold">
+                {card.title}
+              </h4>
+              <p className="text-charcoal-700 text-sm leading-relaxed">
+                {card.detail}
               </p>
             </div>
 
-            <div className="pt-4 border-t border-sand-200">
-              <p className="text-xs text-charcoal-600 italic mb-1">
-                {item.statusNote}
-              </p>
-              <p className="text-xs text-charcoal-500 font-mono">
-                {item.source}
-              </p>
+            <div className="text-xs font-mono text-charcoal-500 pt-2 border-t border-sand-200">
+              Source: {card.source}
             </div>
           </EduStaggerItem>
         ))}

@@ -2,7 +2,8 @@
 
 import type { ReactNode } from 'react';
 import type { SectionLayout } from '@/data/portals';
-import { motion, useReducedMotion } from 'motion/react';
+import { cormorant } from './MlaTypography';
+import { MlaTextReveal, MlaLineReveal, MlaStaggerItem } from './MlaMotion';
 
 const GROUND: Partial<Record<SectionLayout, string>> = {
   statement: 'bg-sand-100',
@@ -39,51 +40,44 @@ export interface MlaSectionShellProps {
   readonly children?: ReactNode;
 }
 
-const EASE = [0.16, 1, 0.3, 1] as const;
-
 export function MlaSectionShell({ id, title, layout, index, children }: MlaSectionShellProps) {
   const ground = GROUND[layout] ?? 'bg-white';
   const inner = INNER[layout] ?? 'max-w-[72rem]';
   const inverted = layout === 'data-band' || layout === 'full-bleed';
-  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section
       id={id}
       aria-labelledby={`${id}-heading`}
-      className={`px-gutter py-section ${ground} overflow-hidden`}
+      className={`px-gutter py-section ${ground} ${cormorant.variable}`}
     >
       <div className={`mx-auto ${inner}`}>
         <div className="mb-8 flex items-baseline gap-4">
-          <motion.span
-            initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -10 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.5, ease: EASE }}
-            aria-hidden="true"
-            className={`u-eyebrow ${inverted ? 'text-yellow-400' : 'text-maroon-700'}`}
-          >
-            {String(index).padStart(2, '0')}
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
-            id={`${id}-heading`}
-            className={`font-display text-h2 ${inverted ? 'text-white' : 'text-charcoal-900'}`}
-          >
-            {title}
-          </motion.h2>
+          <MlaStaggerItem y={10}>
+            <span
+              aria-hidden="true"
+              className={`u-eyebrow ${inverted ? 'text-yellow-400' : 'text-maroon-700'}`}
+            >
+              {String(index).padStart(2, '0')}
+            </span>
+          </MlaStaggerItem>
+          <MlaStaggerItem y={15} className="mt-8">
+            <MlaTextReveal delay={0.2}>
+              <h2
+                id={`${id}-heading`}
+                className={`font-display text-h2 ${inverted ? 'text-white' : 'text-charcoal-900'}`}
+                style={{ 
+                  fontFamily: 'var(--font-cormorant)',
+                  textShadow: inverted ? '0 0 15px rgba(255,255,255,0.1)' : '0 0 15px rgba(138, 115, 163, 0.15)'
+                }}
+              >
+                {title}
+              </h2>
+            </MlaTextReveal>
+          </MlaStaggerItem>
         </div>
 
-        <motion.div
-          initial={{ scaleX: prefersReducedMotion ? 1 : 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.9, delay: 0.15, ease: EASE }}
-          style={{ transformOrigin: 'left' }}
-          aria-hidden="true"
+        <MlaLineReveal 
           className={`mb-10 h-px w-full ${inverted ? 'bg-white/25' : 'bg-sand-300'}`}
         />
 
