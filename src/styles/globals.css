@@ -65,6 +65,16 @@
   --breakpoint-lg: 64rem;
   --breakpoint-xl: 80rem;
   --breakpoint-2xl: 96rem;
+
+  /* --- Tamil Development Bespoke Tokens --- */
+  --color-tamil-red: #9e1b11; /* Deep Crimson */
+  --color-tamil-red-deep: #7a110a; /* Darker red for contrast */
+  --color-tamil-gold: #cfa830; /* Warm Golden Yellow */
+  --color-tamil-gold-soft: #e3cc88;
+  --color-tamil-ink: #1c1a17; /* Near-black / Charcoal */
+  --color-tamil-paper: #f2ebd9; /* Warm parchment / ivory / aged-paper tones */
+  --color-tamil-white: #faf7f0; /* Soft cream / warm white */
+  --color-tamil-border: #e3dcc5;
 }
 
 @layer base {
