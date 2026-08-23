@@ -16,6 +16,8 @@ import { MlaSectionShell } from '@/components/mla-egmore/MlaSectionShell';
 import { EduHero } from '@/components/school-education/EduHero';
 import { EduSectionShell } from '@/components/school-education/EduSectionShell';
 import { EduSectionMapper } from '@/components/school-education/EduSectionMapper';
+import { InfoSectionShell } from '@/components/information-publicity/InfoSectionShell';
+import { InfoSectionMapper } from '@/components/information-publicity/InfoSectionMapper';
 
 /**
  * All four public portals.
@@ -146,6 +148,24 @@ export default async function PortalPage({ params }: { params: Promise<Params> }
                   inverted={section.layout === 'data-band'}
                 />
               </EduSectionShell>
+            );
+          }
+
+          if (portal === 'information-publicity') {
+            return (
+              <InfoSectionShell
+                key={section.id}
+                id={section.id}
+                title={section.title[locale]}
+                layout={section.layout}
+                index={i + 1}
+              >
+                <InfoSectionMapper
+                  id={section.id}
+                  locale={locale}
+                  inverted={section.layout === 'data-band' || section.layout === 'full-bleed' || inverted}
+                />
+              </InfoSectionShell>
             );
           }
 
