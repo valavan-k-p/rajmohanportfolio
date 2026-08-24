@@ -97,11 +97,11 @@ export function CampusReadinessDashboard({ locale }: { locale: Locale }) {
   return (
     <div className="space-y-8 max-w-[72rem] mx-auto">
       {/* Header with Mask Reveal */}
-      <EduReveal direction="up" className="max-w-[48rem]">
-        <h3 className="font-display text-2xl sm:text-3xl text-charcoal-900 leading-tight font-normal">
+      <EduReveal direction="up" className="max-w-[50rem]">
+        <h3 className="font-display text-3xl sm:text-4xl text-charcoal-900 leading-tight font-normal">
           {content.headline}
         </h3>
-        <p className="text-charcoal-700 text-base leading-relaxed mt-2">
+        <p className="text-charcoal-700 text-lg leading-relaxed mt-2.5">
           {content.standfirst}
         </p>
       </EduReveal>
@@ -110,11 +110,11 @@ export function CampusReadinessDashboard({ locale }: { locale: Locale }) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left 7 Columns: Heatwave and 4-Point Audits */}
         <EduReveal direction="left" delay={0.05} className="lg:col-span-7 space-y-6">
-          <div className="pt-4 space-y-2">
-            <span className="text-xs font-mono font-semibold uppercase tracking-wider text-maroon-700">
+          <div className="pt-4 space-y-2.5">
+            <span className="text-sm font-mono font-semibold uppercase tracking-wider text-maroon-700">
               {content.heatwaveTitle}
             </span>
-            <p className="text-sm text-charcoal-800 leading-relaxed">
+            <p className="text-base text-charcoal-800 leading-relaxed">
               {content.heatwaveDesc}
             </p>
           </div>
@@ -122,31 +122,31 @@ export function CampusReadinessDashboard({ locale }: { locale: Locale }) {
           <EduHorizontalLine color="bg-sand-200" duration={0.6} />
 
           <div className="space-y-4">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700">
+            <h4 className="text-sm font-mono font-bold uppercase tracking-wider text-maroon-700">
               {locale === 'ta' ? 'வளாகத் தணிக்கை நெறிமுறைகள்' : 'Mandatory Facility Audits'}
             </h4>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               {AUDIT_ITEMS.map((item) => {
                 const isSelected = selectedAudit.id === item.id;
                 return (
                   <button
                     key={item.id}
                     onClick={() => setSelectedAudit(item)}
-                    className={`p-3.5 text-left border-b transition-all ${
+                    className={`p-4 text-left border-b transition-all ${
                       isSelected
                         ? 'border-maroon-700 bg-sand-100/70 text-charcoal-900 shadow-xs'
                         : 'border-sand-300 text-charcoal-600 hover:text-charcoal-900 hover:bg-sand-50/50'
                     }`}
                   >
-                    <div className="text-sm font-semibold">{item.title[locale]}</div>
-                    <div className="text-xs font-mono text-emerald-800 mt-1">● {item.standard[locale]}</div>
+                    <div className="text-base font-semibold">{item.title[locale]}</div>
+                    <div className="text-xs sm:text-sm font-mono text-emerald-800 mt-1">● {item.standard[locale]}</div>
                   </button>
                 );
               })}
             </div>
 
-            <p className="text-xs sm:text-sm text-charcoal-700 pt-1 leading-relaxed">
+            <p className="text-sm sm:text-base text-charcoal-700 pt-1 leading-relaxed">
               {selectedAudit.desc[locale]}
             </p>
           </div>
@@ -157,32 +157,32 @@ export function CampusReadinessDashboard({ locale }: { locale: Locale }) {
           delay={0.1}
           direction="right"
           topLineColor="bg-maroon-700"
-          className="lg:col-span-5 space-y-6 p-6 bg-white border border-sand-300 shadow-sm rounded-sm"
+          className="lg:col-span-5 space-y-6 p-6.5 bg-white border border-sand-300 shadow-sm rounded-sm"
         >
           <div>
-            <div className="font-display text-4xl text-charcoal-900 tabular-nums font-light">
+            <div className="font-display text-5xl text-charcoal-900 tabular-nums font-light">
               <EduCounter value={21} duration={1.4} />{' '}
-              <span className="text-lg font-sans text-maroon-700 font-semibold uppercase">
+              <span className="text-xl font-sans text-maroon-700 font-semibold uppercase">
                 {content.smartBoardLabel}
               </span>
             </div>
-            <p className="text-xs text-charcoal-500 font-mono mt-1">
+            <p className="text-sm text-charcoal-500 font-mono mt-1">
               {content.smartBoardSub}
             </p>
           </div>
 
-          <div className="border-t border-sand-200 pt-4 space-y-2">
-            <span className="text-xs font-mono font-semibold uppercase tracking-wider text-maroon-700">
+          <div className="border-t border-sand-200 pt-4 space-y-2.5">
+            <span className="text-sm font-mono font-semibold uppercase tracking-wider text-maroon-700">
               {content.reopeningRuleTitle}
             </span>
-            <p className="text-sm text-charcoal-800 leading-relaxed">
+            <p className="text-base text-charcoal-800 leading-relaxed">
               {content.reopeningRuleDesc}
             </p>
           </div>
         </EduTopLineBox>
       </div>
 
-      <div className="text-xs text-charcoal-500 font-mono pt-2 border-t border-sand-200">
+      <div className="text-sm text-charcoal-500 font-mono pt-2 border-t border-sand-200">
         {content.source}
       </div>
     </div>

@@ -40,14 +40,14 @@
   --font-tamil-display: var(--font-noto-serif-tamil), var(--font-instrument-serif), serif;
   --font-tamil-sans: var(--font-noto-sans-tamil), var(--font-instrument-sans), sans-serif;
 
-  --text-display: clamp(3.25rem, 7vw, 6.5rem);
-  --text-h1: clamp(2.5rem, 5vw, 4rem);
-  --text-h2: clamp(1.875rem, 3.2vw, 2.75rem);
-  --text-h3: clamp(1.375rem, 1.8vw, 1.75rem);
-  --text-lead: clamp(1.125rem, 1.4vw, 1.375rem);
-  --text-body: 1.0625rem;
-  --text-meta: 0.875rem;
-  --text-micro: 0.75rem;
+  --text-display: clamp(3.75rem, 8vw, 7.5rem);
+  --text-h1: clamp(2.85rem, 5.5vw, 4.5rem);
+  --text-h2: clamp(2.125rem, 3.6vw, 3.125rem);
+  --text-h3: clamp(1.55rem, 2vw, 2rem);
+  --text-lead: clamp(1.25rem, 1.6vw, 1.55rem);
+  --text-body: 1.1875rem;
+  --text-meta: 0.975rem;
+  --text-micro: 0.85rem;
 
   /* --- Spacing: 8px base, no values between --- */
   --spacing-gutter: clamp(1rem, 4vw, 2.5rem);

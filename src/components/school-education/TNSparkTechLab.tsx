@@ -153,14 +153,14 @@ export function TNSparkTechLab({ locale }: { locale: Locale }) {
     <div className="space-y-8 max-w-[72rem] mx-auto">
       {/* Lead Text & Live Stat Counter */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end border-b border-sand-300 pb-8">
-        <EduReveal direction="up" className="lg:col-span-8 space-y-2">
-          <div className="text-[11px] font-mono font-bold uppercase tracking-widest text-maroon-700">
+        <EduReveal direction="up" className="lg:col-span-8 space-y-2.5">
+          <div className="text-xs font-mono font-bold uppercase tracking-widest text-maroon-700">
             {content.badge}
           </div>
-          <h3 className="font-display text-2xl sm:text-3xl text-charcoal-900 leading-tight font-normal">
+          <h3 className="font-display text-3xl sm:text-4xl text-charcoal-900 leading-tight font-normal">
             {content.headline}
           </h3>
-          <p className="text-charcoal-700 text-base leading-relaxed">
+          <p className="text-charcoal-700 text-lg leading-relaxed">
             {content.standfirst}
           </p>
         </EduReveal>
@@ -171,10 +171,10 @@ export function TNSparkTechLab({ locale }: { locale: Locale }) {
           topLineColor="bg-maroon-700"
           className="lg:col-span-4 p-5 bg-sand-100/80 border border-sand-300 rounded-sm"
         >
-          <div className="font-display text-4xl text-maroon-700 tabular-nums font-light">
+          <div className="font-display text-5xl text-maroon-700 tabular-nums font-light">
             ~<EduCounter value={5000} duration={1.6} />+
           </div>
-          <div className="text-xs font-semibold text-charcoal-900 uppercase tracking-wider mt-1">
+          <div className="text-sm font-semibold text-charcoal-900 uppercase tracking-wider mt-1.5">
             {content.counterLabel}
           </div>
           <div className="text-xs text-charcoal-600 font-mono mt-0.5">
@@ -184,7 +184,7 @@ export function TNSparkTechLab({ locale }: { locale: Locale }) {
       </div>
 
       {/* 3-Tier Roadmap Selector */}
-      <div className="flex flex-wrap gap-x-6 gap-y-2 border-b border-sand-300 pb-3 text-sm">
+      <div className="flex flex-wrap gap-x-6 gap-y-2.5 border-b border-sand-300 pb-3.5 text-base">
         {ROADMAP_TIERS.map((tier) => {
           const isActive = tier.id === activeTierId;
           return (
@@ -221,31 +221,31 @@ export function TNSparkTechLab({ locale }: { locale: Locale }) {
           className="pt-2 space-y-6"
         >
           <div className="border-b border-sand-200 pb-4">
-            <div className="text-xs font-mono text-charcoal-500 uppercase">
+            <div className="text-sm font-mono text-charcoal-500 uppercase">
               {activeTier.targetGrades[locale]} · {activeTier.statusTag[locale]}
             </div>
-            <h4 className="font-display text-2xl text-charcoal-900 font-semibold mt-1">
+            <h4 className="font-display text-3xl text-charcoal-900 font-semibold mt-1">
               {activeTier.headline[locale]}
             </h4>
-            <p className="text-charcoal-700 text-base leading-relaxed mt-2 max-w-[46rem]">
+            <p className="text-charcoal-700 text-lg leading-relaxed mt-2 max-w-[48rem]">
               {activeTier.description[locale]}
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left 7 Cols: Modules with Staggered Pop In */}
-            <div className="lg:col-span-7 space-y-3">
-              <h5 className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700">
+            <div className="lg:col-span-7 space-y-3.5">
+              <h5 className="text-sm font-mono font-bold uppercase tracking-wider text-maroon-700">
                 {locale === 'ta' ? 'பாடத்திட்ட முக்கியத் தொகுதிகள்' : 'Core Curriculum Modules'}
               </h5>
-              <EduStaggerContainer className="space-y-2" stagger={0.06}>
+              <EduStaggerContainer className="space-y-2.5" stagger={0.06}>
                 {activeTier.modules[locale].map((mod, i) => (
                   <EduStaggerItem
                     key={i}
                     direction="left"
                     showTopLine={true}
                     topLineColor="bg-sand-200"
-                    className="pt-2 text-sm text-charcoal-800 flex items-start gap-2.5"
+                    className="pt-2 text-base text-charcoal-800 flex items-start gap-2.5"
                   >
                     <span className="text-maroon-700 font-bold leading-none mt-1">›</span>
                     <span>{mod}</span>
@@ -259,12 +259,12 @@ export function TNSparkTechLab({ locale }: { locale: Locale }) {
               delay={0.1}
               direction="right"
               topLineColor="bg-maroon-700"
-              className="lg:col-span-5 space-y-3 p-5 bg-white border border-sand-300 shadow-sm rounded-xs"
+              className="lg:col-span-5 space-y-3.5 p-5.5 bg-white border border-sand-300 shadow-sm rounded-xs"
             >
-              <h5 className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700">
+              <h5 className="text-sm font-mono font-bold uppercase tracking-wider text-maroon-700">
                 {locale === 'ta' ? 'உள்கட்டமைப்பு & ஆய்வகத் தயார்நிலை' : 'Infrastructure Prerequisite'}
               </h5>
-              <p className="text-sm text-charcoal-800 leading-relaxed">
+              <p className="text-base text-charcoal-800 leading-relaxed">
                 {activeTier.infrastructure[locale]}
               </p>
               <div className="text-xs font-mono text-emerald-800 font-medium pt-2 border-t border-sand-100 flex items-center gap-1.5">

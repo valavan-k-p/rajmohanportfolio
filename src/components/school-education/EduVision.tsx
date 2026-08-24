@@ -27,14 +27,14 @@ export function EduVision({ locale }: { locale: Locale }) {
   return (
     <div className="space-y-12 max-w-[72rem] mx-auto">
       {/* 1. Executive Lead Statement */}
-      <EduReveal direction="up" delay={0} className="max-w-[50rem]">
-        <p className="font-display text-2xl sm:text-3xl lg:text-[2rem] text-charcoal-900 leading-[1.25] font-normal">
+      <EduReveal direction="up" delay={0} className="max-w-[52rem]">
+        <p className="font-display text-[1.65rem] sm:text-[2.1rem] lg:text-[2.35rem] text-charcoal-900 leading-[1.25] font-normal">
           {content.lead}
         </p>
       </EduReveal>
 
       {/* 2. Editorial Quotation - Vertical Rule Drawing Downward & Progressive Text */}
-      <div className="max-w-[48rem]">
+      <div className="max-w-[50rem]">
         <EduQuoteBlock quote={content.quote} attribution={content.attribution} />
       </div>
 
@@ -49,21 +49,21 @@ export function EduVision({ locale }: { locale: Locale }) {
             className="bg-white border border-sand-300 shadow-sm p-6 sm:p-7 flex flex-col justify-between space-y-5 rounded-sm hover:shadow-md hover:border-sand-400 transition-all"
           >
             <div className="space-y-3">
-              <div className="flex items-center justify-between text-xs font-mono">
+              <div className="flex items-center justify-between text-sm font-mono">
                 <span className="font-bold text-maroon-700 uppercase tracking-wider">
                   {pillar.tag[locale]}
                 </span>
                 <span className="font-semibold text-charcoal-400">0{idx + 1}</span>
               </div>
-              <h3 className="font-display text-xl text-charcoal-900 leading-snug font-semibold">
+              <h3 className="font-display text-2xl text-charcoal-900 leading-snug font-semibold">
                 {pillar.title[locale]}
               </h3>
-              <p className="text-charcoal-700 text-sm leading-relaxed">
+              <p className="text-charcoal-700 text-base leading-relaxed">
                 {pillar.detail[locale]}
               </p>
             </div>
 
-            <div className="text-[11px] font-mono text-emerald-800 font-medium pt-3 border-t border-sand-100 flex items-center gap-1.5">
+            <div className="text-xs font-mono text-emerald-800 font-medium pt-3 border-t border-sand-100 flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
               <span>{locale === 'ta' ? 'செயல்பாட்டில்' : 'Active Deployment'}</span>
             </div>
@@ -74,7 +74,7 @@ export function EduVision({ locale }: { locale: Locale }) {
       {/* 4. Minimal Sourcing Note with Drawing Divider */}
       <div className="space-y-3 pt-2">
         <EduHorizontalLine color="bg-sand-200" duration={0.6} />
-        <EduReveal direction="fade" delay={0.1} className="text-xs text-charcoal-500 font-mono">
+        <EduReveal direction="fade" delay={0.1} className="text-sm text-charcoal-500 font-mono">
           {content.sourceDoc}
         </EduReveal>
       </div>

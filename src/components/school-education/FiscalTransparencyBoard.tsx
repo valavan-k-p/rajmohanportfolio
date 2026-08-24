@@ -116,14 +116,14 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
       <EduHorizontalLine color="bg-yellow-400" thickness="h-[2px]" duration={0.85} />
 
       {/* 2. Lead Text */}
-      <EduReveal direction="up" className="max-w-[48rem]">
-        <div className="text-[11px] font-mono font-bold uppercase tracking-widest text-yellow-400 mb-2">
+      <EduReveal direction="up" className="max-w-[50rem]">
+        <div className="text-xs font-mono font-bold uppercase tracking-widest text-yellow-400 mb-2">
           {content.badge}
         </div>
-        <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl text-white leading-tight font-normal">
+        <h3 className="font-display text-3xl sm:text-4xl lg:text-[2.6rem] text-white leading-tight font-normal">
           {content.headline}
         </h3>
-        <p className="text-white/80 text-base leading-relaxed mt-2">
+        <p className="text-white/80 text-lg leading-relaxed mt-2.5">
           {content.standfirst}
         </p>
       </EduReveal>
@@ -135,17 +135,17 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
           delay={0.05}
           direction="up"
           topLineColor="bg-yellow-400"
-          className="p-6 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3"
+          className="p-6.5 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3.5"
         >
           <div>
-            <div className="font-display text-4xl lg:text-5xl text-yellow-400 tabular-nums font-light">
+            <div className="font-display text-5xl lg:text-6xl text-yellow-400 tabular-nums font-light">
               <EduCounter value={44527} prefix="₹" suffix={locale === 'ta' ? ' கோடி' : ' Cr'} duration={1.6} />
             </div>
-            <div className="text-sm font-semibold text-white uppercase tracking-wider mt-2 border-b border-charcoal-700 pb-2">
+            <div className="text-base font-semibold text-white uppercase tracking-wider mt-2 border-b border-charcoal-700 pb-2">
               {content.counter1Label}
             </div>
           </div>
-          <div className="text-xs text-white/70 font-sans">
+          <div className="text-sm text-white/70 font-sans">
             {content.counter1Sub}
           </div>
         </EduTopLineBox>
@@ -155,17 +155,17 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
           delay={0.12}
           direction="left"
           topLineColor="bg-yellow-400"
-          className="p-6 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3"
+          className="p-6.5 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3.5"
         >
           <div>
-            <div className="font-display text-4xl lg:text-5xl text-yellow-400 tabular-nums font-light">
+            <div className="font-display text-5xl lg:text-6xl text-yellow-400 tabular-nums font-light">
               <EduCounter value={2176} prefix="+₹" suffix={locale === 'ta' ? ' கோடி' : ' Cr'} duration={1.4} />
             </div>
-            <div className="text-sm font-semibold text-white uppercase tracking-wider mt-2 border-b border-charcoal-700 pb-2">
+            <div className="text-base font-semibold text-white uppercase tracking-wider mt-2 border-b border-charcoal-700 pb-2">
               {content.counter2Label}
             </div>
           </div>
-          <div className="text-xs text-white/70 font-sans">
+          <div className="text-sm text-white/70 font-sans">
             {content.counter2Sub}
           </div>
         </EduTopLineBox>
@@ -175,27 +175,27 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
           delay={0.18}
           direction="right"
           topLineColor="bg-yellow-400"
-          className="p-6 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3"
+          className="p-6.5 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3.5"
         >
           <div>
-            <div className="font-display text-4xl lg:text-5xl text-yellow-400 tabular-nums font-light">
+            <div className="font-display text-5xl lg:text-6xl text-yellow-400 tabular-nums font-light">
               <EduCounter value={21} duration={1.2} />
             </div>
-            <div className="text-sm font-semibold text-white uppercase tracking-wider mt-2 border-b border-charcoal-700 pb-2">
+            <div className="text-base font-semibold text-white uppercase tracking-wider mt-2 border-b border-charcoal-700 pb-2">
               {content.counter3Label}
             </div>
           </div>
-          <div className="text-xs text-white/70 font-sans">
+          <div className="text-sm text-white/70 font-sans">
             {content.counter3Sub}
           </div>
         </EduTopLineBox>
       </div>
 
       {/* Interactive Tabs */}
-      <div className="flex gap-2 border-b border-charcoal-700 pb-3">
+      <div className="flex gap-2.5 border-b border-charcoal-700 pb-3.5">
         <button
           onClick={() => setActiveTab('comparison')}
-          className={`px-4 py-2 text-xs sm:text-sm font-medium transition-all border ${
+          className={`px-4.5 py-2.5 text-sm sm:text-base font-medium transition-all border ${
             activeTab === 'comparison'
               ? 'bg-yellow-400 text-charcoal-900 border-yellow-400 font-bold'
               : 'bg-charcoal-800 text-white/80 border-charcoal-700 hover:text-white'
@@ -205,7 +205,7 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
         </button>
         <button
           onClick={() => setActiveTab('lineItems')}
-          className={`px-4 py-2 text-xs sm:text-sm font-medium transition-all border ${
+          className={`px-4.5 py-2.5 text-sm sm:text-base font-medium transition-all border ${
             activeTab === 'lineItems'
               ? 'bg-yellow-400 text-charcoal-900 border-yellow-400 font-bold'
               : 'bg-charcoal-800 text-white/80 border-charcoal-700 hover:text-white'
@@ -225,7 +225,7 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
           <div className="space-y-5">
             {/* Bar 1: Current Allocation */}
             <div className="space-y-1.5">
-              <div className="flex justify-between text-xs sm:text-sm font-mono">
+              <div className="flex justify-between text-sm sm:text-base font-mono">
                 <span className="text-white font-semibold">{content.currAlloc}</span>
                 <span className="text-yellow-400 font-bold">₹44,527 Cr</span>
               </div>
@@ -234,7 +234,7 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
 
             {/* Bar 2: Prior Actual Spend */}
             <div className="space-y-1.5">
-              <div className="flex justify-between text-xs sm:text-sm font-mono">
+              <div className="flex justify-between text-sm sm:text-base font-mono">
                 <span className="text-white/80">{content.priorActual}</span>
                 <span className="text-white/80">₹42,351 Cr</span>
               </div>
@@ -243,10 +243,10 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
           </div>
 
           <div className="pt-4 border-t border-charcoal-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-            <span className="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider">
+            <span className="text-xs sm:text-sm font-mono text-emerald-400 font-bold uppercase tracking-wider">
               ● {content.deltaLabel}
             </span>
-            <span className="text-xs text-white/50 font-mono">
+            <span className="text-xs sm:text-sm text-white/50 font-mono">
               Indexed against actual audited outlays
             </span>
           </div>
@@ -254,7 +254,7 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
       ) : (
         /* Tab 2: Line Item Breakdown Table */
         <div className="overflow-x-auto border border-charcoal-700">
-          <table className="w-full text-left text-xs sm:text-sm">
+          <table className="w-full text-left text-sm sm:text-base">
             <thead className="bg-charcoal-800 font-mono text-white/80 border-b border-charcoal-700">
               <tr>
                 <th className="p-3.5 sm:p-4">{content.tableHeaders.category}</th>
@@ -278,7 +278,7 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
       )}
 
       {/* Supporting Methodology & Sourcing Note */}
-      <EduReveal direction="fade" delay={0.1} className="pt-2 space-y-2 text-xs text-white/60 font-sans leading-relaxed border-t border-charcoal-800">
+      <EduReveal direction="fade" delay={0.1} className="pt-2 space-y-2 text-sm text-white/60 font-sans leading-relaxed border-t border-charcoal-800">
         <p>{content.accountingNote}</p>
         <p className="font-mono text-yellow-400/80">{content.citation}</p>
       </EduReveal>

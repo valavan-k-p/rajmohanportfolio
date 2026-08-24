@@ -344,30 +344,30 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
 
               <div className="space-y-4">
                 {/* Header line */}
-                <div className="border-b border-[#DCD3C0] pb-2 text-[10px] font-mono uppercase tracking-wider text-charcoal-500">
+                <div className="border-b border-[#DCD3C0] pb-2 text-xs font-mono uppercase tracking-wider text-charcoal-500">
                   {content.leftBed.header}
                 </div>
 
                 <div className="space-y-1">
-                  <h3 className="font-display text-2xl sm:text-3xl font-normal text-charcoal-900 leading-tight">
+                  <h3 className="font-display text-3xl sm:text-[2.1rem] font-normal text-charcoal-900 leading-tight">
                     {content.leftBed.title}
                   </h3>
-                  <p className="text-xs text-charcoal-600 font-serif italic">
+                  <p className="text-sm text-charcoal-600 font-serif italic">
                     {content.leftBed.subtitle}
                   </p>
                 </div>
 
-                <div className="pt-2 text-xs text-charcoal-800 font-sans leading-relaxed space-y-3">
+                <div className="pt-2 text-[13.5px] text-charcoal-800 font-sans leading-relaxed space-y-3">
                   <p>{content.leftBed.p1}</p>
                   <p>{content.leftBed.p2}</p>
                 </div>
 
-                <div className="inline-block border-l-2 border-charcoal-800 pl-2 text-[10px] font-mono text-charcoal-600 uppercase">
+                <div className="inline-block border-l-2 border-charcoal-800 pl-2.5 text-xs font-mono text-charcoal-600 uppercase">
                   {content.leftBed.stamp}
                 </div>
               </div>
 
-              <div className="text-[10px] font-mono text-charcoal-400 pt-2 border-t border-[#E5DCB8] flex justify-between">
+              <div className="text-xs font-mono text-charcoal-400 pt-2 border-t border-[#E5DCB8] flex justify-between">
                 <span>{content.leftBed.footer}</span>
                 <span>VOL. I</span>
               </div>
@@ -382,32 +382,32 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
 
               {/* Page 5 Content */}
               <div className="space-y-3">
-                <div className="flex items-center justify-between text-[10px] font-mono border-b border-[#DCD3C0] pb-2 text-charcoal-500">
+                <div className="flex items-center justify-between text-xs font-mono border-b border-[#DCD3C0] pb-2 text-charcoal-500">
                   <span className="font-bold tracking-wider">{content.p5.section}</span>
                   <span>{content.p5.pageNum}</span>
                 </div>
 
                 <div className="space-y-1">
-                  <h4 className="font-display text-xl sm:text-2xl font-normal text-charcoal-900 leading-tight">
+                  <h4 className="font-display text-2xl sm:text-[1.7rem] font-normal text-charcoal-900 leading-tight">
                     {content.p5.title}
                   </h4>
-                  <p className="text-xs text-charcoal-600 font-serif italic">
+                  <p className="text-sm text-charcoal-600 font-serif italic">
                     {content.p5.thesis}
                   </p>
                 </div>
 
                 {/* Milestones Document Table */}
-                <div className="space-y-1.5 py-1 text-xs text-charcoal-800 font-sans border-t border-b border-[#E5DCB8] my-2">
+                <div className="space-y-1.5 py-1 text-sm text-charcoal-800 font-sans border-t border-b border-[#E5DCB8] my-2">
                   {content.p5.milestones.map((m, idx) => (
                     <div key={idx} className="flex items-baseline justify-between py-1 border-b border-[#EFE8D6] last:border-none">
-                      <span className="font-mono text-[10px] font-bold text-charcoal-900 w-28 shrink-0">{m.date}</span>
-                      <span className="text-[11px] text-charcoal-700 text-right leading-tight">{m.title}</span>
+                      <span className="font-mono text-xs font-bold text-charcoal-900 w-32 shrink-0">{m.date}</span>
+                      <span className="text-[13px] text-charcoal-700 text-right leading-tight">{m.title}</span>
                     </div>
                   ))}
                 </div>
 
                 {/* Integrity Cycle Sequence */}
-                <div className="text-[10px] font-mono text-charcoal-600 flex flex-wrap gap-1 items-center">
+                <div className="text-xs font-mono text-charcoal-600 flex flex-wrap gap-1.5 items-center">
                   {content.p5.cycle.map((c, i) => (
                     <span key={i} className="inline-flex items-center gap-1">
                       <span className="font-bold">{c}</span>
@@ -417,7 +417,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                 </div>
               </div>
 
-              <div className="text-[10px] font-mono text-charcoal-400 pt-2 border-t border-[#E5DCB8]">
+              <div className="text-xs font-mono text-charcoal-400 pt-2 border-t border-[#E5DCB8]">
                 {content.p5.footnote}
               </div>
             </div>
@@ -438,23 +438,23 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                 <div className="absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-black/12 to-transparent pointer-events-none" />
 
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between text-[10px] font-mono border-b border-[#DCD3C0] pb-2 text-charcoal-500">
+                  <div className="flex items-center justify-between text-xs font-mono border-b border-[#DCD3C0] pb-2 text-charcoal-500">
                     <span className="font-bold tracking-wider">{content.p4.section}</span>
                     <span>{content.p4.pageNum}</span>
                   </div>
 
                   <div className="space-y-1">
-                    <h4 className="font-display text-xl sm:text-2xl font-normal text-charcoal-900 leading-tight">
+                    <h4 className="font-display text-2xl sm:text-[1.7rem] font-normal text-charcoal-900 leading-tight">
                       {content.p4.title}
                     </h4>
-                    <p className="text-xs text-charcoal-600 font-serif italic">
+                    <p className="text-sm text-charcoal-600 font-serif italic">
                       {content.p4.thesis}
                     </p>
                   </div>
 
                   {/* Budget Allocation Summary */}
                   <div className="py-2 border-t border-b border-[#E5DCB8] space-y-1">
-                    <div className="font-display text-3xl font-normal text-charcoal-900 tabular-nums">
+                    <div className="font-display text-4xl font-normal text-charcoal-900 tabular-nums">
                       <EduCounter
                         value={content.p4.stat1Val}
                         prefix={content.p4.stat1Prefix}
@@ -462,24 +462,24 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                         duration={1.5}
                       />
                     </div>
-                    <div className="text-[10px] font-mono font-bold text-charcoal-700 uppercase">
+                    <div className="text-xs font-mono font-bold text-charcoal-700 uppercase">
                       {content.p4.stat1Label} · {content.p4.stat2Prefix}{content.p4.stat2Val}{content.p4.stat2Suffix} Net Increase
                     </div>
-                    <p className="text-[11px] text-charcoal-600 font-sans">{content.p4.stat1Sub}</p>
+                    <p className="text-xs text-charcoal-600 font-sans">{content.p4.stat1Sub}</p>
                   </div>
 
                   {/* Process Table */}
-                  <div className="grid grid-cols-5 gap-1 text-center py-1">
+                  <div className="grid grid-cols-5 gap-1.5 text-center py-1">
                     {content.p4.workflow.map((wf, idx) => (
-                      <div key={idx} className="p-1 border border-[#E5DCB8] bg-[#F4EDE0]/50">
-                        <div className="text-[9px] font-mono font-bold text-charcoal-800">{wf.step}</div>
-                        <div className="text-[8px] font-bold text-charcoal-700 mt-0.5">{wf.title}</div>
+                      <div key={idx} className="p-1.5 border border-[#E5DCB8] bg-[#F4EDE0]/50">
+                        <div className="text-[10px] font-mono font-bold text-charcoal-800">{wf.step}</div>
+                        <div className="text-[9.5px] font-bold text-charcoal-700 mt-0.5">{wf.title}</div>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="text-[10px] font-mono text-charcoal-400 pt-2 border-t border-[#E5DCB8]">
+                <div className="text-xs font-mono text-charcoal-400 pt-2 border-t border-[#E5DCB8]">
                   {content.p4.footnote}
                 </div>
 
@@ -489,17 +489,17 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
               {/* Back Face */}
               <div className="absolute inset-0 bg-[#FAF7EE] rounded-l-xs p-6 sm:p-8 flex flex-col justify-between overflow-hidden shadow-[inset_-14px_0_20px_rgba(0,0,0,0.05)] [transform:rotateY(180deg)] [backface-visibility:hidden]">
                 <div className="space-y-3">
-                  <div className="text-[10px] font-mono text-charcoal-500 uppercase tracking-wider border-b border-[#DCD3C0] pb-2">
+                  <div className="text-xs font-mono text-charcoal-500 uppercase tracking-wider border-b border-[#DCD3C0] pb-2">
                     SECTION 04 COMPLEMENT · FISCAL ACCOUNTABILITY
                   </div>
-                  <h4 className="font-display text-lg font-normal text-charcoal-900">
+                  <h4 className="font-display text-xl font-normal text-charcoal-900">
                     Statutory Audits & Line-Item Transparency
                   </h4>
-                  <p className="text-xs text-charcoal-700 font-sans leading-relaxed">
+                  <p className="text-sm text-charcoal-700 font-sans leading-relaxed">
                     All financial disbursements under the ₹44,527 Cr school education outlay are tied to specific school infrastructure deliverables, teacher salaries, and meal logistics.
                   </p>
                 </div>
-                <div className="text-[10px] font-mono text-charcoal-400 border-t border-[#E5DCB8] pt-2">
+                <div className="text-xs font-mono text-charcoal-400 border-t border-[#E5DCB8] pt-2">
                   PAGE 04B · ARCHIVE REFERENCE
                 </div>
               </div>
@@ -521,16 +521,16 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                 <div className="absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-black/12 to-transparent pointer-events-none" />
 
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between text-[10px] font-mono border-b border-[#DCD3C0] pb-2 text-charcoal-500">
+                  <div className="flex items-center justify-between text-xs font-mono border-b border-[#DCD3C0] pb-2 text-charcoal-500">
                     <span className="font-bold tracking-wider">{content.p3.section}</span>
                     <span>{content.p3.pageNum}</span>
                   </div>
 
                   <div className="space-y-1">
-                    <h4 className="font-display text-xl sm:text-2xl font-normal text-charcoal-900 leading-tight">
+                    <h4 className="font-display text-2xl sm:text-[1.7rem] font-normal text-charcoal-900 leading-tight">
                       {content.p3.title}
                     </h4>
-                    <p className="text-xs text-charcoal-600 font-serif italic">
+                    <p className="text-sm text-charcoal-600 font-serif italic">
                       {content.p3.thesis}
                     </p>
                   </div>
@@ -538,37 +538,37 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                   {/* 3 Key Numerical Data Points */}
                   <div className="grid grid-cols-3 gap-2 py-2 border-t border-b border-[#E5DCB8]">
                     <div className="text-center">
-                      <div className="font-display text-2xl font-normal text-charcoal-900">
+                      <div className="font-display text-3xl font-normal text-charcoal-900">
                         <EduCounter value={content.p3.stat1Val} prefix="~" suffix="+" duration={1.4} />
                       </div>
-                      <div className="text-[9px] font-mono font-bold text-charcoal-700 uppercase">
+                      <div className="text-[10px] font-mono font-bold text-charcoal-700 uppercase">
                         {content.p3.stat1Label}
                       </div>
                     </div>
                     <div className="text-center">
-                      <div className="font-display text-2xl font-normal text-charcoal-900">
+                      <div className="font-display text-3xl font-normal text-charcoal-900">
                         <EduCounter value={content.p3.stat2Val} duration={1.4} />
                       </div>
-                      <div className="text-[9px] font-mono font-bold text-charcoal-700 uppercase">
+                      <div className="text-[10px] font-mono font-bold text-charcoal-700 uppercase">
                         {content.p3.stat2Label}
                       </div>
                     </div>
                     <div className="text-center">
-                      <div className="font-display text-2xl font-normal text-charcoal-900">
+                      <div className="font-display text-3xl font-normal text-charcoal-900">
                         <EduCounter value={content.p3.stat3Val} prefix="≥" suffix="+" duration={1.4} />
                       </div>
-                      <div className="text-[9px] font-mono font-bold text-charcoal-700 uppercase">
+                      <div className="text-[10px] font-mono font-bold text-charcoal-700 uppercase">
                         {content.p3.stat3Label}
                       </div>
                     </div>
                   </div>
 
-                  <p className="text-xs text-charcoal-700 font-sans leading-relaxed">
+                  <p className="text-sm text-charcoal-700 font-sans leading-relaxed">
                     {content.p3.roadmap}
                   </p>
                 </div>
 
-                <div className="text-[10px] font-mono text-charcoal-400 pt-2 border-t border-[#E5DCB8]">
+                <div className="text-xs font-mono text-charcoal-400 pt-2 border-t border-[#E5DCB8]">
                   {content.p3.footnote}
                 </div>
 
@@ -578,17 +578,17 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
               {/* Back Face */}
               <div className="absolute inset-0 bg-[#FAF7EE] rounded-l-xs p-6 sm:p-8 flex flex-col justify-between overflow-hidden shadow-[inset_-14px_0_20px_rgba(0,0,0,0.05)] [transform:rotateY(180deg)] [backface-visibility:hidden]">
                 <div className="space-y-3">
-                  <div className="text-[10px] font-mono text-charcoal-500 uppercase tracking-wider border-b border-[#DCD3C0] pb-2">
+                  <div className="text-xs font-mono text-charcoal-500 uppercase tracking-wider border-b border-[#DCD3C0] pb-2">
                     SECTION 03 COMPLEMENT · LAB ROLLOUT
                   </div>
-                  <h4 className="font-display text-lg font-normal text-charcoal-900">
+                  <h4 className="font-display text-xl font-normal text-charcoal-900">
                     High-Tech Classrooms for Rural Mandals
                   </h4>
-                  <p className="text-xs text-charcoal-700 font-sans leading-relaxed">
+                  <p className="text-sm text-charcoal-700 font-sans leading-relaxed">
                     TN SPARK bridges the digital divide by introducing experiential AI and computational logic into rural middle and high schools across Tamil Nadu.
                   </p>
                 </div>
-                <div className="text-[10px] font-mono text-charcoal-400 border-t border-[#E5DCB8] pt-2">
+                <div className="text-xs font-mono text-charcoal-400 border-t border-[#E5DCB8] pt-2">
                   PAGE 03B · ARCHIVE REFERENCE
                 </div>
               </div>
@@ -610,16 +610,16 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                 <div className="absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-black/12 to-transparent pointer-events-none" />
 
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between text-[10px] font-mono border-b border-[#DCD3C0] pb-2 text-charcoal-500">
+                  <div className="flex items-center justify-between text-xs font-mono border-b border-[#DCD3C0] pb-2 text-charcoal-500">
                     <span className="font-bold tracking-wider">{content.p2.section}</span>
                     <span>{content.p2.pageNum}</span>
                   </div>
 
                   <div className="space-y-1">
-                    <h4 className="font-display text-xl sm:text-2xl font-normal text-charcoal-900 leading-tight">
+                    <h4 className="font-display text-2xl sm:text-[1.7rem] font-normal text-charcoal-900 leading-tight">
                       {content.p2.title}
                     </h4>
-                    <p className="text-xs text-charcoal-600 font-serif italic">
+                    <p className="text-sm text-charcoal-600 font-serif italic">
                       {content.p2.thesis}
                     </p>
                   </div>
@@ -627,10 +627,10 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                   {/* Two Column Document Layout */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 border-t border-[#E5DCB8]">
                     <div className="space-y-1">
-                      <div className="text-[10px] font-mono font-bold text-charcoal-800 uppercase">
+                      <div className="text-xs font-mono font-bold text-charcoal-800 uppercase">
                         {content.p2.col1Title}
                       </div>
-                      <ul className="text-[11px] text-charcoal-700 space-y-1 font-sans">
+                      <ul className="text-xs text-charcoal-700 space-y-1 font-sans">
                         {content.p2.col1Items.map((item, idx) => (
                           <li key={idx} className="flex items-start gap-1">
                             <span className="font-bold">›</span>
@@ -641,10 +641,10 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                     </div>
 
                     <div className="space-y-1">
-                      <div className="text-[10px] font-mono font-bold text-charcoal-800 uppercase">
+                      <div className="text-xs font-mono font-bold text-charcoal-800 uppercase">
                         {content.p2.col2Title}
                       </div>
-                      <ul className="text-[11px] text-charcoal-700 space-y-1 font-sans">
+                      <ul className="text-xs text-charcoal-700 space-y-1 font-sans">
                         {content.p2.col2Items.map((item, idx) => (
                           <li key={idx} className="flex items-start gap-1">
                             <span className="font-bold">›</span>
@@ -656,7 +656,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                   </div>
                 </div>
 
-                <div className="text-[10px] font-mono text-charcoal-400 pt-2 border-t border-[#E5DCB8]">
+                <div className="text-xs font-mono text-charcoal-400 pt-2 border-t border-[#E5DCB8]">
                   {content.p2.footnote}
                 </div>
 
@@ -666,17 +666,17 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
               {/* Back Face */}
               <div className="absolute inset-0 bg-[#FAF7EE] rounded-l-xs p-6 sm:p-8 flex flex-col justify-between overflow-hidden shadow-[inset_-14px_0_20px_rgba(0,0,0,0.05)] [transform:rotateY(180deg)] [backface-visibility:hidden]">
                 <div className="space-y-3">
-                  <div className="text-[10px] font-mono text-charcoal-500 uppercase tracking-wider border-b border-[#DCD3C0] pb-2">
+                  <div className="text-xs font-mono text-charcoal-500 uppercase tracking-wider border-b border-[#DCD3C0] pb-2">
                     SECTION 02 COMPLEMENT · HUMAN RESOURCES
                   </div>
-                  <h4 className="font-display text-lg font-normal text-charcoal-900">
+                  <h4 className="font-display text-xl font-normal text-charcoal-900">
                     Dignity of the Teaching Force
                   </h4>
-                  <p className="text-xs text-charcoal-700 font-sans leading-relaxed">
+                  <p className="text-sm text-charcoal-700 font-sans leading-relaxed">
                     By eliminating non-teaching administrative burdens, teachers dedicate maximum classroom attention to foundational literacy and individual student mentoring.
                   </p>
                 </div>
-                <div className="text-[10px] font-mono text-charcoal-400 border-t border-[#E5DCB8] pt-2">
+                <div className="text-xs font-mono text-charcoal-400 border-t border-[#E5DCB8] pt-2">
                   PAGE 02B · ARCHIVE REFERENCE
                 </div>
               </div>
@@ -698,34 +698,34 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                 <div className="absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-black/12 to-transparent pointer-events-none" />
 
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between text-[10px] font-mono border-b border-[#DCD3C0] pb-2 text-charcoal-500">
+                  <div className="flex items-center justify-between text-xs font-mono border-b border-[#DCD3C0] pb-2 text-charcoal-500">
                     <span className="font-bold tracking-wider">{content.p1.section}</span>
                     <span>{content.p1.pageNum}</span>
                   </div>
 
                   <div className="space-y-1">
-                    <h4 className="font-display text-xl sm:text-2xl font-normal text-charcoal-900 leading-tight">
+                    <h4 className="font-display text-2xl sm:text-[1.7rem] font-normal text-charcoal-900 leading-tight">
                       {content.p1.title}
                     </h4>
-                    <p className="text-xs text-charcoal-600 font-serif italic">
+                    <p className="text-sm text-charcoal-600 font-serif italic">
                       {content.p1.thesis}
                     </p>
                   </div>
 
                   {/* Clean Numbered Directives */}
-                  <div className="space-y-2 text-xs text-charcoal-800 font-sans pt-1 border-t border-[#E5DCB8]">
+                  <div className="space-y-2 text-sm text-charcoal-800 font-sans pt-1 border-t border-[#E5DCB8]">
                     {content.p1.items.map((pt, i) => (
                       <div key={i} className="space-y-0.5">
-                        <div className="font-mono text-[10px] font-bold text-charcoal-900 uppercase">
+                        <div className="font-mono text-xs font-bold text-charcoal-900 uppercase">
                           {pt.code} {pt.title}
                         </div>
-                        <p className="text-[11px] text-charcoal-700 leading-relaxed">{pt.desc}</p>
+                        <p className="text-[13px] text-charcoal-700 leading-relaxed">{pt.desc}</p>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="text-[10px] font-mono text-charcoal-400 pt-2 border-t border-[#E5DCB8]">
+                <div className="text-xs font-mono text-charcoal-400 pt-2 border-t border-[#E5DCB8]">
                   {content.p1.footnote}
                 </div>
 
@@ -735,17 +735,17 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
               {/* Back Face */}
               <div className="absolute inset-0 bg-[#FAF7EE] rounded-l-xs p-6 sm:p-8 flex flex-col justify-between overflow-hidden shadow-[inset_-14px_0_20px_rgba(0,0,0,0.05)] [transform:rotateY(180deg)] [backface-visibility:hidden]">
                 <div className="space-y-3">
-                  <div className="text-[10px] font-mono text-charcoal-500 uppercase tracking-wider border-b border-[#DCD3C0] pb-2">
+                  <div className="text-xs font-mono text-charcoal-500 uppercase tracking-wider border-b border-[#DCD3C0] pb-2">
                     SECTION 01 COMPLEMENT · PEDAGOGICAL METHOD
                   </div>
-                  <h4 className="font-display text-lg font-normal text-charcoal-900">
+                  <h4 className="font-display text-xl font-normal text-charcoal-900">
                     Activity-Based Early Childhood Foundations
                   </h4>
-                  <p className="text-xs text-charcoal-700 font-sans leading-relaxed">
+                  <p className="text-sm text-charcoal-700 font-sans leading-relaxed">
                     By introducing color-coded phonetic stories, picture puzzles, and hands-on activity modules, children develop natural language fluency without rote anxiety.
                   </p>
                 </div>
-                <div className="text-[10px] font-mono text-charcoal-400 border-t border-[#E5DCB8] pt-2">
+                <div className="text-xs font-mono text-charcoal-400 border-t border-[#E5DCB8] pt-2">
                   PAGE 01B · ARCHIVE REFERENCE
                 </div>
               </div>
@@ -772,7 +772,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                 {/* Centered Official Tamil Nadu Government Emblem & Typography */}
                 <div className="space-y-5 text-center flex flex-col items-center my-auto">
                   {/* Official Government of Tamil Nadu Emblem Asset (Debossed in Leather) */}
-                  <div className="relative w-20 h-20 sm:w-24 sm:h-24 opacity-85 filter drop-shadow-[0_1px_1px_rgba(255,255,255,0.06)] brightness-[0.9]">
+                  <div className="relative w-22 h-22 sm:w-26 sm:h-26 opacity-85 filter drop-shadow-[0_1px_1px_rgba(255,255,255,0.06)] brightness-[0.9]">
                     <Image
                       src="/images/tn-seal.svg"
                       alt="Official Emblem of Tamil Nadu"
@@ -784,20 +784,20 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
 
                   {/* Clean Authoritative Title */}
                   <div className="space-y-3">
-                    <h3 className="font-display text-3xl sm:text-4xl font-light tracking-wide text-[#EADFCB] leading-tight">
+                    <h3 className="font-display text-4xl sm:text-[2.75rem] font-light tracking-wide text-[#EADFCB] leading-tight">
                       {content.coverTitle}
                     </h3>
 
-                    <div className="space-y-0.5 text-xs sm:text-sm font-sans uppercase tracking-widest text-[#C8BEA7]">
+                    <div className="space-y-0.5 text-sm sm:text-base font-sans uppercase tracking-widest text-[#C8BEA7]">
                       <div>{content.coverSub1}</div>
                       <div>{content.coverSub2}</div>
-                      <div className="text-[11px] font-mono text-[#A89E87] pt-1">{content.coverYear}</div>
+                      <div className="text-xs font-mono text-[#A89E87] pt-1">{content.coverYear}</div>
                     </div>
                   </div>
                 </div>
 
                 {/* Bottom Simple Scroll Cue */}
-                <div className="text-center text-[10px] font-mono text-[#A89E87] tracking-wider pt-4 border-t border-[#2A160B]">
+                <div className="text-center text-xs font-mono text-[#A89E87] tracking-wider pt-4 border-t border-[#2A160B]">
                   {content.coverPrompt}
                 </div>
 
@@ -807,14 +807,14 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
               {/* Inside of Leather Cover (Turned Page Facing Left) */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#381F12] to-[#25130A] text-[#EADFCB] rounded-l-xs p-8 flex flex-col justify-between overflow-hidden border-r border-[#200F07] [transform:rotateY(180deg)] [backface-visibility:hidden]">
                 <div className="space-y-2">
-                  <div className="text-[10px] font-mono text-[#A89E87] uppercase tracking-widest border-b border-[#4A2E1B] pb-2">
+                  <div className="text-xs font-mono text-[#A89E87] uppercase tracking-widest border-b border-[#4A2E1B] pb-2">
                     INSIDE COVER · PREFACE
                   </div>
-                  <p className="font-serif italic text-sm text-[#FAF7EE] leading-relaxed">
+                  <p className="font-serif italic text-base text-[#FAF7EE] leading-relaxed">
                     “An integrated public education policy delivering quality, equity, and state autonomy for Tamil Nadu.”
                   </p>
                 </div>
-                <div className="text-[10px] font-mono text-[#8C7D6B]">
+                <div className="text-xs font-mono text-[#8C7D6B]">
                   DEPARTMENT OF SCHOOL EDUCATION · GOVERNMENT OF TAMIL NADU
                 </div>
               </div>

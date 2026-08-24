@@ -418,7 +418,7 @@ export function EduQuoteBlock({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={VIEWPORT_CONFIG}
         transition={{ duration: 0.6, delay: 0.15, ease: CINEMATIC_EASE }}
-        className="font-serif italic text-lg sm:text-xl text-charcoal-800 leading-relaxed"
+        className="font-serif italic text-xl sm:text-2xl text-charcoal-800 leading-relaxed"
       >
         {quote}
       </motion.p>
@@ -430,7 +430,7 @@ export function EduQuoteBlock({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={VIEWPORT_CONFIG}
           transition={{ duration: 0.5, delay: 0.28, ease: CINEMATIC_EASE }}
-          className="text-xs font-mono text-charcoal-500 uppercase tracking-wider mt-2.5"
+          className="text-sm font-mono text-charcoal-500 uppercase tracking-wider mt-2.5"
         >
           — {attribution}
         </motion.p>
