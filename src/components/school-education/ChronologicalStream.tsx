@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import type { Locale } from '@/lib/i18n/routing';
 import { motion, AnimatePresence } from 'motion/react';
-import { EduReveal } from './EduMotion';
+import { EduReveal, EduStaggerContainer, EduStaggerItem, CINEMATIC_EASE } from './EduMotion';
 
 interface TimelineNode {
   id: string;
@@ -219,17 +219,15 @@ export function ChronologicalStream({ locale }: { locale: Locale }) {
         </button>
       </div>
 
-      {/* Minimalist Timeline Stream with Clean Hairlines */}
-      <div className="space-y-6 divide-y divide-sand-200">
-        <AnimatePresence>
+      {/* Minimalist Timeline Stream with Animated Top Lines */}
+      <EduStaggerContainer className="space-y-2">
+        <AnimatePresence mode="popLayout">
           {filteredNodes.map((node) => (
-            <motion.div
+            <EduStaggerItem
               key={node.id}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.2 }}
-              className="pt-6 first:pt-0 grid grid-cols-1 md:grid-cols-[8rem_1fr] lg:grid-cols-[10rem_1fr_12rem] gap-4 lg:gap-8 items-baseline"
+              showTopLine={true}
+              topLineColor="bg-sand-300"
+              className="pt-6 pb-2 grid grid-cols-1 md:grid-cols-[8rem_1fr] lg:grid-cols-[10rem_1fr_12rem] gap-4 lg:gap-8 items-baseline"
             >
               {/* Date */}
               <div className="font-mono text-sm text-maroon-700 font-bold">
@@ -255,10 +253,10 @@ export function ChronologicalStream({ locale }: { locale: Locale }) {
                   ● {node.status}
                 </span>
               </div>
-            </motion.div>
+            </EduStaggerItem>
           ))}
         </AnimatePresence>
-      </div>
+      </EduStaggerContainer>
 
       <div className="text-xs text-charcoal-500 font-mono pt-4 border-t border-sand-200">
         {content.sourceSummary}

@@ -56,6 +56,8 @@ export const viewport: Viewport = {
   colorScheme: 'light',
 };
 
+import { PageLoadProgress } from '@/components/common/PageLoadProgress';
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const fontVars = [
     cormorantGaramond.variable,
@@ -67,7 +69,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="en" className={fontVars}>
-      <body>{children}</body>
+      <body>
+        <PageLoadProgress />
+        {children}
+      </body>
     </html>
   );
 }

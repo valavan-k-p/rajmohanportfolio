@@ -1,17 +1,48 @@
 'use client';
 
 import { useRef, useState, useEffect, type ReactNode } from 'react';
-import { motion, useInView, useReducedMotion } from 'motion/react';
+import { motion, useInView, useScroll, useSpring, useReducedMotion } from 'motion/react';
 
-// Refined easing curve for education portal (clean, decisive, orderly)
-const EASE = [0.16, 1, 0.3, 1] as const;
+// Apple / Vercel grade cubic-bezier easing curves
+export const CINEMATIC_EASE = [0.16, 1, 0.3, 1] as const;
+export const MOTION_EASE = CINEMATIC_EASE;
+export const SMOOTH_EASE = [0.25, 0.1, 0.25, 1] as const;
 
+/**
+ * 1. EduScrollProgressBar: Ultra-luxury global scroll progress indicator
+ */
+export function EduScrollProgressBar() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) return null;
+
+  return (
+    <motion.div
+      aria-hidden="true"
+      style={{ scaleX }}
+      className="fixed top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-maroon-700 via-yellow-500 to-maroon-700 origin-left z-50 pointer-events-none shadow-[0_0_10px_rgba(122,16,11,0.4)]"
+    />
+  );
+}
+
+/**
+ * 2. EduReveal: Cinematic Blur-to-Sharp + Pop/Slide Viewport Reveal
+ */
 export function EduReveal({
   children,
   delay = 0,
-  y = 12,
+  y = 24,
   x = 0,
-  scale = 1,
+  scale = 0.96,
+  blur = 8,
+  showTopLine = false,
+  topLineColor = 'bg-maroon-700',
   className = '',
 }: {
   children: ReactNode;
@@ -19,6 +50,9 @@ export function EduReveal({
   y?: number;
   x?: number;
   scale?: number;
+  blur?: number;
+  showTopLine?: boolean;
+  topLineColor?: string;
   className?: string;
 }) {
   const prefersReducedMotion = useReducedMotion();
@@ -30,21 +64,103 @@ export function EduReveal({
         y: prefersReducedMotion ? 0 : y,
         x: prefersReducedMotion ? 0 : x,
         scale: prefersReducedMotion ? 1 : scale,
+        filter: prefersReducedMotion ? 'none' : `blur(${blur}px)`,
       }}
-      whileInView={{ opacity: 1, y: 0, x: 0, scale: 1 }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        x: 0,
+        scale: 1,
+        filter: 'blur(0px)',
+      }}
       viewport={{ once: true, amount: 0.12 }}
-      transition={{ duration: 0.45, delay, ease: EASE }}
-      className={className}
+      transition={{ duration: 0.65, delay, ease: CINEMATIC_EASE }}
+      className={`relative ${className}`}
     >
+      {/* Synchronized Left-to-Right Animated Top Line Accent */}
+      {showTopLine && (
+        <motion.div
+          aria-hidden="true"
+          initial={{ scaleX: prefersReducedMotion ? 1 : 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true, amount: 0.12 }}
+          transition={{ duration: 0.75, delay: delay + 0.08, ease: CINEMATIC_EASE }}
+          style={{ transformOrigin: 'left' }}
+          className={`absolute top-0 inset-x-0 h-[1.5px] ${topLineColor} pointer-events-none z-10 shadow-[0_0_8px_rgba(122,16,11,0.3)]`}
+        />
+      )}
       {children}
     </motion.div>
   );
 }
 
+/**
+ * 3. EduTopLineBox: High-Impact Card with Pop/Slide + Blur-to-Sharp + Left-to-Right Animated Top Line
+ */
+export function EduTopLineBox({
+  children,
+  delay = 0,
+  className = '',
+  topLineColor = 'bg-maroon-700',
+  hoverEffect = true,
+}: {
+  children: ReactNode;
+  delay?: number;
+  className?: string;
+  topLineColor?: string;
+  hoverEffect?: boolean;
+}) {
+  const prefersReducedMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: prefersReducedMotion ? 0 : 26,
+        scale: prefersReducedMotion ? 1 : 0.95,
+        filter: prefersReducedMotion ? 'none' : 'blur(8px)',
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        filter: 'blur(0px)',
+      }}
+      viewport={{ once: true, amount: 0.12 }}
+      transition={{ duration: 0.65, delay, ease: CINEMATIC_EASE }}
+      whileHover={
+        hoverEffect && !prefersReducedMotion
+          ? {
+              y: -5,
+              scale: 1.008,
+              transition: { duration: 0.25, ease: CINEMATIC_EASE },
+            }
+          : undefined
+      }
+      className={`relative overflow-hidden group ${className}`}
+    >
+      {/* Animated Top Line from Left to Right with Glow */}
+      <motion.div
+        aria-hidden="true"
+        initial={{ scaleX: prefersReducedMotion ? 1 : 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true, amount: 0.12 }}
+        transition={{ duration: 0.8, delay: delay + 0.1, ease: CINEMATIC_EASE }}
+        style={{ transformOrigin: 'left' }}
+        className={`absolute top-0 inset-x-0 h-[2px] ${topLineColor} pointer-events-none z-20 shadow-[0_0_10px_rgba(122,16,11,0.35)]`}
+      />
+      {children}
+    </motion.div>
+  );
+}
+
+/**
+ * 4. EduStaggerContainer: Orchestrated Staggered Entrance for Grids and Lists
+ */
 export function EduStaggerContainer({
   children,
   className = '',
-  stagger = 0.06,
+  stagger = 0.1,
 }: {
   children: ReactNode;
   className?: string;
@@ -56,7 +172,7 @@ export function EduStaggerContainer({
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.12 }}
+      viewport={{ once: true, amount: 0.08 }}
       variants={{
         visible: {
           transition: {
@@ -71,16 +187,27 @@ export function EduStaggerContainer({
   );
 }
 
+/**
+ * 5. EduStaggerItem: Pop/Slide Child Item with Blur Reduction and Animated Top Line
+ */
 export function EduStaggerItem({
   children,
   className = '',
-  y = 12,
-  x = 0,
+  y = 20,
+  scale = 0.96,
+  blur = 6,
+  showTopLine = true,
+  topLineColor = 'bg-sand-300',
+  hoverEffect = false,
 }: {
   children: ReactNode;
   className?: string;
   y?: number;
-  x?: number;
+  scale?: number;
+  blur?: number;
+  showTopLine?: boolean;
+  topLineColor?: string;
+  hoverEffect?: boolean;
 }) {
   const prefersReducedMotion = useReducedMotion();
 
@@ -90,23 +217,56 @@ export function EduStaggerItem({
         hidden: {
           opacity: 0,
           y: prefersReducedMotion ? 0 : y,
-          x: prefersReducedMotion ? 0 : x,
+          scale: prefersReducedMotion ? 1 : scale,
+          filter: prefersReducedMotion ? 'none' : `blur(${blur}px)`,
         },
         visible: {
           opacity: 1,
           y: 0,
-          x: 0,
-          transition: { duration: 0.4, ease: EASE },
+          scale: 1,
+          filter: 'blur(0px)',
+          transition: { duration: 0.55, ease: CINEMATIC_EASE },
         },
       }}
-      className={className}
+      whileHover={
+        hoverEffect && !prefersReducedMotion
+          ? { y: -4, transition: { duration: 0.22, ease: CINEMATIC_EASE } }
+          : undefined
+      }
+      className={`relative ${className}`}
     >
+      {/* Animated Top Line on Staggered Elements */}
+      {showTopLine && (
+        <motion.div
+          aria-hidden="true"
+          variants={{
+            hidden: { scaleX: prefersReducedMotion ? 1 : 0 },
+            visible: {
+              scaleX: 1,
+              transition: { duration: 0.7, ease: CINEMATIC_EASE },
+            },
+          }}
+          style={{ transformOrigin: 'left' }}
+          className={`absolute top-0 inset-x-0 h-[1.5px] ${topLineColor} pointer-events-none shadow-[0_0_6px_rgba(122,16,11,0.2)]`}
+        />
+      )}
       {children}
     </motion.div>
   );
 }
 
-export function EduHairline({ className = '' }: { className?: string }) {
+/**
+ * 6. EduHairline: Animated Full-Width Left-to-Right Hairline Divider
+ */
+export function EduHairline({
+  className = '',
+  color = 'bg-sand-300',
+  duration = 0.75,
+}: {
+  className?: string;
+  color?: string;
+  duration?: number;
+}) {
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -115,32 +275,16 @@ export function EduHairline({ className = '' }: { className?: string }) {
       initial={{ scaleX: prefersReducedMotion ? 1 : 0 }}
       whileInView={{ scaleX: 1 }}
       viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.6, ease: EASE }}
+      transition={{ duration, ease: CINEMATIC_EASE }}
       style={{ transformOrigin: 'left' }}
-      className={`h-[1px] bg-sand-300 ${className}`}
+      className={`h-[1px] w-full ${color} ${className}`}
     />
   );
 }
 
-export function EduCard({
-  children,
-  className = '',
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
-  const prefersReducedMotion = useReducedMotion();
-
-  return (
-    <motion.div
-      whileHover={prefersReducedMotion ? {} : { y: -3, transition: { duration: 0.2 } }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
+/**
+ * 7. EduCounter: Animated Numerical Increment with Deceleration Easing
+ */
 export interface EduCounterProps {
   readonly value: number;
   readonly prefix?: string;

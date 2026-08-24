@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import type { Locale } from '@/lib/i18n/routing';
 import { motion, AnimatePresence } from 'motion/react';
-import { EduReveal } from './EduMotion';
+import { EduReveal, EduTopLineBox, EduStaggerContainer, EduStaggerItem, CINEMATIC_EASE } from './EduMotion';
 
 interface SubjectModule {
   id: string;
@@ -273,48 +273,58 @@ export function CurriculumWorkbench({ locale }: { locale: Locale }) {
 
           {/* 2-Column Editorial Content */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* Left 6 Cols: Activities List */}
+            {/* Left 6 Cols: Activities List with Staggered Pop Entrance */}
             <div className="lg:col-span-6 space-y-4">
               <h5 className="font-mono text-xs font-bold uppercase tracking-wider text-maroon-700">
                 {content.activitiesLabel}
               </h5>
-              <ul className="space-y-3 divide-y divide-sand-200">
+              <EduStaggerContainer className="space-y-2">
                 {activeSubject.activities[locale].map((act, i) => (
-                  <li
+                  <EduStaggerItem
                     key={i}
-                    className="pt-3 first:pt-0 text-sm text-charcoal-800 flex items-start gap-2.5"
+                    showTopLine={true}
+                    topLineColor="bg-sand-200"
+                    className="pt-2.5 text-sm text-charcoal-800 flex items-start gap-2.5"
                   >
                     <span className="text-maroon-700 font-bold leading-none mt-1">›</span>
                     <span>{act}</span>
-                  </li>
+                  </EduStaggerItem>
                 ))}
-              </ul>
+              </EduStaggerContainer>
             </div>
 
-            {/* Right 6 Cols: Clean Minimal Side-by-Side Comparison */}
+            {/* Right 6 Cols: Clean Minimal Side-by-Side Comparison with Top-Line Accent Boxes */}
             <div className="lg:col-span-6 space-y-4">
               <h5 className="font-mono text-xs font-bold uppercase tracking-wider text-maroon-700">
                 {locale === 'ta' ? 'கற்பித்தல் முறை ஒப்பீடு' : 'Pedagogy Shift'}
               </h5>
 
               <div className="space-y-3">
-                <div className="p-4 bg-sand-100/60 border-l-2 border-charcoal-400 space-y-1">
+                <EduTopLineBox
+                  delay={0.06}
+                  topLineColor="bg-charcoal-400"
+                  className="p-4 bg-sand-100/60 border border-sand-200 space-y-1 rounded-xs"
+                >
                   <div className="text-xs font-mono text-charcoal-600 font-semibold uppercase">
                     {content.previousMethod}
                   </div>
                   <p className="text-xs sm:text-sm text-charcoal-700 leading-relaxed">
                     {activeSubject.pedagogyShift.before[locale]}
                   </p>
-                </div>
+                </EduTopLineBox>
 
-                <div className="p-4 bg-sand-50 border-l-2 border-maroon-700 space-y-1">
+                <EduTopLineBox
+                  delay={0.14}
+                  topLineColor="bg-maroon-700"
+                  className="p-4 bg-white border border-sand-300 shadow-sm space-y-1 rounded-xs"
+                >
                   <div className="text-xs font-mono text-maroon-700 font-bold uppercase">
                     {content.newStandard}
                   </div>
                   <p className="text-xs sm:text-sm text-charcoal-900 font-medium leading-relaxed">
                     {activeSubject.pedagogyShift.after[locale]}
                   </p>
-                </div>
+                </EduTopLineBox>
               </div>
             </div>
           </div>

@@ -3,6 +3,7 @@
 import type { ReactNode } from 'react';
 import type { SectionLayout } from '@/data/portals';
 import { motion, useReducedMotion } from 'motion/react';
+import { MOTION_EASE } from './EduMotion';
 
 const GROUND: Partial<Record<SectionLayout, string>> = {
   statement: 'bg-sand-100',
@@ -40,8 +41,6 @@ export interface EduSectionShellProps {
   readonly children?: ReactNode;
 }
 
-const EASE = [0.16, 1, 0.3, 1] as const;
-
 export function EduSectionShell({
   id,
   title,
@@ -61,14 +60,14 @@ export function EduSectionShell({
       className={`px-gutter py-section ${ground} border-b border-sand-300 relative overflow-hidden`}
     >
       <div className={`mx-auto ${inner}`}>
-        {/* Section Header */}
-        <div className="mb-10">
+        {/* Section Header with Animated Pop/Slide and Synchronized Left-to-Right Top Hairline */}
+        <div className="mb-10 relative">
           <motion.h2
             id={`${id}-heading`}
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 14, scale: prefersReducedMotion ? 1 : 0.99 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.45, ease: EASE }}
+            transition={{ duration: 0.45, ease: MOTION_EASE }}
             className={`font-display text-h2 mb-4 ${
               inverted ? 'text-white' : 'text-charcoal-900'
             }`}
@@ -76,13 +75,13 @@ export function EduSectionShell({
             {title}
           </motion.h2>
 
-          {/* Full grid width hairline */}
+          {/* Synchronized Left-to-Right Animated Hairline Divider */}
           <motion.div
             aria-hidden="true"
             initial={{ scaleX: prefersReducedMotion ? 1 : 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.55, ease: EASE }}
+            transition={{ duration: 0.65, delay: 0.05, ease: MOTION_EASE }}
             style={{ transformOrigin: 'left' }}
             className={`h-[1px] w-full ${
               inverted ? 'bg-charcoal-700' : 'bg-sand-300'

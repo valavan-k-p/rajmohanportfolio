@@ -84,7 +84,8 @@ export function EduTeachers({ locale }: { locale: Locale }) {
           {content.initiatives.map((item, idx) => (
             <EduStaggerItem
               key={idx}
-              className="border-t border-sand-300 pt-4 space-y-2"
+              topLineColor="bg-sand-300"
+              className="pt-4 space-y-2"
             >
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700">
                 {item.tag}

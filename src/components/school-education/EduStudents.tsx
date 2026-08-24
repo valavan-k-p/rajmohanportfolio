@@ -77,7 +77,8 @@ export function EduStudents({ locale }: { locale: Locale }) {
         {content.cards.map((card, idx) => (
           <EduStaggerItem
             key={idx}
-            className="border-t border-sand-300 pt-5 flex flex-col justify-between space-y-4"
+            topLineColor="bg-maroon-700/60"
+            className="pt-5 flex flex-col justify-between space-y-4"
           >
             <div className="space-y-2.5">
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700 block">

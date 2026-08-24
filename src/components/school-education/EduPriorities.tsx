@@ -24,11 +24,12 @@ export function EduPriorities({ locale }: { locale: Locale }) {
         {content.subhead}
       </p>
 
-      {/* Clean Editorial Index with Spacious Whitespace and Subtle Dividers */}
-      <EduStaggerContainer className="divide-y divide-sand-300">
+      {/* Clean Editorial Index with Spacious Whitespace and Left-to-Right Top Hairlines */}
+      <EduStaggerContainer className="space-y-4">
         {strategicDirectives.map((item, idx) => (
           <EduStaggerItem
             key={item.id}
+            topLineColor="bg-sand-300"
             className="py-8 grid grid-cols-1 md:grid-cols-[3.5rem_1fr] lg:grid-cols-[4rem_1fr_16rem] gap-6 lg:gap-10 items-start"
           >
             {/* Number Index */}

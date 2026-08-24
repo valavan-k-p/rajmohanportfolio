@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import type { Locale } from '@/lib/i18n/routing';
 import { motion, AnimatePresence } from 'motion/react';
-import { EduReveal, EduCounter } from './EduMotion';
+import { EduReveal, EduCounter, EduTopLineBox, EduStaggerContainer, EduStaggerItem } from './EduMotion';
 
 interface RoadmapTier {
   id: string;
@@ -210,36 +210,43 @@ export function TNSparkTechLab({ locale }: { locale: Locale }) {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Left 7 Cols: Modules */}
+            {/* Left 7 Cols: Modules with Staggered Pop In */}
             <div className="lg:col-span-7 space-y-3">
               <h5 className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700">
                 {locale === 'ta' ? 'பாடத்திட்ட முக்கியத் தொகுதிகள்' : 'Core Curriculum Modules'}
               </h5>
-              <ul className="space-y-2.5 divide-y divide-sand-200">
+              <EduStaggerContainer className="space-y-2">
                 {activeTier.modules[locale].map((mod, i) => (
-                  <li
+                  <EduStaggerItem
                     key={i}
-                    className="pt-2.5 first:pt-0 text-sm text-charcoal-800 flex items-start gap-2.5"
+                    showTopLine={true}
+                    topLineColor="bg-sand-200"
+                    className="pt-2 text-sm text-charcoal-800 flex items-start gap-2.5"
                   >
                     <span className="text-maroon-700 font-bold leading-none mt-1">›</span>
                     <span>{mod}</span>
-                  </li>
+                  </EduStaggerItem>
                 ))}
-              </ul>
+              </EduStaggerContainer>
             </div>
 
-            {/* Right 5 Cols: Infrastructure */}
-            <div className="lg:col-span-5 space-y-3">
+            {/* Right 5 Cols: Infrastructure Box with Top Line */}
+            <EduTopLineBox
+              delay={0.1}
+              topLineColor="bg-maroon-700"
+              className="lg:col-span-5 space-y-3 p-5 bg-white border border-sand-300 shadow-sm rounded-xs"
+            >
               <h5 className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700">
                 {locale === 'ta' ? 'உள்கட்டமைப்பு & ஆய்வகத் தயார்நிலை' : 'Infrastructure Prerequisite'}
               </h5>
               <p className="text-sm text-charcoal-800 leading-relaxed">
                 {activeTier.infrastructure[locale]}
               </p>
-              <div className="text-xs font-mono text-emerald-800 font-medium pt-2 border-t border-sand-200">
-                ● State Hi-Tech Computer Lab Connectivity
+              <div className="text-xs font-mono text-emerald-800 font-medium pt-2 border-t border-sand-100 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
+                <span>State Hi-Tech Computer Lab Connectivity</span>
               </div>
-            </div>
+            </EduTopLineBox>
           </div>
         </motion.div>
       </AnimatePresence>

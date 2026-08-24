@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import type { Locale } from '@/lib/i18n/routing';
 import { motion } from 'motion/react';
-import { EduReveal, EduCounter } from './EduMotion';
+import { EduReveal, EduCounter, EduTopLineBox } from './EduMotion';
 
 export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
   const [activeTab, setActiveTab] = useState<'comparison' | 'lineItems'>('comparison');
@@ -120,10 +120,10 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
         </p>
       </EduReveal>
 
-      {/* 3 Metric Cards with Live Counters */}
+      {/* 3 Metric Cards with Live Counters & Synchronized Animated Top Line */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
         {/* Metric 1 */}
-        <div className="p-6 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3">
+        <EduTopLineBox delay={0.05} topLineColor="bg-yellow-400" className="p-6 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3">
           <div>
             <div className="font-display text-4xl lg:text-5xl text-yellow-400 tabular-nums font-light">
               <EduCounter value={44527} prefix="₹" suffix={locale === 'ta' ? ' கோடி' : ' Cr'} duration={1.6} />
@@ -135,10 +135,10 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
           <div className="text-xs text-white/70 font-sans">
             {content.counter1Sub}
           </div>
-        </div>
+        </EduTopLineBox>
 
         {/* Metric 2 */}
-        <div className="p-6 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3">
+        <EduTopLineBox delay={0.12} topLineColor="bg-yellow-400" className="p-6 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3">
           <div>
             <div className="font-display text-4xl lg:text-5xl text-yellow-400 tabular-nums font-light">
               <EduCounter value={2176} prefix="+₹" suffix={locale === 'ta' ? ' கோடி' : ' Cr'} duration={1.4} />
@@ -150,10 +150,10 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
           <div className="text-xs text-white/70 font-sans">
             {content.counter2Sub}
           </div>
-        </div>
+        </EduTopLineBox>
 
         {/* Metric 3 */}
-        <div className="p-6 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3">
+        <EduTopLineBox delay={0.18} topLineColor="bg-yellow-400" className="p-6 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3">
           <div>
             <div className="font-display text-4xl lg:text-5xl text-yellow-400 tabular-nums font-light">
               <EduCounter value={21} duration={1.2} />
@@ -165,7 +165,7 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
           <div className="text-xs text-white/70 font-sans">
             {content.counter3Sub}
           </div>
-        </div>
+        </EduTopLineBox>
       </div>
 
       {/* Interactive Tabs */}

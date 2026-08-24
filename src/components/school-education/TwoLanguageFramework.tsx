@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import type { Locale } from '@/lib/i18n/routing';
 import { motion, AnimatePresence } from 'motion/react';
-import { EduReveal } from './EduMotion';
+import { EduReveal, EduStaggerContainer, EduStaggerItem } from './EduMotion';
 
 export function TwoLanguageFramework({ locale }: { locale: Locale }) {
   const [activeTab, setActiveTab] = useState<'tamil' | 'english' | 'autonomy'>('tamil');
@@ -184,14 +184,19 @@ export function TwoLanguageFramework({ locale }: { locale: Locale }) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3">
+          <EduStaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3">
             {activeData.points.map((pt, i) => (
-              <div key={i} className="flex items-start gap-2.5 text-sm text-charcoal-800 py-2 border-b border-sand-200">
+              <EduStaggerItem
+                key={i}
+                showTopLine={true}
+                topLineColor="bg-sand-200"
+                className="flex items-start gap-2.5 text-sm text-charcoal-800 py-2.5"
+              >
                 <span className="text-maroon-700 font-bold leading-none mt-1">●</span>
                 <span>{pt}</span>
-              </div>
+              </EduStaggerItem>
             ))}
-          </div>
+          </EduStaggerContainer>
 
           <div className="text-xs font-mono text-charcoal-600 pt-1">
             {activeData.mandate}

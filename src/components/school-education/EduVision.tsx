@@ -1,7 +1,7 @@
 'use client';
 
 import type { Locale } from '@/lib/i18n/routing';
-import { EduReveal, EduStaggerContainer, EduStaggerItem } from './EduMotion';
+import { EduReveal, EduTopLineBox } from './EduMotion';
 import { SCHOOL_EDUCATION_DATA } from '@/data/school-education';
 
 export function EduVision({ locale }: { locale: Locale }) {
@@ -43,19 +43,21 @@ export function EduVision({ locale }: { locale: Locale }) {
         </div>
       </EduReveal>
 
-      {/* 3 Core Pillars: Clean Editorial Columns with Top Hairlines (No Boxy Cards) */}
-      <EduStaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 pt-4">
+      {/* 3 Distinct Separation Boxes with Pop Animation and Left-to-Right Top Line */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 pt-2">
         {keyPillars.slice(0, 3).map((pillar, idx) => (
-          <EduStaggerItem
+          <EduTopLineBox
             key={pillar.id}
-            className="border-t border-sand-300 pt-5 flex flex-col justify-between space-y-4"
+            delay={idx * 0.1}
+            topLineColor="bg-maroon-700"
+            className="bg-white border border-sand-300 shadow-sm p-6 sm:p-7 flex flex-col justify-between space-y-5 rounded-sm hover:shadow-md hover:border-sand-400 transition-all"
           >
-            <div className="space-y-2.5">
+            <div className="space-y-3">
               <div className="flex items-center justify-between text-xs font-mono">
-                <span className="font-semibold text-maroon-700 uppercase tracking-wider">
+                <span className="font-bold text-maroon-700 uppercase tracking-wider">
                   {pillar.tag[locale]}
                 </span>
-                <span className="text-charcoal-400">0{idx + 1}</span>
+                <span className="font-semibold text-charcoal-400">0{idx + 1}</span>
               </div>
               <h3 className="font-display text-xl text-charcoal-900 leading-snug font-semibold">
                 {pillar.title[locale]}
@@ -64,12 +66,14 @@ export function EduVision({ locale }: { locale: Locale }) {
                 {pillar.detail[locale]}
               </p>
             </div>
-            <div className="text-[11px] font-mono text-emerald-800 font-medium">
-              ● {locale === 'ta' ? 'செயல்பாட்டில்' : 'Active Deployment'}
+
+            <div className="text-[11px] font-mono text-emerald-800 font-medium pt-3 border-t border-sand-100 flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
+              <span>{locale === 'ta' ? 'செயல்பாட்டில்' : 'Active Deployment'}</span>
             </div>
-          </EduStaggerItem>
+          </EduTopLineBox>
         ))}
-      </EduStaggerContainer>
+      </div>
 
       {/* Minimal Sourcing Note */}
       <div className="pt-4 text-xs text-charcoal-500 font-mono border-t border-sand-200">

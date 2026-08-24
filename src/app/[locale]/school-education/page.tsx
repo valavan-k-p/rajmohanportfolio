@@ -21,6 +21,7 @@ import { GovernanceReformsGrid } from '@/components/school-education/GovernanceR
 import { ChronologicalStream } from '@/components/school-education/ChronologicalStream';
 import { EduNews } from '@/components/school-education/EduNews';
 import { EduResources } from '@/components/school-education/EduResources';
+import { EduScrollProgressBar } from '@/components/school-education/EduMotion';
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -80,6 +81,7 @@ export default async function SchoolEducationBespokePage({
   return (
     <>
       <main id="main" className="relative w-full overflow-hidden bg-white text-charcoal-900">
+        <EduScrollProgressBar />
         {/* 1. Executive Briefing Hero */}
         <EduHero
           portal="school-education"

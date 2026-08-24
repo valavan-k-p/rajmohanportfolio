@@ -127,7 +127,8 @@ export function EduNews({ locale }: { locale: Locale }) {
         {content.articles.map((item, idx) => (
           <EduStaggerItem
             key={idx}
-            className={`border-t border-sand-300 pt-5 flex flex-col justify-between space-y-4 ${
+            topLineColor="bg-maroon-700/60"
+            className={`pt-5 flex flex-col justify-between space-y-4 ${
               item.lead ? 'md:col-span-2 lg:col-span-2' : ''
             }`}
           >

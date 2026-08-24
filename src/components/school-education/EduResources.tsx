@@ -158,10 +158,11 @@ export function EduResources({ locale }: { locale: Locale }) {
               {group.category}
             </h4>
 
-            <EduStaggerContainer className="divide-y divide-sand-200">
+            <EduStaggerContainer className="space-y-1">
               {group.items.map((item, idx) => (
                 <EduStaggerItem
                   key={idx}
+                  topLineColor="bg-sand-200"
                   className="py-4 flex flex-col md:flex-row md:items-baseline justify-between gap-3 group"
                 >
                   <div className="space-y-1 max-w-[46rem]">

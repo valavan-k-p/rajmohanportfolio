@@ -100,16 +100,16 @@ export function CampusReadinessDashboard({ locale }: { locale: Locale }) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left 7 Columns: Heatwave and 4-Point Audits */}
         <div className="lg:col-span-7 space-y-6">
-          <div className="border-t border-sand-300 pt-4 space-y-2">
+          <EduReveal showTopLine={true} topLineColor="bg-sand-300" className="pt-4 space-y-2">
             <span className="text-xs font-mono font-semibold uppercase tracking-wider text-maroon-700">
               {content.heatwaveTitle}
             </span>
             <p className="text-sm text-charcoal-800 leading-relaxed">
               {content.heatwaveDesc}
             </p>
-          </div>
+          </EduReveal>
 
-          <div className="border-t border-sand-300 pt-4 space-y-4">
+          <EduReveal showTopLine={true} delay={0.08} topLineColor="bg-sand-300" className="pt-4 space-y-4">
             <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700">
               {locale === 'ta' ? 'வளாகத் தணிக்கை நெறிமுறைகள்' : 'Mandatory Facility Audits'}
             </h4>
@@ -137,11 +137,11 @@ export function CampusReadinessDashboard({ locale }: { locale: Locale }) {
             <p className="text-xs sm:text-sm text-charcoal-700 pt-1">
               {selectedAudit.desc[locale]}
             </p>
-          </div>
+          </EduReveal>
         </div>
 
         {/* Right 5 Columns: Smart Board Counter & 10-Student Directive */}
-        <div className="lg:col-span-5 space-y-6 border-t border-sand-300 pt-4">
+        <EduReveal showTopLine={true} delay={0.12} topLineColor="bg-sand-300" className="lg:col-span-5 space-y-6 pt-4">
           <div>
             <div className="font-display text-4xl text-charcoal-900 tabular-nums font-light">
               <EduCounter value={21} duration={1.4} />{' '}
@@ -162,7 +162,7 @@ export function CampusReadinessDashboard({ locale }: { locale: Locale }) {
               {content.reopeningRuleDesc}
             </p>
           </div>
-        </div>
+        </EduReveal>
       </div>
 
       <div className="text-xs text-charcoal-500 font-mono pt-2 border-t border-sand-200">
