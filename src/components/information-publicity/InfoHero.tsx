@@ -144,18 +144,18 @@ export function InfoHero({ locale }: InfoHeroProps) {
       <motion.div
         style={prefersReducedMotion ? {} : { x: bgParallaxX, y: bgParallaxY }}
         initial={{ opacity: 0, scale: 1.08 }}
-        animate={{ opacity: 0.28, scale: 1 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
         className="absolute inset-0 z-0 pointer-events-none"
       >
         <Image
-          src="/images/info-hero-bg.jpg"
-          alt=""
+          src="/images/publicity/publicity-hero-bg.webp"
+          alt="Information & Publicity"
           fill
           priority
           quality={90}
           sizes="100vw"
-          className="object-cover object-center mix-blend-luminosity filter blur-[0.4px]"
+          className="object-cover object-center"
         />
       </motion.div>
 
@@ -198,31 +198,8 @@ export function InfoHero({ locale }: InfoHeroProps) {
       {/* =========================================================================
           2. HEADER / BRAND BAR: Clean emblem + Language Switcher
          ========================================================================= */}
-      <header className="relative z-30 w-full border-b border-[#c5a059]/15 backdrop-blur-[6px] bg-[#070504]/40">
-        <div className="mx-auto max-w-[1920px] px-4 sm:px-8 lg:px-12 h-20 sm:h-24 flex items-center justify-between">
-          {/* Left: Tamil Nadu Emblem + Title */}
-          <motion.div
-            initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center gap-3.5 sm:gap-4"
-          >
-            <Link
-              href={`/${locale}/information-publicity`}
-              className="group flex items-center gap-3.5 sm:gap-4 no-underline"
-            >
-              <TamilNaduEmblem className="w-10 h-10 sm:w-11 sm:h-11 flex-shrink-0 transition-transform duration-500 group-hover:scale-105" />
-              <div className="flex flex-col">
-                <span className="font-serif text-sm sm:text-base font-bold tracking-[0.22em] uppercase text-[#fbf9f4] group-hover:text-[#e5c786] transition-colors">
-                  {isTa ? 'செய்தி மற்றும் மக்கள் தொடர்பு' : 'INFORMATION & PUBLICITY'}
-                </span>
-                <span className="text-[9px] sm:text-[10px] font-sans tracking-[0.26em] uppercase text-[#c5a059]/80 font-medium">
-                  {isTa ? 'தமிழ்நாடு அரசு' : 'GOVERNMENT OF TAMIL NADU'}
-                </span>
-              </div>
-            </Link>
-          </motion.div>
-
+      <header className="relative z-30 w-full pt-6">
+        <div className="mx-auto max-w-[1920px] px-4 sm:px-8 lg:px-12 flex items-center justify-end">
           {/* Right: Language Switch */}
           <motion.div
             initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 20 }}
@@ -241,151 +218,9 @@ export function InfoHero({ locale }: InfoHeroProps) {
       </header>
 
       {/* =========================================================================
-          3. MAIN HERO REGION: 16:9 Balanced Composition
-             - LEFT: Official Portrait of Raj Mohan (0–30% edge, naturally integrated)
-             - CENTER-RIGHT: Dominant Editorial "RAJ MOHAN" Typography
+          3. MAIN HERO REGION
          ========================================================================= */}
       <div className="relative z-10 flex-1 flex items-end justify-between mx-auto max-w-[1920px] w-full px-4 sm:px-8 lg:px-12 pb-12 sm:pb-16 lg:pb-18">
-
-        {/* -----------------------------------------------------------------------
-            LEFT REGISTER (0–32%): Official Portrait of Raj Mohan
-            - High-res asset integrated with alpha feathering & dark cinematic blend
-           ----------------------------------------------------------------------- */}
-        <motion.div
-          style={prefersReducedMotion ? {} : { x: portraitParallaxX, y: portraitParallaxY }}
-          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.4, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute left-0 sm:left-4 lg:left-8 bottom-0 z-10 pointer-events-none w-[72vw] sm:w-[48vw] md:w-[42vw] lg:w-[35vw] xl:w-[32vw] max-w-[620px] h-[68vh] sm:h-[78vh] md:h-[84vh] lg:h-[88vh] max-h-[920px]"
-        >
-          {/* Portrait Image Container with Feathered Gradient Masks */}
-          <div
-            className="relative w-full h-full"
-            style={{
-              WebkitMaskImage:
-                'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 58%, rgba(0,0,0,0.4) 80%, rgba(0,0,0,0) 100%), linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 12%, rgba(0,0,0,1) 28%)',
-              WebkitMaskComposite: 'destination-in',
-              maskImage:
-                'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 58%, rgba(0,0,0,0.4) 80%, rgba(0,0,0,0) 100%), linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 12%, rgba(0,0,0,1) 28%)',
-              maskComposite: 'intersect',
-            }}
-          >
-            <Image
-              src="/images/navigation.jpeg"
-              alt="Raj Mohan - Department of Information & Publicity, Government of Tamil Nadu"
-              fill
-              priority
-              quality={90}
-              sizes="(max-width: 768px) 75vw, (max-width: 1200px) 45vw, 35vw"
-              className="object-cover object-[50%_18%] filter contrast-[1.04] brightness-[0.98] drop-shadow-[0_25px_50px_rgba(0,0,0,0.9)]"
-            />
-            {/* Cinematic subtle warm light tone overlay on the portrait */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#070504] via-transparent to-transparent opacity-60" />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#070504]/70" />
-          </div>
-        </motion.div>
-
-        {/* -----------------------------------------------------------------------
-            CENTER & RIGHT REGISTER: Majestic Editorial Typography & Details
-           ----------------------------------------------------------------------- */}
-        <motion.div
-          style={prefersReducedMotion ? {} : { x: textParallaxX }}
-          className="relative z-20 w-full flex flex-col items-end text-right lg:max-w-[65vw] xl:max-w-[60vw] ml-auto pr-0 sm:pr-4 lg:pr-8"
-        >
-          {/* Eyebrow Stamped Label */}
-          <motion.div
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4"
-          >
-            <span className="w-1.5 h-1.5 rotate-45 bg-[#c5a059]" />
-            <span className="font-mono text-[10px] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-[#e5c786] font-semibold">
-              {isTa
-                ? 'தமிழ்நாடு அரசு · செய்தி மற்றும் மக்கள் தொடர்புத்துறை'
-                : 'GOVERNMENT OF TAMIL NADU · INFORMATION & PUBLICITY'}
-            </span>
-            <span className="w-1.5 h-1.5 rotate-45 bg-[#c5a059]" />
-          </motion.div>
-
-          {/* Main Dominant Heading: "RAJ MOHAN" */}
-          <motion.div
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 35 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-end leading-[0.82] select-none"
-          >
-            <h1 className="flex flex-col items-end tracking-[-0.03em] font-serif font-light text-right">
-              {/* Line 1: RAJ */}
-              <span
-                className="block text-[clamp(4.25rem,10.5vw,11.5rem)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFFDF8] via-[#F4EBDB] to-[#C5A059] filter drop-shadow-[0_8px_30px_rgba(0,0,0,0.85)]"
-                style={{
-                  fontFamily: 'var(--font-cormorant), var(--font-instrument-serif), Georgia, serif',
-                }}
-              >
-                {isTa ? 'ராஜ்' : 'RAJ'}
-              </span>
-
-              {/* Line 2: MOHAN */}
-              <span
-                className="block text-[clamp(4.25rem,10.5vw,11.5rem)] text-transparent bg-clip-text bg-gradient-to-b from-[#F4EBDB] via-[#E2CEAA] to-[#A88344] -mt-1 sm:-mt-3 md:-mt-5 filter drop-shadow-[0_8px_30px_rgba(0,0,0,0.85)]"
-                style={{
-                  fontFamily: 'var(--font-cormorant), var(--font-instrument-serif), Georgia, serif',
-                }}
-              >
-                {isTa ? 'மோகன்' : 'MOHAN'}
-              </span>
-            </h1>
-          </motion.div>
-
-          {/* Subheading: "INFORMATION & PUBLICITY" */}
-          <motion.div
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-4 sm:mt-6"
-          >
-            <p
-              className="text-base sm:text-xl md:text-2xl lg:text-3xl font-serif tracking-[0.24em] uppercase text-[#e5c786] font-normal"
-              style={{
-                fontFamily: 'var(--font-cormorant), var(--font-instrument-serif), Georgia, serif',
-              }}
-            >
-              {isTa ? 'செய்தி மற்றும் மக்கள் தொடர்பு' : 'INFORMATION & PUBLICITY'}
-            </p>
-          </motion.div>
-
-          {/* Thin Gold Gradient Divider */}
-          <motion.div
-            initial={{ scaleX: 0, opacity: 0 }}
-            animate={{ scaleX: 1, opacity: 1 }}
-            transition={{ duration: 0.9, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
-            style={{ originX: 1 }}
-            className="w-full max-w-lg sm:max-w-xl h-[1px] bg-gradient-to-l from-[#c5a059] via-[#8a6c3b]/60 to-transparent my-3.5 sm:my-4.5"
-          />
-
-          {/* Supporting Statement Line */}
-          <motion.p
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.85, ease: [0.16, 1, 0.3, 1] }}
-            className="text-xs sm:text-sm md:text-base font-sans font-light tracking-wide text-[#ddd3c1]/90 max-w-xl"
-          >
-            {isTa
-              ? 'அரசு தகவல் தொடர்பு · மக்கள் தகவல் · ஊடகத் தொடர்பு'
-              : 'Government Communication · Public Information · Media Relations'}
-          </motion.p>
-
-          {/* Government of Tamil Nadu Authority Seal Text */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.95 }}
-            className="mt-2 text-[10px] sm:text-xs font-mono uppercase tracking-[0.3em] text-[#a89578]"
-          >
-            {isTa ? 'தமிழ்நாடு அரசு' : 'Government of Tamil Nadu'}
-          </motion.div>
-        </motion.div>
       </div>
 
       {/* =========================================================================
