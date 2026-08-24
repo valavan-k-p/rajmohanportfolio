@@ -17,51 +17,51 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
     offset: ['start start', 'end end'],
   });
 
-  // Spring damping for tactile resistance, high resolution, and smooth physical page turns
+  // Spring damping for responsive, smooth, medium-speed physical page turns (~0.8–1.0s)
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 75,
-    damping: 30,
-    mass: 1.1,
-    restDelta: 0.0005,
+    stiffness: 100,
+    damping: 26,
+    mass: 0.9,
+    restDelta: 0.0008,
   });
 
   // Current active page index (1 to 5)
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   // Progressive 3D rotations for Leather Cover + 4 Inner Paper Leaves
-  // Calibrated with extended scroll distance for physical, gradual, continuous page turns
+  // Calibrated for a balanced medium-speed turn: visible lift -> bend -> turn -> settle
   // Stage 0: 0.02 - 0.16 -> Leather Cover Opens (0deg -> -180deg)
   // Stage 1: 0.22 - 0.38 -> Leaf 1 Turns (0deg -> -180deg) -> Reveals Page 2
-  // Stage 2: 0.44 - 0.60 -> Leaf 2 Turns (0deg -> -180deg) -> Reveals Page 3
-  // Stage 3: 0.66 - 0.82 -> Leaf 3 Turns (0deg -> -180deg) -> Reveals Page 4
-  // Stage 4: 0.86 - 0.98 -> Leaf 4 Turns (0deg -> -180deg) -> Reveals Page 5
+  // Stage 2: 0.42 - 0.58 -> Leaf 2 Turns (0deg -> -180deg) -> Reveals Page 3
+  // Stage 3: 0.62 - 0.78 -> Leaf 3 Turns (0deg -> -180deg) -> Reveals Page 4
+  // Stage 4: 0.82 - 0.96 -> Leaf 4 Turns (0deg -> -180deg) -> Reveals Page 5
 
   const coverRotate = useTransform(smoothProgress, [0.02, 0.16], [0, -180]);
   const leaf1Rotate = useTransform(smoothProgress, [0.22, 0.38], [0, -180]);
-  const leaf2Rotate = useTransform(smoothProgress, [0.44, 0.60], [0, -180]);
-  const leaf3Rotate = useTransform(smoothProgress, [0.66, 0.82], [0, -180]);
-  const leaf4Rotate = useTransform(smoothProgress, [0.86, 0.98], [0, -180]);
+  const leaf2Rotate = useTransform(smoothProgress, [0.42, 0.58], [0, -180]);
+  const leaf3Rotate = useTransform(smoothProgress, [0.62, 0.78], [0, -180]);
+  const leaf4Rotate = useTransform(smoothProgress, [0.82, 0.96], [0, -180]);
 
   // Subtle natural paper curl during mid-turn (skew and lighting shift)
-  const leaf1Curl = useTransform(smoothProgress, [0.22, 0.30, 0.38], [0, 4, 0]);
-  const leaf2Curl = useTransform(smoothProgress, [0.44, 0.52, 0.60], [0, 4, 0]);
-  const leaf3Curl = useTransform(smoothProgress, [0.66, 0.74, 0.82], [0, 4, 0]);
-  const leaf4Curl = useTransform(smoothProgress, [0.86, 0.92, 0.98], [0, 4, 0]);
+  const leaf1Curl = useTransform(smoothProgress, [0.22, 0.30, 0.38], [0, 3.5, 0]);
+  const leaf2Curl = useTransform(smoothProgress, [0.42, 0.50, 0.58], [0, 3.5, 0]);
+  const leaf3Curl = useTransform(smoothProgress, [0.62, 0.70, 0.78], [0, 3.5, 0]);
+  const leaf4Curl = useTransform(smoothProgress, [0.82, 0.89, 0.96], [0, 3.5, 0]);
 
   // Soft natural page shadows on underlying sheets during movement
-  const coverShadow = useTransform(smoothProgress, [0.02, 0.09, 0.16], [0, 0.4, 0]);
-  const leaf1Shadow = useTransform(smoothProgress, [0.22, 0.30, 0.38], [0, 0.35, 0]);
-  const leaf2Shadow = useTransform(smoothProgress, [0.44, 0.52, 0.60], [0, 0.35, 0]);
-  const leaf3Shadow = useTransform(smoothProgress, [0.66, 0.74, 0.82], [0, 0.35, 0]);
-  const leaf4Shadow = useTransform(smoothProgress, [0.86, 0.92, 0.98], [0, 0.35, 0]);
+  const coverShadow = useTransform(smoothProgress, [0.02, 0.09, 0.16], [0, 0.35, 0]);
+  const leaf1Shadow = useTransform(smoothProgress, [0.22, 0.30, 0.38], [0, 0.3, 0]);
+  const leaf2Shadow = useTransform(smoothProgress, [0.42, 0.50, 0.58], [0, 0.3, 0]);
+  const leaf3Shadow = useTransform(smoothProgress, [0.62, 0.70, 0.78], [0, 0.3, 0]);
+  const leaf4Shadow = useTransform(smoothProgress, [0.82, 0.89, 0.96], [0, 0.3, 0]);
 
   // Active page indicator listener
   useEffect(() => {
     const unsubscribe = smoothProgress.on('change', (v) => {
       if (v < 0.22) setCurrentPage(1);
-      else if (v < 0.44) setCurrentPage(2);
-      else if (v < 0.66) setCurrentPage(3);
-      else if (v < 0.86) setCurrentPage(4);
+      else if (v < 0.42) setCurrentPage(2);
+      else if (v < 0.62) setCurrentPage(3);
+      else if (v < 0.82) setCurrentPage(4);
       else setCurrentPage(5);
     });
     return () => unsubscribe();
@@ -317,7 +317,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
       ref={containerRef}
       id="policy-notebook"
       aria-label="Official Tamil Nadu School Education Policy Dossier"
-      className="relative w-full h-[1050vh] bg-[#D5C9B3] border-b border-[#BFB298] select-none"
+      className="relative w-full h-[780vh] bg-[#D5C9B3] border-b border-[#BFB298] select-none"
     >
       {/* Sticky Fullscreen 3D Stage */}
       <div className="sticky top-0 w-full h-screen flex items-center justify-center p-3 sm:p-6 overflow-hidden z-30">
