@@ -9,6 +9,7 @@ import { EduSectionShell } from '@/components/school-education/EduSectionShell';
 
 // Interactive Bespoke Senior Developer Components
 import { EduVision } from '@/components/school-education/EduVision';
+import { EduStoryEcosystem } from '@/components/school-education/EduStoryEcosystem';
 import { EduPriorities } from '@/components/school-education/EduPriorities';
 import { CurriculumWorkbench } from '@/components/school-education/CurriculumWorkbench';
 import { TwoLanguageFramework } from '@/components/school-education/TwoLanguageFramework';
@@ -101,6 +102,9 @@ export default async function SchoolEducationBespokePage({
         >
           <EduVision locale={locale as Locale} />
         </EduSectionShell>
+
+        {/* 2.5 Storytelling Ecosystem Introduction (Central Concept & Connected Themes) */}
+        <EduStoryEcosystem locale={locale as Locale} />
 
         {/* 3. Core Policy Priorities */}
         <EduSectionShell
