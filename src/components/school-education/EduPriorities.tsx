@@ -1,7 +1,7 @@
 'use client';
 
 import type { Locale } from '@/lib/i18n/routing';
-import { EduStaggerContainer, EduStaggerItem, EduHairline } from './EduMotion';
+import { EduReveal, EduStaggerContainer, EduStaggerItem, EduHorizontalLine } from './EduMotion';
 import { SCHOOL_EDUCATION_DATA } from '@/data/school-education';
 
 export function EduPriorities({ locale }: { locale: Locale }) {
@@ -10,25 +10,32 @@ export function EduPriorities({ locale }: { locale: Locale }) {
   const content = {
     en: {
       subhead:
-        'Active operational directives translating cabinet commitments into classroom and administrative execution.',
+        'Immediate operational objectives governing the 2026–27 academic year, focusing on baseline child welfare, pedagogy reform, and infrastructure audits.',
     },
     ta: {
       subhead:
-        'அமைச்சரவைக் கொள்கைகளை வகுப்பறைச் செயல்பாடுகளாக மாற்றும் தற்போதைய முக்கிய முன்னுரிமைகள்.',
+        '2026–27 கல்வியாண்டிற்கான உடனடி நிர்வாக முன்னுரிமைகள்: மாணவர் நலம், கற்றல் முறை மாற்றம் மற்றும் பள்ளி உள்கட்டமைப்பு தணிக்கைகள்.',
     },
   }[locale];
 
+  const directions: ('up' | 'left' | 'right' | 'up')[] = ['up', 'left', 'right', 'up'];
+
   return (
     <div className="space-y-8 max-w-[72rem] mx-auto">
-      <p className="text-charcoal-700 text-base sm:text-lg max-w-[48rem]">
-        {content.subhead}
-      </p>
+      {/* Subhead with Subtle Fade Up */}
+      <EduReveal direction="up" delay={0}>
+        <p className="text-charcoal-700 text-base sm:text-lg max-w-[48rem]">
+          {content.subhead}
+        </p>
+      </EduReveal>
 
-      {/* Clean Editorial Index with Spacious Whitespace and Left-to-Right Top Hairlines */}
-      <EduStaggerContainer className="space-y-4">
+      {/* Editorial Index with Progressive Line Drawing and Sequential Item Reveals */}
+      <EduStaggerContainer className="space-y-4" stagger={0.1}>
         {strategicDirectives.map((item, idx) => (
           <EduStaggerItem
             key={item.id}
+            direction={directions[idx % directions.length]}
+            showTopLine={true}
             topLineColor="bg-sand-300"
             className="py-8 grid grid-cols-1 md:grid-cols-[3.5rem_1fr] lg:grid-cols-[4rem_1fr_16rem] gap-6 lg:gap-10 items-start"
           >
@@ -53,13 +60,13 @@ export function EduPriorities({ locale }: { locale: Locale }) {
               </div>
             </div>
 
-            {/* Status & Citation: Clean Inline Layout (No Box-in-a-Box) */}
+            {/* Status & Citation */}
             <div className="pt-1 md:col-start-2 lg:col-start-3 space-y-1.5 text-right lg:text-left">
               <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-charcoal-900">
                 <span className="w-2 h-2 rounded-full bg-maroon-700" />
                 <span>{item.status}</span>
               </div>
-              <p className="text-xs text-charcoal-500 font-sans">
+              <p className="text-xs text-charcoal-500 font-mono">
                 {item.source}
               </p>
             </div>
@@ -67,7 +74,8 @@ export function EduPriorities({ locale }: { locale: Locale }) {
         ))}
       </EduStaggerContainer>
 
-      <EduHairline className="mt-4" />
+      {/* Bottom Hairline */}
+      <EduHorizontalLine color="bg-sand-300" duration={0.65} />
     </div>
   );
 }

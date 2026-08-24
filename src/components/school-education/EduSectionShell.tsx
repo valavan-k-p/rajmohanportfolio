@@ -2,8 +2,7 @@
 
 import type { ReactNode } from 'react';
 import type { SectionLayout } from '@/data/portals';
-import { motion, useReducedMotion } from 'motion/react';
-import { MOTION_EASE } from './EduMotion';
+import { EduHeadingMask, EduHorizontalLine } from './EduMotion';
 
 const GROUND: Partial<Record<SectionLayout, string>> = {
   statement: 'bg-sand-100',
@@ -51,7 +50,6 @@ export function EduSectionShell({
   const ground = GROUND[layout] ?? 'bg-white';
   const inner = INNER[layout] ?? 'max-w-[72rem]';
   const inverted = layout === 'data-band';
-  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section
@@ -60,32 +58,23 @@ export function EduSectionShell({
       className={`px-gutter py-section ${ground} border-b border-sand-300 relative overflow-hidden`}
     >
       <div className={`mx-auto ${inner}`}>
-        {/* Section Header with Animated Pop/Slide and Synchronized Left-to-Right Top Hairline */}
+        {/* Section Header with Editorial Mask Reveal & Left-to-Right Drawing Divider */}
         <div className="mb-10 relative">
-          <motion.h2
-            id={`${id}-heading`}
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 14, scale: prefersReducedMotion ? 1 : 0.99 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.45, ease: MOTION_EASE }}
-            className={`font-display text-h2 mb-4 ${
-              inverted ? 'text-white' : 'text-charcoal-900'
-            }`}
-          >
-            {title}
-          </motion.h2>
+          <EduHeadingMask id={`${id}-heading`} delay={0}>
+            <h2
+              className={`font-display text-h2 mb-4 ${
+                inverted ? 'text-white' : 'text-charcoal-900'
+              }`}
+            >
+              {title}
+            </h2>
+          </EduHeadingMask>
 
-          {/* Synchronized Left-to-Right Animated Hairline Divider */}
-          <motion.div
-            aria-hidden="true"
-            initial={{ scaleX: prefersReducedMotion ? 1 : 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.65, delay: 0.05, ease: MOTION_EASE }}
-            style={{ transformOrigin: 'left' }}
-            className={`h-[1px] w-full ${
-              inverted ? 'bg-charcoal-700' : 'bg-sand-300'
-            }`}
+          {/* Full Grid Width Hairline Drawing from Left to Right */}
+          <EduHorizontalLine
+            color={inverted ? 'bg-charcoal-700' : 'bg-sand-300'}
+            duration={0.8}
+            delay={0.06}
           />
         </div>
 

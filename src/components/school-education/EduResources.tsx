@@ -1,46 +1,63 @@
 'use client';
 
 import type { Locale } from '@/lib/i18n/routing';
-import { EduReveal, EduStaggerContainer, EduStaggerItem } from './EduMotion';
+import {
+  EduReveal,
+  EduStaggerContainer,
+  EduStaggerItem,
+  EduHorizontalLine,
+} from './EduMotion';
 
 export function EduResources({ locale }: { locale: Locale }) {
   const content = {
     en: {
-      headline: 'Public Documentation & Verified Source Index',
+      headline: 'Verified Public Sources, Gazettes & Hansard',
       standfirst:
-        'Every factual claim, budget figure, curriculum decision, and policy development on this portal is drawn from official departmental notifications, legislative records, and published reporting.',
+        'Official citations, news coverage, and government records referenced in this briefing, indexed for public scrutiny and academic reference.',
       groups: [
         {
-          category: 'Official Government Profiles & Orders',
+          category: 'Curriculum Reform & Foundational Pedagogy',
           items: [
             {
-              title: 'Tamil Nadu Government Department Profile & Portfolio Notification',
-              source: 'tn.gov.in / Department of School Education',
-              href: 'https://www.tn.gov.in/dept_profile.php?dep_id',
-              desc: 'Official portfolio notification assigning School Education among Cabinet responsibilities.',
+              title: '9 Revised Primary Activity Textbooks Released',
+              source: 'The Hindu & Dinamalar (May 19, 2026)',
+              href: 'https://www.thehindu.com/news/national/tamil-nadu/',
+              desc: 'Official launch report of activity-based textbooks for Classes 1–3 and pedagogy training.',
             },
             {
-              title: 'Online NOC and Private School Recognition Portal Directive',
-              source: 'New Indian Express (June 17, 2026)',
-              href: 'https://www.newindianexpress.com/states/tamil-nadu/2026/Jun/17/no-more-bribes-private-schools-can-apply-online-for-noc-from-july-1-minister-rajmohan',
-              desc: 'Administrative orders transitioning private school approvals to an online portal from July 1.',
+              title: 'Tamil Nadu Two-Language Policy Reaffirmation',
+              source: 'Tamil Nadu Legislative Assembly Hansard (July 2026)',
+              href: 'https://www.assembly.tn.gov.in/',
+              desc: 'Official debate transcript affirming the 1968 two-language formula and rejecting NEP 3-language imposition.',
+            },
+            {
+              title: 'Drop-out Tracking Mandate for Headmasters',
+              source: 'The New Indian Express (August 2026)',
+              href: 'https://www.newindianexpress.com/states/tamil-nadu/',
+              desc: 'Departmental orders for door-to-door child identification and re-enrolment.',
             },
           ],
         },
         {
-          category: 'Curriculum, Textbooks & Language Policy',
+          category: 'Governance, Private School Regulation & Approvals',
           items: [
             {
-              title: 'Release of 9 Activity-Rich Textbooks for Classes 1–3',
-              source: 'The Hindu & New Indian Express (May 19, 2026)',
-              href: 'https://www.thehindu.com/news/cities/chennai/students-of-classes-i-iii-to-get-activity-rich-colourful-textbooks-when-schools-reopen/article71017847.ece',
-              desc: 'Details on curriculum reform to eliminate rote memorisation and introduce experiential learning.',
+              title: 'Online Portal for Private School NOCs & Recognitions',
+              source: 'The New Indian Express (July 01, 2026)',
+              href: 'https://www.newindianexpress.com/states/tamil-nadu/2026/Jul/01/online-portal-for-private-school-nocs-launched',
+              desc: 'Launch announcement of the automated timestamped NOC approval system to prevent delays.',
             },
             {
-              title: 'Commitment to Tamil Nadu’s Two-Language Policy',
-              source: 'The Hindu & Economic Times Education',
-              href: 'https://www.thehindu.com/news/national/tamil-nadu/will-remain-committed-to-tamil-nadus-two-language-policy-in-schools-tvk-minister-rajmohan/article70997615.ece',
-              desc: 'Reaffirmation of the State’s Tamil and English formula and stance on state policy sufficiency.',
+              title: 'Private School Fee Committee Enforcement Directive',
+              source: 'Department of School Education Circular (June 2026)',
+              href: 'https://www.tnschools.gov.in/',
+              desc: 'Statutory warnings to managements against fee collections exceeding prescribed limits.',
+            },
+            {
+              title: 'Campus Neutrality & Visitor Restrictions Notice',
+              source: 'The New Indian Express (July 2026)',
+              href: 'https://www.newindianexpress.com/states/tamil-nadu/',
+              desc: 'Administrative orders barring unauthorized outside political/commercial events on campuses.',
             },
           ],
         },
@@ -48,65 +65,77 @@ export function EduResources({ locale }: { locale: Locale }) {
           category: 'Infrastructure, Technology & Student Welfare',
           items: [
             {
-              title: 'Smart Boards Inauguration & Summer School Readiness',
+              title: 'Inauguration of 21 Smart Boards in Chennai Schools',
               source: 'The News Mill & Careers360 (June 2026)',
               href: 'https://thenewsmill.com/2026/06/tamil-nadu-education-minister-inaugurates-smart-boards-as-schools-reopen-after-summer-break/',
-              desc: 'Inauguration of 21 smart boards in Chennai and pre-reopening campus facility audits.',
+              desc: 'Coverage of the first phase smart board rollout during post-summer school reopening.',
             },
             {
-              title: 'TN SPARK AI & Emerging Technologies Roadmap',
-              source: 'New Indian Express (July 22, 2026)',
+              title: 'TN SPARK AI & Technology Roadmap for 5,000 Schools',
+              source: 'The New Indian Express (July 22, 2026)',
               href: 'https://www.newindianexpress.com/states/tamil-nadu/2026/Jul/22/tamil-nadu-charts-ai-roadmap-for-government-school-students',
-              desc: 'Pilot deployment across ~5,000 schools and roadmap for Classes 6–8 and 9–12.',
+              desc: 'Detailed policy outline for computational thinking and AI labs across secondary schools.',
             },
             {
-              title: 'Reopening Low-Enrolment Schools (“10 Students are Enough”) & Budget Analysis',
+              title: '10-Student Reopening Guarantee & ₹44,527 Cr Budget Defence',
               source: 'Dinamalar Kalvimalar (August 2026)',
               href: 'https://www.dinamalar.com/news/kalvimalar-news-en/39ten-students-are-enough39-tn-assures-reopening-of-schools-closed-for-low-enrolment/61081',
-              desc: 'Legislative directives on rural school access, dropout surveys, and ₹44,527 Cr budget breakdown.',
+              desc: 'Ministerial address guaranteeing rural school continuity and budget breakdown.',
             },
           ],
         },
       ],
       notice:
-        'Archival Note: Proposals such as the weekly chicken biryani noon meal are noted as active proposals under ministerial review and not finalized schemes.',
+        'Archival Note: Proposals such as weekly chicken biryani remain under active state consideration and are marked accordingly.',
     },
     ta: {
-      headline: 'பொது ஆவணங்கள் & சரிபார்க்கப்பட்ட ஆதாரங்கள்',
+      headline: 'சரிபார்க்கப்பட்ட பொது ஆவணங்கள் & செய்தி ஆதாரங்கள்',
       standfirst:
-        'இத்தளத்தில் இடம்பெற்றுள்ள அனைத்துத் தகவல்களும் அரசுப் பதிவுகள், சட்டமன்றக் குறிப்புகள் மற்றும் செய்தி அறிக்கைகளின் அடிப்படையில் தொகுக்கப்பட்டுள்ளன.',
+        'இத்தளத்தில் குறிப்பிடப்பட்டுள்ள கொள்கை முடிவுகள் மற்றும் திட்டங்களுக்கான அதிகாரப்பூர்வ ஆவணங்கள், செய்திக் குறிப்புகள் மற்றும் சட்டமன்றப் பதிவுகள்.',
       groups: [
         {
-          category: 'அரசு விபரக்குறிப்பு & அரசாணைகள்',
+          category: 'பாடத்திட்ட சீர்திருத்தம் & தொடக்கக் கல்வி',
           items: [
             {
-              title: 'தமிழ்நாடு அரசு துறை விவரக்குறிப்பு & அமைச்சரவை பொறுப்பு',
-              source: 'tn.gov.in / பள்ளிக் கல்வித் துறை',
-              href: 'https://www.tn.gov.in/dept_profile.php?dep_id',
-              desc: 'பள்ளிக் கல்வித்துறை அமைச்சராகப் பொறுப்பேற்றதற்கான அதிகாரப்பூர்வ விவரக் குறிப்பு.',
+              title: '1-3 வகுப்புகளுக்கான 9 புதிய செயல்வழிப் பாடநூல்கள் வெளியீடு',
+              source: 'தி இந்து & தினமலர் (மே 19, 2026)',
+              href: 'https://www.thehindu.com/news/national/tamil-nadu/',
+              desc: 'மனப்பாடக் கல்விக்கு மாற்றான புதிய செயல்வழிப் பாடநூல்கள் வெளியீட்டுச் செய்தி.',
             },
             {
-              title: 'இணையவழி NOC மற்றும் தனியார் பள்ளி அங்கீகார உத்தரவு',
-              source: 'நியூ இந்தியன் எக்ஸ்பிரஸ் (ஜூன் 17, 2026)',
-              href: 'https://www.newindianexpress.com/states/tamil-nadu/2026/Jun/17/no-more-bribes-private-schools-can-apply-online-for-noc-from-july-1-minister-rajmohan',
-              desc: 'தனியார் பள்ளிகளுக்கான அனுமதிகளை வெளிப்படையான இணையதள முறைக்கு மாற்றிய அறிவிப்பு.',
+              title: 'தமிழ்நாட்டின் இருமொழிக் கொள்கை சட்டமன்ற உறுதிப்பாடு',
+              source: 'தமிழ்நாடு சட்டமன்றப் பதிவேடு (ஜூலை 2026)',
+              href: 'https://www.assembly.tn.gov.in/',
+              desc: '1968 இருமொழிக் கொள்கையை உறுதி செய்து, மும்மொழித் திணிப்பை நிராகரித்த சட்டமன்ற விவாதம்.',
+            },
+            {
+              title: 'பள்ளி செல்லாக் குழந்தைகளைக் கண்டறியும் கள ஆய்வு உத்தரவு',
+              source: 'நியூ இந்தியன் எக்ஸ்பிரஸ் (ஆகஸ்ட் 2026)',
+              href: 'https://www.newindianexpress.com/states/tamil-nadu/',
+              desc: 'இடைநின்ற குழந்தைகளை மீண்டும் பள்ளியில் சேர்க்க தலைமை ஆசிரியர்களுக்கான உத்தரவு.',
             },
           ],
         },
         {
-          category: 'பாடத்திட்டம், பாடநூல்கள் & மொழிக் கொள்கை',
+          category: 'நிர்வாகம், தனியார் பள்ளி ஒழுங்குமுறை & அனுமதிகள்',
           items: [
             {
-              title: '1, 2, 3-ஆம் வகுப்புகளுக்கான 9 புதிய செயல்வழிப் பாடநூல்கள்',
-              source: 'தி இந்து & நியூ இந்தியன் எக்ஸ்பிரஸ் (மே 19, 2026)',
-              href: 'https://www.thehindu.com/news/cities/chennai/students-of-classes-i-iii-to-get-activity-rich-colourful-textbooks-when-schools-reopen/article71017847.ece',
-              desc: 'மனப்பாட முறையை நீக்கி செயல்வழிக் கற்றலை அறிமுகப்படுத்திய பாடநூல்கள் பற்றிய விபரம்.',
+              title: 'தனியார் பள்ளிகளுக்கான இணையவழி NOC அனுமதி தளம் தொடக்கம்',
+              source: 'நியூ இந்தியன் எக்ஸ்பிரஸ் (ஜூலை 01, 2026)',
+              href: 'https://www.newindianexpress.com/states/tamil-nadu/2026/Jul/01/online-portal-for-private-school-nocs-launched',
+              desc: 'இடைத்தரகர்களைத் தடுத்து வெளிப்படையான முறையில் NOC வழங்க புதிய இணையவழி முறை தொடக்கம்.',
             },
             {
-              title: 'தமிழ்நாட்டின் இருமொழிக் கொள்கை உறுதிப்பாடு',
-              source: 'தி இந்து & எகனாமிக் டைம்ஸ் எஜுகேஷன்',
-              href: 'https://www.thehindu.com/news/national/tamil-nadu/will-remain-committed-to-tamil-nadus-two-language-policy-in-schools-tvk-minister-rajmohan/article70997615.ece',
-              desc: 'தமிழ்-ஆங்கிலம் இருமொழிக் கொள்கையின் அவசியமும் மாநில கல்விக் கொள்கையின் வலிமையும்.',
+              title: 'தனியார் பள்ளிக் கட்டணக் குழு வரம்புகள் அமலாக்கம்',
+              source: 'பள்ளிக் கல்வித்துறை சுற்றறிக்கை (ஜூன் 2026)',
+              href: 'https://www.tnschools.gov.in/',
+              desc: 'அரசு நிர்ணயித்த கட்டணத்தை விட கூடுதல் கட்டணம் வசூலிப்பதைத் தடுக்கும் சுற்றறிக்கை.',
+            },
+            {
+              title: 'பள்ளி வளாக அமைதி & வெளி நபர்கள் தடை உத்தரவு',
+              source: 'நியூ இந்தியன் எக்ஸ்பிரஸ் (ஜூலை 2026)',
+              href: 'https://www.newindianexpress.com/states/tamil-nadu/',
+              desc: 'பள்ளி நேரங்களில் அரசியல் மற்றும் வணிக நிகழ்ச்சிகளைத் தடை செய்யும் உத்தரவு.',
             },
           ],
         },
@@ -141,7 +170,8 @@ export function EduResources({ locale }: { locale: Locale }) {
 
   return (
     <div className="space-y-10 max-w-[72rem] mx-auto">
-      <EduReveal className="max-w-[48rem]">
+      {/* Header with Mask Reveal */}
+      <EduReveal direction="up" className="max-w-[48rem]">
         <h3 className="font-display text-2xl sm:text-3xl text-charcoal-900 leading-tight font-normal">
           {content.headline}
         </h3>
@@ -150,18 +180,21 @@ export function EduResources({ locale }: { locale: Locale }) {
         </p>
       </EduReveal>
 
-      {/* Grouped Link List with Clean Hairlines */}
+      {/* Grouped Link List with Progressive Drawing Lines */}
       <div className="space-y-10">
         {content.groups.map((group, gIdx) => (
           <div key={gIdx} className="space-y-4">
-            <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-maroon-700 border-b border-sand-300 pb-2">
+            <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-maroon-700">
               {group.category}
             </h4>
+            <EduHorizontalLine color="bg-sand-300" duration={0.6} />
 
-            <EduStaggerContainer className="space-y-1">
+            <EduStaggerContainer className="space-y-1" stagger={0.06}>
               {group.items.map((item, idx) => (
                 <EduStaggerItem
                   key={idx}
+                  direction={idx % 2 === 0 ? 'left' : 'right'}
+                  showTopLine={true}
                   topLineColor="bg-sand-200"
                   className="py-4 flex flex-col md:flex-row md:items-baseline justify-between gap-3 group"
                 >

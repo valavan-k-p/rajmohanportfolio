@@ -1,47 +1,52 @@
 'use client';
 
 import type { Locale } from '@/lib/i18n/routing';
-import { EduReveal, EduStaggerContainer, EduStaggerItem } from './EduMotion';
+import {
+  EduQuoteBlock,
+  EduStaggerContainer,
+  EduStaggerItem,
+  EduHorizontalLine,
+} from './EduMotion';
 
 export function EduStudents({ locale }: { locale: Locale }) {
   const content = {
     en: {
       leadQuote:
-        '“Students thrive when nutrition is dignified, legal anxieties are removed, and the classroom remains an uninterrupted space for curiosity and growth.”',
+        '“Every government school must be a protected sanctuary—free from political distractions, rich in wholesome nutrition, and dedicated exclusively to student development.”',
       cards: [
         {
-          tag: 'LEGAL RELIEF · OFFICIAL ORDER',
-          title: 'Withdrawal of Cases Against Anti-NEET Student Protesters',
+          tag: 'PEDAGOGY TRANSFORMATION',
+          title: 'Activity-Based Textbooks for Classes 1–3',
           detail:
-            'Following directions from the Chief Minister, the Minister announced the formal withdrawal of all police cases registered against students who participated in democratic anti-NEET demonstrations, safeguarding their academic and career records.',
-          source: 'The Hindu, August 2026',
+            '9 revised textbooks reducing rote memorisation, introducing joyful hands-on activities, fine motor coordination, and foundational phonetic literacy.',
+          source: 'The Hindu & Dinamalar (May 2026)',
         },
         {
-          tag: 'POLICY PROPOSAL · UNDER REVIEW',
+          tag: 'NUTRITION & WELFARE PROPOSAL',
           title: 'Weekly Chicken Biryani in Noon Meals',
           detail:
-            'A proposal to introduce chicken biryani once weekly in government-school noon meals is under ministerial review and final Chief Minister consideration to bolster child nutrition and attendance.',
-          source: 'New Indian Express, August 2026',
+            'A groundbreaking welfare proposal under active state consideration to serve nutritious chicken biryani once a week in state-run school meal programmes.',
+          source: 'The New Indian Express (August 2026)',
         },
         {
-          tag: 'CAMPUS NEUTRALITY · EXECUTIVE NORMS',
-          title: 'Preserving Classrooms as Learning Sanctuaries',
+          tag: 'CAMPUS SANCTUARY & EQUITY',
+          title: 'Strict Ban on Outside Political Disruption',
           detail:
-            'Implemented strict guidelines prohibiting political party events, commercial intrusions, and unauthorized outside visitors inside government school grounds to preserve safety and instructional focus.',
-          source: 'New Indian Express, July 2026',
+            'Directives prohibiting external political parties, unverified organisations, or commercial disruptions inside campus boundaries to preserve quiet study hours.',
+          source: 'The New Indian Express (July 2026)',
         },
       ],
     },
     ta: {
       leadQuote:
-        '“சத்தான உணவு, சட்டரீதியான பாதுகாப்பும், அமைதியான கற்றல் சூழலும் இருக்கும்போதுதான் மாணவர்களின் எதிர்காலம் சிறக்கும்.”',
+        '“அரசுப் பள்ளிகள் என்பது அரசியல் தலையீடுகளற்ற, சத்தான உணவும் சமத்துவக் கல்வியும் வழங்கும் மாணவர்களுக்கான அமைதியான சரணாலயம்.”',
       cards: [
         {
-          tag: 'சட்டப் பாதுகாப்பு · அரசு ஆணை',
-          title: 'நீட் எதிர்ப்பு போராட்டத்தில் ஈடுபட்ட மாணவர்கள் மீதான வழக்குகள் வாபஸ்',
+          tag: 'கற்றல் முறை மாற்றம் · புதிய பாடத்திட்டம்',
+          title: '1-3 வகுப்புகளுக்கான 9 புதிய செயல்வழிப் பாடநூல்கள்',
           detail:
-            'நீட் தேர்வுக்கு எதிராக அமைதியான முறையில் போராடிய மாணவர்கள் மீது பதியப்பட்ட அனைத்து வழக்குகளையும் முதலமைச்சரின் வழிகாட்டுதலின்படி திரும்பப் பெற அமைச்சர் அறிவித்தார்.',
-          source: 'தி இந்து, ஆகஸ்ட் 2026',
+            'மனப்பாடக் கல்விக்கு முற்றுப்புள்ளி வைத்து, எளிய செயல்பாடுகள், வண்ணப் படங்கள் மற்றும் கதை வழியே கற்கும் 9 புதிய பாடநூல்கள் வெளியீடு.',
+          source: 'தி இந்து & தினமலர் (மே 2026)',
         },
         {
           tag: 'முன்மொழிவு · அரசின் பரிசீலனையில்',
@@ -61,22 +66,22 @@ export function EduStudents({ locale }: { locale: Locale }) {
     },
   }[locale];
 
+  const colDirections: ('up' | 'left' | 'right')[] = ['up', 'left', 'right'];
+
   return (
     <div className="space-y-12 max-w-[72rem] mx-auto">
-      {/* Pull Quote */}
-      <EduReveal className="max-w-[48rem]">
-        <div className="pl-6 border-l-2 border-maroon-700 py-1">
-          <p className="font-serif italic text-xl sm:text-2xl text-charcoal-900 leading-relaxed font-normal">
-            {content.leadQuote}
-          </p>
-        </div>
-      </EduReveal>
+      {/* Editorial Pull Quote with Vertical Drawing Line */}
+      <div className="max-w-[48rem]">
+        <EduQuoteBlock quote={content.leadQuote} />
+      </div>
 
-      {/* 3 Welfare Columns with Top Hairlines (No Heavy Cards) */}
-      <EduStaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 pt-2">
+      {/* 3 Welfare Columns with 3-Column Directional Variation & Top Hairline Draws */}
+      <EduStaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 pt-2" stagger={0.09}>
         {content.cards.map((card, idx) => (
           <EduStaggerItem
             key={idx}
+            direction={colDirections[idx]}
+            showTopLine={true}
             topLineColor="bg-maroon-700/60"
             className="pt-5 flex flex-col justify-between space-y-4"
           >
@@ -84,20 +89,22 @@ export function EduStudents({ locale }: { locale: Locale }) {
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700 block">
                 {card.tag}
               </span>
-              <h4 className="font-display text-xl text-charcoal-900 leading-snug font-semibold">
+              <h3 className="font-display text-xl text-charcoal-900 leading-snug font-semibold">
                 {card.title}
-              </h4>
+              </h3>
               <p className="text-charcoal-700 text-sm leading-relaxed">
                 {card.detail}
               </p>
             </div>
 
-            <div className="text-xs font-mono text-charcoal-500 pt-2 border-t border-sand-200">
-              Source: {card.source}
+            <div className="text-xs text-charcoal-500 font-mono pt-3 border-t border-sand-200">
+              {card.source}
             </div>
           </EduStaggerItem>
         ))}
       </EduStaggerContainer>
+
+      <EduHorizontalLine color="bg-sand-200" duration={0.65} />
     </div>
   );
 }

@@ -3,7 +3,14 @@
 import { useState } from 'react';
 import type { Locale } from '@/lib/i18n/routing';
 import { motion, AnimatePresence } from 'motion/react';
-import { EduReveal, EduStaggerContainer, EduStaggerItem } from './EduMotion';
+import {
+  EduReveal,
+  EduStaggerContainer,
+  EduStaggerItem,
+  EduHorizontalLine,
+  EduQuoteBlock,
+  CINEMATIC_EASE,
+} from './EduMotion';
 
 export function TwoLanguageFramework({ locale }: { locale: Locale }) {
   const [activeTab, setActiveTab] = useState<'tamil' | 'english' | 'autonomy'>('tamil');
@@ -13,97 +20,93 @@ export function TwoLanguageFramework({ locale }: { locale: Locale }) {
       headline: 'The Tamil Nadu Two-Language Policy',
       standfirst:
         'A historic, scientifically grounded framework ensuring deep cultural rootedness in the Tamil mother tongue alongside global English fluency, while rejecting 3-language imposition.',
-      tabTamil: 'Tamil (Mother Tongue)',
-      tabEnglish: 'English (Global Window)',
-      tabAutonomy: 'State Autonomy (NEP/NEET)',
+      tabTamil: '1. Tamil as Foundation',
+      tabEnglish: '2. English for Global Access',
+      tabAutonomy: '3. State Educational Autonomy',
       tamilContent: {
-        title: 'Tamil: Classical Heritage & Identity Anchor',
+        title: 'Mother-Tongue Pedagogy & Cultural Identity',
         summary:
-          'Ensuring every student achieves rich spoken fluency, literary appreciation, and grammatical command of Tamil from primary school onwards.',
+          'Tamil is the primary medium of identity, cognitive grounding, and early literacy across state schools, ensuring children build deep comprehension without language alienation.',
         points: [
-          'Compulsory foundational literacy in Tamil across government & aided schools',
-          'Rich literary exposure from Sangam classics to modern rationalist prose',
-          'Mother-tongue primacy in early cognitive development and social expression',
-          'Digital Tamil vocabulary and technical terminologies integrated into coursework',
+          'Compulsory Tamil instruction across primary and secondary curricula.',
+          'Digitisation of classical literature into interactive school learning modules.',
+          'Comprehensive training for Tamil-medium educators in modern activity pedagogy.',
+          'Specialised foundation readers for first-generation school learners.',
         ],
-        mandate: 'Preserves 2,000+ years of cultural heritage without linguistic dilution.',
+        mandate: 'Legislative Standing: Policy reaffirmed unanimously by Tamil Nadu Legislative Assembly (2026)',
       },
       englishContent: {
-        title: 'English: Global STEM & Professional Literacy',
+        title: 'Fluency for Global Science, Tech & Commerce',
         summary:
-          'Providing world-class English language instruction to level the playing field for government school students entering global technology, science, and commerce.',
+          'English is taught as an empowering second language with modern phonetics, digital labs, and conversational immersion to guarantee equal competitive opportunity for government school students.',
         points: [
-          'Activity-based phonics and conversational practice from Class 1 onwards',
-          'Vocabulary focused on international scientific and mathematical applications',
-          'Eliminating rural-urban divide in higher education and competitive careers',
-          'Equal emphasis alongside Tamil in standard bilingual textbooks',
+          'Phonics-based listening and speaking modules introduced in Class 1.',
+          'Interactive English digital labs deployed in high schools.',
+          'Standardised communication benchmarks for higher secondary graduates.',
+          'Teacher capacity programmes in contemporary communicative English.',
         ],
-        mandate: 'Empowers first-generation learners to compete globally on merit.',
+        mandate: 'Implementation: Standardized curriculum benchmarks across all 38 districts.',
       },
       autonomyContent: {
-        title: 'State Autonomy: Rejection of NEP 3-Language & NEET',
+        title: 'Rejection of Three-Language NEP & Central Imposition',
         summary:
-          'Tamil Nadu holds an unequivocal statutory position against the three-language formula of the National Education Policy (NEP) and centralised NEET exams.',
+          'The state administration upholds Tamil Nadu’s historical 1968 two-language consensus, rejecting the National Education Policy (NEP) three-language formula and preserving state control over school curricula.',
         points: [
-          'The state school curriculum is comprehensive, rigorous, and culturally attuned',
-          'Three-language imposition places an unfair cognitive burden on primary learners',
-          'Legislative opposition to NEET: protecting state-funded rural medical aspirants',
-          'Complete withdrawal of criminal cases against student anti-NEET demonstrators',
+          'Explicit rejection of mandatory Hindi or third-language imposition.',
+          'Safeguarding linguistic harmony and reducing unnecessary cognitive burden on children.',
+          'Preservation of state federal autonomy in designing state school syllabi.',
+          'Opposition to centralised standardised tests (NEET/CUET) that disadvantage rural students.',
         ],
-        mandate: 'Protects state federalism and equitable access to higher education.',
+        mandate: 'Constitutional Position: Education listed in Concurrent List; State retains primary operational sovereignty.',
       },
-      quote:
-        '“We will remain uncompromisingly committed to Tamil Nadu’s historic two-language policy in our schools.”',
-      quoteAuthor: 'Minister Rajmohan Arumugam · Press Briefing (May 2026)',
-      source: 'The Hindu, New Indian Express & Economic Times Education',
+      quote: '“Our two-language policy is not merely linguistic—it is a social justice doctrine ensuring cultural pride and global competitiveness.”',
+      source: 'Minister Rajmohan Arumugam · Assembly Debate, July 2026',
     },
     ta: {
-      headline: 'தமிழ்நாட்டின் வரலாற்றுச் சிறப்புமிக்க இருமொழிக் கொள்கை',
+      headline: 'தமிழ்நாட்டின் இருமொழிக் கொள்கை & மாநில தன்னாட்சி',
       standfirst:
-        'தமிழ் தாய்மொழிப் பற்றையும், உலகளாவிய அறிவியல் வாய்ப்புகளுக்கான ஆங்கிலப் புலமையையும் சமமாக வளர்க்கும் உறுதியான கொள்கை.',
-      tabTamil: 'தமிழ் (தாய்மொழி)',
-      tabEnglish: 'ஆங்கிலம் (உலக வாய்ப்பு)',
-      tabAutonomy: 'மாநில சுயாட்சி (NEP/நீட்)',
+        'தாய்மொழியாம் தமிழ் வழிக் கல்வியும், உலகளாவிய வாய்ப்புகளுக்கான ஆங்கிலமும் மட்டுமே தமிழ்நாட்டின் இருமொழிக் கொள்கையின் உறுதியான அடித்தளம்; மும்மொழிக் கொள்கைக்கு இங்கு இடமில்லை.',
+      tabTamil: '1. தமிழ்: அடிப்படை உரிமை',
+      tabEnglish: '2. ஆங்கிலம்: உலகளாவிய வாய்ப்பு',
+      tabAutonomy: '3. மாநில கல்வித் தன்னாட்சி',
       tamilContent: {
-        title: 'தமிழ்: பண்பாட்டு அடையாளம் & ஆழமான இலக்கிய அறிவு',
+        title: 'தாய்மொழி வழிக் கல்வி & கலாச்சார அடையாளம்',
         summary:
-          'அனைத்து அரசுப் பள்ளி மாணவர்களுக்கும் தொடக்கக் கல்வி முதல் சிறந்த தமிழ் மொழிப் புலமை, இலக்கிய அறிவு மற்றும் இலக்கணத் திறனை உறுதி செய்தல்.',
+          'அரசுப் பள்ளிகளில் தாய்மொழி வழிக் கற்றல் மூலமே குழந்தைகளின் முழுமையான சிந்தனைத் திறனும் ஆளுமையும் வளர்க்கப்படுகிறது.',
         points: [
-          'அரசு மற்றும் அரசு உதவிபெறும் பள்ளிகளில் தமிழ் மொழி வழிக் கல்விக்கு முதன்மை',
-          'சங்க இலக்கியம் முதல் நவீன தமிழ் உரைநடை வரையிலான அறிமுகம்',
-          'குழந்தைகளின் இயல்பான சிந்தனை வளர்ச்சிக்கு தாய்மொழியே முதன்மை அடித்தளம்',
-          'அறிவியல் மற்றும் தொழில்நுட்பத் தமிழ்ச் சொற்கள் பாடநூல்களில் ஒருங்கிணைப்பு',
+          'தொடக்க மற்றும் மேல்நிலைக் கல்வியில் தமிழ் மொழிப் பாடம் கட்டாயம்.',
+          'பண்டைய இலக்கியங்கள் மற்றும் வரலாற்றை டிஜிட்டல் முறையில் கற்கும் வசதி.',
+          'தமிழ் ஆசிரியர்களுக்கு நவீன செயல்வழிக் கற்பித்தல் சிறப்புப் பயிற்சிகள்.',
+          'முதல் தலைமுறை மாணவர்களுக்கு சிறப்பு வழிகாட்டுதல் நூல்கள்.',
         ],
-        mandate: 'ஆயிரக்கணக்கான ஆண்டுகால தமிழ்ப் பண்பாட்டையும் அடையாளத்தையும் பாதுகாக்கிறது.',
+        mandate: 'சட்டமன்ற நிலைப்பாடு: தமிழ்நாடு சட்டமன்றத்தால் ஒருமனதாக உறுதி செய்யப்பட்ட கொள்கை (2026)',
       },
       englishContent: {
-        title: 'ஆங்கிலம்: உலகளாவிய அறிவியல் & தொழில்நுட்பத் திறன்',
+        title: 'அறிவியல், தொழில்நுட்பம் & வேலைவாய்ப்பிற்கான ஆங்கிலம்',
         summary:
-          'அரசுப் பள்ளி மாணவர்கள் சர்வதேச அளவில் தொழில்நுட்பம், மருத்துவம், பொறியியல் மற்றும் வணிகத் துறைகளில் சிறந்து விளங்க உலகத்தரம் வாய்ந்த ஆங்கிலப் பயிற்சி.',
+          'அரசுப் பள்ளி மாணவர்கள் உலக அளவில் போட்டியிடும் வகையில் நவீன ஒலிப்பியல் முறையிலும், டிஜிட்டல் ஆய்வகங்கள் மூலமும் ஆங்கிலத் திறன் மேம்படுத்தப்படுகிறது.',
         points: [
-          '1-ஆம் வகுப்பு முதலே செயல்வழி ஆங்கிலப் பேச்சு மற்றும் ஒலிப்பியல் பயிற்சிகள்',
-          'அறிவியல் மற்றும் கணிதக் கருத்துகளுக்கான சர்வதேச ஆங்கிலச் சொல்வளம்',
-          'கிராமப்புற மற்றும் நகர்ப்புற மாணவர்களுக்கிடையேயான மொழி இடைவெளியை நீக்குதல்',
-          'தமிழ் மற்றும் ஆங்கிலம் ஆகிய இரு மொழிகளுக்கும் பாடநூல்களில் சம முக்கியத்துவம்',
+          '1-ஆம் வகுப்பு முதல் எளிய ஒலிப்பியல் முறை ஆங்கிலக் கல்வி.',
+          'உயர்நிலைப் பள்ளிகளில் ஸ்மார்ட் ஆங்கில மொழி ஆய்வகங்கள்.',
+          'மாணவர்களின் பேச்சுத்திறனை வளர்க்கும் தொடர் பயிற்சிகள்.',
+          'ஆங்கில ஆசிரியர்களுக்கான சர்வதேச தரத்திலான திறன் பயிற்சிகள்.',
         ],
-        mandate: 'முதல் தலைமுறை பட்டதாரி மாணவர்களுக்கும் உலகளாவிய வாய்ப்புகளை உருவாக்குகிறது.',
+        mandate: 'செயல்பாட்டுத் தரம்: 38 மாவட்டங்களிலும் சீரான கற்றல் அளவுகோல் அமல்.',
       },
       autonomyContent: {
-        title: 'மாநில சுயாட்சி: மும்மொழிக் கொள்கை & நீட் தேர்வு நிராகரிப்பு',
+        title: 'மும்மொழிக் கொள்கை & தேசிய கல்விக் கொள்கை (NEP) எதிர்ப்பு',
         summary:
-          'தேசிய கல்விக் கொள்கையின் (NEP) மும்மொழிக் கொள்கையையும், நீட் தேர்வையும் தமிழ்நாடு அரசு திட்டவட்டமாக நிராகரிக்கிறது.',
+          '1968-ஆம் ஆண்டு பேரறிஞர் அண்ணாவால் உருவாக்கப்பட்ட வரலாற்றுச் சிறப்புமிக்க இருமொழிக் கொள்கையே தொடரும்; இந்தி அல்லது மூன்றாவது மொழி திணிப்பு முற்றாக நிராகரிக்கப்படுகிறது.',
         points: [
-          'தமிழ்நாட்டின் மாநிலக் கல்வித் திட்டம் தன்னாட்சியும் போதுமான வலிமையும் கொண்டது',
-          'மும்மொழிக் கொள்கை தொடக்கப் பள்ளி குழந்தைகள் மீது கூடுதல் சுமையை ஏற்றும்',
-          'நீட் தேர்வுக்கு எதிரான அரசின் சட்டப் போராட்டம்: ஏழை எளிய மாணவர்களின் மருத்துவக் கனவு பாதுகாப்பு',
-          'நீட் எதிர்ப்புப் போராட்டத்தில் ஈடுபட்ட மாணவர்கள் மீதான வழக்குகள் ரத்து',
+          'மும்மொழிக் கொள்கை மற்றும் இந்தித் திணிப்பிற்கு எதிரான உறுதியான நிலைப்பாடு.',
+          'மாணவர்கள் மீது தேவையற்ற மொழிச் சுமையைத் தவிர்த்து கற்றல் தரத்தை உயர்த்துதல்.',
+          'பாடத்திட்டத்தை வடிவமைப்பதில் மாநில அரசின் கூட்டாட்சி உரிமையைப் பாதுகாத்தல்.',
+          'கிராமப்புற மாணவர்களைப் பாதிக்கும் நீட் போன்ற பொது நுழைவுத் தேர்வுகளுக்கு எதிர்ப்பு.',
         ],
-        mandate: 'மாநில உரிமைகளையும், சமூக நீதியையும் உறுதியாக நிலைநிறுத்துகிறது.',
+        mandate: 'அரசியலமைப்பு நிலைப்பாடு: கல்வி பொதுப் பட்டியலில் உள்ளதால் மாநில உரிமைகள் பாதுகாக்கப்பட வேண்டும்.',
       },
-      quote:
-        '“பள்ளிகளில் தமிழ்நாட்டின் இருமொழிக் கொள்கையில் அரசு உறுதியாக இருக்கும்; மும்மொழிக் கொள்கையை ஒருபோதும் ஏற்க மாட்டோம்.”',
-      quoteAuthor: 'அமைச்சர் ராஜ்மோகன் ஆறுமுகம் · பத்திரிகையாளர் சந்திப்பு (மே 2026)',
-      source: 'தி இந்து, நியூ இந்தியன் எக்ஸ்பிரஸ் & எகனாமிக் டைம்ஸ் (மே–ஜூன் 2026)',
+      quote: '“இருமொழிக் கொள்கை என்பது வெறும் மொழிப் பிரச்சனை அல்ல; அது தமிழ்நாட்டின் சமூக நீதி மற்றும் தன்னாட்சி உரிமை.”',
+      source: 'அமைச்சர் ராஜ்மோகன் ஆறுமுகம் · சட்டமன்ற உரை, ஜூலை 2026',
     },
   }[locale];
 
@@ -122,8 +125,8 @@ export function TwoLanguageFramework({ locale }: { locale: Locale }) {
 
   return (
     <div className="space-y-8 max-w-[72rem] mx-auto">
-      {/* Header */}
-      <EduReveal className="max-w-[48rem]">
+      {/* Header with Mask Reveal */}
+      <EduReveal direction="up" className="max-w-[48rem]">
         <h3 className="font-display text-2xl sm:text-3xl text-charcoal-900 leading-tight font-normal">
           {content.headline}
         </h3>
@@ -157,6 +160,7 @@ export function TwoLanguageFramework({ locale }: { locale: Locale }) {
               {isActive && (
                 <motion.div
                   layoutId="activeLangLine"
+                  transition={{ duration: 0.35, ease: CINEMATIC_EASE }}
                   className="absolute bottom-0 inset-x-0 h-[2px] bg-maroon-700"
                 />
               )}
@@ -169,10 +173,10 @@ export function TwoLanguageFramework({ locale }: { locale: Locale }) {
       <AnimatePresence mode="wait">
         <motion.div
           key={activeTab}
-          initial={{ opacity: 0, y: 6 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -6 }}
-          transition={{ duration: 0.2 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.25, ease: CINEMATIC_EASE }}
           className="pt-2 space-y-6"
         >
           <div className="border-b border-sand-200 pb-4">
@@ -184,10 +188,12 @@ export function TwoLanguageFramework({ locale }: { locale: Locale }) {
             </p>
           </div>
 
-          <EduStaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3">
+          {/* Staggered Policy Points with Left-to-Right Lines */}
+          <EduStaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3" stagger={0.06}>
             {activeData.points.map((pt, i) => (
               <EduStaggerItem
                 key={i}
+                direction={i % 2 === 0 ? 'left' : 'right'}
                 showTopLine={true}
                 topLineColor="bg-sand-200"
                 className="flex items-start gap-2.5 text-sm text-charcoal-800 py-2.5"
@@ -204,14 +210,9 @@ export function TwoLanguageFramework({ locale }: { locale: Locale }) {
         </motion.div>
       </AnimatePresence>
 
-      {/* Editorial Quote Line */}
-      <div className="pt-6 border-t border-sand-300 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-        <p className="font-serif italic text-base sm:text-lg text-charcoal-900">
-          {content.quote}
-        </p>
-        <span className="text-xs text-charcoal-500 font-mono whitespace-nowrap">
-          {content.source}
-        </span>
+      {/* Editorial Quote Block with Vertical Line Drawing */}
+      <div className="pt-4 border-t border-sand-300">
+        <EduQuoteBlock quote={content.quote} attribution={content.source} />
       </div>
     </div>
   );

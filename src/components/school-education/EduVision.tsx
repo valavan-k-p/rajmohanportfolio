@@ -1,7 +1,7 @@
 'use client';
 
 import type { Locale } from '@/lib/i18n/routing';
-import { EduReveal, EduTopLineBox } from './EduMotion';
+import { EduReveal, EduQuoteBlock, EduTopLineBox, EduHorizontalLine } from './EduMotion';
 import { SCHOOL_EDUCATION_DATA } from '@/data/school-education';
 
 export function EduVision({ locale }: { locale: Locale }) {
@@ -22,33 +22,29 @@ export function EduVision({ locale }: { locale: Locale }) {
     },
   }[locale];
 
+  const columnDirections: ('up' | 'left' | 'right')[] = ['up', 'left', 'right'];
+
   return (
     <div className="space-y-12 max-w-[72rem] mx-auto">
-      {/* Executive Lead Statement */}
-      <EduReveal className="max-w-[50rem]">
+      {/* 1. Executive Lead Statement */}
+      <EduReveal direction="up" delay={0} className="max-w-[50rem]">
         <p className="font-display text-2xl sm:text-3xl lg:text-[2rem] text-charcoal-900 leading-[1.25] font-normal">
           {content.lead}
         </p>
       </EduReveal>
 
-      {/* Editorial Quotation - Minimal Accent Line */}
-      <EduReveal delay={0.06} className="max-w-[48rem]">
-        <div className="pl-6 border-l-2 border-maroon-700 py-1">
-          <p className="font-serif italic text-lg sm:text-xl text-charcoal-800 leading-relaxed">
-            {content.quote}
-          </p>
-          <p className="text-xs font-mono text-charcoal-500 uppercase tracking-wider mt-2.5">
-            — {content.attribution}
-          </p>
-        </div>
-      </EduReveal>
+      {/* 2. Editorial Quotation - Vertical Rule Drawing Downward & Progressive Text */}
+      <div className="max-w-[48rem]">
+        <EduQuoteBlock quote={content.quote} attribution={content.attribution} />
+      </div>
 
-      {/* 3 Distinct Separation Boxes with Pop Animation and Left-to-Right Top Line */}
+      {/* 3. 3 Core Pillars with Directional Variation (Col 1 Up, Col 2 Left, Col 3 Right) & Top Line Draws */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 pt-2">
         {keyPillars.slice(0, 3).map((pillar, idx) => (
           <EduTopLineBox
             key={pillar.id}
             delay={idx * 0.1}
+            direction={columnDirections[idx] ?? 'up'}
             topLineColor="bg-maroon-700"
             className="bg-white border border-sand-300 shadow-sm p-6 sm:p-7 flex flex-col justify-between space-y-5 rounded-sm hover:shadow-md hover:border-sand-400 transition-all"
           >
@@ -75,9 +71,12 @@ export function EduVision({ locale }: { locale: Locale }) {
         ))}
       </div>
 
-      {/* Minimal Sourcing Note */}
-      <div className="pt-4 text-xs text-charcoal-500 font-mono border-t border-sand-200">
-        {content.sourceDoc}
+      {/* 4. Minimal Sourcing Note with Drawing Divider */}
+      <div className="space-y-3 pt-2">
+        <EduHorizontalLine color="bg-sand-200" duration={0.6} />
+        <EduReveal direction="fade" delay={0.1} className="text-xs text-charcoal-500 font-mono">
+          {content.sourceDoc}
+        </EduReveal>
       </div>
     </div>
   );

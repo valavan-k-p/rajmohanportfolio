@@ -3,7 +3,13 @@
 import { useState } from 'react';
 import type { Locale } from '@/lib/i18n/routing';
 import { motion, AnimatePresence } from 'motion/react';
-import { EduReveal } from './EduMotion';
+import {
+  EduReveal,
+  EduStaggerContainer,
+  EduStaggerItem,
+  EduHorizontalLine,
+  CINEMATIC_EASE,
+} from './EduMotion';
 
 export function GovernanceReformsGrid({ locale }: { locale: Locale }) {
   const [nocMode, setNocMode] = useState<'after' | 'before'>('after');
@@ -71,7 +77,8 @@ export function GovernanceReformsGrid({ locale }: { locale: Locale }) {
 
   return (
     <div className="space-y-10 max-w-[72rem] mx-auto">
-      <EduReveal className="max-w-[48rem]">
+      {/* Header with Mask Reveal */}
+      <EduReveal direction="up" className="max-w-[48rem]">
         <h3 className="font-display text-2xl sm:text-3xl text-charcoal-900 leading-tight font-normal">
           {content.headline}
         </h3>
@@ -81,7 +88,9 @@ export function GovernanceReformsGrid({ locale }: { locale: Locale }) {
       </EduReveal>
 
       {/* NOC Portal Digital Transformation Section */}
-      <div className="border-t border-sand-300 pt-6 space-y-6">
+      <div className="space-y-6">
+        <EduHorizontalLine color="bg-sand-300" duration={0.7} />
+
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div>
             <div className="text-xs font-mono text-maroon-700 font-bold uppercase tracking-wider">
@@ -92,7 +101,7 @@ export function GovernanceReformsGrid({ locale }: { locale: Locale }) {
             </h4>
           </div>
 
-          {/* Prominent, Highly Visible Segmented Switcher */}
+          {/* Segmented Switcher */}
           <div className="bg-sand-200/90 p-1 border border-sand-300 shadow-sm flex items-center self-start lg:self-center">
             <button
               onClick={() => setNocMode('after')}
@@ -121,67 +130,65 @@ export function GovernanceReformsGrid({ locale }: { locale: Locale }) {
           {content.nocDesc}
         </p>
 
-        {/* Feature List: Numbered Index Pins (Replaced Tick & Cross) */}
+        {/* Feature List: Sequential 01 -> 02 -> 03 -> 04 Reveals */}
         <AnimatePresence mode="wait">
-          <motion.div
+          <EduStaggerContainer
             key={nocMode}
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.2 }}
             className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3 pt-2"
+            stagger={0.06}
           >
-            {nocMode === 'after'
-              ? content.nocAfter.map((item, i) => (
-                  <div
-                    key={i}
-                    className="py-3 border-b border-sand-200 flex items-start gap-3 text-sm text-charcoal-900"
-                  >
-                    <span className="font-mono text-xs font-bold text-maroon-700 w-5 h-5 flex items-center justify-center bg-sand-200/80 rounded shrink-0 mt-0.5">
-                      0{i + 1}
-                    </span>
-                    <span className="leading-snug">{item}</span>
-                  </div>
-                ))
-              : content.nocBefore.map((item, i) => (
-                  <div
-                    key={i}
-                    className="py-3 border-b border-sand-200 flex items-start gap-3 text-sm text-charcoal-600"
-                  >
-                    <span className="font-mono text-xs font-medium text-charcoal-500 w-5 h-5 flex items-center justify-center bg-sand-200/40 rounded shrink-0 mt-0.5">
-                      0{i + 1}
-                    </span>
-                    <span className="leading-snug">{item}</span>
-                  </div>
-                ))}
-          </motion.div>
+            {(nocMode === 'after' ? content.nocAfter : content.nocBefore).map((item, i) => (
+              <EduStaggerItem
+                key={i}
+                direction={i % 2 === 0 ? 'left' : 'right'}
+                showTopLine={true}
+                topLineColor="bg-sand-200"
+                className="py-3 flex items-start gap-3 text-sm text-charcoal-900"
+              >
+                <span
+                  className={`font-mono text-xs font-bold w-5 h-5 flex items-center justify-center rounded shrink-0 mt-0.5 ${
+                    nocMode === 'after'
+                      ? 'bg-sand-200/80 text-maroon-700'
+                      : 'bg-sand-200/40 text-charcoal-500'
+                  }`}
+                >
+                  0{i + 1}
+                </span>
+                <span className="leading-snug">{item}</span>
+              </EduStaggerItem>
+            ))}
+          </EduStaggerContainer>
         </AnimatePresence>
       </div>
 
-      {/* 2 Supporting Policy Columns */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 border-t border-sand-300 pt-6">
-        <div className="space-y-2">
-          <span className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700">
-            {locale === 'ta' ? 'பெற்றோர் கட்டணப் பாதுகாப்பு' : 'Parent Fee Protection'}
-          </span>
-          <h4 className="font-display text-xl text-charcoal-900 font-semibold">
-            {content.feeTitle}
-          </h4>
-          <p className="text-sm text-charcoal-700 leading-relaxed">
-            {content.feeDesc}
-          </p>
-        </div>
+      {/* 2 Supporting Policy Columns with Split Reveal (Left & Right) */}
+      <div className="space-y-6">
+        <EduHorizontalLine color="bg-sand-300" duration={0.7} />
 
-        <div className="space-y-2">
-          <span className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700">
-            {locale === 'ta' ? 'பள்ளி வளாகப் பாதுகாப்பு' : 'Campus Neutrality & Safety'}
-          </span>
-          <h4 className="font-display text-xl text-charcoal-900 font-semibold">
-            {content.visitorTitle}
-          </h4>
-          <p className="text-sm text-charcoal-700 leading-relaxed">
-            {content.visitorDesc}
-          </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          <EduReveal direction="left" delay={0.05} className="space-y-2">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700">
+              {locale === 'ta' ? 'பெற்றோர் கட்டணப் பாதுகாப்பு' : 'Parent Fee Protection'}
+            </span>
+            <h4 className="font-display text-xl text-charcoal-900 font-semibold">
+              {content.feeTitle}
+            </h4>
+            <p className="text-sm text-charcoal-700 leading-relaxed">
+              {content.feeDesc}
+            </p>
+          </EduReveal>
+
+          <EduReveal direction="right" delay={0.1} className="space-y-2">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700">
+              {locale === 'ta' ? 'பள்ளி வளாகப் பாதுகாப்பு' : 'Campus Neutrality & Safety'}
+            </span>
+            <h4 className="font-display text-xl text-charcoal-900 font-semibold">
+              {content.visitorTitle}
+            </h4>
+            <p className="text-sm text-charcoal-700 leading-relaxed">
+              {content.visitorDesc}
+            </p>
+          </EduReveal>
         </div>
       </div>
 

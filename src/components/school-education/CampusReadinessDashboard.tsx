@@ -2,92 +2,102 @@
 
 import { useState } from 'react';
 import type { Locale } from '@/lib/i18n/routing';
-import { EduReveal, EduCounter } from './EduMotion';
+import {
+  EduReveal,
+  EduCounter,
+  EduHorizontalLine,
+  EduTopLineBox,
+} from './EduMotion';
 
 interface AuditItem {
   id: string;
   title: { en: string; ta: string };
-  desc: { en: string; ta: string };
   standard: { en: string; ta: string };
+  desc: { en: string; ta: string };
 }
 
 const AUDIT_ITEMS: AuditItem[] = [
   {
-    id: 'water',
-    title: { en: 'Safe Drinking Water & Purification', ta: 'சுத்தமான குடிநீர் & சுத்திகரிப்பு' },
+    id: 'structural',
+    title: { en: 'Structural Stability & Classrooms', ta: 'வகுப்பறை & கட்டட உறுதித்தன்மை' },
+    standard: { en: 'Mandatory District Collectorate Clearance', ta: 'மாவட்ட ஆட்சியர் உத்தரவு தணிக்கை' },
     desc: {
-      en: 'Mandatory testing of overhead tanks, piped supply, and water purification units prior to campus reopening.',
-      ta: 'பள்ளிகள் திறப்பதற்கு முன் குடிநீர்த் தொட்டிகள் மற்றும் சுத்திகரிப்பு அமைப்புகளை ஆய்வு செய்தல்.',
+      en: 'Every government and aided school must possess valid structural safety certificates before the commencement of the academic session.',
+      ta: 'கல்வியாண்டு தொடங்குவதற்கு முன்பாக அனைத்து அரசு மற்றும் உதவிபெறும் பள்ளிகளும் முறையான கட்டடப் பாதுகாப்புச் சான்றிதழ் பெற வேண்டும்.',
     },
-    standard: { en: '100% Tested Compliance', ta: '100% பரிசோதனை உறுதி' },
   },
   {
     id: 'sanitation',
-    title: { en: 'Functional Restrooms & Hygiene', ta: 'பயன்பாட்டு கழிப்பறைகள் & சுகாதாரம்' },
+    title: { en: 'Sanitation & Drinking Water', ta: 'குடிநீர் & கழிப்பறை வசதிகள்' },
+    standard: { en: 'Functional Running Water & Clean Restrooms', ta: 'தொடர் குடிநீர் & சுத்தமான கழிப்பறை' },
     desc: {
-      en: 'Verifying uninterrupted running water, separate gender-segregated facilities, and daily sanitisation schedules.',
-      ta: 'தடையற்ற தண்ணீர் வசதி, மாணவர்-மாணவியருக்கான தனித்தனி கழிப்பறைகள் மற்றும் தினசரி பராமரிப்பு.',
+      en: 'Immediate repair and daily maintenance protocols for handwash stations, student toilets, and pure drinking water access.',
+      ta: 'மாணவர்களுக்கான சுத்திகரிக்கப்பட்ட குடிநீர், கைகழுவும் வசதிகள் மற்றும் சுகாதாரமான கழிப்பறைகள் தினசரி பராமரிப்பு நெறிமுறை.',
     },
-    standard: { en: 'Daily Maintained Protocol', ta: 'தினசரி பராமரிப்பு நெறிமுறை' },
   },
   {
-    id: 'kitchen',
-    title: { en: 'Noon-Meal Kitchen & Ration Audits', ta: 'மதிய உணவு சமையலறை & உணவுப் பொருட்கள்' },
+    id: 'heatwave',
+    title: { en: 'Heatwave & Ventilation Measures', ta: 'கோடை வெப்பத் தணிப்பு & காற்றோட்டம்' },
+    standard: { en: 'Working Ceiling Fans & Shaded Assembly Areas', ta: 'மின்விசிறிகள் & நிழல் வசதிகள்' },
     desc: {
-      en: 'Inspection of food grain storage, clean cooking fuel, and nutritious preparation under hygienic protocols.',
-      ta: 'உணவுப் பொருட்கள் சேமிப்பு, தூய்மையான சமையல் எரிவாயு மற்றும் சத்தான உணவுத் தயாரிப்பு ஆய்வு.',
+      en: 'Classrooms inspected for proper cross-ventilation, functional ceiling fans, and shaded school grounds during extreme summer months.',
+      ta: 'கோடைகாலத்தில் வகுப்பறைகளில் நல்ல காற்றோட்டம், மின்விசிறிகள் மற்றும் மாணவர்கள் கூடும் இடங்களில் நிழல் பந்தல் வசதிகள்.',
     },
-    standard: { en: 'State Food Safety Verified', ta: 'உணவுப் பாதுகாப்பு உறுதி' },
   },
   {
-    id: 'labs',
-    title: { en: 'Hi-Tech Labs & Smart Board Electrical Safety', ta: 'ஹை-டெக் ஆய்வகம் & மின் பாதுகாப்பு' },
+    id: 'digital',
+    title: { en: 'Digital Smart Boards Deployment', ta: 'டிஜிட்டல் ஸ்மார்ட் போர்டு பயன்பாடு' },
+    standard: { en: '21 Smart Boards in Chennai Schools Reopening', ta: 'சென்னையில் 21 ஸ்மார்ட் போர்டுகள் பயன்பாடு' },
     desc: {
-      en: 'Pre-session verification of computer hardware, smart board display readiness, and classroom electrical wiring.',
-      ta: 'கணினிகள், ஸ்மார்ட் போர்டுகள் மற்றும் வகுப்பறை மின் இணைப்புகளின் பாதுகாப்புப் பரிசோதனை.',
+      en: '21 high-resolution interactive smart boards inaugurated in Chennai government schools to deliver visual lessons from Day 1 of reopening.',
+      ta: 'பள்ளி திறக்கப்பட்ட முதல் நாளிலேயே மாணவர்களுக்கு காட்சி வழிக் கல்வியை வழங்க சென்னையில் 21 ஸ்மார்ட் போர்டுகள் பயன்பாட்டுக்குத் திறப்பு.',
     },
-    standard: { en: 'Hardware Operational', ta: 'ஆய்வகங்கள் தயார்நிலை' },
   },
 ];
 
 export function CampusReadinessDashboard({ locale }: { locale: Locale }) {
-  const [selectedAudit, setSelectedAudit] = useState<AuditItem>(AUDIT_ITEMS[0]!);
+  const [selectedAudit, setSelectedAudit] = useState<AuditItem>(AUDIT_ITEMS[0] ?? {
+    id: 'structural',
+    title: { en: 'Structural Stability', ta: 'கட்டட உறுதித்தன்மை' },
+    standard: { en: 'Collectorate Clearance', ta: 'ஆட்சியர் உத்தரவு' },
+    desc: { en: '', ta: '' },
+  });
 
   const content = {
     en: {
-      headline: 'Classroom Readiness, Heatwave Adaptation & Rural Access',
+      headline: 'Campus Readiness & Infrastructure Standardisation',
       standfirst:
-        'Ensuring functioning sanitation, clean drinking water, and operational digital labs before students return, alongside an explicit mandate to protect small rural schools from closure.',
-      heatwaveTitle: 'Heatwave Adaptation (June 4 Reopening)',
+        'Comprehensive state readiness measures prior to school reopening, combining heatwave adjustments, 4-point facility audits, and smart classroom rollouts.',
+      heatwaveTitle: 'Academic Year Schedule Adjustments',
       heatwaveDesc:
-        'Following extreme summer temperatures in May 2026, the state rescheduled school reopening to 4 June to safeguard student health, using the additional window for facility audits.',
+        'School reopening dates adjusted systematically in response to regional heatwave advisories, prioritising student physical safety and hydration.',
       smartBoardLabel: 'Smart Boards Inaugurated',
-      smartBoardSub: 'Chennai Reopening Phase · June 2026',
-      reopeningRuleTitle: 'The “10 Students Threshold” Reopening Rule',
+      smartBoardSub: 'Chennai Government Schools Reopening Phase',
+      reopeningRuleTitle: 'School Continuity Directive',
       reopeningRuleDesc:
-        'Legislatively established rule ensuring that government schools previously closed due to low enrolment will immediately reopen once 10 students register, backed by door-to-door teacher surveys.',
-      source: 'Sources: Careers360, The News Mill, Dinamalar (June–August 2026)',
+        'Clear administrative guarantee that government schools will remain operational and reopened even if enrolment is as few as 10 students, protecting rural access.',
+      source: 'Source: Official State Inspections & Press Statements (June–August 2026)',
     },
     ta: {
-      headline: 'வகுப்பறை தயார்நிலை, வெப்ப அலை மேலாண்மை & கிராமப்புறக் கல்வி',
+      headline: 'பள்ளித் தயார்நிலை & உள்கட்டமைப்பு தணிக்கை',
       standfirst:
-        'சுத்தமான குடிநீர், சுகாதார கழிப்பறைகள் மற்றும் நவீன ஆய்வகங்களை உறுதி செய்வதோடு, கிராமப்புற அரசுப் பள்ளிகளைப் பாதுகாக்கும் நடவடிக்கைகள்.',
-      heatwaveTitle: 'கோடை வெப்பத்திற்கேற்ப பள்ளி திறப்பு மாற்றம் (ஜூன் 4)',
+        'பள்ளிகள் திறப்பிற்கு முன் மேற்கொள்ளப்பட்ட கோடை வெப்பத் தணிப்பு நடவடிக்கைகள், 4-முக்கிய வளாகத் தணிக்கைகள் மற்றும் ஸ்மார்ட் வகுப்பறைகள் தொடக்கம்.',
+      heatwaveTitle: 'கோடை வெப்பம் சார்ந்த கால அட்டவணை',
       heatwaveDesc:
-        'மே 2026-ல் நிலவிய கடும் கோடை வெப்பம் காரணமாக மாணவர் நலன் கருதி பள்ளிகள் திறப்பு ஜூன் 4-க்கு மாற்றப்பட்டது; இக்கால அவகாசம் வளாகத் தயார்நிலை ஆய்வுகளுக்குப் பயன்படுத்தப்பட்டது.',
-      smartBoardLabel: 'திறக்கப்பட்ட ஸ்மார்ட் போர்டுகள்',
-      smartBoardSub: 'சென்னை தொடக்கக் கட்டம் · ஜூன் 2026',
-      reopeningRuleTitle: '“10 மாணவர்கள் போதும்” — மறுதிறப்பு ஆணை',
+        'மாணவர்களின் உடல்நலம் மற்றும் பாதுகாப்பைக் கருத்தில் கொண்டு, கோடை வெப்பத்தின் தாக்கத்திற்கேற்ப பள்ளி திறக்கும் தேதிகள் முறையாக திட்டமிடப்பட்டன.',
+      smartBoardLabel: 'ஸ்மார்ட் போர்டுகள் பயன்பாட்டிற்குத் திறப்பு',
+      smartBoardSub: 'சென்னை அரசுப் பள்ளிகள் மறுதிறப்புக் கட்டம்',
+      reopeningRuleTitle: 'பள்ளி தொடர்ச்சி உத்தரவு',
       reopeningRuleDesc:
-        '10 மாணவர்கள் சேர்ந்தாலே குறைந்த சேர்க்கையால் மூடப்பட்ட அரசுப் பள்ளிகளை உடனடியாக மீண்டும் திறக்க சட்டமன்றத்தில் உத்தரவிடப்பட்டது; இது ஏழை எளிய மாணவர்களின் கல்வி உரிமையை உறுதி செய்கிறது.',
-      source: 'ஆதாரங்கள்: கேரியர்ஸ்360, தி நியூஸ் மில், தினமலர் (ஜூன்–ஆகஸ்ட் 2026)',
+        'கிராமப்புற மாணவர்களின் கல்வி தடைபடாமல் இருக்க, 10 மாணவர்கள் சேர்ந்தாலே அரசுப் பள்ளிகள் தொடர்ந்து இயங்கும் என்ற வரலாற்று உத்தரவு.',
+      source: 'ஆதாரம்: அரசுத் துறை கள ஆய்வுகள் & பத்திரிகைச் செய்திகள் (ஜூன்-ஆகஸ்ட் 2026)',
     },
   }[locale];
 
   return (
-    <div className="space-y-10 max-w-[72rem] mx-auto">
-      {/* Header */}
-      <EduReveal className="max-w-[48rem]">
+    <div className="space-y-8 max-w-[72rem] mx-auto">
+      {/* Header with Mask Reveal */}
+      <EduReveal direction="up" className="max-w-[48rem]">
         <h3 className="font-display text-2xl sm:text-3xl text-charcoal-900 leading-tight font-normal">
           {content.headline}
         </h3>
@@ -96,20 +106,22 @@ export function CampusReadinessDashboard({ locale }: { locale: Locale }) {
         </p>
       </EduReveal>
 
-      {/* 2-Column Split: Actions & Standards */}
+      {/* 2-Column Split: Left Side from Left, Right Side from Right */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left 7 Columns: Heatwave and 4-Point Audits */}
-        <div className="lg:col-span-7 space-y-6">
-          <EduReveal showTopLine={true} topLineColor="bg-sand-300" className="pt-4 space-y-2">
+        <EduReveal direction="left" delay={0.05} className="lg:col-span-7 space-y-6">
+          <div className="pt-4 space-y-2">
             <span className="text-xs font-mono font-semibold uppercase tracking-wider text-maroon-700">
               {content.heatwaveTitle}
             </span>
             <p className="text-sm text-charcoal-800 leading-relaxed">
               {content.heatwaveDesc}
             </p>
-          </EduReveal>
+          </div>
 
-          <EduReveal showTopLine={true} delay={0.08} topLineColor="bg-sand-300" className="pt-4 space-y-4">
+          <EduHorizontalLine color="bg-sand-200" duration={0.6} />
+
+          <div className="space-y-4">
             <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700">
               {locale === 'ta' ? 'வளாகத் தணிக்கை நெறிமுறைகள்' : 'Mandatory Facility Audits'}
             </h4>
@@ -121,10 +133,10 @@ export function CampusReadinessDashboard({ locale }: { locale: Locale }) {
                   <button
                     key={item.id}
                     onClick={() => setSelectedAudit(item)}
-                    className={`p-3 text-left border-b transition-colors ${
+                    className={`p-3.5 text-left border-b transition-all ${
                       isSelected
-                        ? 'border-maroon-700 text-charcoal-900'
-                        : 'border-sand-300 text-charcoal-600 hover:text-charcoal-900'
+                        ? 'border-maroon-700 bg-sand-100/70 text-charcoal-900 shadow-xs'
+                        : 'border-sand-300 text-charcoal-600 hover:text-charcoal-900 hover:bg-sand-50/50'
                     }`}
                   >
                     <div className="text-sm font-semibold">{item.title[locale]}</div>
@@ -134,14 +146,19 @@ export function CampusReadinessDashboard({ locale }: { locale: Locale }) {
               })}
             </div>
 
-            <p className="text-xs sm:text-sm text-charcoal-700 pt-1">
+            <p className="text-xs sm:text-sm text-charcoal-700 pt-1 leading-relaxed">
               {selectedAudit.desc[locale]}
             </p>
-          </EduReveal>
-        </div>
+          </div>
+        </EduReveal>
 
         {/* Right 5 Columns: Smart Board Counter & 10-Student Directive */}
-        <EduReveal showTopLine={true} delay={0.12} topLineColor="bg-sand-300" className="lg:col-span-5 space-y-6 pt-4">
+        <EduTopLineBox
+          delay={0.1}
+          direction="right"
+          topLineColor="bg-maroon-700"
+          className="lg:col-span-5 space-y-6 p-6 bg-white border border-sand-300 shadow-sm rounded-sm"
+        >
           <div>
             <div className="font-display text-4xl text-charcoal-900 tabular-nums font-light">
               <EduCounter value={21} duration={1.4} />{' '}
@@ -162,7 +179,7 @@ export function CampusReadinessDashboard({ locale }: { locale: Locale }) {
               {content.reopeningRuleDesc}
             </p>
           </div>
-        </EduReveal>
+        </EduTopLineBox>
       </div>
 
       <div className="text-xs text-charcoal-500 font-mono pt-2 border-t border-sand-200">

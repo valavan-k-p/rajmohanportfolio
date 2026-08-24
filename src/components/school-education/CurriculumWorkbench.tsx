@@ -3,7 +3,14 @@
 import { useState } from 'react';
 import type { Locale } from '@/lib/i18n/routing';
 import { motion, AnimatePresence } from 'motion/react';
-import { EduReveal, EduTopLineBox, EduStaggerContainer, EduStaggerItem, CINEMATIC_EASE } from './EduMotion';
+import {
+  EduReveal,
+  EduTopLineBox,
+  EduStaggerContainer,
+  EduStaggerItem,
+  EduHorizontalLine,
+  CINEMATIC_EASE,
+} from './EduMotion';
 
 interface SubjectModule {
   id: string;
@@ -28,28 +35,30 @@ const SUBJECT_MODULES: SubjectModule[] = [
     tag: { en: 'Primary Core', ta: 'முதன்மைப் பாடம்' },
     focus: {
       en: 'Phonetic mastery, rich vocabulary building, storytelling, and natural mother-tongue articulation.',
-      ta: 'ஒலிப்பு முறை, சொல்வளம், கதை சொல்லுதல் மற்றும் இயல்பான தாய்மொழிப் பேச்சுத் திறன்.',
+      ta: 'ஒலிப்பு முறை பயிற்சி, சொல்வளம், கதை சொல்லுதல் மற்றும் தாய்மொழிப் பேச்சாற்றல் வளர்த்தல்.',
     },
     activities: {
       en: [
-        'Picture-word association cards and tactile letter-tracing',
-        'Rhyme, rhythm, and oral storytelling circles',
-        'Expressive dialogue and classroom roleplay',
+        'Interactive syllable puzzles and word-building cards',
+        'Traditional children’s stories and moral dialogues',
+        'Rhythmic recitation for correct phonetic pronunciation',
+        'Visual vocabulary flashboards with real-world objects',
       ],
       ta: [
-        'படம்-சொல் தொடர்பு அட்டைகள் மற்றும் எழுத்து வரைதல்',
-        'பாடல், தாளம் மற்றும் கதை சொல்லும் வட்டங்கள்',
-        'இயல்பான உரையாடல் மற்றும் நாடகப் பயிற்சிகள்',
+        'எழுத்துப் புதிர் விளையாட்டுகள் மற்றும் சொல் உருவாக்க அட்டைகள்',
+        'நீதிக் கதைகள் மற்றும் கலந்துரையாடல் பயிற்சிகள்',
+        'சரியான உச்சரிப்பிற்கான சந்தப் பாடல்கள்',
+        'படங்கள் வழியே புதிய சொற்களைக் கற்கும் முறை',
       ],
     },
     pedagogyShift: {
       before: {
-        en: 'Repetitive alphabet memorisation and mechanical copy-work.',
-        ta: 'எழுத்துகளை மீண்டும் மீண்டும் மனப்பாடம் செய்து எழுதுதல்.',
+        en: 'Mechanical copying and memorising long paragraph answers without conceptual understanding.',
+        ta: 'பொருளுணராமல் பெரிய பத்திகளை மனப்பாடம் செய்து எழுதுதல்.',
       },
       after: {
-        en: 'Contextual phonetic recognition through illustrated songs and daily conversation.',
-        ta: 'படப் பாடல்கள் மற்றும் உரையாடல்கள் வழியாக இயல்பாக எழுத்துகளை அடையாளம் காணுதல்.',
+        en: 'Activity-based pronunciation drills, conversational practice, and creative story formation.',
+        ta: 'செயல்வழிக் கற்றல், பேச்சுப் பயிற்சி மற்றும் சொந்தமாக கதை உருவாக்கும் திறன்.',
       },
     },
   },
@@ -57,161 +66,109 @@ const SUBJECT_MODULES: SubjectModule[] = [
     id: 'english',
     code: 'ENG-102',
     name: { en: 'English Communication & Phonics', ta: 'ஆங்கிலத் தொடர்பு & ஒலிப்பியல்' },
-    booksCount: 2,
-    tag: { en: 'Language Core', ta: 'மொழிப் பாடம்' },
+    booksCount: 3,
+    tag: { en: 'Language Core', ta: 'மொழித் திறன்' },
     focus: {
-      en: 'Foundational listening comprehension, phonics, simple conversational patterns, and early vocabulary.',
-      ta: 'கேட்டல் திறன், எளிய ஆங்கில உரையாடல்கள் மற்றும் அடிப்படை சொல்வளம்.',
+      en: 'Foundational listening comprehension, phonics-based reading, and conversational confidence.',
+      ta: 'கேட்டறிதல் திறன், ஒலிப்பியல் முறையிலான வாசிப்பு மற்றும் தன்னம்பிக்கையுடன் உரையாடுதல்.',
     },
     activities: {
       en: [
-        'Audio-guided phonics and interactive call-and-response',
-        'Illustrated sight-word flashcards and everyday object hunts',
-        'Basic conversational dialogue building speaking confidence',
+        'Phonetic sound matching and letter blend exercises',
+        'Everyday conversational roleplay (greetings, classroom objects)',
+        'Picture-word association worksheets',
+        'Guided reading with illustrated mini-storybooks',
       ],
       ta: [
-        'ஒலி வழிகாட்டல் மற்றும் எளிய உரையாடல் பயிற்சிகள்',
-        'பட அட்டைகள் மூலம் பார்வைச் சொற்கள் அறிதல்',
-        'அன்றாடப் பேச்சு வழியிலான தன்னம்பிக்கை வளர்ப்பு',
+        'ஒலிப்பு முறை எழுத்து இணைத்தல் பயிற்சிகள்',
+        'வகுப்பறை எளிய உரையாடல் மற்றும் நாடகப் பயிற்சிகள்',
+        'படம் பார்த்து சொல் அறியும் பயிற்சிகள்',
+        'வண்ணப் படக் கதைப் புத்தகங்கள் வாசித்தல்',
       ],
     },
     pedagogyShift: {
       before: {
-        en: 'Rote spelling drills without conversational context or auditory comprehension.',
-        ta: 'உரையாடல் பயிற்சியின்றி வெறும் எழுத்துக் கூட்டல் மனப்பாடம்.',
+        en: 'Rote spelling drills and grammar rules memorisation without spoken practice.',
+        ta: 'பேச்சுப் பயிற்சியின்றி இலக்கண விதிகளையும் எழுத்துக்களையும் மனப்பாடம் செய்தல்.',
       },
       after: {
-        en: 'Audio-guided phonics and experiential dialogue building natural speaking confidence.',
-        ta: 'ஒலி வழிகாட்டல் மற்றும் அன்றாடப் பேச்சு வழியிலான தன்னம்பிக்கை வளர்ப்பு.',
+        en: 'Natural listening-speaking-reading workflow with joyful audio-visual aids.',
+        ta: 'கேட்டல்-பேசுதல்-வாசித்தல் வழியிலான எளிய மற்றும் இனிமையான கற்றல் முறை.',
       },
     },
   },
   {
     id: 'maths',
-    code: 'MAT-103',
-    name: { en: 'Foundational Mathematics & Logic', ta: 'அடிப்படை கணிதம் & தர்க்கம்' },
-    booksCount: 2,
-    tag: { en: 'Numeracy & Logic', ta: 'எண்ணறிவு & தர்க்கம்' },
+    code: 'MTH-103',
+    name: { en: 'Foundational Mathematics', ta: 'அடிப்படை கணிதம் & எண்கற்றல்' },
+    booksCount: 3,
+    tag: { en: 'Numeracy Core', ta: 'எண்ணறிவுத் திறன்' },
     focus: {
-      en: 'Number sense, spatial awareness, basic measurement, pattern recognition, and tactile problem-solving.',
-      ta: 'எண்ணறிவு, வடிவியல் புரிதல், வடிவமைப்பு அடையாளம் மற்றும் தொட்டுணரும் கணக்குப் பயிற்சிகள்.',
+      en: 'Concrete number sense, basic arithmetic operations, spatial awareness, and problem solving.',
+      ta: 'எண்ணறிவு, கூட்டல்-கழித்தல் அடிப்படைகள், வடிவங்கள் மற்றும் எளிய கணக்கீட்டுத் திறன்.',
     },
     activities: {
       en: [
-        'Abacus and counter-bead counting modules',
-        'Shape sorting and symmetry exploration with classroom objects',
-        'Visual addition and subtraction puzzle grids',
+        'Manipulative counting beads, abacus rods, and shapes',
+        'Basic addition/subtraction games using daily objects',
+        'Pattern recognition and size/weight comparison tasks',
+        'Simple measurement activities with real classroom items',
       ],
       ta: [
-        'மணிச்சட்டங்கள் மூலம் எண்களைக் கூட்டுதல்',
-        'வடிவங்களை வரிசைப்படுத்துதல் மற்றும் சமச்சீர் ஆய்வு',
-        'காட்சி வழிக் கூட்டல்-கழித்தல் புதிர்கள்',
+        'எண்ணிக்கை மணிகள், மணிச்சட்டம் மற்றும் வடிவப் பொருட்கள்',
+        'தினசரி பொருட்களைக் கொண்டு கூட்டல்-கழித்தல் விளையாட்டுகள்',
+        'வடிவங்கள் மற்றும் அளவு ஒப்பீட்டுப் பயிற்சிகள்',
+        'வகுப்பறைப் பொருட்களைக் கொண்டு அளவீடு செய்தல்',
       ],
     },
     pedagogyShift: {
       before: {
-        en: 'Abstract numerical memorisation without physical conceptual grounding.',
-        ta: 'பொருட்களின் தொடர்பின்றி வெறும் எண்களை மனப்பாடம் செய்தல்.',
+        en: 'Abstract formula memorisation and repetitive blackboard copy exercises.',
+        ta: 'விளக்கமின்றி கரும்பலகையில் உள்ள கணக்குகளைப் பார்த்து எழுதுதல்.',
       },
       after: {
-        en: 'Tactile manipulation of objects before transitioning to symbolic representation.',
-        ta: 'பொருட்களைத் தொட்டு உணர்ந்து கணக்கிட்ட பின் எண்களுக்கு மாறும் முறை.',
-      },
-    },
-  },
-  {
-    id: 'evs',
-    code: 'EVS-104',
-    name: { en: 'Environmental Science & Living World', ta: 'சூழ்நிலையியல் & இயற்கை உலகம்' },
-    booksCount: 1,
-    tag: { en: 'Sensory Science', ta: 'இயற்கை அறிவியல்' },
-    focus: {
-      en: 'Nature observation, personal hygiene, flora & fauna awareness, community roles, and water conservation.',
-      ta: 'இயற்கை உற்றுநோக்கல், தனிநபர் சுகாதாரம், தாவர-விலங்கு அறிவு மற்றும் நீர் பாதுகாப்பு.',
-    },
-    activities: {
-      en: [
-        'Campus biodiversity walks and leaf-rubbing journals',
-        'Structured cleanliness and handwashing practical routines',
-        'Water cycle storyboards and conservation games',
-      ],
-      ta: [
-        'பள்ளி வளாக இயற்கை உலா மற்றும் இலை வரைதல்',
-        'சுத்தம் மற்றும் கை கழுவும் அன்றாடப் பழக்கங்கள்',
-        'நீர் சுழற்சி மற்றும் நீர் சேமிப்பு விளையாட்டுகள்',
-      ],
-    },
-    pedagogyShift: {
-      before: {
-        en: 'Textual descriptions memorised without outdoor interaction or practical habits.',
-        ta: 'நேரடி அனுபவமின்றி புத்தகப் பத்திகளை மட்டும் மனனம் செய்தல்.',
-      },
-      after: {
-        en: 'Outdoor sensory exploration and real-world environmental habits built daily.',
-        ta: 'நேரடி இயற்கை அனுபவம் மற்றும் அன்றாட சுகாதாரப் பழக்கங்களை உருவாக்குதல்.',
-      },
-    },
-  },
-  {
-    id: 'arts',
-    code: 'ART-105',
-    name: { en: 'Motor Skills & Creative Expression', ta: 'உடல் இயக்கம் & கலைத்திறன்' },
-    booksCount: 1,
-    tag: { en: 'Motor & Arts', ta: 'உடல் & கலை' },
-    focus: {
-      en: 'Fine motor coordination, color blending, clay modelling, rhythm, balance, and cooperative games.',
-      ta: 'விரல் இயக்கம், வண்ணக் கலவை, களிமண் உருவங்கள், இசை தாளம் மற்றும் கூட்டு விளையாட்டுகள்.',
-    },
-    activities: {
-      en: [
-        'Clay sculpting, finger-painting, and paper-folding precision work',
-        'Rhythm clapping and folk-song movement circles',
-        'Collaborative large-format classroom drawing projects',
-      ],
-      ta: [
-        'களிமண் சிற்பங்கள் மற்றும் கைவினைப் பணிகள்',
-        'நாட்டுப்புறப் பாடல் தாள இயக்கங்கள்',
-        'கூட்டு ஓவிய வரைபடப் பயிற்சிகள்',
-      ],
-    },
-    pedagogyShift: {
-      before: {
-        en: 'Treated as unstructured leisure without motor skill tracking.',
-        ta: 'திட்டமிடப்பட்ட வழிகாட்டலின்றி ஓய்வு நேரமாக மட்டுமே கழித்தல்.',
-      },
-      after: {
-        en: 'Structured fine motor and socio-emotional milestones integrated into weekly timetable.',
-        ta: 'குழந்தைகளின் உடல் இயக்கம் மற்றும் மனவெழுச்சிக்கு வாராந்திர வழிகாட்டுதல்.',
+        en: 'Hands-on manipulative math kits and contextual daily-life problem solving.',
+        ta: 'கணித உபகரணங்கள் மற்றும் அன்றாட வாழ்வியல் சூழல்களோடு இணைத்துக் கற்றல்.',
       },
     },
   },
 ];
 
 export function CurriculumWorkbench({ locale }: { locale: Locale }) {
-  const [activeSubject, setActiveSubject] = useState<SubjectModule>(SUBJECT_MODULES[0]!);
+  const [activeSubjectId, setActiveSubjectId] = useState<string>('tamil');
 
   const content = {
     en: {
-      headline: 'The 9 Revised Primary Textbooks (Classes 1–3)',
+      headline: 'Foundational Pedagogy & Revised Textbooks',
       standfirst:
-        'Released in May 2026, the updated primary curriculum replaces rote memorisation with experiential and activity-based learning modules.',
-      activitiesLabel: 'Core Learning Activities',
-      previousMethod: 'Previous Memorisation Approach',
+        'Nine completely overhauled activity-based textbooks for Classes 1 to 3, moving away from rote memorisation to nurture motor skills, cognitive curiosity, and foundational literacy.',
+      subjectsTab: 'Core Subject Areas',
+      activitiesLabel: 'Prescribed Activity Modules',
+      pedagogyLabel: 'Pedagogical Transformation',
+      previousMethod: 'Prior Rote Approach',
       newStandard: '2026 Activity-Based Standard',
+      booksSummary: 'Total: 9 Revised Activity Textbooks for Classes 1–3',
     },
     ta: {
-      headline: '1–3 வகுப்புகளுக்கான 9 புதிய தொடக்கப் பாடநூல்கள்',
+      headline: 'தொடக்கக் கல்வி & புதிய செயல்வழிப் பாடநூல்கள்',
       standfirst:
-        'மே 2026-ல் வெளியிடப்பட்ட புதிய பாடத்திட்டம் மனப்பாட முறையை நீக்கி, செயல்வழிக் கற்றலுக்கு வழிகோலுகிறது.',
-      activitiesLabel: 'கற்றல் செயல்பாடுகள்',
-      previousMethod: 'முந்தைய மனப்பாட முறை',
-      newStandard: '2026 செயல்வழிப் புதிய தரம்',
+        '1 முதல் 3-ஆம் வகுப்புகளுக்கான 9 புதிய செயல்வழிப் பாடநூல்கள் — மனப்பாட முறையை நீக்கி, குழந்தைகளின் சிந்தனை, செயல் மற்றும் மொழித் திறனை வளர்க்கும் நவீன அணுகுமுறை.',
+      subjectsTab: 'பாடப்பிரிவுகள்',
+      activitiesLabel: 'செயல்வழிக் கற்றல் பயிற்சிகள்',
+      pedagogyLabel: 'கற்பித்தல் முறை மாற்றம்',
+      previousMethod: 'பழைய மனப்பாட முறை',
+      newStandard: '2026 செயல்வழிக் கற்றல் தரம்',
+      booksSummary: 'மொத்தம்: 1-3 வகுப்புகளுக்கான 9 புதிய பாடநூல்கள்',
     },
   }[locale];
 
+  const activeSubject =
+    SUBJECT_MODULES.find((s) => s.id === activeSubjectId) ?? SUBJECT_MODULES[0]!;
+
   return (
     <div className="space-y-8 max-w-[72rem] mx-auto">
-      <EduReveal className="max-w-[48rem]">
+      {/* Header with Mask Reveal */}
+      <EduReveal direction="up" className="max-w-[48rem]">
         <h3 className="font-display text-2xl sm:text-3xl text-charcoal-900 leading-tight font-normal">
           {content.headline}
         </h3>
@@ -220,24 +177,25 @@ export function CurriculumWorkbench({ locale }: { locale: Locale }) {
         </p>
       </EduReveal>
 
-      {/* Minimal Subject Selector Tabs (Clean Underline / Clean Font) */}
+      {/* Minimal Subject Tabs */}
       <div className="flex flex-wrap gap-x-6 gap-y-2 border-b border-sand-300 pb-3 text-sm">
-        {SUBJECT_MODULES.map((sub) => {
-          const isActive = activeSubject.id === sub.id;
+        {SUBJECT_MODULES.map((subject) => {
+          const isActive = subject.id === activeSubjectId;
           return (
             <button
-              key={sub.id}
-              onClick={() => setActiveSubject(sub)}
+              key={subject.id}
+              onClick={() => setActiveSubjectId(subject.id)}
               className={`pb-2 transition-colors relative font-medium ${
                 isActive
                   ? 'text-maroon-700 font-semibold'
                   : 'text-charcoal-600 hover:text-charcoal-900'
               }`}
             >
-              <span>{sub.name[locale]}</span>
+              <span>{subject.name[locale]}</span>
               {isActive && (
                 <motion.div
                   layoutId="activeSubjectLine"
+                  transition={{ duration: 0.35, ease: CINEMATIC_EASE }}
                   className="absolute bottom-0 inset-x-0 h-[2px] bg-maroon-700"
                 />
               )}
@@ -246,14 +204,14 @@ export function CurriculumWorkbench({ locale }: { locale: Locale }) {
         })}
       </div>
 
-      {/* Subject Content - Clean 2-Column Editorial Grid (No Heavy Nested Boxes) */}
+      {/* Subject Content - Split 2-Column Reveal (Left from Left, Right from Right) */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeSubject.id}
-          initial={{ opacity: 0, y: 6 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -6 }}
-          transition={{ duration: 0.2 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3, ease: CINEMATIC_EASE }}
           className="pt-2 space-y-8"
         >
           {/* Header & Focus */}
@@ -271,17 +229,19 @@ export function CurriculumWorkbench({ locale }: { locale: Locale }) {
             </p>
           </div>
 
-          {/* 2-Column Editorial Content */}
+          {/* 2-Column Editorial Grid: Left Split from Left, Right Split from Right */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* Left 6 Cols: Activities List with Staggered Pop Entrance */}
-            <div className="lg:col-span-6 space-y-4">
+            {/* Left 6 Cols: Progressive Activity List Typesetting */}
+            <EduReveal direction="left" delay={0.05} className="lg:col-span-6 space-y-4">
               <h5 className="font-mono text-xs font-bold uppercase tracking-wider text-maroon-700">
                 {content.activitiesLabel}
               </h5>
-              <EduStaggerContainer className="space-y-2">
+              <EduHorizontalLine color="bg-sand-200" duration={0.5} />
+              <EduStaggerContainer className="space-y-2" stagger={0.06}>
                 {activeSubject.activities[locale].map((act, i) => (
                   <EduStaggerItem
                     key={i}
+                    direction="left"
                     showTopLine={true}
                     topLineColor="bg-sand-200"
                     className="pt-2.5 text-sm text-charcoal-800 flex items-start gap-2.5"
@@ -291,17 +251,19 @@ export function CurriculumWorkbench({ locale }: { locale: Locale }) {
                   </EduStaggerItem>
                 ))}
               </EduStaggerContainer>
-            </div>
+            </EduReveal>
 
-            {/* Right 6 Cols: Clean Minimal Side-by-Side Comparison with Top-Line Accent Boxes */}
-            <div className="lg:col-span-6 space-y-4">
+            {/* Right 6 Cols: Side-by-Side Comparison with Top-Line Accent Boxes */}
+            <EduReveal direction="right" delay={0.1} className="lg:col-span-6 space-y-4">
               <h5 className="font-mono text-xs font-bold uppercase tracking-wider text-maroon-700">
                 {locale === 'ta' ? 'கற்பித்தல் முறை ஒப்பீடு' : 'Pedagogy Shift'}
               </h5>
+              <EduHorizontalLine color="bg-sand-200" duration={0.5} />
 
               <div className="space-y-3">
                 <EduTopLineBox
                   delay={0.06}
+                  direction="right"
                   topLineColor="bg-charcoal-400"
                   className="p-4 bg-sand-100/60 border border-sand-200 space-y-1 rounded-xs"
                 >
@@ -315,6 +277,7 @@ export function CurriculumWorkbench({ locale }: { locale: Locale }) {
 
                 <EduTopLineBox
                   delay={0.14}
+                  direction="right"
                   topLineColor="bg-maroon-700"
                   className="p-4 bg-white border border-sand-300 shadow-sm space-y-1 rounded-xs"
                 >
@@ -326,7 +289,7 @@ export function CurriculumWorkbench({ locale }: { locale: Locale }) {
                   </p>
                 </EduTopLineBox>
               </div>
-            </div>
+            </EduReveal>
           </div>
         </motion.div>
       </AnimatePresence>

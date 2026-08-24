@@ -2,8 +2,13 @@
 
 import { useState } from 'react';
 import type { Locale } from '@/lib/i18n/routing';
-import { motion } from 'motion/react';
-import { EduReveal, EduCounter, EduTopLineBox } from './EduMotion';
+import {
+  EduReveal,
+  EduCounter,
+  EduTopLineBox,
+  EduHorizontalLine,
+  EduDataBar,
+} from './EduMotion';
 
 export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
   const [activeTab, setActiveTab] = useState<'comparison' | 'lineItems'>('comparison');
@@ -107,8 +112,11 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
 
   return (
     <div className="space-y-8 text-white">
-      {/* Lead Text */}
-      <EduReveal className="max-w-[48rem]">
+      {/* 1. Yellow Accent Line Drawing Across */}
+      <EduHorizontalLine color="bg-yellow-400" thickness="h-[2px]" duration={0.85} />
+
+      {/* 2. Lead Text */}
+      <EduReveal direction="up" className="max-w-[48rem]">
         <div className="text-[11px] font-mono font-bold uppercase tracking-widest text-yellow-400 mb-2">
           {content.badge}
         </div>
@@ -120,10 +128,15 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
         </p>
       </EduReveal>
 
-      {/* 3 Metric Cards with Live Counters & Synchronized Animated Top Line */}
+      {/* 3. 3 Metric Cards with Replaying Live Counters & Yellow Top Lines */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
         {/* Metric 1 */}
-        <EduTopLineBox delay={0.05} topLineColor="bg-yellow-400" className="p-6 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3">
+        <EduTopLineBox
+          delay={0.05}
+          direction="up"
+          topLineColor="bg-yellow-400"
+          className="p-6 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3"
+        >
           <div>
             <div className="font-display text-4xl lg:text-5xl text-yellow-400 tabular-nums font-light">
               <EduCounter value={44527} prefix="₹" suffix={locale === 'ta' ? ' கோடி' : ' Cr'} duration={1.6} />
@@ -138,7 +151,12 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
         </EduTopLineBox>
 
         {/* Metric 2 */}
-        <EduTopLineBox delay={0.12} topLineColor="bg-yellow-400" className="p-6 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3">
+        <EduTopLineBox
+          delay={0.12}
+          direction="left"
+          topLineColor="bg-yellow-400"
+          className="p-6 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3"
+        >
           <div>
             <div className="font-display text-4xl lg:text-5xl text-yellow-400 tabular-nums font-light">
               <EduCounter value={2176} prefix="+₹" suffix={locale === 'ta' ? ' கோடி' : ' Cr'} duration={1.4} />
@@ -153,7 +171,12 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
         </EduTopLineBox>
 
         {/* Metric 3 */}
-        <EduTopLineBox delay={0.18} topLineColor="bg-yellow-400" className="p-6 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3">
+        <EduTopLineBox
+          delay={0.18}
+          direction="right"
+          topLineColor="bg-yellow-400"
+          className="p-6 bg-charcoal-800 border border-charcoal-700 flex flex-col justify-between space-y-3"
+        >
           <div>
             <div className="font-display text-4xl lg:text-5xl text-yellow-400 tabular-nums font-light">
               <EduCounter value={21} duration={1.2} />
@@ -172,7 +195,7 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
       <div className="flex gap-2 border-b border-charcoal-700 pb-3">
         <button
           onClick={() => setActiveTab('comparison')}
-          className={`px-4 py-2 text-xs sm:text-sm font-medium transition-colors border ${
+          className={`px-4 py-2 text-xs sm:text-sm font-medium transition-all border ${
             activeTab === 'comparison'
               ? 'bg-yellow-400 text-charcoal-900 border-yellow-400 font-bold'
               : 'bg-charcoal-800 text-white/80 border-charcoal-700 hover:text-white'
@@ -182,7 +205,7 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
         </button>
         <button
           onClick={() => setActiveTab('lineItems')}
-          className={`px-4 py-2 text-xs sm:text-sm font-medium transition-colors border ${
+          className={`px-4 py-2 text-xs sm:text-sm font-medium transition-all border ${
             activeTab === 'lineItems'
               ? 'bg-yellow-400 text-charcoal-900 border-yellow-400 font-bold'
               : 'bg-charcoal-800 text-white/80 border-charcoal-700 hover:text-white'
@@ -192,71 +215,61 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
         </button>
       </div>
 
-      {/* Tab 1: Visual Spending Bar Chart */}
+      {/* Tab 1: Visual Spending Bar Chart with Replaying Animated Data Bars */}
       {activeTab === 'comparison' ? (
-        <div className="p-6 sm:p-8 bg-charcoal-800 border border-charcoal-700 space-y-6">
+        <EduTopLineBox
+          delay={0.05}
+          topLineColor="bg-yellow-400"
+          className="p-6 sm:p-8 bg-charcoal-800 border border-charcoal-700 space-y-6 rounded-sm"
+        >
           <div className="space-y-5">
             {/* Bar 1: Current Allocation */}
             <div className="space-y-1.5">
-              <div className="flex justify-between text-xs sm:text-sm text-white font-medium">
-                <span>{content.currAlloc}</span>
-                <span className="font-mono text-yellow-400 font-bold">₹44,527 Cr (100%)</span>
+              <div className="flex justify-between text-xs sm:text-sm font-mono">
+                <span className="text-white font-semibold">{content.currAlloc}</span>
+                <span className="text-yellow-400 font-bold">₹44,527 Cr</span>
               </div>
-              <div className="w-full bg-charcoal-900 h-6 overflow-hidden border border-charcoal-700">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: '100%' }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                  className="h-full bg-yellow-400"
-                />
-              </div>
+              <EduDataBar percentage={100} color="bg-yellow-400" height="h-3.5" delay={0.1} />
             </div>
 
-            {/* Bar 2: Prior Actuals */}
+            {/* Bar 2: Prior Actual Spend */}
             <div className="space-y-1.5">
-              <div className="flex justify-between text-xs sm:text-sm text-white/80 font-medium">
-                <span>{content.priorActual}</span>
-                <span className="font-mono text-white/70">₹42,351 Cr (95.1%)</span>
+              <div className="flex justify-between text-xs sm:text-sm font-mono">
+                <span className="text-white/80">{content.priorActual}</span>
+                <span className="text-white/80">₹42,351 Cr</span>
               </div>
-              <div className="w-full bg-charcoal-900 h-6 overflow-hidden border border-charcoal-700">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: '95.1%' }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="h-full bg-charcoal-500"
-                />
-              </div>
+              <EduDataBar percentage={95.1} color="bg-charcoal-500" height="h-3.5" delay={0.2} />
             </div>
           </div>
 
-          <div className="p-4 bg-charcoal-900 border border-charcoal-700 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs sm:text-sm">
-            <span className="font-mono text-yellow-400 font-bold uppercase">
-              {content.deltaLabel}
+          <div className="pt-4 border-t border-charcoal-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+            <span className="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider">
+              ● {content.deltaLabel}
             </span>
-            <span className="text-white/60 font-mono text-[11px]">
-              {content.citation}
+            <span className="text-xs text-white/50 font-mono">
+              Indexed against actual audited outlays
             </span>
           </div>
-        </div>
+        </EduTopLineBox>
       ) : (
-        /* Tab 2: Line-Item Table */
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse border border-charcoal-700 text-xs sm:text-sm">
-            <thead>
-              <tr className="bg-charcoal-800 border-b border-charcoal-700 text-yellow-400 font-mono uppercase">
-                <th className="p-3.5 border-r border-charcoal-700">{content.tableHeaders.category}</th>
-                <th className="p-3.5 border-r border-charcoal-700">{content.tableHeaders.allocation}</th>
-                <th className="p-3.5">{content.tableHeaders.purpose}</th>
+        /* Tab 2: Line Item Breakdown Table */
+        <div className="overflow-x-auto border border-charcoal-700">
+          <table className="w-full text-left text-xs sm:text-sm">
+            <thead className="bg-charcoal-800 font-mono text-white/80 border-b border-charcoal-700">
+              <tr>
+                <th className="p-3.5 sm:p-4">{content.tableHeaders.category}</th>
+                <th className="p-3.5 sm:p-4 whitespace-nowrap">{content.tableHeaders.allocation}</th>
+                <th className="p-3.5 sm:p-4">{content.tableHeaders.purpose}</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-charcoal-700 font-sans text-white/90">
-              {content.tableRows.map((row, i) => (
-                <tr key={i} className="hover:bg-charcoal-800/50 transition-colors">
-                  <td className="p-3.5 border-r border-charcoal-700 font-medium">{row.cat}</td>
-                  <td className="p-3.5 border-r border-charcoal-700 font-mono text-yellow-400 whitespace-nowrap">{row.val}</td>
-                  <td className="p-3.5 text-white/70">{row.purpose}</td>
+            <tbody className="divide-y divide-charcoal-700 bg-charcoal-900/60">
+              {content.tableRows.map((row, idx) => (
+                <tr key={idx} className="hover:bg-charcoal-800/50 transition-colors">
+                  <td className="p-3.5 sm:p-4 font-semibold text-white">{row.cat}</td>
+                  <td className="p-3.5 sm:p-4 font-mono text-yellow-400 font-bold whitespace-nowrap">
+                    {row.val}
+                  </td>
+                  <td className="p-3.5 sm:p-4 text-white/70">{row.purpose}</td>
                 </tr>
               ))}
             </tbody>
@@ -264,10 +277,11 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
         </div>
       )}
 
-      {/* Accounting Footnote */}
-      <div className="text-xs text-white/60 font-mono leading-relaxed pt-2">
-        {content.accountingNote}
-      </div>
+      {/* Supporting Methodology & Sourcing Note */}
+      <EduReveal direction="fade" delay={0.1} className="pt-2 space-y-2 text-xs text-white/60 font-sans leading-relaxed border-t border-charcoal-800">
+        <p>{content.accountingNote}</p>
+        <p className="font-mono text-yellow-400/80">{content.citation}</p>
+      </EduReveal>
     </div>
   );
 }
