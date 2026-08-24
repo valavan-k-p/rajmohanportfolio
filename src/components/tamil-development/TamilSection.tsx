@@ -40,20 +40,7 @@ export function TamilSection({
       )}
     >
       <div className="mx-auto max-w-7xl relative z-10">
-        {(chapterNumber || category) && (
-          <div className="flex items-center gap-4 mb-4 md:mb-6">
-            {chapterNumber && (
-              <span className="font-sans text-sm tracking-widest opacity-60">
-                {chapterNumber}
-              </span>
-            )}
-            {category && (
-              <span className="font-sans text-xs tracking-[0.2em] uppercase font-bold text-[var(--color-tamil-gold)]">
-                {category}
-              </span>
-            )}
-          </div>
-        )}
+        {/* Removed chapterNumber and category as requested */}
         
         {title && (
           <h2 className="font-tamil-display text-4xl md:text-5xl lg:text-6xl mb-6 text-balance leading-tight">

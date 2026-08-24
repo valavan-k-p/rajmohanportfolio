@@ -72,7 +72,7 @@ export default async function TamilDevelopmentBespokePage({ params }: { params: 
         <HeroSection locale={locale as Locale} />
 
         {/* 2. THE DEPARTMENT - Ecosystem Network */}
-        <EcosystemNetwork locale={locale as Locale} data={TAMIL_DEVELOPMENT_DATA.ecosystemNodes} />
+        <EcosystemNetwork locale={locale as Locale} />
 
         {/* 3. OFFICIAL LANGUAGE */}
         <OfficialLanguageSection locale={locale as Locale} />
