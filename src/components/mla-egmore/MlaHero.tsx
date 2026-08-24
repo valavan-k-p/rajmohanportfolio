@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
 import type { PortalId } from '@/config/portals';
@@ -42,7 +42,7 @@ function MlaPreloader({ onComplete }: { onComplete: () => void }) {
           className="font-display text-4xl text-[#fdfbf7] tracking-wide"
           style={{ fontFamily: 'var(--font-cormorant)' }}
         >
-          MLA · Egmore
+          MLA &middot; EGMORE
         </motion.h1>
       </div>
       <motion.div
@@ -58,6 +58,7 @@ function MlaPreloader({ onComplete }: { onComplete: () => void }) {
 
 function FloatingNav({ backLabel }: { backLabel: string }) {
   const prefersReducedMotion = useReducedMotion();
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   
   const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
     e.preventDefault();
@@ -67,31 +68,69 @@ function FloatingNav({ backLabel }: { backLabel: string }) {
     }
   };
 
+  const navItems = [
+    { label: backLabel, href: '/', type: 'link' },
+    { label: 'Profile', href: '#mla-at-a-glance', type: 'scroll' },
+    { label: 'Role', href: '#about-egmore', type: 'scroll', hideOnMobile: true },
+    { label: 'Projects', href: '#neer-ezhil-palli', type: 'scroll' },
+    { label: 'Civic Work', href: '#civic-work', type: 'scroll', hideOnTablet: true },
+  ];
+
   return (
     <motion.nav 
-      className="absolute top-6 md:top-10 left-1/2 -translate-x-1/2 z-40 flex items-center gap-4 md:gap-8 px-6 md:px-10 py-3 rounded-full bg-black/10 backdrop-blur-md border border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
+      className="absolute top-6 md:top-10 right-6 md:right-10 lg:right-16 z-40 flex items-center gap-1 md:gap-2 px-2 py-2 rounded-full bg-black/20 backdrop-blur-xl border border-white/10 shadow-2xl"
       initial={{ opacity: 0, y: prefersReducedMotion ? 0 : -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, delay: 2.2, ease: EASE }}
+      onMouseLeave={() => setHoveredIndex(null)}
     >
-      <Link href="/" className="text-[#fdfbf7]/80 hover:text-[#d4af37] tracking-[0.15em] text-[9px] md:text-[10px] uppercase font-medium transition-colors">
-        {backLabel}
-      </Link>
-      <span className="w-[1px] h-3 bg-white/30" />
-      <a href="#mla-at-a-glance" onClick={(e) => smoothScroll(e, '#mla-at-a-glance')} className="text-[#fdfbf7]/90 hover:text-[#d4af37] tracking-[0.15em] text-[9px] md:text-[10px] uppercase font-medium transition-colors">
-        Profile
-      </a>
-      <a href="#about-egmore" onClick={(e) => smoothScroll(e, '#about-egmore')} className="text-[#fdfbf7]/90 hover:text-[#d4af37] tracking-[0.15em] text-[9px] md:text-[10px] uppercase font-medium transition-colors hidden sm:block">
-        Role
-      </a>
-      <a href="#neer-ezhil-palli" onClick={(e) => smoothScroll(e, '#neer-ezhil-palli')} className="text-[#fdfbf7]/90 hover:text-[#d4af37] tracking-[0.15em] text-[9px] md:text-[10px] uppercase font-medium transition-colors">
-        Projects
-      </a>
-      <a href="#civic-work" onClick={(e) => smoothScroll(e, '#civic-work')} className="text-[#fdfbf7]/90 hover:text-[#d4af37] tracking-[0.15em] text-[9px] md:text-[10px] uppercase font-medium transition-colors hidden md:block">
-        Civic Work
-      </a>
+      {navItems.map((item, i) => (
+        <div
+          key={item.label}
+          className={`relative px-4 py-2 rounded-full cursor-pointer transition-colors duration-300 ${item.hideOnMobile ? 'hidden sm:block' : ''} ${item.hideOnTablet ? 'hidden md:block' : ''}`}
+          onMouseEnter={() => setHoveredIndex(i)}
+        >
+          {hoveredIndex === i && (
+            <motion.div
+              layoutId="nav-pill"
+              className="absolute inset-0 bg-white/10 rounded-full"
+              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+            />
+          )}
+          {item.type === 'link' ? (
+            <Link href={item.href} className="text-[#fdfbf7] tracking-[0.15em] text-[9px] md:text-[10px] uppercase font-bold drop-shadow-md relative z-10 block">
+              {item.label}
+            </Link>
+          ) : (
+            <a href={item.href} onClick={(e) => smoothScroll(e, item.href)} className="text-[#fdfbf7] tracking-[0.15em] text-[9px] md:text-[10px] uppercase font-bold drop-shadow-md relative z-10 block">
+              {item.label}
+            </a>
+          )}
+        </div>
+      ))}
+      
+      {/* Language Switcher */}
+      <div className="w-[1px] h-4 bg-white/30 hidden md:block mx-2" />
+      <div 
+        className="relative group hidden md:flex items-center px-4 py-2 cursor-pointer rounded-full transition-colors duration-300"
+        onMouseEnter={() => setHoveredIndex(99)}
+      >
+        {hoveredIndex === 99 && (
+          <motion.div
+            layoutId="nav-pill"
+            className="absolute inset-0 bg-white/10 rounded-full"
+            transition={{ type: "spring", stiffness: 400, damping: 30 }}
+          />
+        )}
+        <span className="text-[#fdfbf7]/80 group-hover:text-white tracking-[0.15em] text-[9px] uppercase font-bold drop-shadow-md relative z-10">Language</span>
+        <div className="absolute top-[130%] right-0 mt-0 flex flex-col gap-2 bg-black/70 backdrop-blur-md rounded-md p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all border border-white/10 shadow-xl z-50">
+          <Link href="/en/mla-egmore" className="text-[#d4af37] hover:text-[#fdfbf7] tracking-[0.15em] text-[9px] uppercase font-bold drop-shadow-md whitespace-nowrap transition-colors">English</Link>
+          <div className="w-full h-[1px] bg-white/20"></div>
+          <Link href="/ta/mla-egmore" className="text-[#fdfbf7] hover:text-[#d4af37] tracking-[0.15em] text-[9px] uppercase font-bold drop-shadow-md transition-colors whitespace-nowrap">Tamil</Link>
+        </div>
+      </div>
     </motion.nav>
-  )
+  );
 }
 
 export function MlaHero({ index, title, standfirst, backLabel }: MlaHeroProps) {
@@ -122,7 +161,7 @@ export function MlaHero({ index, title, standfirst, backLabel }: MlaHeroProps) {
       >
         <FloatingNav backLabel={backLabel} />
 
-        {/* Background / Portrait Layer */}
+        {/* Background / Group Photo Layer */}
         <motion.div 
           className="absolute inset-0 z-0 pointer-events-none"
           initial={{ opacity: 0, scale: 1.03 }}
@@ -130,109 +169,48 @@ export function MlaHero({ index, title, standfirst, backLabel }: MlaHeroProps) {
           transition={{ duration: 2.0, delay: 1.8, ease: EASE }}
         >
           <div 
-            className="absolute inset-0 bg-[url('/images/mla-egmore-portrait.jpg')] bg-cover bg-top" 
+            className="absolute inset-0 bg-[url('/images/mla-egmore-new-portrait-wide.jpg')] bg-cover bg-center contrast-110 saturate-110 brightness-105" 
           />
-          {/* Subtle cinematic treatment - no heavy dark gradients. Just enough for white text to pop */}
+          {/* Subtle cinematic treatment */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0.35)_0%,_transparent_70%)]" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#060a14]/80" />
         </motion.div>
 
-        {/* Centered Content Layer */}
-        <div className="relative z-20 w-full px-4 flex flex-col items-center justify-center h-full text-center mt-12 md:mt-24 max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 2.4, ease: EASE }}
-            className="mb-6 md:mb-8 bg-black/15 backdrop-blur-sm px-5 py-2 rounded-full border border-white/20"
-          >
-            <span className="text-[#fdfbf7] tracking-[0.4em] md:tracking-[0.6em] text-[10px] md:text-xs font-medium uppercase drop-shadow-md">
-              MLA · EGMORE
-            </span>
-          </motion.div>
-
-          <div className="flex flex-col items-center w-full">
-            <div className="overflow-hidden pb-1 md:pb-2">
-              <motion.h1 
-                className="font-display text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] leading-[0.8] text-[#fdfbf7] uppercase tracking-wide drop-shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
-                style={{ fontFamily: 'var(--font-cormorant)' }}
-                initial={{ y: '100%' }}
-                animate={{ y: '0%' }}
-                transition={{ duration: 1.2, delay: 2.5, ease: EASE }}
-              >
-                RAJMOHAN
-              </motion.h1>
-            </div>
-            <div className="overflow-hidden pb-2 md:pb-4">
-              <motion.h1 
-                className="font-display text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] leading-[0.8] text-[#fdfbf7] uppercase tracking-wide drop-shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
-                style={{ fontFamily: 'var(--font-cormorant)' }}
-                initial={{ y: '100%' }}
-                animate={{ y: '0%' }}
-                transition={{ duration: 1.2, delay: 2.6, ease: EASE }}
-              >
-                ARUMUGAM
-              </motion.h1>
-            </div>
-          </div>
-
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 2.8, ease: EASE }}
-            className="text-lg md:text-2xl font-light text-[#fdfbf7] max-w-xl leading-relaxed mt-4 md:mt-8 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
-          >
-            Representing Egmore. Working for its people.
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div 
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mt-10 md:mt-14 w-full sm:w-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 3.0, ease: EASE }}
-          >
-            <a 
-              href="#about-egmore"
-              onClick={(e) => {
-                e.preventDefault();
-                document.querySelector('#about-egmore')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="w-full sm:w-auto px-8 py-3.5 md:py-4 rounded-full bg-[#fdfbf7] text-[#060a14] font-semibold tracking-[0.15em] text-[10px] md:text-[11px] uppercase hover:bg-[#d4af37] hover:text-white transition-all duration-300 shadow-xl hover:-translate-y-1"
-            >
-              Explore Egmore
-            </a>
-            <a 
-              href="#mla-at-a-glance"
-              onClick={(e) => {
-                e.preventDefault();
-                document.querySelector('#mla-at-a-glance')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="w-full sm:w-auto px-8 py-3.5 md:py-4 rounded-full bg-black/20 backdrop-blur-md border border-[#fdfbf7]/40 text-[#fdfbf7] font-semibold tracking-[0.15em] text-[10px] md:text-[11px] uppercase hover:bg-white/10 hover:border-[#fdfbf7] transition-all duration-300 hover:-translate-y-1"
-            >
-              View Profile
-            </a>
-          </motion.div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <motion.div 
-          className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-30 pointer-events-none"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 3.4, duration: 1, ease: EASE }}
+        {/* Glowing MLA EGMORE Element in Center */}
+        <motion.div
+          className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-3"
+          initial={{ opacity: 0, y: 20, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ 
+            type: "spring",
+            stiffness: 120,
+            damping: 14,
+            delay: 2.2 
+          }}
         >
-          <span className="text-[#fdfbf7]/80 tracking-[0.2em] text-[9px] uppercase font-medium drop-shadow-md">
-            Scroll
-          </span>
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="text-[#fdfbf7]/80 text-[10px] drop-shadow-md"
+          <h2 
+            className="text-black font-display font-bold text-3xl md:text-5xl lg:text-7xl tracking-[0.1em] md:tracking-[0.2em] uppercase text-center"
+            style={{ 
+              fontFamily: 'var(--font-cormorant)',
+              textShadow: '0 0 10px rgba(255,255,255,1), 0 0 20px rgba(255,255,255,0.9), 0 0 40px rgba(255,255,255,0.7)'
+            }}
           >
-            &darr;
-          </motion.div>
+            MLA &middot; EGMORE
+          </h2>
+          {/* One line element in red color */}
+          <motion.div 
+            className="w-32 md:w-48 h-[3px] bg-red-600 rounded-full"
+            style={{ boxShadow: '0 0 10px rgba(255,255,255,0.5)' }}
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 1, delay: 2.8, ease: EASE, transformOrigin: 'center' }}
+          />
         </motion.div>
       </header>
     </>
   );
 }
+
+
+
+

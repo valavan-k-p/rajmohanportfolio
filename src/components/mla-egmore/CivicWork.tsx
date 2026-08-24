@@ -1,5 +1,7 @@
+﻿'use client';
 import type { SectionProps } from './SectionMapper';
 import { MlaStaggerContainer, MlaStaggerItem } from './MlaMotion';
+import { motion } from 'motion/react';
 
 export function CivicWork({ locale }: SectionProps) {
   const content = {
@@ -36,15 +38,43 @@ export function CivicWork({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="prose prose-lg text-charcoal-800 prose-headings:font-display prose-headings:font-normal prose-li:marker:text-red-600">
+    <MlaStaggerContainer className="prose prose-lg text-charcoal-800 prose-headings:font-display prose-headings:font-normal">
       <MlaStaggerItem><p>{content.p1}</p></MlaStaggerItem>
-      <MlaStaggerItem><p>{content.p2}</p></MlaStaggerItem>
-      <MlaStaggerItem><h3 className="text-xl mt-8 mb-4">{content.concernsHeading}</h3></MlaStaggerItem>
-      <ul className="list-disc pl-6 space-y-2">
-        {content.concerns.map((item, index) => (
-          <MlaStaggerItem key={index} y={0} x={15}><li>{item}</li></MlaStaggerItem>
-        ))}
-      </ul>
+      <MlaStaggerItem><p className="mb-10">{content.p2}</p></MlaStaggerItem>
+      
+      <div className="break-inside-avoid mt-2">
+        <MlaStaggerItem>
+          <h3 className="text-2xl mb-6 text-maroon-800 tracking-wide">
+            {content.concernsHeading}
+          </h3>
+        </MlaStaggerItem>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 not-prose">
+          {content.concerns.map((item, index) => (
+            <MlaStaggerItem key={index} y={15} x={0}>
+              <motion.div 
+                whileHover="hover"
+                initial="rest"
+                className="relative overflow-hidden border border-charcoal-200/60 rounded-sm p-4 flex items-center group cursor-default bg-white/40 shadow-sm"
+              >
+                <motion.div 
+                  variants={{
+                    rest: { x: '-101%' },
+                    hover: { x: 0 }
+                  }}
+                  transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.5 }}
+                  className="absolute inset-0 bg-maroon-800 z-0"
+                />
+                <div className="relative z-10 w-1.5 h-1.5 rotate-45 border border-red-600 bg-transparent mr-4 group-hover:border-sand-50 group-hover:bg-sand-50 transition-colors duration-300" />
+                <span className="relative z-10 text-sm md:text-base font-medium text-charcoal-800 group-hover:text-sand-50 transition-colors duration-300">
+                  {item}
+                </span>
+              </motion.div>
+            </MlaStaggerItem>
+          ))}
+        </div>
+      </div>
     </MlaStaggerContainer>
   );
 }
+
