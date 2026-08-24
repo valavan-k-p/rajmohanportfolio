@@ -1,4 +1,5 @@
 import type { SectionProps } from './SectionMapper';
+import { MlaReveal, MlaStaggerContainer, MlaStaggerItem, MlaCounter } from './MlaMotion';
 
 export function EducationInitiatives({ locale }: SectionProps) {
   const content = {
@@ -35,7 +36,7 @@ export function EducationInitiatives({ locale }: SectionProps) {
         
         {/* Left column: Cinematic Focus Block */}
         <div className="lg:col-span-5 relative z-10 lg:pt-16">
-          <div className="bg-charcoal-900 p-10 md:p-14 shadow-2xl relative overflow-hidden group hover:shadow-red-900/10 transition-shadow duration-700">
+          <MlaReveal y={40} className="bg-charcoal-900 p-10 md:p-14 shadow-2xl relative overflow-hidden group hover:shadow-red-900/10 transition-shadow duration-700">
             {/* Cinematic subtle glow */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-900/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3 transition-opacity duration-1000 group-hover:opacity-100 opacity-50 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-yellow-900/10 rounded-full blur-[60px] translate-y-1/3 -translate-x-1/3 transition-opacity duration-1000 group-hover:opacity-100 opacity-30 pointer-events-none" />
@@ -55,26 +56,26 @@ export function EducationInitiatives({ locale }: SectionProps) {
             
             <div className="pt-8 border-t border-white/10 relative z-10 flex items-baseline gap-4">
               <div className="font-display text-6xl text-white tracking-tight" style={{ fontFamily: 'var(--font-cormorant)' }}>
-                5,000
+                <MlaCounter value={5000} />
               </div>
               <div className="text-xs uppercase tracking-[0.2em] text-sand-200/50 max-w-[100px] leading-relaxed">
                 Schools planned statewide
               </div>
             </div>
-          </div>
+          </MlaReveal>
         </div>
 
         {/* Right column: Flowing Editorial Text */}
         <div className="lg:col-span-7 lg:pl-8 relative z-10 flex flex-col justify-center">
-          <div className="mb-14 relative">
+          <MlaReveal y={20} className="mb-14 relative">
             <h4 className="text-2xl md:text-3xl font-display text-maroon-800 leading-snug" style={{ fontFamily: 'var(--font-cormorant)' }}>
               &ldquo;{content.p1}&rdquo;
             </h4>
-          </div>
+          </MlaReveal>
           
-          <div className="space-y-10">
+          <MlaStaggerContainer className="space-y-10">
             {content.list.map((item, idx) => (
-              <div key={idx} className="flex gap-6 md:gap-8 group cursor-default">
+              <MlaStaggerItem key={idx} y={20} className="flex gap-6 md:gap-8 group cursor-default">
                 <div className="text-sm font-display text-red-600/40 pt-1 shrink-0 transition-colors duration-500 group-hover:text-red-600" style={{ fontFamily: 'var(--font-cormorant)' }}>
                   {String(idx + 1).padStart(2, '0')}
                 </div>
@@ -83,9 +84,9 @@ export function EducationInitiatives({ locale }: SectionProps) {
                     {item}
                   </p>
                 </div>
-              </div>
+              </MlaStaggerItem>
             ))}
-          </div>
+          </MlaStaggerContainer>
         </div>
       </div>
     </div>
