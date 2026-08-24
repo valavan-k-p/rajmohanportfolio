@@ -3,8 +3,7 @@
 import type { Locale } from '@/lib/i18n/routing';
 import {
   EduReveal,
-  EduStaggerContainer,
-  EduStaggerItem,
+  EduTopLineBox,
   EduHorizontalLine,
 } from './EduMotion';
 
@@ -146,6 +145,8 @@ export function EduNews({ locale }: { locale: Locale }) {
     },
   }[locale];
 
+  const columnDirections: ('up' | 'left' | 'right' | 'scale')[] = ['up', 'right', 'left', 'up', 'right', 'scale'];
+
   return (
     <div className="space-y-8 max-w-[72rem] mx-auto">
       {/* Header with Mask Reveal */}
@@ -158,52 +159,60 @@ export function EduNews({ locale }: { locale: Locale }) {
         </p>
       </EduReveal>
 
-      {/* Newspaper Editorial Grid with Lead Article First & Staggered Articles */}
-      <EduStaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 pt-2" stagger={0.07}>
+      {/* Newspaper Editorial Grid transformed into distinct animated boxes */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 pt-2">
         {content.articles.map((item, idx) => (
-          <EduStaggerItem
+          <EduTopLineBox
             key={idx}
-            direction={item.lead ? 'up' : idx % 2 === 0 ? 'left' : 'right'}
-            showTopLine={true}
-            topLineColor="bg-maroon-700/60"
-            className={`pt-5 flex flex-col justify-between space-y-4 ${
+            delay={idx * 0.08}
+            direction={columnDirections[idx % columnDirections.length]}
+            topLineColor="bg-maroon-700"
+            hoverEffect={true}
+            className={`bg-white border border-sand-300 shadow-sm p-6 sm:p-7 flex flex-col justify-between space-y-5 rounded-sm hover:shadow-xl hover:border-maroon-700/60 transition-all ${
               item.lead ? 'md:col-span-2 lg:col-span-2' : ''
             }`}
           >
-            <div className="space-y-2.5">
-              <div className="flex items-center justify-between text-sm font-mono">
-                <span className="font-semibold text-maroon-700 uppercase tracking-wider">
+            <div className="space-y-3.5">
+              <div className="flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm font-mono border-b border-sand-100 pb-3">
+                <span className="font-bold text-maroon-700 uppercase tracking-wider bg-sand-100/90 px-2.5 py-1 rounded-2xs border border-sand-200">
                   {item.category}
                 </span>
-                <span className="text-charcoal-500">{item.date}</span>
+                <span className="text-charcoal-500 font-medium">{item.date}</span>
               </div>
+
               <h4
                 className={`font-display text-charcoal-900 leading-snug font-semibold ${
-                  item.lead ? 'text-3xl sm:text-4xl' : 'text-xl sm:text-2xl'
+                  item.lead ? 'text-2xl sm:text-3xl lg:text-[1.85rem]' : 'text-xl sm:text-2xl'
                 }`}
               >
                 <a
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-maroon-700 transition-colors no-underline group"
+                  className="hover:text-maroon-700 transition-colors no-underline group/link flex items-start justify-between gap-2"
                 >
-                  {item.title}{' '}
-                  <span className="text-sm font-mono text-charcoal-400 group-hover:text-maroon-700">↗</span>
+                  <span>{item.title}</span>
+                  <span className="text-sm font-mono text-charcoal-400 group-hover/link:text-maroon-700 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform shrink-0 mt-1">
+                    ↗
+                  </span>
                 </a>
               </h4>
+
               <p className="text-charcoal-700 text-base leading-relaxed">
                 {item.summary}
               </p>
             </div>
 
-            <div className="text-sm text-charcoal-500 font-mono pt-3 border-t border-sand-200 flex items-center justify-between">
-              <span>{item.source}</span>
-              <span className="text-maroon-700 font-bold">● Official Dispatch</span>
+            <div className="text-xs sm:text-sm text-charcoal-500 font-mono pt-3.5 border-t border-sand-200 flex items-center justify-between">
+              <span className="font-medium text-charcoal-700">{item.source}</span>
+              <span className="text-maroon-700 font-bold flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-maroon-700 animate-pulse" />
+                <span>{locale === 'ta' ? 'அதிகாரப்பூர்வ செய்தி' : 'Official Dispatch'}</span>
+              </span>
             </div>
-          </EduStaggerItem>
+          </EduTopLineBox>
         ))}
-      </EduStaggerContainer>
+      </div>
 
       <EduHorizontalLine color="bg-sand-200" duration={0.65} />
     </div>
