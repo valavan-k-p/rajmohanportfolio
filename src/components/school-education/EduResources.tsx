@@ -171,11 +171,11 @@ export function EduResources({ locale }: { locale: Locale }) {
   return (
     <div className="space-y-10 max-w-[72rem] mx-auto">
       {/* Header with Mask Reveal */}
-      <EduReveal direction="up" className="max-w-[48rem]">
-        <h3 className="font-display text-2xl sm:text-3xl text-charcoal-900 leading-tight font-normal">
+      <EduReveal direction="up" className="max-w-[50rem]">
+        <h3 className="font-display text-3xl sm:text-4xl text-charcoal-900 leading-tight font-normal">
           {content.headline}
         </h3>
-        <p className="text-charcoal-700 text-base leading-relaxed mt-2">
+        <p className="text-charcoal-700 text-lg leading-relaxed mt-2.5">
           {content.standfirst}
         </p>
       </EduReveal>
@@ -184,7 +184,7 @@ export function EduResources({ locale }: { locale: Locale }) {
       <div className="space-y-10">
         {content.groups.map((group, gIdx) => (
           <div key={gIdx} className="space-y-4">
-            <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-maroon-700">
+            <h4 className="font-mono text-sm font-bold uppercase tracking-wider text-maroon-700">
               {group.category}
             </h4>
             <EduHorizontalLine color="bg-sand-300" duration={0.6} />
@@ -198,21 +198,21 @@ export function EduResources({ locale }: { locale: Locale }) {
                   topLineColor="bg-sand-200"
                   className="py-4 flex flex-col md:flex-row md:items-baseline justify-between gap-3 group"
                 >
-                  <div className="space-y-1 max-w-[46rem]">
+                  <div className="space-y-1 max-w-[48rem]">
                     <a
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-display text-lg text-charcoal-900 group-hover:text-maroon-700 transition-colors no-underline block font-semibold"
+                      className="font-display text-xl sm:text-2xl text-charcoal-900 group-hover:text-maroon-700 transition-colors no-underline block font-semibold"
                     >
-                      {item.title} <span className="text-xs font-mono text-charcoal-400 group-hover:text-maroon-700">↗</span>
+                      {item.title} <span className="text-sm font-mono text-charcoal-400 group-hover:text-maroon-700">↗</span>
                     </a>
-                    <p className="text-xs text-charcoal-600 font-sans leading-relaxed">
+                    <p className="text-sm text-charcoal-700 font-sans leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
 
-                  <div className="text-xs font-mono text-charcoal-500 md:text-right whitespace-nowrap">
+                  <div className="text-sm font-mono text-charcoal-500 md:text-right whitespace-nowrap">
                     {item.source}
                   </div>
                 </EduStaggerItem>
@@ -222,7 +222,7 @@ export function EduResources({ locale }: { locale: Locale }) {
         ))}
       </div>
 
-      <div className="text-xs text-charcoal-500 font-mono pt-4 border-t border-sand-200">
+      <div className="text-sm text-charcoal-500 font-mono pt-4 border-t border-sand-200">
         {content.notice}
       </div>
     </div>

@@ -74,11 +74,11 @@ export function EduTeachers({ locale }: { locale: Locale }) {
   return (
     <div className="space-y-10 max-w-[72rem] mx-auto">
       {/* Header with Mask Reveal */}
-      <EduReveal direction="up" className="max-w-[48rem]">
-        <h3 className="font-display text-2xl sm:text-3xl text-charcoal-900 leading-tight font-normal">
+      <EduReveal direction="up" className="max-w-[50rem]">
+        <h3 className="font-display text-3xl sm:text-4xl text-charcoal-900 leading-tight font-normal">
           {content.headline}
         </h3>
-        <p className="text-charcoal-700 text-base leading-relaxed mt-2">
+        <p className="text-charcoal-700 text-lg leading-relaxed mt-2.5">
           {content.standfirst}
         </p>
       </EduReveal>
@@ -94,15 +94,15 @@ export function EduTeachers({ locale }: { locale: Locale }) {
                 direction="left"
                 showTopLine={true}
                 topLineColor="bg-sand-300"
-                className="pt-4 space-y-2"
+                className="pt-4 space-y-2.5"
               >
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700">
+                <span className="text-sm font-mono font-bold uppercase tracking-wider text-maroon-700">
                   {item.tag}
                 </span>
-                <h4 className="font-display text-xl text-charcoal-900 leading-snug font-semibold">
+                <h4 className="font-display text-2xl text-charcoal-900 leading-snug font-semibold">
                   {item.title}
                 </h4>
-                <p className="text-charcoal-700 text-sm leading-relaxed">
+                <p className="text-charcoal-700 text-base leading-relaxed">
                   {item.desc}
                 </p>
               </EduStaggerItem>
@@ -115,26 +115,26 @@ export function EduTeachers({ locale }: { locale: Locale }) {
           delay={0.12}
           direction="right"
           topLineColor="bg-maroon-700"
-          className="lg:col-span-5 space-y-4 p-6 bg-white border border-sand-300 shadow-sm rounded-sm"
+          className="lg:col-span-5 space-y-4 p-6.5 bg-white border border-sand-300 shadow-sm rounded-sm"
         >
-          <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-charcoal-900 border-b border-sand-300 pb-2">
+          <h4 className="text-sm font-mono font-bold uppercase tracking-wider text-charcoal-900 border-b border-sand-300 pb-2">
             {content.sidebarHeader}
           </h4>
 
           <div className="space-y-4 divide-y divide-sand-200">
             {content.metrics.map((m, idx) => (
               <div key={idx} className="pt-3 first:pt-0 space-y-1">
-                <div className="text-xs font-mono text-charcoal-500 uppercase">
+                <div className="text-xs sm:text-sm font-mono text-charcoal-500 uppercase">
                   {m.label}
                 </div>
-                <div className="text-base font-semibold text-charcoal-900">
+                <div className="text-lg font-semibold text-charcoal-900">
                   {m.val}
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="text-xs text-charcoal-500 font-mono pt-3 border-t border-sand-200">
+          <div className="text-sm text-charcoal-500 font-mono pt-3 border-t border-sand-200">
             {content.source}
           </div>
         </EduTopLineBox>

@@ -149,11 +149,11 @@ export function EduNews({ locale }: { locale: Locale }) {
   return (
     <div className="space-y-8 max-w-[72rem] mx-auto">
       {/* Header with Mask Reveal */}
-      <EduReveal direction="up" className="max-w-[48rem]">
-        <h3 className="font-display text-2xl sm:text-3xl text-charcoal-900 leading-tight font-normal">
+      <EduReveal direction="up" className="max-w-[50rem]">
+        <h3 className="font-display text-3xl sm:text-4xl text-charcoal-900 leading-tight font-normal">
           {content.headline}
         </h3>
-        <p className="text-charcoal-700 text-base leading-relaxed mt-2">
+        <p className="text-charcoal-700 text-lg leading-relaxed mt-2.5">
           {content.standfirst}
         </p>
       </EduReveal>
@@ -171,7 +171,7 @@ export function EduNews({ locale }: { locale: Locale }) {
             }`}
           >
             <div className="space-y-2.5">
-              <div className="flex items-center justify-between text-xs font-mono">
+              <div className="flex items-center justify-between text-sm font-mono">
                 <span className="font-semibold text-maroon-700 uppercase tracking-wider">
                   {item.category}
                 </span>
@@ -179,7 +179,7 @@ export function EduNews({ locale }: { locale: Locale }) {
               </div>
               <h4
                 className={`font-display text-charcoal-900 leading-snug font-semibold ${
-                  item.lead ? 'text-2xl sm:text-3xl' : 'text-lg'
+                  item.lead ? 'text-3xl sm:text-4xl' : 'text-xl sm:text-2xl'
                 }`}
               >
                 <a
@@ -189,15 +189,15 @@ export function EduNews({ locale }: { locale: Locale }) {
                   className="hover:text-maroon-700 transition-colors no-underline group"
                 >
                   {item.title}{' '}
-                  <span className="text-xs font-mono text-charcoal-400 group-hover:text-maroon-700">↗</span>
+                  <span className="text-sm font-mono text-charcoal-400 group-hover:text-maroon-700">↗</span>
                 </a>
               </h4>
-              <p className="text-charcoal-700 text-sm leading-relaxed">
+              <p className="text-charcoal-700 text-base leading-relaxed">
                 {item.summary}
               </p>
             </div>
 
-            <div className="text-xs text-charcoal-500 font-mono pt-3 border-t border-sand-200 flex items-center justify-between">
+            <div className="text-sm text-charcoal-500 font-mono pt-3 border-t border-sand-200 flex items-center justify-between">
               <span>{item.source}</span>
               <span className="text-maroon-700 font-bold">● Official Dispatch</span>
             </div>

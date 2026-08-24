@@ -76,10 +76,10 @@ export function EduSchools({ locale }: { locale: Locale }) {
       {/* 7 Columns: Core Policy Actions */}
       <div className="lg:col-span-7 space-y-6">
         <EduReveal>
-          <h3 className="font-display text-2xl sm:text-3xl text-charcoal-900 leading-tight font-normal">
+          <h3 className="font-display text-3xl sm:text-4xl text-charcoal-900 leading-tight font-normal">
             {content.headline}
           </h3>
-          <p className="text-charcoal-700 text-base leading-relaxed mt-3 max-w-[42rem]">
+          <p className="text-charcoal-700 text-lg leading-relaxed mt-3 max-w-[44rem]">
             {content.standfirst}
           </p>
         </EduReveal>
@@ -88,15 +88,15 @@ export function EduSchools({ locale }: { locale: Locale }) {
           {content.actions.map((act, idx) => (
             <EduStaggerItem
               key={idx}
-              className="p-5 sm:p-6 bg-sand-50 border-l-4 border-maroon-700 border-y border-r border-sand-300 space-y-2"
+              className="p-5 sm:p-6 bg-sand-50 border-l-4 border-maroon-700 border-y border-r border-sand-300 space-y-2.5"
             >
-              <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-maroon-700">
+              <span className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700">
                 {act.tag}
               </span>
-              <h4 className="font-display text-xl text-charcoal-900 leading-snug font-medium">
+              <h4 className="font-display text-2xl text-charcoal-900 leading-snug font-medium">
                 {act.title}
               </h4>
-              <p className="text-charcoal-700 text-sm leading-relaxed">
+              <p className="text-charcoal-700 text-base leading-relaxed">
                 {act.desc}
               </p>
             </EduStaggerItem>
@@ -108,10 +108,10 @@ export function EduSchools({ locale }: { locale: Locale }) {
       <div className="lg:col-span-5 space-y-6">
         <EduReveal delay={0.1} className="bg-sand-100 p-6 sm:p-7 border border-sand-300 space-y-6 shadow-sm">
           <div>
-            <div className="text-[11px] font-mono font-bold uppercase tracking-widest text-maroon-700 mb-2">
+            <div className="text-xs font-mono font-bold uppercase tracking-widest text-maroon-700 mb-2">
               {locale === 'ta' ? 'வளாக ஆய்வு நெறிமுறை' : 'QUALITY BENCHMARK'}
             </div>
-            <h4 className="font-display text-xl text-charcoal-900 font-semibold">
+            <h4 className="font-display text-2xl text-charcoal-900 font-semibold">
               {content.auditTitle}
             </h4>
           </div>
@@ -120,25 +120,25 @@ export function EduSchools({ locale }: { locale: Locale }) {
             {content.checklist.map((item, idx) => (
               <li
                 key={idx}
-                className="flex items-start gap-2.5 text-xs sm:text-sm text-charcoal-800"
+                className="flex items-start gap-2.5 text-sm sm:text-base text-charcoal-800"
               >
-                <span className="text-maroon-700 font-bold text-base leading-none mt-0.5">✓</span>
+                <span className="text-maroon-700 font-bold text-lg leading-none mt-0.5">✓</span>
                 <span>{item}</span>
               </li>
             ))}
           </ul>
 
           <div className="pt-5 border-t border-sand-300">
-            <div className="font-display text-4xl text-charcoal-900 tabular-nums font-light">
+            <div className="font-display text-5xl text-charcoal-900 tabular-nums font-light">
               <EduCounter value={21} duration={1.4} />{' '}
-              <span className="text-base font-sans text-charcoal-600 font-normal">
+              <span className="text-lg font-sans text-charcoal-600 font-normal">
                 {content.metricLabel}
               </span>
             </div>
-            <div className="text-xs text-charcoal-500 mt-1 font-sans">
+            <div className="text-sm text-charcoal-500 mt-1 font-sans">
               {content.metricSub}
             </div>
-            <div className="text-[11px] text-charcoal-500 mt-3 pt-3 border-t border-sand-200 font-mono">
+            <div className="text-xs text-charcoal-500 mt-3 pt-3 border-t border-sand-200 font-mono">
               {content.citation}
             </div>
           </div>

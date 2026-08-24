@@ -111,16 +111,16 @@ export function EduHero({
           {/* Quick Navigation Links */}
           <nav
             aria-label="Section Quick Navigation"
-            className="bg-sand-50/75 hover:bg-sand-50/90 backdrop-blur-md px-3.5 sm:px-4 py-1.5 border border-sand-300/70 shadow-sm flex flex-wrap items-center gap-x-3 sm:gap-x-3.5 gap-y-1 text-xs text-charcoal-800 font-sans"
+            className="bg-sand-50/75 hover:bg-sand-50/90 backdrop-blur-md px-4 sm:px-5 py-2 border border-sand-300/70 shadow-sm flex flex-wrap items-center gap-x-3.5 sm:gap-x-4 gap-y-1.5 text-sm text-charcoal-800 font-sans"
           >
-            <span className="font-bold uppercase tracking-wider text-maroon-700 text-[10px] sm:text-[11px]">
+            <span className="font-bold uppercase tracking-wider text-maroon-700 text-xs sm:text-[13px]">
               {locale === 'ta' ? 'துரித அணுகல்:' : 'Quick Nav:'}
             </span>
             {quickNav.map((link) => (
               <a
                 key={link.id}
                 href={`#${link.id}`}
-                className="hover:text-maroon-700 font-medium transition-all underline underline-offset-4 decoration-sand-300/60 hover:decoration-maroon-700 hover:-translate-y-0.5 inline-block"
+                className="hover:text-maroon-700 hover:underline transition-colors font-medium text-xs sm:text-sm"
               >
                 {link.label}
               </a>
@@ -130,9 +130,9 @@ export function EduHero({
           {/* Integrated Language Switcher */}
           <div
             aria-label="Language Switcher"
-            className="bg-sand-50/75 hover:bg-sand-50/90 backdrop-blur-md px-3 py-1.5 border border-sand-300/70 shadow-sm flex items-center gap-2 text-xs font-mono"
+            className="bg-sand-50/75 hover:bg-sand-50/90 backdrop-blur-md px-3.5 py-2 border border-sand-300/70 shadow-sm flex items-center gap-2 text-sm font-mono"
           >
-            <span className="text-[10px] font-bold uppercase tracking-wider text-maroon-700">
+            <span className="text-xs font-bold uppercase tracking-wider text-maroon-700">
               {locale === 'ta' ? 'மொழி:' : 'LANG:'}
             </span>
             <Link
@@ -140,7 +140,7 @@ export function EduHero({
               lang="en"
               hrefLang="en"
               aria-current={locale === 'en' ? 'true' : undefined}
-              className={`px-1.5 py-0.5 rounded transition-all no-underline text-xs hover:scale-105 active:scale-95 ${
+              className={`px-2 py-0.5 rounded transition-all no-underline text-xs sm:text-sm hover:scale-105 active:scale-95 ${
                 locale === 'en'
                   ? 'font-bold text-maroon-700 bg-sand-200/80 border border-sand-300 shadow-xs'
                   : 'text-charcoal-700 hover:text-maroon-700'
@@ -148,13 +148,13 @@ export function EduHero({
             >
               English
             </Link>
-            <span className="text-sand-300 text-xs" aria-hidden="true">|</span>
+            <span className="text-sand-300 text-xs sm:text-sm" aria-hidden="true">|</span>
             <Link
               href={pathFor('ta')}
               lang="ta"
               hrefLang="ta"
               aria-current={locale === 'ta' ? 'true' : undefined}
-              className={`px-1.5 py-0.5 rounded transition-all no-underline text-xs font-tamil-sans hover:scale-105 active:scale-95 ${
+              className={`px-2 py-0.5 rounded transition-all no-underline text-xs sm:text-sm font-tamil-sans hover:scale-105 active:scale-95 ${
                 locale === 'ta'
                   ? 'font-bold text-maroon-700 bg-sand-200/80 border border-sand-300 shadow-xs'
                   : 'text-charcoal-700 hover:text-maroon-700'

@@ -78,11 +78,11 @@ export function GovernanceReformsGrid({ locale }: { locale: Locale }) {
   return (
     <div className="space-y-10 max-w-[72rem] mx-auto">
       {/* Header with Mask Reveal */}
-      <EduReveal direction="up" className="max-w-[48rem]">
-        <h3 className="font-display text-2xl sm:text-3xl text-charcoal-900 leading-tight font-normal">
+      <EduReveal direction="up" className="max-w-[50rem]">
+        <h3 className="font-display text-3xl sm:text-4xl text-charcoal-900 leading-tight font-normal">
           {content.headline}
         </h3>
-        <p className="text-charcoal-700 text-base leading-relaxed mt-2">
+        <p className="text-charcoal-700 text-lg leading-relaxed mt-2.5">
           {content.standfirst}
         </p>
       </EduReveal>
@@ -93,10 +93,10 @@ export function GovernanceReformsGrid({ locale }: { locale: Locale }) {
 
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div>
-            <div className="text-xs font-mono text-maroon-700 font-bold uppercase tracking-wider">
+            <div className="text-sm font-mono text-maroon-700 font-bold uppercase tracking-wider">
               ● Live Digital System · July 2026
             </div>
-            <h4 className="font-display text-2xl sm:text-3xl text-charcoal-900 font-semibold mt-1">
+            <h4 className="font-display text-3xl sm:text-[2rem] text-charcoal-900 font-semibold mt-1">
               {content.nocTitle}
             </h4>
           </div>
@@ -105,7 +105,7 @@ export function GovernanceReformsGrid({ locale }: { locale: Locale }) {
           <div className="bg-sand-200/90 p-1 border border-sand-300 shadow-sm flex items-center self-start lg:self-center">
             <button
               onClick={() => setNocMode('after')}
-              className={`px-4 py-2 text-xs sm:text-sm font-semibold transition-all ${
+              className={`px-4.5 py-2 text-sm sm:text-base font-semibold transition-all ${
                 nocMode === 'after'
                   ? 'bg-maroon-700 text-white shadow-sm'
                   : 'text-charcoal-700 hover:text-charcoal-950'
@@ -115,7 +115,7 @@ export function GovernanceReformsGrid({ locale }: { locale: Locale }) {
             </button>
             <button
               onClick={() => setNocMode('before')}
-              className={`px-4 py-2 text-xs sm:text-sm font-semibold transition-all ${
+              className={`px-4.5 py-2 text-sm sm:text-base font-semibold transition-all ${
                 nocMode === 'before'
                   ? 'bg-maroon-700 text-white shadow-sm'
                   : 'text-charcoal-700 hover:text-charcoal-950'
@@ -126,7 +126,7 @@ export function GovernanceReformsGrid({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        <p className="text-sm sm:text-base text-charcoal-700 leading-relaxed max-w-[48rem]">
+        <p className="text-base sm:text-lg text-charcoal-700 leading-relaxed max-w-[50rem]">
           {content.nocDesc}
         </p>
 
@@ -134,7 +134,7 @@ export function GovernanceReformsGrid({ locale }: { locale: Locale }) {
         <AnimatePresence mode="wait">
           <EduStaggerContainer
             key={nocMode}
-            className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3 pt-2"
+            className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3.5 pt-2"
             stagger={0.06}
           >
             {(nocMode === 'after' ? content.nocAfter : content.nocBefore).map((item, i) => (
@@ -143,10 +143,10 @@ export function GovernanceReformsGrid({ locale }: { locale: Locale }) {
                 direction={i % 2 === 0 ? 'left' : 'right'}
                 showTopLine={true}
                 topLineColor="bg-sand-200"
-                className="py-3 flex items-start gap-3 text-sm text-charcoal-900"
+                className="py-3 flex items-start gap-3 text-base text-charcoal-900"
               >
                 <span
-                  className={`font-mono text-xs font-bold w-5 h-5 flex items-center justify-center rounded shrink-0 mt-0.5 ${
+                  className={`font-mono text-xs sm:text-sm font-bold w-6 h-6 flex items-center justify-center rounded shrink-0 mt-0.5 ${
                     nocMode === 'after'
                       ? 'bg-sand-200/80 text-maroon-700'
                       : 'bg-sand-200/40 text-charcoal-500'
@@ -166,33 +166,33 @@ export function GovernanceReformsGrid({ locale }: { locale: Locale }) {
         <EduHorizontalLine color="bg-sand-300" duration={0.7} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          <EduReveal direction="left" delay={0.05} className="space-y-2">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700">
+          <EduReveal direction="left" delay={0.05} className="space-y-2.5">
+            <span className="text-sm font-mono font-bold uppercase tracking-wider text-maroon-700">
               {locale === 'ta' ? 'பெற்றோர் கட்டணப் பாதுகாப்பு' : 'Parent Fee Protection'}
             </span>
-            <h4 className="font-display text-xl text-charcoal-900 font-semibold">
+            <h4 className="font-display text-2xl text-charcoal-900 font-semibold">
               {content.feeTitle}
             </h4>
-            <p className="text-sm text-charcoal-700 leading-relaxed">
+            <p className="text-base text-charcoal-700 leading-relaxed">
               {content.feeDesc}
             </p>
           </EduReveal>
 
-          <EduReveal direction="right" delay={0.1} className="space-y-2">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700">
+          <EduReveal direction="right" delay={0.1} className="space-y-2.5">
+            <span className="text-sm font-mono font-bold uppercase tracking-wider text-maroon-700">
               {locale === 'ta' ? 'பள்ளி வளாகப் பாதுகாப்பு' : 'Campus Neutrality & Safety'}
             </span>
-            <h4 className="font-display text-xl text-charcoal-900 font-semibold">
+            <h4 className="font-display text-2xl text-charcoal-900 font-semibold">
               {content.visitorTitle}
             </h4>
-            <p className="text-sm text-charcoal-700 leading-relaxed">
+            <p className="text-base text-charcoal-700 leading-relaxed">
               {content.visitorDesc}
             </p>
           </EduReveal>
         </div>
       </div>
 
-      <div className="text-xs text-charcoal-500 font-mono pt-2 border-t border-sand-200">
+      <div className="text-sm text-charcoal-500 font-mono pt-2 border-t border-sand-200">
         {content.source}
       </div>
     </div>

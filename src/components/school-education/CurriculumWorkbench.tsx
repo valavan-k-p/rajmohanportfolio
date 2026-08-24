@@ -168,17 +168,17 @@ export function CurriculumWorkbench({ locale }: { locale: Locale }) {
   return (
     <div className="space-y-8 max-w-[72rem] mx-auto">
       {/* Header with Mask Reveal */}
-      <EduReveal direction="up" className="max-w-[48rem]">
-        <h3 className="font-display text-2xl sm:text-3xl text-charcoal-900 leading-tight font-normal">
+      <EduReveal direction="up" className="max-w-[50rem]">
+        <h3 className="font-display text-3xl sm:text-4xl text-charcoal-900 leading-tight font-normal">
           {content.headline}
         </h3>
-        <p className="text-charcoal-700 text-base leading-relaxed mt-2">
+        <p className="text-charcoal-700 text-lg leading-relaxed mt-2.5">
           {content.standfirst}
         </p>
       </EduReveal>
 
       {/* Minimal Subject Tabs */}
-      <div className="flex flex-wrap gap-x-6 gap-y-2 border-b border-sand-300 pb-3 text-sm">
+      <div className="flex flex-wrap gap-x-6 gap-y-2.5 border-b border-sand-300 pb-3.5 text-base">
         {SUBJECT_MODULES.map((subject) => {
           const isActive = subject.id === activeSubjectId;
           return (
@@ -217,14 +217,14 @@ export function CurriculumWorkbench({ locale }: { locale: Locale }) {
           {/* Header & Focus */}
           <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-sand-200 pb-4">
             <div>
-              <div className="text-xs font-mono text-charcoal-500 uppercase">
+              <div className="text-sm font-mono text-charcoal-500 uppercase">
                 {activeSubject.code} · {activeSubject.booksCount} {locale === 'ta' ? 'பாடநூல்கள்' : 'Volume(s)'}
               </div>
-              <h4 className="font-display text-2xl text-charcoal-900 font-semibold mt-1">
+              <h4 className="font-display text-3xl text-charcoal-900 font-semibold mt-1">
                 {activeSubject.name[locale]}
               </h4>
             </div>
-            <p className="text-sm text-charcoal-700 max-w-[32rem]">
+            <p className="text-base text-charcoal-700 max-w-[34rem] leading-relaxed">
               {activeSubject.focus[locale]}
             </p>
           </div>
@@ -233,18 +233,18 @@ export function CurriculumWorkbench({ locale }: { locale: Locale }) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left 6 Cols: Progressive Activity List Typesetting */}
             <EduReveal direction="left" delay={0.05} className="lg:col-span-6 space-y-4">
-              <h5 className="font-mono text-xs font-bold uppercase tracking-wider text-maroon-700">
+              <h5 className="font-mono text-sm font-bold uppercase tracking-wider text-maroon-700">
                 {content.activitiesLabel}
               </h5>
               <EduHorizontalLine color="bg-sand-200" duration={0.5} />
-              <EduStaggerContainer className="space-y-2" stagger={0.06}>
+              <EduStaggerContainer className="space-y-2.5" stagger={0.06}>
                 {activeSubject.activities[locale].map((act, i) => (
                   <EduStaggerItem
                     key={i}
                     direction="left"
                     showTopLine={true}
                     topLineColor="bg-sand-200"
-                    className="pt-2.5 text-sm text-charcoal-800 flex items-start gap-2.5"
+                    className="pt-2.5 text-base text-charcoal-800 flex items-start gap-2.5"
                   >
                     <span className="text-maroon-700 font-bold leading-none mt-1">›</span>
                     <span>{act}</span>
@@ -255,22 +255,22 @@ export function CurriculumWorkbench({ locale }: { locale: Locale }) {
 
             {/* Right 6 Cols: Side-by-Side Comparison with Top-Line Accent Boxes */}
             <EduReveal direction="right" delay={0.1} className="lg:col-span-6 space-y-4">
-              <h5 className="font-mono text-xs font-bold uppercase tracking-wider text-maroon-700">
+              <h5 className="font-mono text-sm font-bold uppercase tracking-wider text-maroon-700">
                 {locale === 'ta' ? 'கற்பித்தல் முறை ஒப்பீடு' : 'Pedagogy Shift'}
               </h5>
               <EduHorizontalLine color="bg-sand-200" duration={0.5} />
 
-              <div className="space-y-3">
+              <div className="space-y-3.5">
                 <EduTopLineBox
                   delay={0.06}
                   direction="right"
                   topLineColor="bg-charcoal-400"
-                  className="p-4 bg-sand-100/60 border border-sand-200 space-y-1 rounded-xs"
+                  className="p-4.5 bg-sand-100/60 border border-sand-200 space-y-1.5 rounded-xs"
                 >
                   <div className="text-xs font-mono text-charcoal-600 font-semibold uppercase">
                     {content.previousMethod}
                   </div>
-                  <p className="text-xs sm:text-sm text-charcoal-700 leading-relaxed">
+                  <p className="text-sm sm:text-base text-charcoal-700 leading-relaxed">
                     {activeSubject.pedagogyShift.before[locale]}
                   </p>
                 </EduTopLineBox>
@@ -279,12 +279,12 @@ export function CurriculumWorkbench({ locale }: { locale: Locale }) {
                   delay={0.14}
                   direction="right"
                   topLineColor="bg-maroon-700"
-                  className="p-4 bg-white border border-sand-300 shadow-sm space-y-1 rounded-xs"
+                  className="p-4.5 bg-white border border-sand-300 shadow-sm space-y-1.5 rounded-xs"
                 >
                   <div className="text-xs font-mono text-maroon-700 font-bold uppercase">
                     {content.newStandard}
                   </div>
-                  <p className="text-xs sm:text-sm text-charcoal-900 font-medium leading-relaxed">
+                  <p className="text-sm sm:text-base text-charcoal-900 font-medium leading-relaxed">
                     {activeSubject.pedagogyShift.after[locale]}
                   </p>
                 </EduTopLineBox>

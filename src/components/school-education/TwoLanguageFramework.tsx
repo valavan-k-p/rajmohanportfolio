@@ -126,17 +126,17 @@ export function TwoLanguageFramework({ locale }: { locale: Locale }) {
   return (
     <div className="space-y-8 max-w-[72rem] mx-auto">
       {/* Header with Mask Reveal */}
-      <EduReveal direction="up" className="max-w-[48rem]">
-        <h3 className="font-display text-2xl sm:text-3xl text-charcoal-900 leading-tight font-normal">
+      <EduReveal direction="up" className="max-w-[50rem]">
+        <h3 className="font-display text-3xl sm:text-4xl text-charcoal-900 leading-tight font-normal">
           {content.headline}
         </h3>
-        <p className="text-charcoal-700 text-base leading-relaxed mt-2">
+        <p className="text-charcoal-700 text-lg leading-relaxed mt-2.5">
           {content.standfirst}
         </p>
       </EduReveal>
 
       {/* Minimal Tabs */}
-      <div className="flex flex-wrap gap-x-6 gap-y-2 border-b border-sand-300 pb-3 text-sm">
+      <div className="flex flex-wrap gap-x-6 gap-y-2.5 border-b border-sand-300 pb-3.5 text-base">
         {(['tamil', 'english', 'autonomy'] as const).map((tabKey) => {
           const isActive = activeTab === tabKey;
           const label =
@@ -180,23 +180,23 @@ export function TwoLanguageFramework({ locale }: { locale: Locale }) {
           className="pt-2 space-y-6"
         >
           <div className="border-b border-sand-200 pb-4">
-            <h4 className="font-display text-2xl text-charcoal-900 font-semibold">
+            <h4 className="font-display text-3xl text-charcoal-900 font-semibold">
               {activeData.title}
             </h4>
-            <p className="text-charcoal-700 text-base leading-relaxed mt-2 max-w-[46rem]">
+            <p className="text-charcoal-700 text-lg leading-relaxed mt-2 max-w-[48rem]">
               {activeData.summary}
             </p>
           </div>
 
           {/* Staggered Policy Points with Left-to-Right Lines */}
-          <EduStaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3" stagger={0.06}>
+          <EduStaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3.5" stagger={0.06}>
             {activeData.points.map((pt, i) => (
               <EduStaggerItem
                 key={i}
                 direction={i % 2 === 0 ? 'left' : 'right'}
                 showTopLine={true}
                 topLineColor="bg-sand-200"
-                className="flex items-start gap-2.5 text-sm text-charcoal-800 py-2.5"
+                className="flex items-start gap-2.5 text-base text-charcoal-800 py-2.5"
               >
                 <span className="text-maroon-700 font-bold leading-none mt-1">●</span>
                 <span>{pt}</span>
@@ -204,7 +204,7 @@ export function TwoLanguageFramework({ locale }: { locale: Locale }) {
             ))}
           </EduStaggerContainer>
 
-          <div className="text-xs font-mono text-charcoal-600 pt-1">
+          <div className="text-sm font-mono text-charcoal-600 pt-1">
             {activeData.mandate}
           </div>
         </motion.div>

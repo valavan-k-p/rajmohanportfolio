@@ -71,7 +71,7 @@ export function EduStudents({ locale }: { locale: Locale }) {
   return (
     <div className="space-y-12 max-w-[72rem] mx-auto">
       {/* Editorial Pull Quote with Vertical Drawing Line */}
-      <div className="max-w-[48rem]">
+      <div className="max-w-[50rem]">
         <EduQuoteBlock quote={content.leadQuote} />
       </div>
 
@@ -86,18 +86,18 @@ export function EduStudents({ locale }: { locale: Locale }) {
             className="pt-5 flex flex-col justify-between space-y-4"
           >
             <div className="space-y-2.5">
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-maroon-700 block">
+              <span className="text-sm font-mono font-bold uppercase tracking-wider text-maroon-700 block">
                 {card.tag}
               </span>
-              <h3 className="font-display text-xl text-charcoal-900 leading-snug font-semibold">
+              <h3 className="font-display text-2xl text-charcoal-900 leading-snug font-semibold">
                 {card.title}
               </h3>
-              <p className="text-charcoal-700 text-sm leading-relaxed">
+              <p className="text-charcoal-700 text-base leading-relaxed">
                 {card.detail}
               </p>
             </div>
 
-            <div className="text-xs text-charcoal-500 font-mono pt-3 border-t border-sand-200">
+            <div className="text-sm text-charcoal-500 font-mono pt-3 border-t border-sand-200">
               {card.source}
             </div>
           </EduStaggerItem>

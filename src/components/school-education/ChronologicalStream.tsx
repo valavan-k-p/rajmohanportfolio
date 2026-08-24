@@ -148,17 +148,17 @@ export function ChronologicalStream({ locale }: { locale: Locale }) {
   return (
     <div className="space-y-8 max-w-[72rem] mx-auto">
       {/* Header with Mask Reveal */}
-      <EduReveal direction="up" className="max-w-[48rem]">
-        <h3 className="font-display text-2xl sm:text-3xl text-charcoal-900 leading-tight font-normal">
+      <EduReveal direction="up" className="max-w-[50rem]">
+        <h3 className="font-display text-3xl sm:text-4xl text-charcoal-900 leading-tight font-normal">
           {content.headline}
         </h3>
-        <p className="text-charcoal-700 text-base leading-relaxed mt-2">
+        <p className="text-charcoal-700 text-lg leading-relaxed mt-2.5">
           {content.standfirst}
         </p>
       </EduReveal>
 
       {/* Filter Tabs */}
-      <div className="flex flex-wrap gap-x-6 gap-y-2 border-b border-sand-300 pb-3 text-sm">
+      <div className="flex flex-wrap gap-x-6 gap-y-2.5 border-b border-sand-300 pb-3.5 text-base">
         <button
           onClick={() => setFilter('all')}
           className={`pb-1.5 transition-colors relative font-semibold ${
@@ -238,29 +238,29 @@ export function ChronologicalStream({ locale }: { locale: Locale }) {
               direction={idx % 2 === 0 ? 'left' : 'right'}
               showTopLine={true}
               topLineColor="bg-sand-300"
-              className="pt-6 pb-2 grid grid-cols-1 md:grid-cols-[8rem_1fr] lg:grid-cols-[10rem_1fr_12rem] gap-4 lg:gap-8 items-baseline"
+              className="pt-6 pb-2 grid grid-cols-1 md:grid-cols-[8.5rem_1fr] lg:grid-cols-[11rem_1fr_13rem] gap-4 lg:gap-8 items-baseline"
             >
               {/* Date */}
-              <div className="font-mono text-sm text-maroon-700 font-bold">
+              <div className="font-mono text-base text-maroon-700 font-bold">
                 {node.date}
               </div>
 
               {/* Title & Desc */}
-              <div className="space-y-2">
-                <h4 className="font-display text-xl text-charcoal-900 font-semibold leading-snug">
+              <div className="space-y-2.5">
+                <h4 className="font-display text-2xl text-charcoal-900 font-semibold leading-snug">
                   {node.title[locale]}
                 </h4>
-                <p className="text-charcoal-700 text-sm leading-relaxed max-w-[46rem]">
+                <p className="text-charcoal-700 text-base leading-relaxed max-w-[48rem]">
                   {node.desc[locale]}
                 </p>
-                <div className="text-xs text-charcoal-500 font-mono">
+                <div className="text-sm text-charcoal-500 font-mono">
                   Source: {node.source}
                 </div>
               </div>
 
               {/* Status Badge */}
               <div className="text-right lg:text-right">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-charcoal-800">
+                <span className="text-sm font-mono font-bold uppercase tracking-wider text-charcoal-800">
                   ● {node.status}
                 </span>
               </div>
@@ -269,7 +269,7 @@ export function ChronologicalStream({ locale }: { locale: Locale }) {
         </AnimatePresence>
       </EduStaggerContainer>
 
-      <div className="text-xs text-charcoal-500 font-mono pt-4 border-t border-sand-200">
+      <div className="text-sm text-charcoal-500 font-mono pt-4 border-t border-sand-200">
         {content.sourceSummary}
       </div>
     </div>
