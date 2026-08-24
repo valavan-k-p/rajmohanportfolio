@@ -132,12 +132,16 @@ export function GlobalTamilMap({ locale }: { locale: Locale }) {
 
             <g>
               {/* Origin Point */}
-              <circle className="origin-node" cx={projectedOrigin[0]} cy={projectedOrigin[1]} r="4" fill="var(--color-tamil-red)" stroke="var(--color-tamil-gold)" strokeWidth="1.5" />
-              <circle className="origin-node animate-ping" cx={projectedOrigin[0]} cy={projectedOrigin[1]} r="10" fill="var(--color-tamil-red)" opacity="0.3" style={{ transformOrigin: `${projectedOrigin[0]}px ${projectedOrigin[1]}px` }} />
-              
-              <text className="node-label font-sans text-[8px] md:text-[10px] font-bold tracking-widest fill-[var(--color-tamil-gold)]" x={projectedOrigin[0] + ORIGIN.labelOffset[0]} y={projectedOrigin[1] + ORIGIN.labelOffset[1]} textAnchor="middle">
-                {ORIGIN.label}
-              </text>
+              {projectedOrigin && (
+                <>
+                  <circle className="origin-node" cx={projectedOrigin![0]} cy={projectedOrigin![1]} r="4" fill="var(--color-tamil-red)" stroke="var(--color-tamil-gold)" strokeWidth="1.5" />
+                  <circle className="origin-node animate-ping" cx={projectedOrigin![0]} cy={projectedOrigin![1]} r="10" fill="var(--color-tamil-red)" opacity="0.3" style={{ transformOrigin: `${projectedOrigin![0]}px ${projectedOrigin![1]}px` }} />
+                  
+                  <text className="node-label font-sans text-[8px] md:text-[10px] font-bold tracking-widest fill-[var(--color-tamil-gold)]" x={projectedOrigin![0] + (ORIGIN.labelOffset[0] || 0)} y={projectedOrigin![1] + (ORIGIN.labelOffset[1] || 0)} textAnchor="middle">
+                    {ORIGIN.label}
+                  </text>
+                </>
+              )}
 
               {/* Global Tamil Hub Nodes */}
               {projectedNodes.map((node, i) => (
