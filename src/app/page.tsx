@@ -28,12 +28,6 @@ export default async function MasterNavigationPage() {
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <a
-        href="#portals"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-[2px] focus:bg-maroon-700 focus:px-4 focus:py-2 focus:text-white"
-      >
-        {t('skipToContent')}
-      </a>
 
       <main id="portals" className="relative min-h-dvh bg-sand-100">
         <Navbar />
