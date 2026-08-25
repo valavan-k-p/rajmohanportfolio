@@ -119,7 +119,7 @@ export function TechnicalTamilSection({ locale }: { locale: Locale }) {
           <h2 className="font-tamil-display text-4xl md:text-5xl text-[var(--color-tamil-gold)] mb-6">
             {locale === 'ta' ? 'மாறும் உலகிற்கான தமிழ்' : 'Tamil for a Changing World'}
           </h2>
-          <p className="font-tamil-sans text-xl opacity-80 max-w-2xl mx-auto leading-relaxed text-white">
+          <p className="text-xl opacity-80 max-w-2xl mx-auto leading-relaxed text-white">
             {locale === 'ta'
               ? 'செயற்கை நுண்ணறிவு (AI), இணையப் பாதுகாப்பு, உயிரித் தொழில்நுட்பம் மற்றும் விண்வெளி அறிவியல் ஆகியவற்றிற்கான கலைச்சொற்கள் மூலம் தமிழை அடுத்த தலைமுறைக்குக் கொண்டு செல்லுதல்.'
               : 'Supporting the next generation of knowledge through technical terminology for AI, cybersecurity, biotechnology, and space science.'}
@@ -142,7 +142,7 @@ export function TechnicalTamilSection({ locale }: { locale: Locale }) {
                   <step.Icon />
                 </div>
                 <div>
-                  <h4 className={`font-tamil-sans text-xl md:text-2xl tracking-wide ${
+                  <h4 className={`text-xl md:text-2xl tracking-wide ${
                     step.isFinal ? 'text-[var(--color-tamil-red)] font-bold' : 'text-white/90 font-medium'
                   }`}>
                     {locale === 'ta' ? step.ta : step.en}
@@ -177,7 +177,7 @@ export function TechnicalTamilSection({ locale }: { locale: Locale }) {
                 {locale === 'ta' ? 'அரசு உள்ளடக்கத்தில் AI சிக்கல்கள்' : 'AI in Government Content'}
               </h4>
               
-              <p className="font-tamil-sans text-white/80 text-base leading-loose mb-8 text-pretty">
+              <p className="text-white/80 text-base leading-loose mb-8 text-pretty">
                 {locale === 'ta'
                   ? 'AI உருவாக்கும் தமிழ் உள்ளடக்கங்களில் உள்ள பிழைகள் மற்றும் பண்பாட்டுத் தவறுகளை ஆய்வு செய்து சீரமைக்கும் பணிகள் துறை அளவில் கவனிக்கப்படுகின்றன.'
                   : 'Addressing the governance concern of AI-generated content accuracy. Implementing scrutiny directions to ensure technical terminology and cultural precision are maintained in digital administrative outputs.'}

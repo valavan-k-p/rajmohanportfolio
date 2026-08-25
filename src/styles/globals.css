@@ -202,10 +202,16 @@
     line-height: 1.28;
   }
 
-  /* Body, Content, Cards, Lists, Labels & Metadata in Tamil Mode: STRICTLY Noto Serif Tamil */
+  /* Body, Content, Cards, Lists, Labels, SVGs & Animation Layers in Tamil Mode: STRICTLY Noto Serif Tamil */
   :lang(ta) *:not(.font-mono),
   [lang="ta"] *:not(.font-mono),
   .locale-ta *:not(.font-mono),
+  :lang(ta) svg text,
+  [lang="ta"] svg text,
+  .locale-ta svg text,
+  :lang(ta) svg tspan,
+  [lang="ta"] svg tspan,
+  .locale-ta svg tspan,
   :lang(ta) p,
   :lang(ta) a,
   :lang(ta) button,

@@ -47,7 +47,7 @@ export function LiteratureArchive({ locale }: { locale: Locale }) {
           <BookItem name={locale === 'ta' ? 'அறிஞர் பெயர்' : 'Scholar Name'} year="2024-25" status={locale === 'ta' ? 'நாட்டுடைமை' : 'Nationalised'} index={1} />
           <BookItem name={locale === 'ta' ? 'அறிஞர் பெயர்' : 'Scholar Name'} year="2024-25" status={locale === 'ta' ? 'நாட்டுடைமை' : 'Nationalised'} index={2} />
           <div className="book-item relative aspect-[3/4] bg-[var(--color-tamil-gold-soft)]/20 border-2 border-dashed border-[var(--color-tamil-gold)]/40 flex items-center justify-center p-4 text-center">
-            <span className="font-tamil-sans text-sm font-medium opacity-60">
+            <span className="text-sm font-medium opacity-60">
               {locale === 'ta' ? '+6 அறிஞர்கள் 2024-25 இல்' : '+6 scholars in 2024-25'}
             </span>
           </div>
@@ -57,7 +57,7 @@ export function LiteratureArchive({ locale }: { locale: Locale }) {
         <div className="flex flex-col md:flex-row gap-8 justify-between items-center border-y border-[var(--color-tamil-ink)]/10 py-8">
           <div className="text-center md:text-left">
             <div className="font-tamil-display text-4xl font-bold mb-1">189</div>
-            <div className="font-tamil-sans text-sm uppercase tracking-widest opacity-60">
+            <div className="text-sm uppercase tracking-widest opacity-60">
               {locale === 'ta' ? 'நாட்டுடைமையாக்கப்பட்ட அறிஞர்கள்' : 'Scholars Nationalised'}
             </div>
             <div className="text-[0.6rem] uppercase tracking-wider opacity-40 mt-1">
@@ -69,7 +69,7 @@ export function LiteratureArchive({ locale }: { locale: Locale }) {
           
           <div className="text-center md:text-left">
             <div className="font-tamil-display text-4xl font-bold mb-1 text-[var(--color-tamil-red)]">₹91.35 <span className="text-2xl">{locale === 'ta' ? 'லட்சம்' : 'Lakh'}</span></div>
-            <div className="font-tamil-sans text-sm uppercase tracking-widest opacity-60">
+            <div className="text-sm uppercase tracking-widest opacity-60">
               {locale === 'ta' ? 'வழங்கப்பட்ட ராயல்டி' : 'Royalty Disbursed'}
             </div>
             <div className="text-[0.6rem] uppercase tracking-wider opacity-40 mt-1">

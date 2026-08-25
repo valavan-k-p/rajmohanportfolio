@@ -32,7 +32,7 @@ const TranslationIcon = () => (
     <rect x="3" y="3" width="8" height="8" rx="2" stroke="var(--color-tamil-red)" />
     <text x="7" y="9" textAnchor="middle" className="font-tamil-display font-bold" fontSize="6" fill="var(--color-tamil-red)" stroke="none">அ</text>
     <rect x="13" y="13" width="8" height="8" rx="2" stroke="var(--color-tamil-gold)" />
-    <text x="17" y="19" textAnchor="middle" className="font-sans font-bold" fontSize="6" fill="var(--color-tamil-gold)" stroke="none">A</text>
+    <text x="17" y="19" textAnchor="middle" className="font-display font-bold" fontSize="6" fill="var(--color-tamil-gold)" stroke="none">A</text>
     <path d="M11 7h4a2 2 0 0 1 2 2v2" stroke="var(--color-tamil-red)" strokeOpacity="0.6" />
     <path d="M15 9l2 2 2-2" stroke="var(--color-tamil-red)" strokeOpacity="0.6" />
     <path d="M13 17H9a2 2 0 0 1-2-2v-2" stroke="var(--color-tamil-gold)" strokeOpacity="0.6" />
@@ -225,7 +225,7 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
                 <span className="font-tamil-display text-2xl font-bold tracking-wider leading-tight">
                   {locale === 'ta' ? 'தமிழ்' : 'TAMIL'}
                 </span>
-                <span className="font-tamil-sans text-xs tracking-widest opacity-80 uppercase mt-1">
+                <span className="text-xs tracking-widest opacity-80 uppercase mt-1">
                   {locale === 'ta' ? 'வளர்ச்சி' : 'Development'}
                 </span>
               </div>
@@ -250,7 +250,7 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
                   <h4 className="font-tamil-display text-lg font-bold text-[var(--color-tamil-red)] mb-2">
                     {locale === 'ta' ? domain.taLabel : domain.label}
                   </h4>
-                  <p className="font-tamil-sans text-xs text-[var(--color-tamil-ink)]/70 leading-relaxed">
+                  <p className="text-xs text-[var(--color-tamil-ink)]/70 leading-relaxed">
                     {domain.desc}
                   </p>
                 </div>
@@ -268,7 +268,7 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
               <span className="font-tamil-display text-xl font-bold tracking-wider leading-tight">
                 {locale === 'ta' ? 'தமிழ்' : 'TAMIL'}
               </span>
-              <span className="font-tamil-sans text-[10px] tracking-widest opacity-80 uppercase mt-1">
+              <span className="text-[10px] tracking-widest opacity-80 uppercase mt-1">
                 {locale === 'ta' ? 'வளர்ச்சி' : 'Development'}
               </span>
             </div>
@@ -292,7 +292,7 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
                     <h4 className="font-tamil-display text-md font-bold text-[var(--color-tamil-red)] mb-1">
                       {locale === 'ta' ? domain.taLabel : domain.label}
                     </h4>
-                    <p className="font-tamil-sans text-xs text-[var(--color-tamil-ink)]/70 leading-relaxed">
+                    <p className="text-xs text-[var(--color-tamil-ink)]/70 leading-relaxed">
                       {domain.desc}
                     </p>
                   </div>

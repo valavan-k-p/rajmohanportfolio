@@ -124,7 +124,7 @@ export function DreamHouseSection({ locale }: { locale: Locale }) {
           <div className="w-16 h-1 bg-[var(--color-tamil-gold)] mx-auto mb-6" />
         </div>
         
-        <p className="scheme-content font-tamil-sans text-lg md:text-xl font-medium opacity-80 text-balance leading-relaxed max-w-2xl text-[var(--color-tamil-ink)]">
+        <p className="scheme-content text-lg md:text-xl font-medium opacity-80 text-balance leading-relaxed max-w-2xl text-[var(--color-tamil-ink)]">
           {locale === 'ta'
             ? 'தகுதியான சிறந்த தமிழ் எழுத்தாளர்கள் மற்றும் மொழிபெயர்ப்பாளர்களுக்கு நலத்திட்ட உதவியாக குடியிருப்பு அங்கீகாரம் வழங்குதல்.'
             : 'Providing welfare-oriented residential support for eligible distinguished Tamil writers and extending recognition to translators.'}

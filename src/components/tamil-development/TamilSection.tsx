@@ -49,7 +49,7 @@ export function TamilSection({
         )}
         
         {description && (
-          <p className="font-tamil-sans text-lg md:text-xl max-w-2xl opacity-80 mb-12 text-pretty">
+          <p className="text-lg md:text-xl max-w-2xl opacity-80 mb-12 text-pretty">
             {description}
           </p>
         )}

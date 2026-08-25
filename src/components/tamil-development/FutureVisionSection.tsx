@@ -121,7 +121,7 @@ export function FutureVisionSection({ locale }: { locale: Locale }) {
                   <div className="w-12 h-12 shrink-0 rounded-full border border-[var(--color-tamil-gold)]/40 flex items-center justify-center text-[var(--color-tamil-gold)] group-hover/item:bg-[var(--color-tamil-gold)] group-hover/item:text-[var(--color-tamil-red-deep)] transition-all font-bold text-lg">
                     0{idx + 1}
                   </div>
-                  <span className="font-tamil-sans text-xl md:text-2xl text-white/80 group-hover/item:text-white transition-colors font-medium">
+                  <span className="text-xl md:text-2xl text-white/80 group-hover/item:text-white transition-colors font-medium">
                     {item}
                   </span>
                 </div>

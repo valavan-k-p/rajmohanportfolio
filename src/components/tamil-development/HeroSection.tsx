@@ -72,7 +72,7 @@ export function HeroSection({ locale }: { locale: Locale }) {
         
         <p 
           ref={subtitleRef}
-          className="font-tamil-sans text-xl md:text-3xl font-light text-balance max-w-2xl text-[var(--color-tamil-gold-soft)]"
+          className="text-xl md:text-3xl font-light text-balance max-w-2xl text-[var(--color-tamil-gold-soft)]"
         >
           {content.subtitle}
         </p>

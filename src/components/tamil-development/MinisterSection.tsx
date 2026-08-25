@@ -63,7 +63,7 @@ export function MinisterSection({ locale }: { locale: Locale }) {
         <div ref={visualRef} className="lg:col-span-5 relative aspect-[3/4] w-full max-w-md mx-auto overflow-hidden rounded-sm bg-neutral-200">
           <div className="minister-portrait absolute inset-0 bg-neutral-800 bg-[url('/images/navigation.jpeg')] bg-cover bg-[50%_25%] bg-blend-overlay mix-blend-multiply opacity-0" />
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-tamil-ink)] to-transparent opacity-60" />
-          <div className="absolute bottom-6 left-6 text-white font-tamil-sans">
+          <div className="absolute bottom-6 left-6 text-white">
             <div className="text-xl font-bold tracking-wide">{locale === 'ta' ? 'ராஜ்மோகன் ஆறுமுகம்' : 'Rajmohan Arumugam'}</div>
             <div className="text-sm opacity-80 uppercase tracking-widest mt-1">{locale === 'ta' ? 'தமிழ் வளர்ச்சித் துறை அமைச்சர்' : 'Minister for Tamil Development'}</div>
           </div>
@@ -71,7 +71,7 @@ export function MinisterSection({ locale }: { locale: Locale }) {
 
         {/* Narrative / Evolution */}
         <div className="lg:col-span-7 flex flex-col justify-center">
-          <p className="font-tamil-sans text-xl leading-relaxed opacity-90 mb-12 text-pretty">
+          <p className="text-xl leading-relaxed opacity-90 mb-12 text-pretty">
             {locale === 'ta' 
               ? 'பாரம்பரிய தமிழ் மேடைப் பேச்சிலிருந்து டிஜிட்டல் முதல் பொதுத் தொடர்புக்கான மாற்றம். இளைஞர்கள், ஊடகம் மற்றும் பொதுச் சேவையில் பின்னணி கொண்டவர்.'
               : 'A background rooted in traditional Tamil oratory, transitioning toward digital-first public communication. Connecting classical language with youth, media, and technology.'}
@@ -115,7 +115,7 @@ function EvolutionStep({ label, title, desc }: { label: string; title: string; d
       <div className="font-tamil-display text-2xl font-bold mb-2">
         {title}
       </div>
-      <div className="font-tamil-sans text-base opacity-75">
+      <div className="text-base opacity-75">
         {desc}
       </div>
     </div>

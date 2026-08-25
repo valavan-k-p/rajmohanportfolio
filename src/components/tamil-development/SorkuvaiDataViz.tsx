@@ -247,7 +247,7 @@ function FloatingWord({ word, onComplete }: { word: ActiveWord, onComplete: () =
         {word.ta}
       </div>
       {word.en && (
-        <div className="font-sans text-[0.55rem] md:text-[0.6rem] uppercase tracking-wider text-[#fcd567]/80 mt-0.5 whitespace-nowrap">
+        <div className="text-[0.55rem] md:text-[0.6rem] uppercase tracking-wider text-[#fcd567]/80 mt-0.5 whitespace-nowrap">
           {word.en}
         </div>
       )}
@@ -415,11 +415,16 @@ export function SorkuvaiDataViz({ locale }: { locale: Locale }) {
           <div ref={heroRef} className="relative z-[30] text-center bg-gradient-to-b from-[var(--color-tamil-ink)]/90 to-[var(--color-tamil-ink)]/70 backdrop-blur-xl p-8 md:p-16 rounded-[3rem] border border-[var(--color-tamil-gold)]/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
             <style dangerouslySetInnerHTML={{ __html: `
               .sorkuvai-hero-number {
-                font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+                font-family: var(--font-serif-editorial), var(--font-display), Georgia, serif !important;
                 font-size: 6rem !important;
                 font-weight: 700 !important;
                 letter-spacing: -0.02em !important;
                 line-height: 1 !important;
+              }
+              :lang(ta) .sorkuvai-hero-number,
+              [lang="ta"] .sorkuvai-hero-number,
+              .locale-ta .sorkuvai-hero-number {
+                font-family: var(--font-noto-serif-tamil), serif !important;
               }
               @media (max-width: 768px) {
                 .sorkuvai-hero-number {
@@ -431,7 +436,7 @@ export function SorkuvaiDataViz({ locale }: { locale: Locale }) {
               <span ref={countRef} className="sorkuvai-hero-number">{DATA.wordsUploaded.formatted}</span>
             </div>
             <div className="mt-6 flex flex-col items-center gap-2">
-              <span className="font-tamil-sans text-xl md:text-3xl text-white font-medium">
+              <span className="text-xl md:text-3xl text-white font-medium">
                 {locale === 'ta' ? 'பதியப்பட்ட தமிழ்ச் சொற்கள்' : 'Tamil words uploaded'}
               </span>
               <span className="text-xs uppercase tracking-widest text-[var(--color-tamil-gold)]/70 border-t border-[var(--color-tamil-gold)]/20 pt-2 mt-1">
@@ -464,8 +469,8 @@ function Milestone({ value, title, subtitle, context }: { value: string, title: 
   return (
     <div className="milestone flex flex-col items-center text-center p-8 border-t border-[var(--color-tamil-gold)]/20 bg-[var(--color-tamil-ink)]/50 backdrop-blur-md rounded-b-2xl relative group shadow-xl">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#fcd567] group-hover:scale-150 transition-transform shadow-[0_0_10px_rgba(252,213,103,0.5)]" />
-      <div className="font-sans text-4xl md:text-5xl font-bold text-white mb-2">{value}</div>
-      <div className="font-tamil-sans text-lg text-[#fcd567] font-medium mb-4">{title}</div>
+      <div className="text-4xl md:text-5xl font-bold text-white mb-2">{value}</div>
+      <div className="text-lg text-[#fcd567] font-medium mb-4">{title}</div>
       <div className="text-[0.65rem] font-bold tracking-widest uppercase text-white/50 mb-2">{subtitle}</div>
       <div className="text-[0.65rem] uppercase tracking-wider text-[var(--color-tamil-red)]">{context}</div>
     </div>

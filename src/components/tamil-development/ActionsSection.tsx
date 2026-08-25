@@ -173,7 +173,7 @@ export function ActionsSection({ locale }: { locale: Locale }) {
                         {ACTION_ICONS[i]}
                       </div>
                       <div>
-                        <h4 className="font-tamil-sans font-semibold text-lg text-[var(--color-tamil-ink)]/80">
+                        <h4 className="font-semibold text-lg text-[var(--color-tamil-ink)]/80">
                           {item.title?.[locale]}
                         </h4>
                         <div className="mt-1 text-[0.65rem] font-bold tracking-widest uppercase text-[var(--color-tamil-ink)]/40">
@@ -194,7 +194,7 @@ export function ActionsSection({ locale }: { locale: Locale }) {
                   <div className="w-full md:w-5/6 bg-white border border-[var(--color-tamil-red)]/20 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-[var(--color-tamil-red)]/40 transition-shadow">
                     <div className="flex items-center gap-4">
                       <div>
-                        <h4 className="font-tamil-sans font-medium text-lg text-[var(--color-tamil-red)]">
+                        <h4 className="font-medium text-lg text-[var(--color-tamil-red)]">
                           {TAMIL_DEVELOPMENT_DATA.rajmohanTenureActions[i]?.title?.[locale]}
                         </h4>
                         <div className="mt-1 inline-block rounded bg-[var(--color-tamil-red)]/10 px-2 py-0.5 text-[0.65rem] font-bold tracking-widest uppercase text-[var(--color-tamil-red)]">

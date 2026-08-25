@@ -119,7 +119,7 @@ function TimelineEntry({
         <div className={`bg-white border border-[var(--color-tamil-gold)]/20 p-6 md:p-8 rounded-2xl shadow-sm hover:shadow-lg hover:border-[var(--color-tamil-gold)]/40 transition-all duration-300 relative ${isLeft ? 'md:rounded-tr-sm' : 'md:rounded-tl-sm'}`}>
           
           <div className={`flex flex-col md:flex-row gap-2 md:gap-4 mb-3 ${isLeft ? 'md:justify-end' : 'md:justify-start'} items-start md:items-center`}>
-            <span className="font-tamil-sans text-sm font-bold text-[var(--color-tamil-red)] tracking-widest uppercase">
+            <span className="text-sm font-bold text-[var(--color-tamil-red)] tracking-widest uppercase">
               {typeof item.date === 'string' ? item.date : item.date?.[locale]}
             </span>
             {item.status && (
@@ -140,7 +140,7 @@ function TimelineEntry({
           </h4>
           
           {item.description && (
-            <p className="font-tamil-sans text-sm md:text-base text-[var(--color-tamil-ink)]/70 leading-relaxed text-pretty mt-4">
+            <p className="text-sm md:text-base text-[var(--color-tamil-ink)]/70 leading-relaxed text-pretty mt-4">
               {item.description[locale]}
             </p>
           )}

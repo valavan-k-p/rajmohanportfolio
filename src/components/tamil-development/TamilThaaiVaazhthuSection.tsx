@@ -42,7 +42,7 @@ export function TamilThaaiVaazhthuSection({ locale }: { locale: Locale }) {
       className="text-center"
     >
       <div ref={containerRef} className="mx-auto max-w-3xl pt-8">
-        <p className="font-tamil-sans text-lg md:text-xl font-light opacity-90 mb-16 text-balance">
+        <p className="text-lg md:text-xl font-light opacity-90 mb-16 text-balance">
           {locale === 'ta'
             ? 'அரசு விழாக்கள், கல்வி நிலையங்கள் மற்றும் பொதுத்துறை நிறுவனங்களில் தமிழ்த்தாய் வாழ்த்து பாடுதல் கட்டாயமாக்கப்பட்டுள்ளது.'
             : 'The state invocation song, honored at the commencement of official events, educational institutions, and public sector functions.'}
@@ -100,7 +100,7 @@ function TimelineItem({
       <div className="font-tamil-display text-2xl md:text-3xl font-bold mb-2">
         {year}
       </div>
-      <div className="font-tamil-sans text-sm md:text-base opacity-90 max-w-[200px] md:mx-auto">
+      <div className="text-sm md:text-base opacity-90 max-w-[200px] md:mx-auto">
         {text}
       </div>
       
