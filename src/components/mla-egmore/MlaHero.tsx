@@ -17,43 +17,6 @@ export interface MlaHeroProps {
   readonly backLabel: string;
 }
 
-function MlaPreloader({ onComplete }: { onComplete: () => void }) {
-  return (
-    <motion.div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#060a14] ${cormorant.variable}`}
-      initial={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.8, ease: EASE } }}
-      onAnimationComplete={onComplete}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.6 }}
-        className="text-[#d4af37] u-eyebrow mb-4"
-      >
-        04
-      </motion.div>
-      <div className="overflow-hidden">
-        <motion.h1
-          initial={{ y: '100%', opacity: 0 }}
-          animate={{ y: '0%', opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.8, ease: EASE }}
-          className="font-display text-4xl text-[#fdfbf7] tracking-wide"
-          style={{ fontFamily: 'var(--font-cormorant)' }}
-        >
-          MLA &middot; EGMORE
-        </motion.h1>
-      </div>
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ delay: 0.8, duration: 0.8, ease: EASE }}
-        className="h-[1px] bg-[#d4af37]/50 mt-8 w-32"
-        style={{ transformOrigin: 'center' }}
-      />
-    </motion.div>
-  );
-}
 
 function FloatingNav({ backLabel }: { backLabel: string }) {
   const prefersReducedMotion = useReducedMotion();
@@ -81,7 +44,7 @@ function FloatingNav({ backLabel }: { backLabel: string }) {
         className="pointer-events-auto flex items-center gap-1 md:gap-2 px-2 py-2 rounded-full bg-black/40 backdrop-blur-xl border border-white/15 shadow-2xl max-w-[95vw]"
         initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 2.2, ease: EASE }}
+        transition={{ duration: 1, delay: 0.2, ease: EASE }}
         onMouseLeave={() => setHoveredIndex(null)}
       >
         {navItems.map((item, i) => (
@@ -136,25 +99,9 @@ function FloatingNav({ backLabel }: { backLabel: string }) {
 
 export function MlaHero({ index, title, standfirst, backLabel }: MlaHeroProps) {
   const prefersReducedMotion = useReducedMotion();
-  const [showPreloader, setShowPreloader] = useState(true);
-
-  useEffect(() => {
-    if (showPreloader) {
-      document.body.style.overflow = 'hidden';
-      const timer = setTimeout(() => setShowPreloader(false), 2000);
-      return () => {
-        clearTimeout(timer);
-        document.body.style.overflow = '';
-      };
-    }
-  }, [showPreloader]);
-
   return (
     <>
       <MlaScrollProgress />
-      <AnimatePresence>
-        {showPreloader && <MlaPreloader onComplete={() => { document.body.style.overflow = ''; }} />}
-      </AnimatePresence>
 
       <header 
         className={`relative min-h-[100dvh] w-full bg-[#fdfbf7] flex flex-col items-center justify-center ${cormorant.variable} overflow-hidden`}
@@ -166,7 +113,7 @@ export function MlaHero({ index, title, standfirst, backLabel }: MlaHeroProps) {
           className="absolute inset-0 z-0 pointer-events-none"
           initial={{ opacity: 0, scale: 1.03 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2.0, delay: 1.8, ease: EASE }}
+          transition={{ duration: 2.0, delay: 0, ease: EASE }}
         >
           <div 
             className="absolute inset-0 bg-cover bg-center contrast-110 saturate-110 brightness-105" 

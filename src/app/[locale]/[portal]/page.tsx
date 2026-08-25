@@ -95,7 +95,6 @@ export default async function PortalPage({ params }: { params: Promise<Params> }
             title={content.title[locale]}
             standfirst={content.standfirst[locale]}
             backLabel={t('backToNavigation')}
-            locale={locale}
           />
         ) : portal === 'school-education' ? (
           <EduHero
@@ -113,7 +112,6 @@ export default async function PortalPage({ params }: { params: Promise<Params> }
             title={content.title[locale]}
             standfirst={content.standfirst[locale]}
             backLabel={t('backToNavigation')}
-            locale={locale}
           />
         ) : (
           <PortalHero
@@ -122,7 +120,6 @@ export default async function PortalPage({ params }: { params: Promise<Params> }
             title={content.title[locale]}
             standfirst={content.standfirst[locale]}
             backLabel={t('backToNavigation')}
-            locale={locale}
           />
         )}
 
