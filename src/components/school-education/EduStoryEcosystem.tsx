@@ -417,7 +417,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                   </p>
                 </div>
 
-                <div className="pt-2 text-[13.5px] text-charcoal-800 font-sans leading-relaxed space-y-3">
+                <div className="pt-2 text-[13.5px] text-charcoal-800 leading-relaxed space-y-3">
                   <p>{content.leftBed.p1}</p>
                   <p>{content.leftBed.p2}</p>
                 </div>
@@ -457,7 +457,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                 </div>
 
                 {/* Milestones Document Table */}
-                <div className="space-y-1.5 py-1 text-sm text-charcoal-800 font-sans border-t border-b border-[#E5DCB8] my-2">
+                <div className="space-y-1.5 py-1 text-sm text-charcoal-800 border-t border-b border-[#E5DCB8] my-2">
                   {content.p5.milestones.map((m, idx) => (
                     <div key={idx} className="flex items-baseline justify-between py-1 border-b border-[#EFE8D6] last:border-none">
                       <span className="font-mono text-xs font-bold text-charcoal-900 w-32 shrink-0">{m.date}</span>
@@ -525,7 +525,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                     <div className="text-xs font-mono font-bold text-charcoal-700 uppercase">
                       {content.p4.stat1Label} · {content.p4.stat2Prefix}{content.p4.stat2Val}{content.p4.stat2Suffix} Net Increase
                     </div>
-                    <p className="text-xs text-charcoal-600 font-sans">{content.p4.stat1Sub}</p>
+                    <p className="text-xs text-charcoal-600">{content.p4.stat1Sub}</p>
                   </div>
 
                   {/* Process Table */}
@@ -555,7 +555,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                   <h4 className="font-display text-xl font-normal text-charcoal-900">
                     {content.p4B.title}
                   </h4>
-                  <p className="text-sm text-charcoal-700 font-sans leading-relaxed">
+                  <p className="text-sm text-charcoal-700 leading-relaxed">
                     {content.p4B.desc}
                   </p>
                 </div>
@@ -623,7 +623,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                     </div>
                   </div>
 
-                  <p className="text-sm text-charcoal-700 font-sans leading-relaxed">
+                  <p className="text-sm text-charcoal-700 leading-relaxed">
                     {content.p3.roadmap}
                   </p>
                 </div>
@@ -644,7 +644,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                   <h4 className="font-display text-xl font-normal text-charcoal-900">
                     {content.p3B.title}
                   </h4>
-                  <p className="text-sm text-charcoal-700 font-sans leading-relaxed">
+                  <p className="text-sm text-charcoal-700 leading-relaxed">
                     {content.p3B.desc}
                   </p>
                 </div>
@@ -690,7 +690,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                       <div className="text-xs font-mono font-bold text-charcoal-800 uppercase">
                         {content.p2.col1Title}
                       </div>
-                      <ul className="text-xs text-charcoal-700 space-y-1 font-sans">
+                      <ul className="text-xs text-charcoal-700 space-y-1">
                         {content.p2.col1Items.map((item, idx) => (
                           <li key={idx} className="flex items-start gap-1">
                             <span className="font-bold">›</span>
@@ -704,7 +704,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                       <div className="text-xs font-mono font-bold text-charcoal-800 uppercase">
                         {content.p2.col2Title}
                       </div>
-                      <ul className="text-xs text-charcoal-700 space-y-1 font-sans">
+                      <ul className="text-xs text-charcoal-700 space-y-1">
                         {content.p2.col2Items.map((item, idx) => (
                           <li key={idx} className="flex items-start gap-1">
                             <span className="font-bold">›</span>
@@ -732,7 +732,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                   <h4 className="font-display text-xl font-normal text-charcoal-900">
                     {content.p2B.title}
                   </h4>
-                  <p className="text-sm text-charcoal-700 font-sans leading-relaxed">
+                  <p className="text-sm text-charcoal-700 leading-relaxed">
                     {content.p2B.desc}
                   </p>
                 </div>
@@ -773,7 +773,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                   </div>
 
                   {/* Clean Numbered Directives */}
-                  <div className="space-y-2 text-sm text-charcoal-800 font-sans pt-1 border-t border-[#E5DCB8]">
+                  <div className="space-y-2 text-sm text-charcoal-800 pt-1 border-t border-[#E5DCB8]">
                     {content.p1.items.map((pt, i) => (
                       <div key={i} className="space-y-0.5">
                         <div className="font-mono text-xs font-bold text-charcoal-900 uppercase">
@@ -801,7 +801,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                   <h4 className="font-display text-xl font-normal text-charcoal-900">
                     {content.p1B.title}
                   </h4>
-                  <p className="text-sm text-charcoal-700 font-sans leading-relaxed">
+                  <p className="text-sm text-charcoal-700 leading-relaxed">
                     {content.p1B.desc}
                   </p>
                 </div>
@@ -848,7 +848,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                       {content.coverTitle}
                     </h3>
 
-                    <div className="space-y-0.5 text-sm sm:text-base font-sans uppercase tracking-widest text-[#C8BEA7]">
+                    <div className="space-y-0.5 text-sm sm:text-base uppercase tracking-widest text-[#C8BEA7]">
                       <div>{content.coverSub1}</div>
                       <div>{content.coverSub2}</div>
                       <div className="text-xs font-mono text-[#A89E87] pt-1">{content.coverYear}</div>

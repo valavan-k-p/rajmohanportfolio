@@ -207,7 +207,7 @@ export function EduResources({ locale }: { locale: Locale }) {
                     >
                       {item.title} <span className="text-sm font-mono text-charcoal-400 group-hover:text-maroon-700">↗</span>
                     </a>
-                    <p className="text-sm text-charcoal-700 font-sans leading-relaxed">
+                    <p className="text-sm text-charcoal-700 leading-relaxed">
                       {item.desc}
                     </p>
                   </div>

@@ -215,6 +215,60 @@
     font-family: var(--font-noto-sans-tamil), var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
   }
 
+  /* ==========================================================================
+     SCHOOL EDUCATION — UNIFIED SERIF TYPOGRAPHY SYSTEM
+     Body text, paragraphs, descriptions, supporting text, metadata, labels,
+     and cards share the exact same elegant serif family as headings.
+     English: var(--font-serif-editorial), var(--font-display), Georgia, serif
+     Tamil:   var(--font-noto-serif-tamil), Georgia, serif
+     ========================================================================== */
+
+  .school-education-portal,
+  .school-education-portal p,
+  .school-education-portal span:not(.font-mono),
+  .school-education-portal a,
+  .school-education-portal button,
+  .school-education-portal input,
+  .school-education-portal textarea,
+  .school-education-portal select,
+  .school-education-portal label,
+  .school-education-portal li,
+  .school-education-portal td,
+  .school-education-portal th,
+  .school-education-portal div,
+  .school-education-portal blockquote,
+  .school-education-portal cite,
+  .school-education-portal small,
+  .school-education-portal .font-sans,
+  .school-education-portal .font-serif,
+  .school-education-portal .font-serif-editorial,
+  .school-education-portal .font-display,
+  .school-education-portal .font-tamil-sans,
+  .school-education-portal .font-tamil-display {
+    font-family: var(--font-serif-editorial), var(--font-display), Georgia, serif;
+  }
+
+  /* Distinct Display Serif for School Education Headings */
+  .school-education-portal h1,
+  .school-education-portal h2,
+  .school-education-portal h3,
+  .school-education-portal h4,
+  .school-education-portal h5,
+  .school-education-portal h6,
+  .school-education-portal .font-display {
+    font-family: var(--font-display), var(--font-serif-editorial), Georgia, serif;
+  }
+
+  /* Tamil Mode: Noto Serif Tamil across all text in School Education */
+  :lang(ta) .school-education-portal,
+  [lang="ta"] .school-education-portal,
+  .locale-ta .school-education-portal,
+  :lang(ta) .school-education-portal *,
+  [lang="ta"] .school-education-portal *,
+  .locale-ta .school-education-portal * {
+    font-family: var(--font-noto-serif-tamil), var(--font-instrument-serif), Georgia, serif !important;
+  }
+
   p {
     text-wrap: pretty;
   }

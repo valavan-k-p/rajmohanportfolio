@@ -111,7 +111,7 @@ export function EduHero({
           {/* Quick Navigation Links */}
           <nav
             aria-label="Section Quick Navigation"
-            className="bg-sand-50/75 hover:bg-sand-50/90 backdrop-blur-md px-4 sm:px-5 py-2 border border-sand-300/70 shadow-sm flex flex-wrap items-center gap-x-3.5 sm:gap-x-4 gap-y-1.5 text-sm text-charcoal-800 font-sans"
+            className="bg-sand-50/75 hover:bg-sand-50/90 backdrop-blur-md px-4 sm:px-5 py-2 border border-sand-300/70 shadow-sm flex flex-wrap items-center gap-x-3.5 sm:gap-x-4 gap-y-1.5 text-sm text-charcoal-800"
           >
             <span className="font-bold uppercase tracking-wider text-maroon-700 text-xs sm:text-[13px]">
               {locale === 'ta' ? 'துரித அணுகல்:' : 'Quick Nav:'}
@@ -154,7 +154,7 @@ export function EduHero({
               lang="ta"
               hrefLang="ta"
               aria-current={locale === 'ta' ? 'true' : undefined}
-              className={`px-2 py-0.5 rounded transition-all no-underline text-xs sm:text-sm font-tamil-sans hover:scale-105 active:scale-95 ${
+              className={`px-2 py-0.5 rounded transition-all no-underline text-xs sm:text-sm hover:scale-105 active:scale-95 ${
                 locale === 'ta'
                   ? 'font-bold text-maroon-700 bg-sand-200/80 border border-sand-300 shadow-xs'
                   : 'text-charcoal-700 hover:text-maroon-700'

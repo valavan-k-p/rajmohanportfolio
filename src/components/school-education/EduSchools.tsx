@@ -131,11 +131,11 @@ export function EduSchools({ locale }: { locale: Locale }) {
           <div className="pt-5 border-t border-sand-300">
             <div className="font-display text-5xl text-charcoal-900 tabular-nums font-light">
               <EduCounter value={21} duration={1.4} />{' '}
-              <span className="text-lg font-sans text-charcoal-600 font-normal">
+              <span className="text-lg text-charcoal-600 font-normal">
                 {content.metricLabel}
               </span>
             </div>
-            <div className="text-sm text-charcoal-500 mt-1 font-sans">
+            <div className="text-sm text-charcoal-500 mt-1">
               {content.metricSub}
             </div>
             <div className="text-xs text-charcoal-500 mt-3 pt-3 border-t border-sand-200 font-mono">

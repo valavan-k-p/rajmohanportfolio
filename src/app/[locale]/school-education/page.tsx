@@ -81,7 +81,7 @@ export default async function SchoolEducationBespokePage({
 
   return (
     <>
-      <main id="main" className="relative w-full bg-white text-charcoal-900">
+      <main id="main" className="relative w-full bg-white text-charcoal-900 school-education-portal">
         <EduScrollProgressBar />
         {/* 1. Executive Briefing Hero */}
         <EduHero

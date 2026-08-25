@@ -145,7 +145,7 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
               {content.counter1Label}
             </div>
           </div>
-          <div className="text-sm text-white/70 font-sans">
+          <div className="text-sm text-white/70">
             {content.counter1Sub}
           </div>
         </EduTopLineBox>
@@ -165,7 +165,7 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
               {content.counter2Label}
             </div>
           </div>
-          <div className="text-sm text-white/70 font-sans">
+          <div className="text-sm text-white/70">
             {content.counter2Sub}
           </div>
         </EduTopLineBox>
@@ -185,7 +185,7 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
               {content.counter3Label}
             </div>
           </div>
-          <div className="text-sm text-white/70 font-sans">
+          <div className="text-sm text-white/70">
             {content.counter3Sub}
           </div>
         </EduTopLineBox>
@@ -278,7 +278,7 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
       )}
 
       {/* Supporting Methodology & Sourcing Note */}
-      <EduReveal direction="fade" delay={0.1} className="pt-2 space-y-2 text-sm text-white/60 font-sans leading-relaxed border-t border-charcoal-800">
+      <EduReveal direction="fade" delay={0.1} className="pt-2 space-y-2 text-sm text-white/60 leading-relaxed border-t border-charcoal-800">
         <p>{content.accountingNote}</p>
         <p className="font-mono text-yellow-400/80">{content.citation}</p>
       </EduReveal>

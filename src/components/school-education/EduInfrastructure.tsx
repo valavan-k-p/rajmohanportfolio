@@ -99,7 +99,7 @@ export function EduInfrastructure({ locale }: { locale: Locale }) {
                 {stat.label[locale]}
               </div>
             </div>
-            <p className="text-xs text-white/70 leading-relaxed font-sans">
+            <p className="text-xs text-white/70 leading-relaxed">
               {stat.context[locale]}
             </p>
           </EduStaggerItem>
@@ -116,7 +116,7 @@ export function EduInfrastructure({ locale }: { locale: Locale }) {
               <th className="p-3.5">{content.tableHeaders.benchmark}</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-charcoal-700 font-sans text-white/90">
+          <tbody className="divide-y divide-charcoal-700 text-white/90">
             {content.tableRows.map((row, i) => (
               <tr key={i} className="hover:bg-charcoal-800/50 transition-colors">
                 <td className="p-3.5 border-r border-charcoal-700 font-medium">{row.item}</td>

@@ -162,7 +162,7 @@ export function CampusReadinessDashboard({ locale }: { locale: Locale }) {
           <div>
             <div className="font-display text-5xl text-charcoal-900 tabular-nums font-light">
               <EduCounter value={21} duration={1.4} />{' '}
-              <span className="text-xl font-sans text-maroon-700 font-semibold uppercase">
+              <span className="text-xl text-maroon-700 font-semibold uppercase">
                 {content.smartBoardLabel}
               </span>
             </div>

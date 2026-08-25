@@ -102,7 +102,7 @@ export function EduCurriculum({ locale }: { locale: Locale }) {
               {content.summaryLabel}
             </span>
           </div>
-          <div className="text-xs text-charcoal-600 font-sans mt-0.5">
+          <div className="text-xs text-charcoal-600 mt-0.5">
             {content.summarySub}
           </div>
         </div>

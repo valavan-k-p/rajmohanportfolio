@@ -87,7 +87,7 @@ export default async function PortalPage({ params }: { params: Promise<Params> }
 
   return (
     <>
-      <main id="main">
+      <main id="main" className={portal === 'school-education' ? 'school-education-portal' : undefined}>
         {portal === 'mla-egmore' ? (
           <MlaHero
             portal={portal}
