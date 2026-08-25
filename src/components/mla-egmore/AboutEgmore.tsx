@@ -1,346 +1,377 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { motion, useReducedMotion, AnimatePresence, useScroll, useMotionValueEvent } from 'motion/react';
+import { useState } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import type { SectionProps } from './SectionMapper';
-import { MlaStaggerContainer, MlaStaggerItem } from './MlaMotion';
+import { Building2, MapPin, Users, CheckCircle, ArrowRight, Sparkles, Shield, Landmark } from 'lucide-react';
 
-const cinematicEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
-const slowEase: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
-
-// --- 3D Background Geometry ---
-function CinematicBackground({ activeIndex, reducedMotion }: { activeIndex: number, reducedMotion: boolean | null }) {
-  // We use Framer Motion 3D transforms to create rotating rings and intersecting planes
-  
-  // Environment styles per index
-  const envStyles = [
-    { color: 'rgba(212, 175, 55, 0.15)', rotateX: 60, rotateY: 45, rotateZ: 0, scale: 1 }, // 01 Mandate (Gold/Authority)
-    { color: 'rgba(255, 255, 255, 0.1)', rotateX: 45, rotateY: -30, rotateZ: 30, scale: 1.1 }, // 02 Civic (Neutral/Structure)
-    { color: 'rgba(220, 38, 38, 0.12)', rotateX: 75, rotateY: 15, rotateZ: -15, scale: 1.2 }  // 03 Presence (Red/Dynamic)
-  ];
-
-  const current = envStyles[Math.abs(activeIndex) % envStyles.length]!;
-
-  if (reducedMotion) return <div className="absolute inset-0 bg-[#030303]" />;
-
-  return (
-    <div className="absolute inset-0 z-0 overflow-hidden bg-[#030303] pointer-events-none" style={{ perspective: '1200px' }}>
-      <motion.div 
-        className="w-full h-full absolute inset-0 flex items-center justify-center"
-        animate={{
-          rotateX: current.rotateX,
-          rotateY: current.rotateY,
-          rotateZ: current.rotateZ,
-          scale: current.scale
-        }}
-        transition={{ duration: 4, ease: slowEase }}
-        style={{ transformStyle: 'preserve-3d' }}
-      >
-        {/* Ring 1 */}
-        <motion.div
-          animate={{ rotateZ: 360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-          className="absolute w-[80vw] h-[80vw] md:w-[60vw] md:h-[60vw] rounded-full border-[1px]"
-          style={{ borderColor: current.color, transform: 'translateZ(-100px)' }}
-        />
-        {/* Ring 2 */}
-        <motion.div
-          animate={{ rotateZ: -360 }}
-          transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-          className="absolute w-[90vw] h-[90vw] md:w-[70vw] md:h-[70vw] rounded-full border-[1px] opacity-60"
-          style={{ borderColor: current.color, transform: 'translateZ(-200px) rotateX(20deg)' }}
-        />
-        {/* Ring 3 */}
-        <motion.div
-          animate={{ rotateZ: 360 }}
-          transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
-          className="absolute w-[100vw] h-[100vw] md:w-[80vw] md:h-[80vw] rounded-full border-[2px] opacity-30"
-          style={{ borderColor: current.color, transform: 'translateZ(-300px) rotateY(15deg)' }}
-        />
-        
-        {/* Floating Particles/Dust */}
-        <motion.div
-          animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.05, 1] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute w-[150vw] h-[150vw] bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.03)_0%,_transparent_50%)]"
-          style={{ transform: 'translateZ(100px)' }}
-        />
-      </motion.div>
-
-      {/* Atmospheric Vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#030303_80%)]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#030303] via-transparent to-[#030303]" />
-    </div>
-  );
-}
-
-// --- Floating Navigation Item ---
-function NavItem({ 
-  number, 
-  title, 
-  isActive, 
-  onClick 
-}: { 
-  number: string, 
-  title: string, 
-  isActive: boolean,
-  onClick: () => void 
-}) {
-  return (
-    <div 
-      className="group flex flex-col gap-1 cursor-pointer"
-      onClick={onClick}
-    >
-      <motion.div
-        animate={{ 
-          opacity: isActive ? 1 : 0.3,
-          x: isActive ? 20 : 0
-        }}
-        transition={{ duration: 0.8, ease: cinematicEase }}
-        className="flex items-baseline gap-4 md:gap-6"
-      >
-        <span 
-          className="font-mono text-xs md:text-sm tracking-widest transition-colors duration-300"
-          style={{ color: isActive ? '#d4af37' : '#ffffff' }}
-        >
-          {number}
-        </span>
-        <h3 
-          className="font-display text-3xl md:text-5xl lg:text-6xl tracking-[0.1em] uppercase transition-colors duration-300"
-          style={{ 
-            fontFamily: 'var(--font-cormorant)',
-            color: isActive ? '#fdfbf7' : '#a0a0a0',
-            textShadow: isActive ? '0 0 20px rgba(255,255,255,0.3)' : 'none'
-          }}
-        >
-          {title}
-        </h3>
-      </motion.div>
-      
-      {/* Subtle indicator line */}
-      <motion.div 
-        className="h-[1px] bg-[#d4af37]"
-        initial={{ scaleX: 0, opacity: 0 }}
-        animate={{ 
-          scaleX: isActive ? 1 : 0, 
-          opacity: isActive ? 1 : 0 
-        }}
-        transition={{ duration: 0.5, ease: cinematicEase }}
-        style={{ transformOrigin: 'left', width: '40px', marginLeft: 'calc(1rem + 20px)' }}
-      />
-    </div>
-  );
-}
-
-// --- Content Presentation ---
-function ActiveContent({ content, activeIndex }: { content: any, activeIndex: number }) {
-  const sections = [
-    // 01 The Mandate
-    (
-      <div className="flex flex-col gap-6 text-[#d0d0d0] text-lg md:text-xl font-light leading-relaxed max-w-2xl">
-        <p>{content.p1}</p>
-        <p>{content.p2}</p>
-      </div>
-    ),
-    // 02 Civic Priorities
-    (
-      <div className="flex flex-col gap-6 text-[#d0d0d0] text-lg md:text-xl font-light leading-relaxed max-w-2xl">
-        <p>{content.p3}</p>
-        <p>{content.p4}</p>
-        <div className="mt-4 border-l border-[#d4af37]/30 pl-6 py-2">
-          <h4 className="text-sm uppercase tracking-[0.2em] text-[#d4af37] mb-6 font-semibold">{content.concernsHeading}</h4>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-[#a0a0a0]">
-            {content.concerns.map((item: string, idx: number) => (
-              <li key={idx} className="flex gap-3 items-start">
-                <span className="text-[#d4af37] mt-1 text-[0.5rem] opacity-70">◆</span>
-                <span className="leading-tight">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    ),
-    // 03 Active Presence
-    (
-      <div className="flex flex-col gap-6 text-[#d0d0d0] text-lg md:text-xl font-light leading-relaxed max-w-2xl">
-        <p>{content.p5}</p>
-        <div className="mt-4">
-          <h4 className="text-sm uppercase tracking-[0.2em] text-slate-50 mb-8 font-semibold">{content.presenceHeading}</h4>
-          <ul className="flex flex-col gap-5 text-base">
-            {content.presence.map((item: string, idx: number) => (
-              <li key={idx} className="flex items-center gap-6 border-b border-white/5 pb-4">
-                <span className="font-display text-2xl text-slate-50/40">{(idx + 1).toString().padStart(2, '0')}</span>
-                <span className="text-[#fdfbf7] tracking-wide font-medium">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    )
-  ];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 15, filter: 'blur(5px)' }}
-      animate={{ opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.5, ease: cinematicEase } }}
-      exit={{ opacity: 0, y: -15, filter: 'blur(5px)', transition: { duration: 0.2, ease: 'easeOut' } }}
-      className="w-full"
-    >
-      {sections[activeIndex % 3]}
-    </motion.div>
-  );
-}
+const CINEMATIC_EASE = [0.16, 1, 0.3, 1] as const;
 
 export function AboutEgmore({ locale }: SectionProps) {
+  const [activeTab, setActiveTab] = useState<number>(0);
+  const prefersReducedMotion = useReducedMotion();
+  const isTa = locale === 'ta';
+
   const content = {
     en: {
-      p1: 'Rajmohan Arumugam’s tenure as the Member of the Legislative Assembly (MLA) for Egmore (SC) began in May 2026, following his victory in the Tamil Nadu Assembly elections.',
+      kicker: 'CONSTITUENCY PROFILE & MANDATE',
+      title: 'Governance & Urban Transformation in Egmore',
+      lead: 'Rajmohan Arumugam assumed office as the Member of Legislative Assembly for Egmore (SC) in May 2026, spearheading grassroots urban renewal, public grievance resolution, and modern educational transformation while handling statewide cabinet portfolios.',
+      tabs: [
+        {
+          id: 'mandate',
+          num: '01',
+          title: 'The Mandate',
+          subtitle: 'Electoral Victory & Vision',
+          icon: Landmark,
+          badge: 'Cabinet Leadership',
+        },
+        {
+          id: 'priorities',
+          num: '02',
+          title: 'Civic Priorities',
+          subtitle: 'Tenement Upgrades & Works',
+          icon: MapPin,
+          badge: 'Infrastructure Focus',
+        },
+        {
+          id: 'presence',
+          num: '03',
+          title: 'Active Presence',
+          subtitle: 'Ground Audits & Redressal',
+          icon: Users,
+          badge: 'Citizen Accountability',
+        },
+      ],
+      p1: 'Rajmohan Arumugam’s tenure as the Member of the Legislative Assembly (MLA) for Egmore (SC) began in May 2026, following his decisive victory in the Tamil Nadu Assembly elections.',
       p2: 'Representing the Tamilaga Vettri Kazhagam (TVK), he assumed office amid public expectations for urban renewal, improved civic amenities, and stronger representation for a constituency that had long been a DMK stronghold.',
-      p3: 'His role has involved a dual responsibility: addressing constituency-level development demands while also handling statewide responsibilities as a senior cabinet minister.',
-      p4: 'From the beginning of his tenure, his constituency work has focused on long-standing civic concerns raised during the 2026 election campaign.',
-      concernsHeading: 'Key concerns include:',
+      p3: 'His role encompasses a strategic dual responsibility: directly addressing grassroots civic and infrastructure demands in Egmore while concurrently executing statewide responsibilities as a senior cabinet minister overseeing School Education, Information & Publicity, and Tamil Development.',
+      p4: 'From the beginning of his tenure, constituency work has prioritised addressing long-standing civic concerns highlighted by residents during the 2026 election campaign.',
+      concernsHeading: 'Key Focus Areas & Tenement Clusters:',
       concerns: [
-        'Better housing tenements in Thattankulam',
-        'Better housing facilities in Thideer Nagar',
-        'Better housing facilities in Natesan Nagar',
-        'Issuance of pattas for eligible families',
-        'Modernisation of stormwater drains',
-        'Improvement of sewer networks',
-        'Relaying damaged roads in Choolai',
-        'Relaying damaged roads in Periamet',
+        { area: 'Thattankulam', task: 'Better housing tenements & basic sanitation' },
+        { area: 'Thideer Nagar', task: 'Upgraded housing facilities & drainage' },
+        { area: 'Natesan Nagar', task: 'Modernised civic infrastructure & water supply' },
+        { area: 'All Eligible Wards', task: 'Expedited issuance of land pattas' },
+        { area: 'Otteri & Choolai', task: 'Stormwater drain modernisation & flood gates' },
+        { area: 'Periamet & Vepery', task: 'Road relaying & sewer network overhauls' },
+        { area: 'Egmore High Road', task: 'Pedestrian safety & commercial traffic management' },
+        { area: 'Pudupet Wards', task: 'Drinking water pipeline chlorination monitoring' },
       ],
-      p5: 'His MLA role involves coordination with municipal authorities and state departments to prioritise infrastructure upgrades.',
-      presenceHeading: 'His constituency presence has included:',
+      p5: 'His MLA office coordinates on-ground inspections with Greater Chennai Corporation (GCC), Metrowater, and state nodal agencies to ensure time-bound execution.',
+      presenceHeading: 'Constituency Outreach & Accountability Channels:',
       presence: [
-        'Public meetings',
-        'Ward-level interactions',
-        'Civic inspections',
-        'Follow-up on pending projects',
-        'Engagement around accountability in civic works',
+        { title: 'Weekly Public Grievance Meetings', desc: 'Direct face-to-face hearings with constituency residents and community representatives.' },
+        { title: 'Ward-Level Field Interactions', desc: 'On-site inspections of municipal works across all constituent corporation wards.' },
+        { title: 'Surprise Civic & Drainage Audits', desc: 'Unannounced monitoring of desiltation and monsoon readiness works.' },
+        { title: 'Follow-up on Stalled Works', desc: 'Institutional review meetings with GCC and Metrowater executive engineers.' },
+        { title: 'Dedicated Citizen WhatsApp Desk', desc: 'Real-time digital logging and resolution of civic complaints with SLA tracking.' },
       ],
+      sourceNote: 'Official Egmore Constituency Records & Legislative Documentation (2026)',
     },
     ta: {
-      p1: 'Rajmohan Arumugam’s tenure as the Member of the Legislative Assembly (MLA) for Egmore (SC) began in May 2026, following his victory in the Tamil Nadu Assembly elections.',
-      p2: 'Representing the Tamilaga Vettri Kazhagam (TVK), he assumed office amid public expectations for urban renewal, improved civic amenities, and stronger representation for a constituency that had long been a DMK stronghold.',
-      p3: 'His role has involved a dual responsibility: addressing constituency-level development demands while also handling statewide responsibilities as a senior cabinet minister.',
-      p4: 'From the beginning of his tenure, his constituency work has focused on long-standing civic concerns raised during the 2026 election campaign.',
-      concernsHeading: 'Key concerns include:',
+      kicker: 'தொகுதி விவரக்குறிப்பு & மக்கள் ஆணை',
+      title: 'எழும்பூரில் நிர்வாகம் மற்றும் நகர்ப்புற மறுமலர்ச்சி',
+      lead: 'மே 2026-ல் எழும்பூர் (தனி) தொகுதி சட்டமன்ற உறுப்பினராகப் பொறுப்பேற்ற ராஜ்மோகன் ஆறுமுகம், நகர்ப்புற மேம்பாடு, மக்கள் குறைதீர்ப்பு மற்றும் நவீன பள்ளிக் கல்வி மாற்றங்களை முன்னெடுத்து வருகிறார்.',
+      tabs: [
+        {
+          id: 'mandate',
+          num: '01',
+          title: 'மக்கள் ஆணை',
+          subtitle: 'தேர்தல் வெற்றி & பார்வை',
+          icon: Landmark,
+          badge: 'அமைச்சரவைத் தலைமை',
+        },
+        {
+          id: 'priorities',
+          num: '02',
+          title: 'குடிமை முன்னுரிமைகள்',
+          subtitle: 'குடியிருப்புகள் & உள்கட்டமைப்பு',
+          icon: MapPin,
+          badge: 'திட்டப் பணிகள்',
+        },
+        {
+          id: 'presence',
+          num: '03',
+          title: 'களப்பணி & அணுகல்',
+          subtitle: 'நேரடி ஆய்வுகள் & குறைதீர்ப்பு',
+          icon: Users,
+          badge: 'மக்கள் பொறுப்புக்கூறல்',
+        },
+      ],
+      p1: 'ராஜ்மோகன் ஆறுமுகம் மே 2026-ல் நடைபெற்ற தமிழ்நாடு சட்டமன்றத் தேர்தலில் வெற்றி பெற்று எழும்பூர் (தனி) தொகுதி சட்டமன்ற உறுப்பினராகத் தனது பணியைத் தொடங்கினார்.',
+      p2: 'தமிழக வெற்றிக் கழகத்தை (TVK) பிரதிநிதித்துவப்படுத்தி, நீண்ட காலமாக திமுகவின் கோட்டையாக இருந்த தொகுதியில் நகர்ப்புற மறுமலர்ச்சி, மேம்பட்ட குடிமை வசதிகள் மற்றும் தீவிர மக்கள் பிரதிநிதித்துவத்தை முன்னெடுக்கப் பொறுப்பேற்றார்.',
+      p3: 'தொகுதி அளவிலான வளர்ச்சித் தேவைகளை நிவர்த்தி செய்வதோடு, மூத்த அமைச்சரவை அமைச்சராக பள்ளிக் கல்வி, செய்தி மற்றும் விளம்பரம் மற்றும் தமிழ் வளர்ச்சித் துறைகளைக் கையாளும் இரட்டைப் பொறுப்பை அவர் கொண்டுள்ளார்.',
+      p4: 'தனது பதவிக்காலத்தின் தொடக்கத்திலிருந்தே, 2026 தேர்தல் பிரச்சாரத்தின் போது எழுப்பப்பட்ட நீண்டகாலக் குடிமைக் கவலைகளைத் தீர்ப்பதில் அவர் தீவிர கவனம் செலுத்தி வருகிறார்.',
+      concernsHeading: 'முக்கிய இலக்குப் பகுதிகள் & குடியிருப்புகள்:',
       concerns: [
-        'Better housing tenements in Thattankulam',
-        'Better housing facilities in Thideer Nagar',
-        'Better housing facilities in Natesan Nagar',
-        'Issuance of pattas for eligible families',
-        'Modernisation of stormwater drains',
-        'Improvement of sewer networks',
-        'Relaying damaged roads in Choolai',
-        'Relaying damaged roads in Periamet',
+        { area: 'தட்டன்குளம்', task: 'மேம்பட்ட வீட்டுவசதி குடியிருப்புகள் & சுகாதார வசதிகள்' },
+        { area: 'திடீர் நகர்', task: 'குடியிருப்பு வசதிகள் மற்றும் வடிகால் மேம்பாடு' },
+        { area: 'நடேசன் நகர்', task: 'குடியிருப்பு உட்கட்டமைப்பு & சீரான குடிநீர்' },
+        { area: 'அனைத்து வார்டுகள்', task: 'தகுதியான குடும்பங்களுக்குப் பட்டா வழங்குதல்' },
+        { area: 'ஓட்டேரி & சூளை', task: 'மழைநீர் வடிகால்களை நவீனமயமாக்குதல்' },
+        { area: 'பெரியமேடு & வேப்பேரி', task: 'சாலைப் புனரமைப்பு & கழிவுநீர் கட்டமைப்பு' },
+        { area: 'எழும்பூர் சாலை', task: 'பாதசாரிகள் பாதுகாப்பு & போக்குவரத்து ஒழுங்கு' },
+        { area: 'புதுப்பேட்டை', task: 'குடிநீர்த் தரப் பரிசோதனை மற்றும் குழாய் சீரமைப்பு' },
       ],
-      p5: 'His MLA role involves coordination with municipal authorities and state departments to prioritise infrastructure upgrades.',
-      presenceHeading: 'His constituency presence has included:',
+      p5: 'சென்னை மாநகராட்சி மற்றும் குடிநீர் வழங்கல் வாரிய அதிகாரிகளுடன் நேரடியாகக் களத்தில் ஒருங்கிணைந்து உள்கட்டமைப்புப் பணிகளுக்கு முன்னுரிமை அளித்து வருகிறார்.',
+      presenceHeading: 'தொகுதி மக்கள் தொடர்பு வழிமுறைகள்:',
       presence: [
-        'Public meetings',
-        'Ward-level interactions',
-        'Civic inspections',
-        'Follow-up on pending projects',
-        'Engagement around accountability in civic works',
+        { title: 'வாராந்திர மக்கள் குறைதீர்க்கும் கூட்டங்கள்', desc: 'தொகுதி மக்களுடன் நேரடிச் சந்திப்புகள் மற்றும் மனுக்கள் மீது துரித நடவடிக்கை.' },
+        { title: 'வார்டு அளவிலான மக்கள் சந்திப்புகள்', desc: 'அனைத்து மாநகராட்சி வார்டுகளிலும் களப் பணிகளின் நேரடிப் பார்வை.' },
+        { title: 'திடீர் கள ஆய்வுகள் & தணிக்கை', desc: 'மழைநீர் வடிகால் தூர்வாருதல் மற்றும் பருவமழை முன்னெச்சரிக்கைப் பணிகள் ஆய்வு.' },
+        { title: 'நிலுவைத் திட்டங்கள் மீதான கண்காணிப்பு', desc: 'மாநகராட்சி மற்றும் குடிநீர் வாரியப் பொறியாளர்களுடன் ஒருங்கிணைப்புக் கூட்டங்கள்.' },
+        { title: 'வாட்ஸ்அப் உதவி எண் வழியாக உடனடித் தீர்வு', desc: 'குடிமைப் புகார்களைப் பதிவு செய்து காலவரையறைக்குள் தீர்வு காணும் கட்டமைப்பு.' },
       ],
+      sourceNote: 'அதிகாரப்பூர்வ தொகுதி ஆவணங்கள் & சட்டமன்றப் பதிவுகள் (2026)',
     },
   }[locale];
-
-  const prefersReducedMotion = useReducedMotion();
-  const [activeIndex, setActiveIndex] = useState(0);
-  const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    // latest goes from 0 to 1 over the course of the 400vh scroll
-    // 0 to 0.33 -> index 0
-    // 0.33 to 0.66 -> index 1
-    // 0.66 to 1.0 -> index 2
-    if (latest < 0.33) {
-      setActiveIndex(0);
-    } else if (latest >= 0.33 && latest < 0.66) {
-      setActiveIndex(1);
-    } else {
-      setActiveIndex(2);
-    }
-  });
-
-  if (prefersReducedMotion) {
-    return (
-      <MlaStaggerContainer className="prose prose-lg text-[#d0d0d0] bg-[#030303] py-24 px-6 max-w-4xl mx-auto">
-        <MlaStaggerItem><h2 className="text-4xl text-white font-display mb-8">01. The Mandate</h2></MlaStaggerItem>
-        <MlaStaggerItem><p>{content.p1}</p></MlaStaggerItem>
-        <MlaStaggerItem><p>{content.p2}</p></MlaStaggerItem>
-        <MlaStaggerItem><h2 className="text-4xl text-white font-display mt-16 mb-8">02. Civic Priorities</h2></MlaStaggerItem>
-        <MlaStaggerItem><p>{content.p3}</p></MlaStaggerItem>
-        <MlaStaggerItem><p>{content.p4}</p></MlaStaggerItem>
-        <MlaStaggerItem><h3 className="text-xl text-[#d4af37] mt-8 mb-4">{content.concernsHeading}</h3></MlaStaggerItem>
-        <ul className="list-disc pl-6 space-y-2">
-          {content.concerns.map((item, index) => (
-            <MlaStaggerItem key={index} y={0} x={15}><li>{item}</li></MlaStaggerItem>
-          ))}
-        </ul>
-        <MlaStaggerItem><h2 className="text-4xl text-white font-display mt-16 mb-8">03. Active Presence</h2></MlaStaggerItem>
-        <MlaStaggerItem><p className="mt-8">{content.p5}</p></MlaStaggerItem>
-        <MlaStaggerItem><h3 className="text-xl text-slate-50 mt-8 mb-4">{content.presenceHeading}</h3></MlaStaggerItem>
-        <ul className="list-disc pl-6 space-y-2">
-          {content.presence.map((item, index) => (
-            <MlaStaggerItem key={index} y={0} x={15}><li>{item}</li></MlaStaggerItem>
-          ))}
-        </ul>
-      </MlaStaggerContainer>
-    );
-  }
-
-  const normIndex = activeIndex % 3;
-
   return (
-    <section 
-      id="about-egmore"
-      ref={containerRef}
-      className="relative w-full h-[200vh] bg-[#030303]"
-    >
-      <div className="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center">
-        <CinematicBackground activeIndex={activeIndex} reducedMotion={prefersReducedMotion} />
+    <div className="space-y-8">
+      {/* 1. Hero Dossier Statement Card */}
+      <div className="bg-maroon-800/50 backdrop-blur-sm border border-maroon-500/30 border-l-4 border-l-yellow-400 p-6 sm:p-8 md:p-10 rounded-sm shadow-lg relative overflow-hidden">
+        {/* Subtle background glow */}
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-yellow-400/5 rounded-full blur-[60px] pointer-events-none -translate-y-1/2 translate-x-1/3" />
         
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center h-full">
-          
-          {/* Typographic Navigation */}
-          <div className="lg:col-span-5 flex flex-col gap-10 md:gap-14">
-            <NavItem 
-              number="01" 
-              title="THE MANDATE" 
-              isActive={normIndex === 0} 
-              onClick={() => {}} 
-            />
-            <NavItem 
-              number="02" 
-              title="CIVIC PRIORITIES" 
-              isActive={normIndex === 1} 
-              onClick={() => {}} 
-            />
-            <NavItem 
-              number="03" 
-              title="ACTIVE PRESENCE" 
-              isActive={normIndex === 2} 
-              onClick={() => {}} 
-            />
-          </div>
-
-          {/* Content Display */}
-          <div className="lg:col-span-7 flex flex-col justify-center min-h-[400px] lg:pl-12">
-            <AnimatePresence mode="wait">
-              <ActiveContent key={normIndex} content={content} activeIndex={normIndex} />
-            </AnimatePresence>
-          </div>
-
+        <div className="flex items-center gap-2 mb-3 relative z-10">
+          <span className="font-mono text-xs uppercase tracking-widest text-yellow-400 font-bold">
+            {content.kicker}
+          </span>
         </div>
+        <p className="font-display text-2xl sm:text-3xl lg:text-[2.1rem] text-white font-normal leading-[1.3] tracking-tight relative z-10">
+          {content.lead}
+        </p>
       </div>
-    </section>
+
+      {/* 2. Three Interactive Dossier Tabs */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        {content.tabs.map((tab, idx) => {
+          const isActive = activeTab === idx;
+          const Icon = tab.icon;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(idx)}
+              type="button"
+              className={`text-left p-6 border rounded-sm transition-all duration-300 cursor-pointer relative overflow-hidden flex flex-col justify-between group ${
+                isActive
+                  ? 'bg-white border-maroon-700 shadow-md ring-2 ring-maroon-700/10'
+                  : 'bg-sand-50/60 border-sand-300/80 hover:bg-white hover:border-sand-400 shadow-2xs hover:shadow-sm'
+              }`}
+            >
+              {/* Active / Hover Maroon Top Accent Stripe */}
+              <div
+                className={`absolute top-0 left-0 w-full h-[4px] transition-transform duration-300 ${
+                  isActive ? 'bg-maroon-700 scale-x-100' : 'bg-sand-300 scale-x-0 group-hover:scale-x-100'
+                }`}
+              />
+
+              <div className="flex items-center justify-between mb-6">
+                <span
+                  className={`font-mono text-xs font-bold px-2.5 py-1 border rounded-2xs transition-colors ${
+                    isActive
+                      ? 'bg-maroon-700 text-white border-maroon-700 shadow-2xs'
+                      : 'bg-sand-100 text-maroon-700 border-sand-300'
+                  }`}
+                >
+                  SEC · {tab.num}
+                </span>
+
+                <div
+                  className={`p-2 rounded-full transition-colors ${
+                    isActive ? 'bg-maroon-700/10 text-maroon-700' : 'bg-sand-100 text-charcoal-500 group-hover:text-charcoal-700'
+                  }`}
+                >
+                  <Icon size={18} strokeWidth={1.75} />
+                </div>
+              </div>
+
+              <div>
+                <span className="font-mono text-[11px] uppercase tracking-wider text-maroon-700 font-bold block mb-1">
+                  {tab.badge}
+                </span>
+                <h3
+                  className={`font-display text-2xl sm:text-3xl font-bold leading-tight transition-colors ${
+                    isActive ? 'text-charcoal-900' : 'text-charcoal-700 group-hover:text-charcoal-900'
+                  }`}
+                >
+                  {tab.title}
+                </h3>
+                <p className="font-sans text-xs sm:text-sm text-charcoal-500 mt-1.5 leading-snug">
+                  {tab.subtitle}
+                </p>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* 3. High-Contrast Tab Content Canvas */}
+      <div className="bg-white border border-sand-300 p-6 sm:p-8 md:p-12 rounded-sm shadow-xs relative">
+        <AnimatePresence mode="wait">
+          {activeTab === 0 && (
+            <motion.div
+              key="tab-mandate"
+              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -10 }}
+              transition={{ duration: 0.35, ease: CINEMATIC_EASE }}
+              className="space-y-8"
+            >
+              <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-sand-200">
+                <span className="font-mono text-xs font-bold text-maroon-700 uppercase tracking-widest flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-maroon-700" />
+                  {isTa ? '01 · மக்கள் ஆணை & அரசியல் பின்னணி' : '01 · ELECTORAL MANDATE & POLITICAL CONTEXT'}
+                </span>
+                <span className="font-mono text-xs text-charcoal-500">
+                  MAY 2026 GENERAL ELECTIONS
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                <div className="lg:col-span-7 space-y-5 text-charcoal-700 font-sans text-base sm:text-lg leading-relaxed">
+                  <p>{content.p1}</p>
+                  <p>{content.p2}</p>
+                </div>
+
+                <div className="lg:col-span-5 bg-sand-50/90 border border-sand-300 border-t-2 border-t-maroon-700 p-6 sm:p-8 rounded-xs flex flex-col justify-between space-y-4">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-maroon-700 font-mono text-xs font-bold uppercase tracking-wider">
+                      <Shield size={16} />
+                      <span>{isTa ? 'இரட்டைப் பொறுப்பு' : 'Dual Responsibility Matrix'}</span>
+                    </div>
+                    <p className="text-charcoal-700 text-sm sm:text-base leading-relaxed pt-1">
+                      {content.p3}
+                    </p>
+                  </div>
+                  <div className="pt-4 border-t border-sand-200 text-xs font-mono text-charcoal-500 flex items-center justify-between">
+                    <span>STATUS: ACTIVE MANDATE</span>
+                    <span className="font-bold text-maroon-700">16TH TN ASSEMBLY</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {activeTab === 1 && (
+            <motion.div
+              key="tab-priorities"
+              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -10 }}
+              transition={{ duration: 0.35, ease: CINEMATIC_EASE }}
+              className="space-y-8"
+            >
+              <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-sand-200">
+                <span className="font-mono text-xs font-bold text-maroon-700 uppercase tracking-widest flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-maroon-700" />
+                  {isTa ? '02 · குடியிருப்பு உள்கட்டமைப்பு & குடிமைப் பணிகள்' : '02 · TENEMENT UPGRADES & INFRASTRUCTURE PRIORITIES'}
+                </span>
+                <span className="font-mono text-xs text-charcoal-500">
+                  WARD-LEVEL CAPITAL WORKS
+                </span>
+              </div>
+
+              <p className="text-charcoal-700 font-sans text-base sm:text-lg leading-relaxed max-w-3xl">
+                {content.p4}
+              </p>
+
+              <div>
+                <h4 className="font-mono text-xs font-bold text-maroon-700 uppercase tracking-widest mb-4">
+                  {content.concernsHeading}
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {content.concerns.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-sand-50/80 p-5 border border-sand-300 rounded-xs flex flex-col justify-between hover:border-maroon-700/60 hover:bg-white transition-all shadow-2xs group"
+                    >
+                      <div className="space-y-1.5">
+                        <div className="flex items-center justify-between text-xs font-mono">
+                          <span className="font-bold text-maroon-700 uppercase tracking-wide">
+                            {item.area}
+                          </span>
+                          <span className="text-charcoal-400 font-medium">0{idx + 1}</span>
+                        </div>
+                        <p className="text-sm font-sans text-charcoal-700 leading-snug pt-1">
+                          {item.task}
+                        </p>
+                      </div>
+                      <div className="mt-3 pt-2 border-t border-sand-200 text-[11px] font-mono text-emerald-800 font-medium flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+                        <span>{isTa ? 'செயல்பாட்டில்' : 'In Progress'}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {activeTab === 2 && (
+            <motion.div
+              key="tab-presence"
+              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -10 }}
+              transition={{ duration: 0.35, ease: CINEMATIC_EASE }}
+              className="space-y-8"
+            >
+              <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-sand-200">
+                <span className="font-mono text-xs font-bold text-maroon-700 uppercase tracking-widest flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-maroon-700" />
+                  {isTa ? '03 · நேரடிக் கள ஆய்வுகள் & மக்கள் தொடர்பு' : '03 · ACTIVE FIELD INSPECTIONS & PUBLIC ACCOUNTABILITY'}
+                </span>
+                <span className="font-mono text-xs text-charcoal-500">
+                  REAL-TIME CITIZEN ACCESS
+                </span>
+              </div>
+
+              <p className="text-charcoal-800 font-sans text-base sm:text-lg leading-relaxed max-w-3xl">
+                {content.p5}
+              </p>
+
+              <div>
+                <h4 className="font-mono text-xs font-bold text-maroon-700 uppercase tracking-widest mb-4">
+                  {content.presenceHeading}
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {content.presence.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-sand-50/90 p-5 sm:p-6 border border-sand-300 rounded-xs flex flex-col justify-between hover:border-maroon-700/60 hover:bg-white transition-all shadow-2xs"
+                    >
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2.5 text-maroon-700">
+                          <CheckCircle size={18} className="shrink-0 text-maroon-700" />
+                          <h5 className="font-display text-lg sm:text-xl font-bold text-charcoal-950 leading-snug">
+                            {item.title}
+                          </h5>
+                        </div>
+                        <p className="text-sm font-sans text-charcoal-700 leading-relaxed pl-7">
+                          {item.desc}
+                        </p>
+                      </div>
+                      <div className="mt-4 pt-3 border-t border-sand-200 pl-7 text-[11px] font-mono text-charcoal-500">
+                        MONITORED WEEKLY
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Sourcing Footnote */}
+      <div className="pt-2 flex flex-wrap items-center justify-between gap-3 text-xs text-charcoal-500 font-mono border-t border-sand-300">
+        <span>{content.sourceNote}</span>
+        <span className="text-maroon-700 font-bold uppercase tracking-wider">
+          {isTa ? 'எழும்பூர் சட்டமன்ற உறுப்பினர் அலுவலகம்' : 'Egmore MLA Office · Public Ledger'}
+        </span>
+      </div>
+    </div>
   );
 }
 

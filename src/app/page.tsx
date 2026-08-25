@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, getTranslations } from 'next-intl/server';
+import { getMessages } from 'next-intl/server';
 import { MasterNavigation } from '@/components/navigation/MasterNavigation';
 import { Navbar } from '@/components/navigation/Navbar';
 
@@ -24,7 +24,6 @@ export const metadata: Metadata = {
  */
 export default async function MasterNavigationPage() {
   const messages = await getMessages();
-  const t = await getTranslations('site');
 
   return (
     <NextIntlClientProvider messages={messages}>

@@ -2,6 +2,12 @@
 
 import type { InfoSectionProps } from './InfoTypes';
 import { Calendar, ExternalLink, Globe } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
+import {
+  InfoReveal,
+  InfoStaggerContainer,
+  InfoStaggerItem,
+} from './InfoMotion';
 
 interface AnnouncementItem {
   id: string;
@@ -87,33 +93,36 @@ const ANNOUNCEMENTS: AnnouncementItem[] = [
 
 export function InfoAnnouncements({ locale }: InfoSectionProps) {
   const isTa = locale === 'ta';
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <div className="space-y-10">
-      {/* Chronological Announcements Stream */}
-      <div className="space-y-4">
+      {/* Chronological Announcements Stream with Stagger */}
+      <InfoStaggerContainer className="space-y-4" stagger={0.08}>
         {ANNOUNCEMENTS.map((item) => (
-          <div
+          <InfoStaggerItem
             key={item.id}
-            className={`p-6 border rounded-sm transition-colors ${
+            direction="up"
+            showTopLine={false}
+            className={`p-6 sm:p-7 border rounded-sm transition-all shadow-2xs hover:shadow-sm ${
               item.highlight
-                ? 'bg-sand-50/80 border-maroon-700/60 border-l-4'
+                ? 'bg-sand-50/90 border-maroon-700/60 border-l-4'
                 : 'bg-white border-sand-300 hover:border-maroon-700'
             }`}
           >
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-xs font-bold uppercase bg-charcoal-900 text-white px-2 py-0.5">
+              <div className="flex items-center gap-2.5">
+                <span className="font-mono text-xs font-bold uppercase bg-charcoal-900 text-white px-2.5 py-0.5 rounded-2xs">
                   {isTa ? item.badgeTa : item.badgeEn}
                 </span>
-                <span className="font-mono text-xs text-charcoal-500 flex items-center gap-1">
+                <span className="font-mono text-xs text-charcoal-500 flex items-center gap-1.5">
                   <Calendar className="w-3.5 h-3.5 text-maroon-700" />
                   {isTa ? item.monthTa : item.monthEn}
                 </span>
               </div>
               {item.highlight && (
-                <span className="font-mono text-[11px] font-bold text-maroon-700 uppercase">
-                  ★ {isTa ? 'முதன்மை அறிவிப்பு' : 'Key Milestone'}
+                <span className="font-mono text-[11px] font-bold text-maroon-700 uppercase flex items-center gap-1">
+                  <span className="animate-pulse text-yellow-500">★</span> {isTa ? 'முதன்மை அறிவிப்பு' : 'Key Milestone'}
                 </span>
               )}
             </div>
@@ -125,90 +134,100 @@ export function InfoAnnouncements({ locale }: InfoSectionProps) {
             <p className="text-xs sm:text-sm text-charcoal-700 font-sans leading-relaxed">
               {isTa ? item.descriptionTa : item.descriptionEn}
             </p>
-          </div>
+          </InfoStaggerItem>
         ))}
-      </div>
+      </InfoStaggerContainer>
 
-      {/* Official Directory / Source Websites and Links */}
-      <div className="bg-charcoal-900 text-white p-6 sm:p-8 md:p-10 rounded-sm space-y-6">
-        <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-charcoal-800">
-          <div className="flex items-center gap-3">
-            <Globe className="w-5 h-5 text-yellow-400" />
-            <h3 className="font-display text-2xl text-white font-medium">
-              {isTa ? 'அதிகாரப்பூர்வ தகவல் ஆதாரங்கள் மற்றும் இணையதளங்கள்' : 'Official Information Sources & Verified Portals'}
-            </h3>
+      {/* Official Directory / Source Websites with Staggered Entrance */}
+      <InfoReveal direction="up" delay={0.15} showTopLine={false}>
+        <div className="bg-charcoal-900 text-white p-6 sm:p-8 md:p-10 rounded-sm space-y-6 shadow-md">
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-charcoal-800">
+            <div className="flex items-center gap-3">
+              <Globe className="w-5 h-5 text-yellow-400" />
+              <h3 className="font-display text-2xl text-white font-medium">
+                {isTa ? 'அதிகாரப்பூர்வ தகவல் ஆதாரங்கள் மற்றும் இணையதளங்கள்' : 'Official Information Sources & Verified Portals'}
+              </h3>
+            </div>
+            <span className="font-mono text-xs text-yellow-400">
+              {isTa ? 'சரிபார்க்கப்பட்ட அரசு இணைப்புகள்' : 'VERIFIED GOVERNMENT LINKS'}
+            </span>
           </div>
-          <span className="font-mono text-xs text-yellow-400">
-            {isTa ? 'சரிபார்க்கப்பட்ட அரசு இணைப்புகள்' : 'VERIFIED GOVERNMENT LINKS'}
-          </span>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
+            <motion.a
+              href="https://www.youtube.com/channel/UCPWnoINnA43mptLCQH9B9qw"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={prefersReducedMotion ? {} : { y: -3 }}
+              transition={{ duration: 0.2 }}
+              className="p-4 bg-charcoal-800/80 border border-charcoal-700 hover:border-yellow-400/80 transition-all flex items-center justify-between group rounded-xs shadow-2xs"
+            >
+              <div>
+                <div className="font-bold text-white text-sm font-display group-hover:text-yellow-400 transition-colors">
+                  {isTa ? 'TN DIPR அதிகாரப்பூர்வ யூடியூப் சேனல்' : 'TN DIPR Official YouTube Channel'}
+                </div>
+                <div className="text-charcoal-400 font-mono text-[11px] mt-0.5">
+                  {isTa ? 'அரசு காணொளிகள், பிரச்சார படங்கள்' : 'Government videos & press briefings'}
+                </div>
+              </div>
+              <ExternalLink className="w-4 h-4 text-charcoal-400 group-hover:text-yellow-400 shrink-0 ml-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </motion.a>
+
+            <motion.a
+              href="https://lokbhavan.tn.gov.in/category/press-release/"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={prefersReducedMotion ? {} : { y: -3 }}
+              transition={{ duration: 0.2 }}
+              className="p-4 bg-charcoal-800/80 border border-charcoal-700 hover:border-yellow-400/80 transition-all flex items-center justify-between group rounded-xs shadow-2xs"
+            >
+              <div>
+                <div className="font-bold text-white text-sm font-display group-hover:text-yellow-400 transition-colors">
+                  {isTa ? 'லோக் பவன் (ஆளுநர் செயலகம்) செய்திக் குறிப்புகள்' : 'Lok Bhavan (Governor’s Secretariat) Releases'}
+                </div>
+                <div className="text-charcoal-400 font-mono text-[11px] mt-0.5">
+                  lokbhavan.tn.gov.in/category/press-release
+                </div>
+              </div>
+              <ExternalLink className="w-4 h-4 text-charcoal-400 group-hover:text-yellow-400 shrink-0 ml-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </motion.a>
+
+            <motion.a
+              href="https://x.com/TNDIPRNEWS"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={prefersReducedMotion ? {} : { y: -3 }}
+              transition={{ duration: 0.2 }}
+              className="p-4 bg-charcoal-800/80 border border-charcoal-700 hover:border-yellow-400/80 transition-all flex items-center justify-between group rounded-xs shadow-2xs"
+            >
+              <div>
+                <div className="font-bold text-white text-sm font-display group-hover:text-yellow-400 transition-colors">
+                  {isTa ? 'TN DIPR எக்ஸ் (Twitter) பக்கம்' : 'TN DIPR Official X (Twitter) Channel'}
+                </div>
+                <div className="text-charcoal-400 font-mono text-[11px] mt-0.5">@TNDIPRNEWS</div>
+              </div>
+              <ExternalLink className="w-4 h-4 text-charcoal-400 group-hover:text-yellow-400 shrink-0 ml-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </motion.a>
+
+            <motion.a
+              href="https://www.facebook.com/share/1CFFTdrjUP/"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={prefersReducedMotion ? {} : { y: -3 }}
+              transition={{ duration: 0.2 }}
+              className="p-4 bg-charcoal-800/80 border border-charcoal-700 hover:border-yellow-400/80 transition-all flex items-center justify-between group rounded-xs shadow-2xs"
+            >
+              <div>
+                <div className="font-bold text-white text-sm font-display group-hover:text-yellow-400 transition-colors">
+                  {isTa ? 'TN DIPR அதிகாரப்பூர்வ முகநூல் பக்கம்' : 'TN DIPR Official Facebook Page'}
+                </div>
+                <div className="text-charcoal-400 font-mono text-[11px] mt-0.5">facebook.com/share/1CFFTdrjUP/</div>
+              </div>
+              <ExternalLink className="w-4 h-4 text-charcoal-400 group-hover:text-yellow-400 shrink-0 ml-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </motion.a>
+          </div>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
-          <a
-            href="https://www.youtube.com/channel/UCPWnoINnA43mptLCQH9B9qw"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-4 bg-charcoal-800/80 border border-charcoal-700 hover:border-yellow-400 transition-colors flex items-center justify-between group"
-          >
-            <div>
-              <div className="font-bold text-white text-sm font-display group-hover:text-yellow-400 transition-colors">
-                {isTa ? 'TN DIPR அதிகாரப்பூர்வ யூடியூப் சேனல்' : 'TN DIPR Official YouTube Channel'}
-              </div>
-              <div className="text-charcoal-400 font-mono text-[11px] mt-0.5">
-                {isTa ? 'அரசு காணொளிகள், பிரச்சார படங்கள்' : 'Government videos & press briefings'}
-              </div>
-            </div>
-            <ExternalLink className="w-4 h-4 text-charcoal-400 group-hover:text-yellow-400 shrink-0 ml-2" />
-          </a>
-
-          <a
-            href="https://lokbhavan.tn.gov.in/category/press-release/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-4 bg-charcoal-800/80 border border-charcoal-700 hover:border-yellow-400 transition-colors flex items-center justify-between group"
-          >
-            <div>
-              <div className="font-bold text-white text-sm font-display group-hover:text-yellow-400 transition-colors">
-                {isTa ? 'லோக் பவன் (ஆளுநர் செயலகம்) செய்திக் குறிப்புகள்' : 'Lok Bhavan (Governor’s Secretariat) Releases'}
-              </div>
-              <div className="text-charcoal-400 font-mono text-[11px] mt-0.5">
-                lokbhavan.tn.gov.in/category/press-release
-              </div>
-            </div>
-            <ExternalLink className="w-4 h-4 text-charcoal-400 group-hover:text-yellow-400 shrink-0 ml-2" />
-          </a>
-
-          <a
-            href="https://x.com/TNDIPRNEWS"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-4 bg-charcoal-800/80 border border-charcoal-700 hover:border-yellow-400 transition-colors flex items-center justify-between group"
-          >
-            <div>
-              <div className="font-bold text-white text-sm font-display group-hover:text-yellow-400 transition-colors">
-                {isTa ? 'TN DIPR எக்ஸ் (Twitter) பக்கம்' : 'TN DIPR Official X (Twitter) Channel'}
-              </div>
-              <div className="text-charcoal-400 font-mono text-[11px] mt-0.5">@TNDIPRNEWS</div>
-            </div>
-            <ExternalLink className="w-4 h-4 text-charcoal-400 group-hover:text-yellow-400 shrink-0 ml-2" />
-          </a>
-
-          <a
-            href="https://www.facebook.com/share/1CFFTdrjUP/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-4 bg-charcoal-800/80 border border-charcoal-700 hover:border-yellow-400 transition-colors flex items-center justify-between group"
-          >
-            <div>
-              <div className="font-bold text-white text-sm font-display group-hover:text-yellow-400 transition-colors">
-                {isTa ? 'TN DIPR அதிகாரப்பூர்வ முகநூல் பக்கம்' : 'TN DIPR Official Facebook Page'}
-              </div>
-              <div className="text-charcoal-400 font-mono text-[11px] mt-0.5">facebook.com/share/1CFFTdrjUP/</div>
-            </div>
-            <ExternalLink className="w-4 h-4 text-charcoal-400 group-hover:text-yellow-400 shrink-0 ml-2" />
-          </a>
-        </div>
-      </div>
+      </InfoReveal>
     </div>
   );
 }

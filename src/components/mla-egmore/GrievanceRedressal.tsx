@@ -24,20 +24,20 @@ export function GrievanceRedressal({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-12 lg:gap-24 items-start">
-      <MlaStaggerContainer className="prose prose-lg text-slate-900 prose-headings:font-display prose-headings:font-normal">
-        <MlaStaggerItem><p className="text-xl leading-relaxed mb-12">{content.p1}</p></MlaStaggerItem>
+    <MlaStaggerContainer className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-12 lg:gap-20 items-start">
+      <MlaStaggerContainer className="prose prose-lg text-charcoal-900 prose-headings:font-display prose-headings:font-normal font-sans">
+        <MlaStaggerItem><p className="text-xl text-charcoal-800 leading-relaxed mb-10">{content.p1}</p></MlaStaggerItem>
         
-        <MlaStaggerItem><h3 className="text-2xl mt-8 mb-4">{content.meetingsTitle}</h3></MlaStaggerItem>
-        <MlaStaggerItem><p>{content.meetingsBody}</p></MlaStaggerItem>
+        <MlaStaggerItem><h3 className="text-2xl font-display font-bold text-charcoal-950 mt-8 mb-3">{content.meetingsTitle}</h3></MlaStaggerItem>
+        <MlaStaggerItem><p className="text-charcoal-700 text-base leading-relaxed">{content.meetingsBody}</p></MlaStaggerItem>
 
-        <MlaStaggerItem><h3 className="text-2xl mt-8 mb-4">{content.digitalTitle}</h3></MlaStaggerItem>
-        <MlaStaggerItem><p>{content.digitalBody}</p></MlaStaggerItem>
+        <MlaStaggerItem><h3 className="text-2xl font-display font-bold text-charcoal-950 mt-8 mb-3">{content.digitalTitle}</h3></MlaStaggerItem>
+        <MlaStaggerItem><p className="text-charcoal-700 text-base leading-relaxed">{content.digitalBody}</p></MlaStaggerItem>
       </MlaStaggerContainer>
 
-      <MlaStaggerItem className="bg-slate-50 p-8 border-t-4 border-slate-50/30 text-center">
-        <div className="text-sm uppercase tracking-widest text-slate-900 font-medium mb-3">{content.whatsappLabel}</div>
-        <div className="font-display text-3xl text-slate-900 tracking-wider">
+      <MlaStaggerItem className="bg-sand-50 p-8 border-t-4 border-maroon-700 border border-sand-300 rounded-xs text-center shadow-xs">
+        <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-3">{content.whatsappLabel}</div>
+        <div className="font-display text-3xl md:text-4xl text-charcoal-950 font-bold tracking-wider">
           {content.whatsappNumber}
         </div>
       </MlaStaggerItem>

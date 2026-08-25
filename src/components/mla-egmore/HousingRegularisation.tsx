@@ -42,25 +42,25 @@ export function HousingRegularisation({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="prose prose-lg text-slate-900 prose-headings:font-display prose-headings:font-normal prose-li:marker:text-slate-900 space-y-6">
-      <MlaStaggerItem><p>{content.p1}</p></MlaStaggerItem>
+    <MlaStaggerContainer className="prose prose-lg text-charcoal-900 prose-headings:font-display prose-headings:font-normal prose-li:marker:text-maroon-700 font-sans space-y-6">
+      <MlaStaggerItem><p className="text-charcoal-700 leading-relaxed text-base md:text-lg">{content.p1}</p></MlaStaggerItem>
       
-      <MlaStaggerItem><h3 className="text-xl mt-8 mb-4">{content.listHeading}</h3></MlaStaggerItem>
-      <ul className="list-disc pl-6 space-y-2">
+      <MlaStaggerItem><h3 className="text-xl font-display font-bold text-charcoal-950 mt-8 mb-4">{content.listHeading}</h3></MlaStaggerItem>
+      <ul className="list-disc pl-6 space-y-2 text-charcoal-700 text-base">
         {content.list.map((item, index) => (
           <MlaStaggerItem key={index} y={0} x={15}><li>{item}</li></MlaStaggerItem>
         ))}
       </ul>
 
-      <MlaStaggerItem><h3 className="text-xl mt-8 mb-4">{content.locationsHeading}</h3></MlaStaggerItem>
-      <ul className="list-disc pl-6 space-y-2">
+      <MlaStaggerItem><h3 className="text-xl font-display font-bold text-charcoal-950 mt-8 mb-4">{content.locationsHeading}</h3></MlaStaggerItem>
+      <ul className="list-disc pl-6 space-y-2 text-charcoal-700 text-base">
         {content.locations.map((item, index) => (
           <MlaStaggerItem key={index} y={0} x={15}><li>{item}</li></MlaStaggerItem>
         ))}
       </ul>
 
       <MlaStaggerItem>
-        <div className="mt-8 p-4 bg-slate-50 border-l-4 border-slate-200 text-base italic text-slate-900">
+        <div className="mt-8 p-4 bg-sand-50 border-l-4 border-maroon-700 border border-sand-300 rounded-xs text-sm italic text-charcoal-800">
           {content.note}
         </div>
       </MlaStaggerItem>

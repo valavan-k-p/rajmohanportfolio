@@ -52,19 +52,19 @@ export function AssemblyChallenges({ locale }: SectionProps) {
         body: (
           <div className="space-y-6">
             <div className="flex flex-wrap gap-8">
-              <div className="bg-white p-4 border border-slate-200 min-w-[200px]">
-                <div className="text-sm uppercase tracking-widest text-slate-900 mb-1">2025–26</div>
-                <div className="font-display text-3xl">₹46,767 <span className="text-lg font-sans text-slate-900">crore</span></div>
+              <div className="bg-sand-50 p-4 border border-sand-300 rounded-xs min-w-[200px] shadow-xs">
+                <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-1">2025–26</div>
+                <div className="font-display text-3xl text-charcoal-900 font-bold">₹46,767 <span className="text-sm font-sans font-normal text-charcoal-600">crore</span></div>
               </div>
-              <div className="bg-white p-4 border border-slate-200 min-w-[200px]">
-                <div className="text-sm uppercase tracking-widest text-slate-900 mb-1">2026–27</div>
-                <div className="font-display text-3xl">₹44,527 <span className="text-lg font-sans text-slate-900">crore</span></div>
+              <div className="bg-sand-50 p-4 border border-sand-300 rounded-xs min-w-[200px] shadow-xs">
+                <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-1">2026–27</div>
+                <div className="font-display text-3xl text-charcoal-900 font-bold">₹44,527 <span className="text-sm font-sans font-normal text-charcoal-600">crore</span></div>
               </div>
             </div>
-            <p>
+            <p className="text-charcoal-700 font-sans text-base leading-relaxed">
               Opposition members criticised the allocation, arguing that the reduction could affect infrastructure upgrades, teacher recruitment, and student welfare schemes.
             </p>
-            <p>
+            <p className="text-charcoal-700 font-sans text-base leading-relaxed">
               Rajmohan counterargued that the allocation was not a cut in real terms, stating that the previous government had not fully utilised its budget. He pointed to new investments in AI education, school modernisation, and breakfast schemes as evidence of continued commitment.
             </p>
           </div>
@@ -74,7 +74,7 @@ export function AssemblyChallenges({ locale }: SectionProps) {
         date: 'August 2026',
         title: 'FCRA Amendment Bill Resolution',
         body: (
-          <div className="space-y-4">
+          <div className="space-y-4 text-charcoal-700 font-sans text-base leading-relaxed">
             <p>
               Rajmohan moved a resolution opposing the Union government’s FCRA Amendment Bill, 2026. His stated concerns included potential negative effects on minority-run educational institutions, social welfare institutions, charitable organisations, schools, hospitals, and welfare bodies.
             </p>
@@ -90,7 +90,7 @@ export function AssemblyChallenges({ locale }: SectionProps) {
         date: 'ஜூன் 2026',
         title: 'சட்டமன்ற நிகழ்வுகளின் நேரடி ஒளிபரப்பு',
         body: (
-          <div className="space-y-4">
+          <div className="space-y-4 text-charcoal-700 font-sans text-base leading-relaxed">
             <p>
               சட்டமன்ற நிகழ்வுகளின் நேரடி ஒளிபரப்பில் முறைகேடுகள் நடந்ததாகக் கூறி, ராஜ்மோகனின் தகவல் துறையை எதிர்க்கட்சித் தலைவர் உதயநிதி ஸ்டாலின் விமர்சித்தார். அமர்வுகள் தேர்ந்தெடுக்கப்பட்டு ஒளிபரப்பப்பட்டன, ஆளும் கட்சிக்குச் சாதகமாகத் திருத்தப்பட்ட காணொளிகள் வெளியிடப்பட்டன, ஆளுநர் உரை தொடர்பான விவாதங்களின் போது நேரடி ஒளிபரப்பு தடைபட்டது மற்றும் எதிர்க்கட்சிகளின் பேச்சுகள் நசுக்கப்பட்டன என்ற குற்றச்சாட்டுகள் இதில் அடங்கும்.
             </p>
@@ -104,7 +104,7 @@ export function AssemblyChallenges({ locale }: SectionProps) {
         date: 'ஜூன் 2026',
         title: 'சட்டம் ஒழுங்கு மற்றும் பெண்கள் பாதுகாப்பு',
         body: (
-          <div className="space-y-4">
+          <div className="space-y-4 text-charcoal-700 font-sans text-base leading-relaxed">
             <p>
               பெண்களுக்கு எதிரான குற்றங்கள், அண்ணா பல்கலைக்கழக பாலியல் வன்கொடுமை வழக்கு மற்றும் அண்ணா நகரில் காவல்துறை அத்துமீறல் குற்றச்சாட்டுகள் தொடர்பான சட்டமன்ற விவாதங்களின் போது, நிர்வாகத்தின் சட்டம் ஒழுங்கு பதிவை ராஜ்மோகன் பாதுகாத்துப் பேசினார்.
             </p>
@@ -118,7 +118,7 @@ export function AssemblyChallenges({ locale }: SectionProps) {
         date: 'ஜூலை 2026',
         title: 'அமைச்சரவை சகாவைப் பாதுகாத்தல்',
         body: (
-          <div className="space-y-4">
+          <div className="space-y-4 text-charcoal-700 font-sans text-base leading-relaxed">
             <p>
               தொழில்துறை அமைச்சர் எஸ்.கீர்த்தனா ஒரு அரசுப் பள்ளியை ஆய்வு செய்யும் காணொளி வைரலான பிறகு ஒரு சர்ச்சை எழுந்தது. ஒரு மாணவரிடம் அவர் இரக்கமற்ற முறையில் நடந்து கொண்டதாக விமர்சகர்கள் குற்றம் சாட்டினர்.
             </p>
@@ -133,20 +133,20 @@ export function AssemblyChallenges({ locale }: SectionProps) {
         title: 'பள்ளிக் கல்வி பட்ஜெட்',
         body: (
           <div className="space-y-6">
-            <div className="flex flex-wrap gap-8">
-              <div className="bg-white p-4 border border-slate-200 min-w-[200px]">
-                <div className="text-sm uppercase tracking-widest text-slate-900 mb-1">2025–26</div>
-                <div className="font-display text-3xl">₹46,767 <span className="text-lg font-sans text-slate-900">கோடி</span></div>
+            <div className="flex flex-wrap gap-6">
+              <div className="bg-sand-50 p-4 border border-sand-300 rounded-xs min-w-[200px] shadow-xs">
+                <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-1">2025–26</div>
+                <div className="font-display text-3xl text-charcoal-900 font-bold">₹46,767 <span className="text-sm font-sans font-normal text-charcoal-600">கோடி</span></div>
               </div>
-              <div className="bg-white p-4 border border-slate-200 min-w-[200px]">
-                <div className="text-sm uppercase tracking-widest text-slate-900 mb-1">2026–27</div>
-                <div className="font-display text-3xl">₹44,527 <span className="text-lg font-sans text-slate-900">கோடி</span></div>
+              <div className="bg-sand-50 p-4 border border-sand-300 rounded-xs min-w-[200px] shadow-xs">
+                <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-1">2026–27</div>
+                <div className="font-display text-3xl text-charcoal-900 font-bold">₹44,527 <span className="text-sm font-sans font-normal text-charcoal-600">கோடி</span></div>
               </div>
             </div>
-            <p>
+            <p className="text-charcoal-700 font-sans text-base leading-relaxed">
               நிதி ஒதுக்கீடு குறைக்கப்பட்டதால் உள்கட்டமைப்பு மேம்பாடுகள், ஆசிரியர் நியமனம் மற்றும் மாணவர் நலத் திட்டங்கள் பாதிக்கப்படலாம் என்று வாதிட்டு எதிர்க்கட்சி உறுப்பினர்கள் இந்த ஒதுக்கீட்டை விமர்சித்தனர்.
             </p>
-            <p>
+            <p className="text-charcoal-700 font-sans text-base leading-relaxed">
               முந்தைய அரசாங்கம் தனது பட்ஜெட்டை முழுமையாகப் பயன்படுத்தவில்லை என்று கூறி, இந்த ஒதுக்கீடு உண்மையான சொற்களில் குறைப்பு அல்ல என்று ராஜ்மோகன் எதிர்வாதம் செய்தார். செயற்கை நுண்ணறிவு கல்வி, பள்ளி நவீனமயமாக்கல் மற்றும் காலை உணவுத் திட்டங்கள் ஆகியவற்றுக்கான புதிய முதலீடுகளை அவர் தொடர்ச்சியான அர்ப்பணிப்புக்கான சான்றாகச் சுட்டிக்காட்டினார்.
             </p>
           </div>
@@ -156,7 +156,7 @@ export function AssemblyChallenges({ locale }: SectionProps) {
         date: 'ஆகஸ்ட் 2026',
         title: 'FCRA திருத்த மசோதா தீர்மானம்',
         body: (
-          <div className="space-y-4">
+          <div className="space-y-4 text-charcoal-700 font-sans text-base leading-relaxed">
             <p>
               ஒன்றிய அரசின் FCRA திருத்த மசோதா, 2026 ஐ எதிர்த்து ராஜ்மோகன் ஒரு தீர்மானத்தை முன்மொழிந்தார். சிறுபான்மையினரால் நடத்தப்படும் கல்வி நிறுவனங்கள், சமூக நல நிறுவனங்கள், தொண்டு நிறுவனங்கள், பள்ளிகள், மருத்துவமனைகள் மற்றும் நலன்புரி அமைப்புகள் மீது ஏற்படக்கூடிய எதிர்மறையான விளைவுகள் குறித்து அவர் தனது கவலைகளைத் தெரிவித்தார்.
             </p>
@@ -170,15 +170,15 @@ export function AssemblyChallenges({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="space-y-16 max-w-4xl">
+    <MlaStaggerContainer className="space-y-12 max-w-4xl">
       {content.map((item, idx) => (
-        <div key={idx} className="relative pl-8 md:pl-12 pb-2">
-          <MlaVerticalLineReveal className="absolute left-0 top-0 bottom-0 w-[2px] bg-red-200" />
+        <div key={idx} className="relative pl-8 md:pl-10 pb-2">
+          <MlaVerticalLineReveal className="absolute left-0 top-0 bottom-0 w-[2px] bg-sand-300" />
           <MlaStaggerItem x={20} y={0}>
-            <div className="absolute left-0 top-1.5 -translate-x-1/2 w-4 h-4 rounded-full bg-slate-50 ring-4 ring-white" />
-            <div className="text-sm uppercase tracking-widest text-slate-900 font-medium mb-2">{item.date}</div>
-            <h3 className="font-display text-2xl md:text-3xl text-slate-900 mb-6">{item.title}</h3>
-            <div className="text-lg text-slate-900 leading-relaxed">
+            <div className="absolute left-0 top-1.5 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-maroon-700 ring-4 ring-sand-50" />
+            <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-1.5">{item.date}</div>
+            <h3 className="font-display text-2xl md:text-3xl text-charcoal-900 font-bold mb-4">{item.title}</h3>
+            <div className="text-charcoal-700 leading-relaxed font-sans text-base">
               {item.body}
             </div>
           </MlaStaggerItem>

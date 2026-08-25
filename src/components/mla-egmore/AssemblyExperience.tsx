@@ -14,14 +14,14 @@ export function AssemblyExperience({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="text-center space-y-6">
+    <MlaStaggerContainer className="text-center space-y-6 max-w-4xl mx-auto">
       <MlaStaggerItem>
-        <p className="text-2xl md:text-3xl font-light text-slate-900 leading-relaxed">
+        <p className="text-2xl md:text-3xl font-display text-charcoal-950 leading-relaxed font-medium">
           {content.p1}
         </p>
       </MlaStaggerItem>
       <MlaStaggerItem>
-        <p className="text-lg md:text-xl text-slate-900 max-w-3xl mx-auto">
+        <p className="text-base md:text-lg font-sans text-charcoal-700 max-w-3xl mx-auto leading-relaxed">
           {content.p2}
         </p>
       </MlaStaggerItem>

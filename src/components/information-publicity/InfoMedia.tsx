@@ -2,6 +2,11 @@
 
 import type { InfoSectionProps } from './InfoTypes';
 import { Newspaper, ExternalLink, Radio, Tv, Camera } from 'lucide-react';
+import {
+  InfoReveal,
+  InfoStaggerContainer,
+  InfoStaggerItem,
+} from './InfoMotion';
 
 interface MediaOutlet {
   name: string;
@@ -48,10 +53,15 @@ export function InfoMedia({ locale }: InfoSectionProps) {
   return (
     <div className="space-y-10">
       {/* Media Coordination Capabilities */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 border border-sand-300 rounded-sm space-y-3">
+      <InfoStaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6" stagger={0.1}>
+        <InfoStaggerItem
+          direction="up"
+          showTopLine={true}
+          topLineColor="bg-maroon-700"
+          className="bg-white p-6 sm:p-7 border border-sand-300 rounded-sm space-y-3 shadow-xs hover:shadow-sm hover:border-maroon-700/60 transition-all group"
+        >
           <div className="flex items-center gap-2.5 text-maroon-700">
-            <Tv className="w-5 h-5" />
+            <Tv className="w-5 h-5 group-hover:scale-110 transition-transform" />
             <h4 className="font-display text-lg text-charcoal-900 font-medium">
               {isTa ? 'செய்தியாளர் சந்திப்புகள் & அறிவிப்புகள்' : 'Press Conferences & Briefings'}
             </h4>
@@ -61,11 +71,16 @@ export function InfoMedia({ locale }: InfoSectionProps) {
               ? 'முக்கிய அமைச்சரவை முடிவுகள் மற்றும் அரசு கொள்கைகள் குறித்து தலைமைச் செயலகத்தில் வழக்கமான செய்தியாளர் சந்திப்புகளை DIPR ஒருங்கிணைக்கிறது.'
               : 'DIPR conducts regular accredited press briefings and media coordination sessions at the Secretariat for major cabinet policy releases.'}
           </p>
-        </div>
+        </InfoStaggerItem>
 
-        <div className="bg-white p-6 border border-sand-300 rounded-sm space-y-3">
+        <InfoStaggerItem
+          direction="up"
+          showTopLine={true}
+          topLineColor="bg-maroon-700"
+          className="bg-white p-6 sm:p-7 border border-sand-300 rounded-sm space-y-3 shadow-xs hover:shadow-sm hover:border-maroon-700/60 transition-all group"
+        >
           <div className="flex items-center gap-2.5 text-maroon-700">
-            <Radio className="w-5 h-5" />
+            <Radio className="w-5 h-5 group-hover:scale-110 transition-transform" />
             <h4 className="font-display text-lg text-charcoal-900 font-medium">
               {isTa ? 'அச்சு & தொலைக்காட்சிக்கு செய்திக் குறிப்புகள்' : 'Broadcast & Print Press Notes'}
             </h4>
@@ -75,11 +90,16 @@ export function InfoMedia({ locale }: InfoSectionProps) {
               ? 'அனைத்து முன்னணி தமிழ் மற்றும் ஆங்கில நாளிதழ்கள், தொலைக்காட்சி சேனல்கள் மற்றும் வானொலி நிலையங்களுக்கு உடனடி செய்திக் குறிப்புகள் விநியோகம்.'
               : 'Direct real-time dispatch of bilingual press notes, high-resolution photographs, and transcripts to newsrooms statewide.'}
           </p>
-        </div>
+        </InfoStaggerItem>
 
-        <div className="bg-white p-6 border border-sand-300 rounded-sm space-y-3">
+        <InfoStaggerItem
+          direction="up"
+          showTopLine={true}
+          topLineColor="bg-maroon-700"
+          className="bg-white p-6 sm:p-7 border border-sand-300 rounded-sm space-y-3 shadow-xs hover:shadow-sm hover:border-maroon-700/60 transition-all group"
+        >
           <div className="flex items-center gap-2.5 text-maroon-700">
-            <Camera className="w-5 h-5" />
+            <Camera className="w-5 h-5 group-hover:scale-110 transition-transform" />
             <h4 className="font-display text-lg text-charcoal-900 font-medium">
               {isTa ? 'பண்பாட்டு & வரலாற்று ஊடக ஆவணங்கள்' : 'Heritage & Media Documentation'}
             </h4>
@@ -89,51 +109,58 @@ export function InfoMedia({ locale }: InfoSectionProps) {
               ? '"மெட்ராஸ் ஆன் ஸ்டேஜ்" போன்ற புகைப்பட கண்காட்சிகள் மூலம் சென்னையின் ஊடக மற்றும் பண்பாட்டு வரலாற்றை அமைச்சர் ராஜமோகன் முன்னிலையில் கொண்டாடுதல்.'
               : 'Spotlighting regional media heritage through cultural events like "Madras on Stage", honoring journalistic institutions including The Hindu.'}
           </p>
-        </div>
-      </div>
+        </InfoStaggerItem>
+      </InfoStaggerContainer>
 
       {/* Major Media Coverage Index */}
-      <div className="bg-sand-100/70 p-6 sm:p-8 border border-sand-300 rounded-sm space-y-6">
-        <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-sand-300">
-          <div className="flex items-center gap-2">
-            <Newspaper className="w-5 h-5 text-maroon-700" />
-            <h3 className="font-display text-xl text-charcoal-900 font-medium">
-              {isTa ? 'ஊடக வெளியீடுகள் மற்றும் செய்தித் தளங்கள்' : 'Major News Coverage & Press Outlets'}
-            </h3>
+      <InfoReveal direction="up" delay={0.15} showTopLine={false}>
+        <div className="bg-sand-100/80 p-6 sm:p-8 border border-sand-300 rounded-sm space-y-6 shadow-2xs">
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-sand-300">
+            <div className="flex items-center gap-2">
+              <Newspaper className="w-5 h-5 text-maroon-700" />
+              <h3 className="font-display text-xl text-charcoal-900 font-medium">
+                {isTa ? 'ஊடக வெளியீடுகள் மற்றும் செய்தித் தளங்கள்' : 'Major News Coverage & Press Outlets'}
+              </h3>
+            </div>
+            <span className="text-xs font-mono text-charcoal-500 uppercase">
+              {isTa ? 'அரசு அறிக்கைகளின் ஊடகப் பதிவுகள்' : 'Verified Media Archives'}
+            </span>
           </div>
-          <span className="text-xs font-mono text-charcoal-500 uppercase">
-            {isTa ? 'அரசு அறிக்கைகளின் ஊடகப் பதிவுகள்' : 'Verified Media Archives'}
-          </span>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {OUTLETS.map((outlet) => (
-            <div
-              key={outlet.name}
-              className="bg-white p-5 border border-sand-300 rounded-xs flex flex-col justify-between hover:border-maroon-700 transition-colors"
-            >
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <h4 className="font-display text-lg text-charcoal-950 font-bold">{outlet.name}</h4>
-                  <span className="font-mono text-xs text-charcoal-500 bg-sand-100 px-2 py-0.5 border border-sand-200">
-                    {outlet.type}
+          <InfoStaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-4" stagger={0.08}>
+            {OUTLETS.map((outlet) => (
+              <InfoStaggerItem
+                key={outlet.name}
+                direction="up"
+                showTopLine={false}
+                className="bg-white p-5 border border-sand-300 rounded-xs flex flex-col justify-between hover:border-maroon-700 hover:shadow-xs transition-all group"
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-display text-lg text-charcoal-950 font-bold group-hover:text-maroon-800 transition-colors">
+                      {outlet.name}
+                    </h4>
+                    <span className="font-mono text-xs text-charcoal-600 bg-sand-100 px-2 py-0.5 border border-sand-200">
+                      {outlet.type}
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-charcoal-600 font-sans leading-relaxed">
+                    {isTa ? outlet.coverageTa : outlet.coverageEn}
+                  </p>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-sand-200 flex items-center justify-between text-xs">
+                  <span className="font-mono text-charcoal-400 font-semibold">{outlet.linkText}</span>
+                  <span className="text-maroon-700 font-mono text-xs font-bold inline-flex items-center gap-1 group-hover:underline">
+                    <span>{isTa ? 'செய்திப் பதிவுகள்' : 'Press Archive'}</span>
+                    <ExternalLink className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </span>
                 </div>
-                <p className="text-xs text-charcoal-600 font-sans">
-                  {isTa ? outlet.coverageTa : outlet.coverageEn}
-                </p>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-sand-200 flex items-center justify-between text-xs">
-                <span className="font-mono text-charcoal-400 font-semibold">{outlet.linkText}</span>
-                <span className="text-maroon-700 font-mono text-xs font-bold inline-flex items-center gap-1">
-                  {isTa ? 'செய்திப் பதிவுகள்' : 'Press Archive'} <ExternalLink className="w-3 h-3" />
-                </span>
-              </div>
-            </div>
-          ))}
+              </InfoStaggerItem>
+            ))}
+          </InfoStaggerContainer>
         </div>
-      </div>
+      </InfoReveal>
     </div>
   );
 }

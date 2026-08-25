@@ -63,15 +63,15 @@ export function NeerEzhilPalli({ locale, inverted }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className={`space-y-16 ${inverted ? 'text-white' : 'text-slate-900'}`}>
+    <MlaStaggerContainer className={`space-y-16 ${inverted ? 'text-white' : 'text-charcoal-900'}`}>
       <div className="max-w-4xl mx-auto text-center">
         <MlaStaggerItem>
-          <p className={`text-xl md:text-2xl font-light leading-relaxed ${inverted ? 'text-slate-50' : 'text-slate-900'}`}>
+          <p className={`text-xl md:text-2xl font-light leading-relaxed font-sans ${inverted ? 'text-sand-100' : 'text-charcoal-800'}`}>
             {content.subheading}
           </p>
         </MlaStaggerItem>
         <MlaStaggerItem>
-          <p className="mt-6 text-lg">
+          <p className="mt-6 text-base md:text-lg font-sans text-charcoal-700">
             {content.intro}
           </p>
         </MlaStaggerItem>
@@ -79,13 +79,13 @@ export function NeerEzhilPalli({ locale, inverted }: SectionProps) {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
         <MlaStaggerContainer>
-          <MlaStaggerItem><h3 className="text-2xl font-display mb-6 pb-2 border-b border-slate-50/30 inline-block">{content.objectivesTitle}</h3></MlaStaggerItem>
-          <ul className="space-y-4 text-lg">
+          <MlaStaggerItem><h3 className="text-2xl font-display mb-6 pb-2 border-b border-sand-300 inline-block text-charcoal-950 font-bold">{content.objectivesTitle}</h3></MlaStaggerItem>
+          <ul className="space-y-4 text-base font-sans">
             {content.objectives.map((obj, i) => (
               <MlaStaggerItem key={i} y={0} x={15}>
-                <li className="flex gap-4">
-                  <span className="text-slate-50 font-bold shrink-0">{(i + 1).toString().padStart(2, '0')}</span>
-                  <span className={inverted ? 'text-slate-50' : 'text-slate-900'}>{obj}</span>
+                <li className="flex gap-4 items-start">
+                  <span className="font-mono text-xs font-bold text-maroon-700 bg-sand-100 px-2 py-0.5 border border-sand-300 shrink-0">{(i + 1).toString().padStart(2, '0')}</span>
+                  <span className={inverted ? 'text-sand-100' : 'text-charcoal-800'}>{obj}</span>
                 </li>
               </MlaStaggerItem>
             ))}
@@ -94,23 +94,17 @@ export function NeerEzhilPalli({ locale, inverted }: SectionProps) {
 
         <div className="space-y-12">
           <MlaStaggerContainer>
-            <MlaStaggerItem><h3 className="text-2xl font-display mb-4">{content.techTitle}</h3></MlaStaggerItem>
-            <MlaStaggerItem><p className={`text-lg mb-6 ${inverted ? 'text-slate-50' : 'text-slate-900'}`}>{content.techBody1}</p></MlaStaggerItem>
+            <MlaStaggerItem><h3 className="text-2xl font-display mb-4 text-charcoal-950 font-bold">{content.techTitle}</h3></MlaStaggerItem>
+            <MlaStaggerItem><p className={`text-base font-sans mb-6 ${inverted ? 'text-sand-100' : 'text-charcoal-700'}`}>{content.techBody1}</p></MlaStaggerItem>
             
             <MlaStaggerItem>
-              <div className={`p-6 border-l-4 border-slate-50/30 ${inverted ? 'bg-white/5' : 'bg-slate-50'}`}>
-                <div className="text-sm uppercase tracking-widest text-slate-50 mb-2">{content.capacityLabel}</div>
+              <div className={`p-6 border-l-4 border-maroon-700 rounded-xs ${inverted ? 'bg-white/5' : 'bg-sand-50/90 border border-sand-200'}`}>
+                <div className="text-xs uppercase tracking-widest font-mono text-maroon-700 font-bold mb-2">{content.capacityLabel}</div>
                 <MlaReveal scale={0.96}>
-                  <div className="flex items-center gap-2 mb-1">
-                    <Droplets size={24} className="text-slate-50" strokeWidth={1.5} />
-                    <div 
-                      className="text-4xl text-white" 
-                      style={{ 
-                        fontFamily: 'var(--font-cormorant)', 
-                        textShadow: '0 0 10px rgba(138, 115, 163, 0.3)' 
-                      }}
-                    >
-                      <MlaCounter value={25000} format="number" /> <span className="text-xl font-sans text-slate-50">{content.capacityUnit}</span>
+                  <div className="flex items-center gap-3 mb-1">
+                    <Droplets size={24} className="text-maroon-700" strokeWidth={1.5} />
+                    <div className="text-4xl font-display text-charcoal-950 font-bold">
+                      <MlaCounter value={25000} format="number" /> <span className="text-xl font-sans font-normal text-charcoal-600">{content.capacityUnit}</span>
                     </div>
                   </div>
                 </MlaReveal>
@@ -118,31 +112,31 @@ export function NeerEzhilPalli({ locale, inverted }: SectionProps) {
             </MlaStaggerItem>
 
             <MlaStaggerItem>
-              <div className={`mt-6 p-4 text-center font-mono text-sm tracking-wide border ${inverted ? 'border-white/20 text-slate-50' : 'border-slate-200 text-slate-900'}`}>
+              <div className={`mt-6 p-4 text-center font-mono text-xs tracking-wide border rounded-xs ${inverted ? 'border-white/20 text-sand-100' : 'border-sand-300 bg-white text-charcoal-800'}`}>
                 {content.techPathway}
               </div>
             </MlaStaggerItem>
           </MlaStaggerContainer>
 
           <MlaStaggerContainer>
-            <MlaStaggerItem><h3 className="text-2xl font-display mb-4">{content.eduTitle}</h3></MlaStaggerItem>
-            <MlaStaggerItem><p className={`text-lg ${inverted ? 'text-slate-50' : 'text-slate-900'}`}>{content.eduBody}</p></MlaStaggerItem>
+            <MlaStaggerItem><h3 className="text-2xl font-display mb-4 text-charcoal-950 font-bold">{content.eduTitle}</h3></MlaStaggerItem>
+            <MlaStaggerItem><p className={`text-base font-sans ${inverted ? 'text-sand-100' : 'text-charcoal-700'}`}>{content.eduBody}</p></MlaStaggerItem>
           </MlaStaggerContainer>
         </div>
       </div>
 
-      <MlaStaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t border-white/20">
+      <MlaStaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t border-sand-300">
         <MlaStaggerItem>
-          <h4 className="text-xl font-display mb-3 text-slate-50">{content.implTitle}</h4>
-          <p className={inverted ? 'text-slate-50' : 'text-slate-900'}>{content.implBody}</p>
+          <h4 className="text-xl font-display mb-3 text-charcoal-950 font-bold">{content.implTitle}</h4>
+          <p className={`text-sm font-sans leading-relaxed ${inverted ? 'text-sand-100' : 'text-charcoal-700'}`}>{content.implBody}</p>
         </MlaStaggerItem>
         <MlaStaggerItem>
-          <h4 className="text-xl font-display mb-3 text-slate-50">{content.expansionTitle}</h4>
-          <p className={inverted ? 'text-slate-50' : 'text-slate-900'}>{content.expansionBody}</p>
+          <h4 className="text-xl font-display mb-3 text-charcoal-950 font-bold">{content.expansionTitle}</h4>
+          <p className={`text-sm font-sans leading-relaxed ${inverted ? 'text-sand-100' : 'text-charcoal-700'}`}>{content.expansionBody}</p>
         </MlaStaggerItem>
         <MlaStaggerItem>
-          <h4 className="text-xl font-display mb-3 text-slate-50">{content.significanceTitle}</h4>
-          <p className={inverted ? 'text-slate-50' : 'text-slate-900'}>{content.significanceBody}</p>
+          <h4 className="text-xl font-display mb-3 text-charcoal-950 font-bold">{content.significanceTitle}</h4>
+          <p className={`text-sm font-sans leading-relaxed ${inverted ? 'text-sand-100' : 'text-charcoal-700'}`}>{content.significanceBody}</p>
         </MlaStaggerItem>
       </MlaStaggerContainer>
     </MlaStaggerContainer>

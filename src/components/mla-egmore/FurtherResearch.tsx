@@ -20,26 +20,26 @@ export function FurtherResearch({ locale }: SectionProps) {
   return (
     <MlaStaggerContainer className="max-w-3xl mx-auto text-center">
       <MlaStaggerItem>
-        <p className="text-xl text-slate-900 mb-8 font-light">
+        <p className="text-xl text-charcoal-800 mb-8 font-light font-sans">
           {content.p1}
         </p>
       </MlaStaggerItem>
       
       <MlaStaggerItem>
-        <div className="space-y-6 text-lg text-slate-900 mb-12 text-left bg-slate-50 p-8 border border-slate-200">
-          <div className="flex gap-4">
-            <span className="text-slate-50 font-bold shrink-0">1</span>
+        <div className="space-y-4 text-base text-charcoal-700 font-sans mb-10 text-left bg-white p-6 sm:p-8 border border-sand-300 rounded-xs shadow-xs">
+          <div className="flex gap-3.5 items-start">
+            <span className="font-mono text-xs font-bold text-maroon-700 bg-sand-100 px-2 py-0.5 border border-sand-300 shrink-0">1</span>
             <span>{content.item1}</span>
           </div>
-          <div className="flex gap-4">
-            <span className="text-slate-50 font-bold shrink-0">2</span>
+          <div className="flex gap-3.5 items-start">
+            <span className="font-mono text-xs font-bold text-maroon-700 bg-sand-100 px-2 py-0.5 border border-sand-300 shrink-0">2</span>
             <span>{content.item2}</span>
           </div>
         </div>
       </MlaStaggerItem>
 
       <MlaStaggerItem>
-        <div className="inline-block px-6 py-3 border border-red-200 text-slate-900 uppercase tracking-widest text-sm font-medium">
+        <div className="inline-block px-6 py-3 border border-sand-300 bg-sand-50 text-charcoal-800 font-mono uppercase tracking-widest text-xs font-bold rounded-2xs">
           {content.note}
         </div>
       </MlaStaggerItem>

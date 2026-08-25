@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import type { SectionProps } from './SectionMapper';
 import { MlaStaggerContainer, MlaStaggerItem } from './MlaMotion';
 import { motion } from 'motion/react';
@@ -38,13 +38,13 @@ export function CivicWork({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="prose prose-lg text-slate-900 prose-headings:font-display prose-headings:font-normal">
-      <MlaStaggerItem><p>{content.p1}</p></MlaStaggerItem>
-      <MlaStaggerItem><p className="mb-10">{content.p2}</p></MlaStaggerItem>
+    <MlaStaggerContainer className="prose prose-lg text-charcoal-900 prose-headings:font-display prose-headings:font-normal font-sans">
+      <MlaStaggerItem><p className="text-charcoal-700 leading-relaxed text-base md:text-lg">{content.p1}</p></MlaStaggerItem>
+      <MlaStaggerItem><p className="mb-10 text-charcoal-700 leading-relaxed text-base md:text-lg">{content.p2}</p></MlaStaggerItem>
       
       <div className="break-inside-avoid mt-2">
         <MlaStaggerItem>
-          <h3 className="text-2xl mb-6 text-slate-900 tracking-wide">
+          <h3 className="text-2xl mb-6 text-charcoal-950 font-display font-bold tracking-tight">
             {content.concernsHeading}
           </h3>
         </MlaStaggerItem>
@@ -55,7 +55,7 @@ export function CivicWork({ locale }: SectionProps) {
               <motion.div 
                 whileHover="hover"
                 initial="rest"
-                className="relative overflow-hidden border border-slate-900/60 rounded-sm p-4 flex items-center group cursor-default bg-white/40 shadow-sm"
+                className="relative overflow-hidden border border-sand-300 rounded-xs p-4 flex items-center group cursor-default bg-white shadow-2xs hover:border-maroon-700 transition-colors"
               >
                 <motion.div 
                   variants={{
@@ -63,10 +63,10 @@ export function CivicWork({ locale }: SectionProps) {
                     hover: { x: 0 }
                   }}
                   transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.5 }}
-                  className="absolute inset-0 bg-slate-900 z-0"
+                  className="absolute inset-0 bg-maroon-700 z-0"
                 />
-                <div className="relative z-10 w-1.5 h-1.5 rotate-45 border border-slate-900/30 bg-transparent mr-4 group-hover:border-slate-200 group-hover:bg-slate-50 transition-colors duration-300" />
-                <span className="relative z-10 text-sm md:text-base font-medium text-slate-900 group-hover:text-slate-50 transition-colors duration-300">
+                <div className="relative z-10 w-1.5 h-1.5 rotate-45 border border-maroon-700/60 bg-transparent mr-4 group-hover:border-sand-100 group-hover:bg-sand-100 transition-colors duration-300" />
+                <span className="relative z-10 text-sm md:text-base font-medium text-charcoal-900 group-hover:text-white font-sans transition-colors duration-300">
                   {item}
                 </span>
               </motion.div>

@@ -16,10 +16,10 @@ export function OverallAssessment({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="prose prose-lg text-slate-900 prose-headings:font-display prose-headings:font-normal">
-      <MlaStaggerItem><p className="lead text-xl mb-8">{content.p1}</p></MlaStaggerItem>
-      <MlaStaggerItem><p>{content.p2}</p></MlaStaggerItem>
-      <MlaStaggerItem><p className="mt-6">{content.p3}</p></MlaStaggerItem>
+    <MlaStaggerContainer className="prose prose-lg text-charcoal-900 prose-headings:font-display prose-headings:font-normal font-sans">
+      <MlaStaggerItem><p className="lead text-xl text-charcoal-800 leading-relaxed mb-6">{content.p1}</p></MlaStaggerItem>
+      <MlaStaggerItem><p className="text-base md:text-lg text-charcoal-700 leading-relaxed mb-6">{content.p2}</p></MlaStaggerItem>
+      <MlaStaggerItem><p className="text-base md:text-lg text-charcoal-700 leading-relaxed">{content.p3}</p></MlaStaggerItem>
     </MlaStaggerContainer>
   );
 }

@@ -32,16 +32,16 @@ export function WaterSupply({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="prose prose-lg text-slate-900 prose-headings:font-display prose-headings:font-normal prose-li:marker:text-slate-900">
-      <MlaStaggerItem><p>{content.p1}</p></MlaStaggerItem>
-      <MlaStaggerItem><p>{content.p2}</p></MlaStaggerItem>
-      <MlaStaggerItem><h3 className="text-xl mt-8 mb-4">{content.interventionsHeading}</h3></MlaStaggerItem>
-      <ul className="list-disc pl-6 space-y-2">
+    <MlaStaggerContainer className="prose prose-lg text-charcoal-900 prose-headings:font-display prose-headings:font-normal prose-li:marker:text-maroon-700 font-sans">
+      <MlaStaggerItem><p className="text-charcoal-700 text-base md:text-lg leading-relaxed">{content.p1}</p></MlaStaggerItem>
+      <MlaStaggerItem><p className="text-charcoal-700 text-base md:text-lg leading-relaxed">{content.p2}</p></MlaStaggerItem>
+      <MlaStaggerItem><h3 className="text-xl font-display font-bold text-charcoal-950 mt-8 mb-4">{content.interventionsHeading}</h3></MlaStaggerItem>
+      <ul className="list-disc pl-6 space-y-2 text-charcoal-700 text-base">
         {content.interventions.map((item, index) => (
           <MlaStaggerItem key={index} y={0} x={15}><li>{item}</li></MlaStaggerItem>
         ))}
       </ul>
-      <MlaStaggerItem><p className="mt-8 text-base text-slate-900 italic border-l-2 border-slate-200 pl-4">{content.note}</p></MlaStaggerItem>
+      <MlaStaggerItem><p className="mt-8 text-sm text-charcoal-800 italic border-l-4 border-maroon-700 bg-sand-50 p-4 border border-sand-300 rounded-xs">{content.note}</p></MlaStaggerItem>
     </MlaStaggerContainer>
   );
 }

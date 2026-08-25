@@ -99,35 +99,32 @@ export function ConstituencyPriorities({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <MlaStaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
       {content.map((category, idx) => (
         <MlaStaggerItem key={idx} y={25} className="h-full">
           <MlaHoverCard className="h-full group">
-            <div className="bg-slate-50 p-6 border border-slate-200 shadow-sm h-full transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:border-slate-900 group-hover:shadow-[0_15px_30px_-5px_rgba(138,115,163,0.15)] relative overflow-hidden">
-              {/* Red accent line that expands on hover */}
-              <div className="absolute top-0 left-0 w-full h-[3px] bg-slate-900 scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100" />
+            <div className="bg-white p-6 border border-sand-300 rounded-xs shadow-xs h-full transition-all duration-500 ease-out group-hover:-translate-y-1.5 group-hover:border-maroon-700 group-hover:shadow-md relative overflow-hidden">
+              {/* Maroon accent line that expands on hover */}
+              <div className="absolute top-0 left-0 w-full h-[3px] bg-maroon-700 scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100" />
               
-              <div className="flex items-center gap-4 mb-5 pb-3 border-b border-red-200/50">
+              <div className="flex items-center gap-3.5 mb-5 pb-3 border-b border-sand-200">
                 <MlaReveal 
                   scale={0.92}
                   y={0}
-                  className="text-slate-900 transition-transform duration-500 ease-out group-hover:[transform:rotate(5deg)_scale(1.1)]"
+                  className="text-maroon-700 transition-transform duration-500 ease-out group-hover:[transform:rotate(5deg)_scale(1.1)]"
                 >
-                  <div style={{ filter: 'drop-shadow(0 0 6px rgba(138, 115, 163, 0.3))' }}>
+                  <div>
                     <category.icon size={22} strokeWidth={1.5} />
                   </div>
                 </MlaReveal>
-                <h3 
-                  className="text-[1.35rem] text-slate-900 tracking-wide transition-colors duration-300 group-hover:text-slate-900"
-                  style={{ fontFamily: 'var(--font-cormorant)' }}
-                >
+                <h3 className="text-xl font-display text-charcoal-900 tracking-tight font-medium group-hover:text-maroon-800 transition-colors">
                   {category.title}
                 </h3>
               </div>
-              <ul className="space-y-3">
+              <ul className="space-y-2.5">
                 {category.items.map((item, itemIdx) => (
-                  <li key={itemIdx} className="text-slate-900 flex items-start gap-2.5 transition-transform duration-300 group-hover:translate-x-1">
-                    <span className="text-slate-50/80 mt-[5px] text-[0.65rem] leading-none shrink-0 transition-transform duration-300 group-hover:scale-125" aria-hidden="true">■</span>
+                  <li key={itemIdx} className="text-charcoal-700 text-sm font-sans flex items-start gap-2.5 transition-transform duration-300 group-hover:translate-x-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-maroon-700/80 mt-1.5 shrink-0" aria-hidden="true" />
                     <span className="leading-snug">{item}</span>
                   </li>
                 ))}

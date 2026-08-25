@@ -2,6 +2,13 @@
 
 import type { InfoSectionProps } from './InfoTypes';
 import { Play, Youtube, ExternalLink, ShieldCheck } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
+import {
+  InfoReveal,
+  InfoImageReveal,
+  InfoStaggerContainer,
+  InfoStaggerItem,
+} from './InfoMotion';
 
 interface VideoItem {
   id: string;
@@ -64,92 +71,124 @@ const VIDEOS: VideoItem[] = [
 
 export function InfoVideo({ locale }: InfoSectionProps) {
   const isTa = locale === 'ta';
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <div className="space-y-8">
-      {/* Official Channel Header */}
-      <div className="p-6 bg-charcoal-900 text-white border-l-4 border-red-600 rounded-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center shrink-0">
-            <Youtube className="w-6 h-6 text-white" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h3 className="font-display text-xl sm:text-2xl font-bold">
-                {isTa ? 'தமிழ்நாடு செய்தித்துறை அதிகாரப்பூர்வ யூடியூப் தளம்' : 'TN DIPR Official Video Channel'}
-              </h3>
-              <ShieldCheck className="w-4 h-4 text-yellow-400" />
+      {/* Official Channel Header with Animated Red Accent & Glow */}
+      <InfoReveal direction="up" delay={0.05} showTopLine={false}>
+        <div className="p-6 sm:p-8 bg-charcoal-900 text-white border-l-4 border-red-600 rounded-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-md relative overflow-hidden">
+          {/* Subtle Ambient Radial Glow */}
+          <div
+            aria-hidden="true"
+            className="absolute -right-20 -top-20 w-60 h-60 rounded-full pointer-events-none"
+            style={{
+              background: 'radial-gradient(circle, rgba(220, 38, 38, 0.15) 0%, transparent 70%)',
+            }}
+          />
+
+          <div className="flex items-center gap-4 relative z-10">
+            <motion.div
+              whileHover={prefersReducedMotion ? {} : { scale: 1.08 }}
+              transition={{ duration: 0.2 }}
+              className="w-12 sm:w-14 h-12 sm:h-14 rounded-full bg-red-600 flex items-center justify-center shrink-0 shadow-md"
+            >
+              <Youtube className="w-6 sm:w-7 h-6 sm:h-7 text-white" />
+            </motion.div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-white">
+                  {isTa ? 'தமிழ்நாடு செய்தித்துறை அதிகாரப்பூர்வ யூடியூப் தளம்' : 'TN DIPR Official Video Channel'}
+                </h3>
+                <ShieldCheck className="w-4 h-4 text-yellow-400 shrink-0" />
+              </div>
+              <p className="text-xs sm:text-sm text-charcoal-300 font-sans mt-0.5 leading-relaxed">
+                {isTa
+                  ? 'அரசு செய்தியாளர் சந்திப்புகள், நலத்திட்ட வெளியீடுகள் மற்றும் பிரச்சார காணொளிகளின் அதிகாரப்பூர்வ களஞ்சியம்.'
+                  : 'Direct official repository for Chief Minister addresses, campaign films, and DIPR press briefings.'}
+              </p>
             </div>
-            <p className="text-xs sm:text-sm text-charcoal-300 font-sans">
-              {isTa
-                ? 'அரசு செய்தியாளர் சந்திப்புகள், நலத்திட்ட வெளியீடுகள் மற்றும் பிரச்சார காணொளிகளின் அதிகாரப்பூர்வ களஞ்சியம்.'
-                : 'Direct official repository for Chief Minister addresses, campaign films, and DIPR press briefings.'}
-            </p>
           </div>
-        </div>
 
-        <a
-          href="https://www.youtube.com/channel/UCPWnoINnA43mptLCQH9B9qw"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-mono text-xs font-bold uppercase tracking-wider rounded-xs transition-colors whitespace-nowrap"
-        >
-          {isTa ? 'யூடியூப் சேனல் காண்க' : 'Visit TN DIPR YouTube'} <ExternalLink className="w-3.5 h-3.5" />
-        </a>
-      </div>
-
-      {/* 16:9 Facade-Loaded Video Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {VIDEOS.map((vid) => (
-          <a
-            key={vid.id}
-            href={vid.url}
+          <motion.a
+            href="https://www.youtube.com/channel/UCPWnoINnA43mptLCQH9B9qw"
             target="_blank"
             rel="noopener noreferrer"
-            className="group block bg-white border border-sand-300 rounded-sm overflow-hidden hover:border-maroon-700 transition-all shadow-xs"
+            whileHover={prefersReducedMotion ? {} : { scale: 1.03 }}
+            whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
+            transition={{ duration: 0.2 }}
+            className="relative z-10 inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white font-mono text-xs font-bold uppercase tracking-wider rounded-xs transition-colors whitespace-nowrap shadow-sm"
           >
-            {/* 16:9 Poster Facade */}
-            <div className="relative aspect-video bg-charcoal-950 flex items-center justify-center overflow-hidden border-b border-sand-200">
-              {/* Pattern Background */}
-              <div className="absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:16px_16px] opacity-40 group-hover:scale-105 transition-transform duration-500" />
+            <span>{isTa ? 'யூடியூப் சேனல் காண்க' : 'Visit TN DIPR YouTube'}</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </motion.a>
+        </div>
+      </InfoReveal>
 
-              {/* Center Play Button Facade */}
-              <div className="relative z-10 w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-red-500 transition-all">
-                <Play className="w-6 h-6 fill-current ml-1" />
-              </div>
+      {/* 16:9 Facade-Loaded Video Grid with Staggered Motion */}
+      <InfoStaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6" stagger={0.1}>
+        {VIDEOS.map((vid) => (
+          <InfoStaggerItem
+            key={vid.id}
+            direction="up"
+            showTopLine={false}
+            className="group block bg-white border border-sand-300 rounded-sm overflow-hidden hover:border-maroon-700 hover:shadow-md transition-all"
+          >
+            <a
+              href={vid.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
+              {/* 16:9 Poster Facade with Mask Reveal */}
+              <InfoImageReveal delay={0.1} hoverZoom={true} className="aspect-video bg-charcoal-950 border-b border-sand-200">
+                <div className="relative w-full h-full flex items-center justify-center">
+                  {/* Pattern Background */}
+                  <div className="absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:16px_16px] opacity-40 group-hover:scale-105 transition-transform duration-500" />
 
-              {/* Badges */}
-              <div className="absolute top-3 left-3 z-10">
-                <span className="font-mono text-xs font-bold uppercase bg-charcoal-900/90 text-white px-2 py-0.5 border border-charcoal-700 backdrop-blur-xs">
-                  {isTa ? vid.categoryTa : vid.categoryEn}
-                </span>
-              </div>
+                  {/* Center Play Button Facade */}
+                  <motion.div
+                    whileHover={prefersReducedMotion ? {} : { scale: 1.15 }}
+                    transition={{ duration: 0.25 }}
+                    className="relative z-10 w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg group-hover:bg-red-500 transition-colors"
+                  >
+                    <Play className="w-6 h-6 fill-current ml-1" />
+                  </motion.div>
 
-              <div className="absolute bottom-3 right-3 z-10">
-                <span className="font-mono text-xs font-semibold bg-black/80 text-yellow-400 px-2 py-0.5">
-                  {vid.duration}
-                </span>
-              </div>
-            </div>
+                  {/* Badges */}
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="font-mono text-xs font-bold uppercase bg-charcoal-900/90 text-white px-2.5 py-0.5 border border-charcoal-700 backdrop-blur-xs">
+                      {isTa ? vid.categoryTa : vid.categoryEn}
+                    </span>
+                  </div>
 
-            {/* Video Metadata */}
-            <div className="p-5 space-y-2">
-              <h4 className="font-display text-lg text-charcoal-900 font-semibold leading-snug group-hover:text-maroon-700 transition-colors">
-                {isTa ? vid.titleTa : vid.titleEn}
-              </h4>
-              <p className="text-xs text-charcoal-600 font-sans line-clamp-2">
-                {isTa ? vid.descriptionTa : vid.descriptionEn}
-              </p>
-              <div className="pt-2 flex items-center justify-between text-xs font-mono text-maroon-700 font-bold">
-                <span>{isTa ? 'DIPR அதிகாரப்பூர்வ ஒளிபரப்பு' : 'TN DIPR Official Broadcast'}</span>
-                <span className="inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                  {isTa ? 'காண்க' : 'Watch Broadcast'} →
-                </span>
+                  <div className="absolute bottom-3 right-3 z-10">
+                    <span className="font-mono text-xs font-semibold bg-black/85 text-yellow-400 px-2 py-0.5 border border-white/10">
+                      {vid.duration}
+                    </span>
+                  </div>
+                </div>
+              </InfoImageReveal>
+
+              {/* Video Metadata */}
+              <div className="p-5 space-y-2">
+                <h4 className="font-display text-lg text-charcoal-900 font-semibold leading-snug group-hover:text-maroon-700 transition-colors">
+                  {isTa ? vid.titleTa : vid.titleEn}
+                </h4>
+                <p className="text-xs sm:text-sm text-charcoal-600 font-sans line-clamp-2 leading-relaxed">
+                  {isTa ? vid.descriptionTa : vid.descriptionEn}
+                </p>
+                <div className="pt-2 flex items-center justify-between text-xs font-mono text-maroon-700 font-bold">
+                  <span>{isTa ? 'DIPR அதிகாரப்பூர்வ ஒளிபரப்பு' : 'TN DIPR Official Broadcast'}</span>
+                  <span className="inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    {isTa ? 'காண்க' : 'Watch Broadcast'} →
+                  </span>
+                </div>
               </div>
-            </div>
-          </a>
+            </a>
+          </InfoStaggerItem>
         ))}
-      </div>
+      </InfoStaggerContainer>
     </div>
   );
 }

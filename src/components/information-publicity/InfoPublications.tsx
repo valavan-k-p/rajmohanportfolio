@@ -2,6 +2,12 @@
 
 import type { InfoSectionProps } from './InfoTypes';
 import { BookOpen, FileDown, MapPin, CheckCircle2 } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
+import {
+  InfoReveal,
+  InfoStaggerContainer,
+  InfoStaggerItem,
+} from './InfoMotion';
 
 interface PublicationItem {
   id: string;
@@ -74,55 +80,63 @@ const PUBLICATIONS: PublicationItem[] = [
 
 export function InfoPublications({ locale }: InfoSectionProps) {
   const isTa = locale === 'ta';
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <div className="space-y-8">
       {/* Overview Banner: Stationery & Printing Vertical */}
-      <div className="bg-sand-100/80 p-6 border border-sand-300 rounded-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2 text-maroon-700 font-mono text-xs font-bold uppercase">
-            <BookOpen className="w-4 h-4" />
-            <span>{isTa ? 'அரசு அச்சகம் மற்றும் எழுதுபொருள் பிரிவு' : 'Stationery & Printing Vertical'}</span>
+      <InfoReveal direction="up" delay={0.05} showTopLine={false}>
+        <div className="bg-sand-100/90 p-6 sm:p-7 border border-sand-300 rounded-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-2xs">
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-2 text-maroon-700 font-mono text-xs font-bold uppercase tracking-wider">
+              <BookOpen className="w-4 h-4" />
+              <span>{isTa ? 'அரசு அச்சகம் மற்றும் எழுதுபொருள் பிரிவு' : 'Stationery & Printing Vertical'}</span>
+            </div>
+            <p className="text-xs sm:text-sm text-charcoal-700 font-sans leading-relaxed max-w-4xl">
+              {isTa
+                ? 'அனைத்து அரசு பிரசுரங்கள், கையேடுகள், அறிக்கைகள் மற்றும் செய்தித் தொகுப்புகள் தகவல் துறையின் கீழ் உள்ள அரசு அச்சகத்தால் வெளியிடப்பட்டு மாநிலம் முழுவதும் விநியோகிக்கப்படுகின்றன.'
+                : 'Official brochures, pamphlets, and reports on schemes and policies are produced under the Stationery and Printing vertical linked to the Information portfolio.'}
+            </p>
           </div>
-          <p className="text-xs sm:text-sm text-charcoal-700 font-sans">
-            {isTa
-              ? 'அனைத்து அரசு பிரசுரங்கள், கையேடுகள், அறிக்கைகள் மற்றும் செய்தித் தொகுப்புகள் தகவல் துறையின் கீழ் உள்ள அரசு அச்சகத்தால் வெளியிடப்பட்டு மாநிலம் முழுவதும் விநியோகிக்கப்படுகின்றன.'
-              : 'Official brochures, pamphlets, and reports on schemes and policies are produced under the Stationery and Printing vertical linked to the Information portfolio.'}
-          </p>
         </div>
-      </div>
+      </InfoReveal>
 
-      {/* Publications Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Publications Grid with Staggered Motion */}
+      <InfoStaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6" stagger={0.1}>
         {PUBLICATIONS.map((pub) => (
-          <div
+          <InfoStaggerItem
             key={pub.id}
-            className="bg-white p-6 border border-sand-300 rounded-sm flex flex-col justify-between hover:border-maroon-700 transition-colors shadow-xs"
+            direction="up"
+            showTopLine={true}
+            topLineColor="bg-maroon-700"
+            className="bg-white p-6 sm:p-7 border border-sand-300 rounded-sm flex flex-col justify-between hover:border-maroon-700 hover:shadow-md transition-all shadow-xs group"
           >
-            <div className="space-y-3">
+            <div className="space-y-3.5">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs font-bold text-maroon-700 uppercase bg-maroon-50 px-2 py-0.5 border border-maroon-200">
+                <span className="font-mono text-xs font-bold text-maroon-700 uppercase bg-maroon-50 px-2.5 py-0.5 border border-maroon-200">
                   {isTa ? pub.categoryTa : pub.categoryEn}
                 </span>
-                <span className="font-mono text-xs text-charcoal-500">{pub.size}</span>
+                <span className="font-mono text-xs text-charcoal-500 font-semibold bg-sand-100 px-2 py-0.5 border border-sand-200">
+                  {pub.size}
+                </span>
               </div>
 
-              <h4 className="font-display text-xl text-charcoal-900 font-medium leading-snug">
+              <h4 className="font-display text-xl text-charcoal-900 font-bold leading-snug group-hover:text-maroon-800 transition-colors">
                 {isTa ? pub.titleTa : pub.titleEn}
               </h4>
 
-              <div className="grid grid-cols-2 gap-2 text-xs font-mono text-charcoal-600 pt-2 border-t border-sand-200">
+              <div className="grid grid-cols-2 gap-3 text-xs font-mono text-charcoal-600 pt-3 border-t border-sand-200">
                 <div>
-                  <span className="text-charcoal-400 block">{isTa ? 'பக்கங்கள்' : 'Pages'}:</span>
-                  <span className="font-bold text-charcoal-800">{pub.pages} {isTa ? 'பக்கங்கள்' : 'Pages'}</span>
+                  <span className="text-charcoal-400 block text-[11px] uppercase tracking-wider">{isTa ? 'பக்கங்கள்' : 'Pages'}:</span>
+                  <span className="font-bold text-charcoal-800 mt-0.5 block">{pub.pages} {isTa ? 'பக்கங்கள்' : 'Pages'}</span>
                 </div>
                 <div>
-                  <span className="text-charcoal-400 block">{isTa ? 'மொழி' : 'Language'}:</span>
-                  <span className="font-bold text-charcoal-800">{isTa ? pub.languageTa : pub.languageEn}</span>
+                  <span className="text-charcoal-400 block text-[11px] uppercase tracking-wider">{isTa ? 'மொழி' : 'Language'}:</span>
+                  <span className="font-bold text-charcoal-800 mt-0.5 block">{isTa ? pub.languageTa : pub.languageEn}</span>
                 </div>
               </div>
 
-              <div className="text-xs text-charcoal-600 font-sans flex items-start gap-1.5 pt-1">
+              <div className="text-xs text-charcoal-600 font-sans flex items-start gap-2 pt-1 leading-relaxed">
                 <MapPin className="w-3.5 h-3.5 text-maroon-700 shrink-0 mt-0.5" />
                 <span>
                   <strong>{isTa ? 'விநியோகம்:' : 'Distribution:'}</strong>{' '}
@@ -132,21 +146,24 @@ export function InfoPublications({ locale }: InfoSectionProps) {
             </div>
 
             <div className="mt-6 pt-4 border-t border-sand-200 flex items-center justify-between text-xs">
-              <span className="inline-flex items-center gap-1 text-charcoal-500 font-mono">
+              <span className="inline-flex items-center gap-1.5 text-charcoal-500 font-mono">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                 {isTa ? 'அரசு ஆவணம்' : 'Verified Official Record'}
               </span>
-              <button
+              <motion.button
                 type="button"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-charcoal-900 text-white hover:bg-maroon-700 font-mono text-xs font-semibold rounded-xs transition-colors"
+                whileHover={prefersReducedMotion ? {} : { scale: 1.04 }}
+                whileTap={prefersReducedMotion ? {} : { scale: 0.96 }}
+                transition={{ duration: 0.2 }}
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-charcoal-900 text-white hover:bg-maroon-700 font-mono text-xs font-semibold rounded-xs transition-colors shadow-2xs cursor-pointer"
               >
                 <FileDown className="w-3.5 h-3.5" />
-                {isTa ? 'பதிவிறக்கம்' : 'DIPR Release'}
-              </button>
+                <span>{isTa ? 'பதிவிறக்கம்' : 'DIPR Release'}</span>
+              </motion.button>
             </div>
-          </div>
+          </InfoStaggerItem>
         ))}
-      </div>
+      </InfoStaggerContainer>
     </div>
   );
 }

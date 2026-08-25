@@ -2,6 +2,11 @@
 
 import type { InfoSectionProps } from './InfoTypes';
 import { Quote, Calendar, UserCheck } from 'lucide-react';
+import { motion } from 'motion/react';
+import {
+  InfoStaggerContainer,
+  InfoStaggerItem,
+} from './InfoMotion';
 
 interface StatementItem {
   id: string;
@@ -92,36 +97,46 @@ export function InfoMinisterStatements({ locale }: InfoSectionProps) {
   const isTa = locale === 'ta';
 
   return (
-    <div className="space-y-8">
+    <InfoStaggerContainer className="space-y-8" stagger={0.12}>
       {STATEMENTS.map((stmt) => (
-        <article
+        <InfoStaggerItem
           key={stmt.id}
-          className="relative bg-white border border-sand-300 p-6 sm:p-8 md:p-10 shadow-xs hover:border-maroon-700 transition-colors"
+          direction="up"
+          showTopLine={true}
+          topLineColor="bg-maroon-700"
+          className="relative bg-white border border-sand-300 p-6 sm:p-8 md:p-10 shadow-xs hover:border-maroon-700/80 hover:shadow-md transition-all group rounded-sm"
         >
-          {/* Decorative Quote Mark */}
-          <div className="absolute top-6 right-6 text-sand-200 pointer-events-none">
-            <Quote className="w-12 h-12 stroke-1" />
-          </div>
+          {/* Decorative Quote Mark with Hover Elevation */}
+          <motion.div
+            aria-hidden="true"
+            className="absolute top-6 right-6 text-sand-200 pointer-events-none group-hover:text-sand-300 transition-colors"
+          >
+            <Quote className="w-12 sm:w-14 h-12 sm:h-14 stroke-1" />
+          </motion.div>
 
+          {/* Vertical Accent Hairline */}
+          <div className="absolute left-0 top-0 bottom-0 w-1 bg-maroon-700/20 group-hover:bg-maroon-700 transition-colors" />
+
+          {/* Badges */}
           <div className="flex flex-wrap items-center gap-3 mb-4">
             <span className="font-mono text-xs uppercase px-2.5 py-1 bg-maroon-50 text-maroon-800 font-bold border border-maroon-200">
               {isTa ? stmt.topicTa : stmt.topicEn}
             </span>
             <span className="flex items-center gap-1.5 text-xs text-charcoal-500 font-mono">
-              <Calendar className="w-3.5 h-3.5" />
+              <Calendar className="w-3.5 h-3.5 text-maroon-700" />
               {isTa ? stmt.dateTa : stmt.dateEn}
             </span>
           </div>
 
           {/* Pull Quote */}
-          <blockquote className="font-display text-xl sm:text-2xl md:text-2xl text-charcoal-900 leading-snug tracking-tight my-4">
+          <blockquote className="font-display text-xl sm:text-2xl md:text-[1.65rem] text-charcoal-900 leading-snug tracking-tight my-4">
             “{isTa ? stmt.quoteTa : stmt.quoteEn}”
           </blockquote>
 
           {/* Attribution & Context */}
           <div className="mt-6 pt-4 border-t border-sand-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
             <div className="flex items-center gap-2">
-              <UserCheck className="w-4 h-4 text-maroon-700 shrink-0" />
+              <UserCheck className="w-4 h-4 text-maroon-700 shrink-0 group-hover:scale-110 transition-transform" />
               <span className="font-semibold text-charcoal-800 font-sans">
                 {isTa ? stmt.speakerTa : stmt.speakerEn}
               </span>
@@ -130,8 +145,8 @@ export function InfoMinisterStatements({ locale }: InfoSectionProps) {
               {isTa ? stmt.contextTa : stmt.contextEn}
             </span>
           </div>
-        </article>
+        </InfoStaggerItem>
       ))}
-    </div>
+    </InfoStaggerContainer>
   );
 }
