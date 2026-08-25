@@ -3,7 +3,7 @@
 import { motion, useScroll, useMotionValueEvent } from 'motion/react';
 import { useState } from 'react';
 
-export function MlaStickyNav({ title }: { title: string }) {
+export function MlaStickyNav({ title, locale }: { title: string, locale?: string }) {
   const { scrollY } = useScroll();
   const [isVisible, setIsVisible] = useState(false);
   const [lastY, setLastY] = useState(0);
@@ -23,23 +23,24 @@ export function MlaStickyNav({ title }: { title: string }) {
     setLastY(latest);
   });
 
+  const isTa = locale === 'ta';
+
   return (
     <motion.nav
       initial={{ y: '-100%' }}
       animate={{ y: isVisible ? '0%' : '-100%' }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 right-0 z-40 bg-slate-50/80 backdrop-blur-md border-b border-slate-200/50 shadow-sm"
+      className="fixed top-0 left-0 right-0 z-40 bg-sand-50/80 backdrop-blur-md border-b border-sand-200/50 shadow-sm"
     >
       <div className="mx-auto max-w-[76rem] px-4 md:px-12 h-16 flex items-center justify-between">
         <span 
-          className="text-slate-900 text-xl font-display tracking-wide"
-          style={{ fontFamily: 'var(--font-cormorant)' }}
+          className="text-maroon-800 text-xl font-display tracking-wide"
         >
           {title}
         </span>
         <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-slate-50 animate-pulse" />
-          <span className="text-[0.65rem] uppercase tracking-widest text-slate-900 font-bold">Scrolling</span>
+          <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+          <span className="text-[0.65rem] uppercase tracking-widest text-charcoal-500 font-bold">{isTa ? 'ஸ்க்ரோலிங்' : 'Scrolling'}</span>
         </div>
       </div>
     </motion.nav>
