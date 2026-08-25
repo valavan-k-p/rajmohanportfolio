@@ -19,7 +19,7 @@ function CinematicBackground({ activeIndex, reducedMotion }: { activeIndex: numb
     { color: 'rgba(220, 38, 38, 0.12)', rotateX: 75, rotateY: 15, rotateZ: -15, scale: 1.2 }  // 03 Presence (Red/Dynamic)
   ];
 
-  const current = envStyles[activeIndex % 3];
+  const current = envStyles[Math.abs(activeIndex) % envStyles.length]!;
 
   if (reducedMotion) return <div className="absolute inset-0 bg-[#030303]" />;
 
@@ -334,7 +334,7 @@ export function AboutEgmore({ locale }: SectionProps) {
           {/* Content Display */}
           <div className="lg:col-span-7 flex flex-col justify-center min-h-[400px] lg:pl-12">
             <AnimatePresence mode="wait">
-              <ActiveContent key={normIndex} index={normIndex} content={content} activeIndex={normIndex} />
+              <ActiveContent key={normIndex} content={content} activeIndex={normIndex} />
             </AnimatePresence>
           </div>
 

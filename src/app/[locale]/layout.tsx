@@ -27,7 +27,7 @@ export default async function LocaleLayout({
   // correct language for assistive tech, hyphenation and the :lang() font
   // stack defined in globals.css.
   return (
-    <div lang={locale}>
+    <div lang={locale} className={`locale-${locale} min-h-screen`}>
       <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
     </div>
   );

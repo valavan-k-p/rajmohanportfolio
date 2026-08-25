@@ -30,13 +30,15 @@ const instrumentSans = Instrument_Sans({
 });
 
 const notoSerifTamil = Noto_Serif_Tamil({
-  subsets: ['tamil'],
+  subsets: ['tamil', 'latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
   variable: '--font-noto-serif-tamil',
   display: 'swap',
 });
 
 const notoSansTamil = Noto_Sans_Tamil({
-  subsets: ['tamil'],
+  subsets: ['tamil', 'latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
   variable: '--font-noto-sans-tamil',
   display: 'swap',
 });

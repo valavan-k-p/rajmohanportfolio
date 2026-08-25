@@ -37,8 +37,8 @@
   --font-display: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
   --font-serif-editorial: var(--font-cormorant), var(--font-instrument-serif), Georgia, serif;
   --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-tamil-display: var(--font-noto-serif-tamil), var(--font-instrument-serif), serif;
-  --font-tamil-sans: var(--font-noto-sans-tamil), var(--font-instrument-sans), sans-serif;
+  --font-tamil-display: var(--font-noto-serif-tamil), var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+  --font-tamil-sans: var(--font-noto-sans-tamil), var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
 
   --text-display: clamp(3.75rem, 8vw, 7.5rem);
   --text-h1: clamp(2.85rem, 5.5vw, 4.5rem);
@@ -104,30 +104,115 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Tamil is a parallel first-class stack, not a fallback. +6% size and
-     +0.12 line-height: Tamil glyphs carry more vertical complexity. */
+  /* Tamil is a parallel first-class stack, not a fallback.
+     Headings: Noto Serif Tamil
+     Body & UI: Noto Sans Tamil */
+  :lang(ta),
+  [lang="ta"],
+  .locale-ta {
+    --font-display: var(--font-noto-serif-tamil), var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+    --font-serif-editorial: var(--font-noto-serif-tamil), var(--font-cormorant), var(--font-instrument-serif), Georgia, serif;
+    --font-sans: var(--font-noto-sans-tamil), var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+    --font-tamil-display: var(--font-noto-serif-tamil), serif;
+    --font-tamil-sans: var(--font-noto-sans-tamil), sans-serif;
+
+    font-family: var(--font-noto-sans-tamil), var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+  }
+
   :lang(ta) body,
-  :lang(ta) {
-    font-family: var(--font-tamil-sans);
+  [lang="ta"] body,
+  .locale-ta body {
+    font-family: var(--font-noto-sans-tamil), var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
     font-size: calc(var(--text-body) * 1.06);
     line-height: 1.77;
   }
 
   h1,
   h2,
-  h3 {
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
     line-height: 1.02;
     text-wrap: balance;
   }
 
+  /* All Headings in Tamil Mode: Noto Serif Tamil */
   :lang(ta) h1,
   :lang(ta) h2,
-  :lang(ta) h3 {
-    font-family: var(--font-tamil-display);
+  :lang(ta) h3,
+  :lang(ta) h4,
+  :lang(ta) h5,
+  :lang(ta) h6,
+  [lang="ta"] h1,
+  [lang="ta"] h2,
+  [lang="ta"] h3,
+  [lang="ta"] h4,
+  [lang="ta"] h5,
+  [lang="ta"] h6,
+  .locale-ta h1,
+  .locale-ta h2,
+  .locale-ta h3,
+  .locale-ta h4,
+  .locale-ta h5,
+  .locale-ta h6,
+  :lang(ta) .font-display,
+  [lang="ta"] .font-display,
+  .locale-ta .font-display,
+  :lang(ta) .font-serif,
+  [lang="ta"] .font-serif,
+  .locale-ta .font-serif,
+  :lang(ta) .font-serif-editorial,
+  [lang="ta"] .font-serif-editorial,
+  .locale-ta .font-serif-editorial,
+  :lang(ta) .font-tamil-display,
+  [lang="ta"] .font-tamil-display,
+  .locale-ta .font-tamil-display {
+    font-family: var(--font-noto-serif-tamil), var(--font-instrument-serif), Georgia, 'Times New Roman', serif !important;
     letter-spacing: 0;
     line-height: 1.28;
+  }
+
+  /* Body, Paragraphs, UI, Buttons, Navigation, Labels in Tamil Mode: Noto Sans Tamil */
+  :lang(ta) p,
+  :lang(ta) a:not(.font-display):not(.font-serif-editorial):not(.font-tamil-display),
+  :lang(ta) button,
+  :lang(ta) input,
+  :lang(ta) textarea,
+  :lang(ta) select,
+  :lang(ta) label,
+  :lang(ta) li,
+  :lang(ta) td,
+  :lang(ta) th,
+  [lang="ta"] p,
+  [lang="ta"] a:not(.font-display):not(.font-serif-editorial):not(.font-tamil-display),
+  [lang="ta"] button,
+  [lang="ta"] input,
+  [lang="ta"] textarea,
+  [lang="ta"] select,
+  [lang="ta"] label,
+  [lang="ta"] li,
+  [lang="ta"] td,
+  [lang="ta"] th,
+  .locale-ta p,
+  .locale-ta a:not(.font-display):not(.font-serif-editorial):not(.font-tamil-display),
+  .locale-ta button,
+  .locale-ta input,
+  .locale-ta textarea,
+  .locale-ta select,
+  .locale-ta label,
+  .locale-ta li,
+  .locale-ta td,
+  .locale-ta th,
+  :lang(ta) .font-sans,
+  [lang="ta"] .font-sans,
+  .locale-ta .font-sans,
+  :lang(ta) .font-tamil-sans,
+  [lang="ta"] .font-tamil-sans,
+  .locale-ta .font-tamil-sans {
+    font-family: var(--font-noto-sans-tamil), var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
   }
 
   p {
