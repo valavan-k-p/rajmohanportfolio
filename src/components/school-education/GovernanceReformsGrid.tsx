@@ -94,7 +94,7 @@ export function GovernanceReformsGrid({ locale }: { locale: Locale }) {
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div>
             <div className="text-sm font-mono text-maroon-700 font-bold uppercase tracking-wider">
-              ● Live Digital System · July 2026
+              {locale === 'ta' ? '● நேரலை டிஜிட்டல் தளம் · ஜூலை 2026' : '● Live Digital System · July 2026'}
             </div>
             <h4 className="font-display text-3xl sm:text-[2rem] text-charcoal-900 font-semibold mt-1">
               {content.nocTitle}

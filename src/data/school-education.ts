@@ -231,7 +231,7 @@ export const SCHOOL_EDUCATION_DATA = {
 
   timelineEvents: [
     {
-      date: '19 May 2026',
+      date: { en: '19 May 2026', ta: '19 மே 2026' },
       status: 'VERIFIED' as EducationStatus,
       title: {
         en: 'Primary Textbook Rollout & Two-Language Guarantee',
@@ -244,7 +244,7 @@ export const SCHOOL_EDUCATION_DATA = {
       source: { en: 'The Hindu & New Indian Express', ta: 'தி இந்து & நியூ இந்தியன் எக்ஸ்பிரஸ்' },
     },
     {
-      date: '04 June 2026',
+      date: { en: '04 June 2026', ta: '04 ஜூன் 2026' },
       status: 'VERIFIED' as EducationStatus,
       title: {
         en: 'Heatwave-Adjusted Reopening & Smart Board Launch',
@@ -254,10 +254,10 @@ export const SCHOOL_EDUCATION_DATA = {
         en: 'Schools reopened with comprehensive audits for water, sanitation, and kitchens. Inaugurated 21 smart boards in Chennai.',
         ta: 'குடிநீர், சுகாதார ஆய்வுகளுடன் பள்ளிகள் திறப்பு; சென்னையில் 21 ஸ்மார்ட் போர்டுகள் பயன்பாட்டிற்கு வந்தன.',
       },
-      source: { en: 'Careers360 & The News Mill', ta: 'கெரியர்ஸ்360 & தி நியூஸ் மில்' },
+      source: { en: 'Careers360 & The News Mill', ta: 'கேரியர்ஸ்360 & தி நியூஸ் மில்' },
     },
     {
-      date: '17 June 2026',
+      date: { en: '17 June 2026', ta: '17 ஜூன் 2026' },
       status: 'OFFICIAL ORDER' as EducationStatus,
       title: {
         en: 'Online NOC & Private School Recognition Portal',
@@ -270,7 +270,7 @@ export const SCHOOL_EDUCATION_DATA = {
       source: { en: 'New Indian Express', ta: 'நியூ இந்தியன் எக்ஸ்பிரஸ்' },
     },
     {
-      date: '10 July 2026',
+      date: { en: '10 July 2026', ta: '10 ஜூலை 2026' },
       status: 'OFFICIAL ORDER' as EducationStatus,
       title: {
         en: 'School Campus Visitor & Neutrality Guidelines',
@@ -296,7 +296,7 @@ export const SCHOOL_EDUCATION_DATA = {
       source: { en: 'New Indian Express', ta: 'நியூ இந்தியன் எக்ஸ்பிரஸ்' },
     },
     {
-      date: 'August 2026',
+      date: { en: 'August 2026', ta: 'ஆகஸ்ட் 2026' },
       status: 'LEGISLATIVE ASSURANCE' as EducationStatus,
       title: {
         en: 'Withdrawal of NEET Protest Cases & 10-Student Reopening Directive',

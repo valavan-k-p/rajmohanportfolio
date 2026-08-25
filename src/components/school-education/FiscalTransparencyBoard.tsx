@@ -227,7 +227,7 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
             <div className="space-y-1.5">
               <div className="flex justify-between text-sm sm:text-base font-mono">
                 <span className="text-white font-semibold">{content.currAlloc}</span>
-                <span className="text-yellow-400 font-bold">₹44,527 Cr</span>
+                <span className="text-yellow-400 font-bold">₹44,527 {locale === 'ta' ? 'கோடி' : 'Cr'}</span>
               </div>
               <EduDataBar percentage={100} color="bg-yellow-400" height="h-3.5" delay={0.1} />
             </div>
@@ -236,7 +236,7 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
             <div className="space-y-1.5">
               <div className="flex justify-between text-sm sm:text-base font-mono">
                 <span className="text-white/80">{content.priorActual}</span>
-                <span className="text-white/80">₹42,351 Cr</span>
+                <span className="text-white/80">₹42,351 {locale === 'ta' ? 'கோடி' : 'Cr'}</span>
               </div>
               <EduDataBar percentage={95.1} color="bg-charcoal-500" height="h-3.5" delay={0.2} />
             </div>
@@ -247,7 +247,7 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
               ● {content.deltaLabel}
             </span>
             <span className="text-xs sm:text-sm text-white/50 font-mono">
-              Indexed against actual audited outlays
+              {locale === 'ta' ? 'உண்மையான தணிக்கை செய்யப்பட்ட செலவினத்தின் அடிப்படையில்' : 'Indexed against actual audited outlays'}
             </span>
           </div>
         </EduTopLineBox>

@@ -429,7 +429,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
 
               <div className="text-xs font-mono text-charcoal-400 pt-2 border-t border-[#E5DCB8] flex justify-between">
                 <span>{content.leftBed.footer}</span>
-                <span>VOL. I</span>
+                <span>{locale === 'ta' ? 'தொகுதி I' : 'VOL. I'}</span>
               </div>
             </div>
 
@@ -523,7 +523,7 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
                       />
                     </div>
                     <div className="text-xs font-mono font-bold text-charcoal-700 uppercase">
-                      {content.p4.stat1Label} · {content.p4.stat2Prefix}{content.p4.stat2Val}{content.p4.stat2Suffix} Net Increase
+                      {content.p4.stat1Label} · {content.p4.stat2Prefix}{content.p4.stat2Val}{content.p4.stat2Suffix} {locale === 'ta' ? 'கூடுதல் ஒதுக்கீடு' : 'Net Increase'}
                     </div>
                     <p className="text-xs text-charcoal-600">{content.p4.stat1Sub}</p>
                   </div>

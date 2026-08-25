@@ -13,20 +13,20 @@ import {
 
 interface TimelineNode {
   id: string;
-  date: string;
+  date: { en: string; ta: string };
   category: 'curriculum' | 'governance' | 'welfare';
-  status: string;
+  status: { en: string; ta: string };
   title: { en: string; ta: string };
   desc: { en: string; ta: string };
-  source: string;
+  source: { en: string; ta: string };
 }
 
 const TIMELINE_NODES: TimelineNode[] = [
   {
     id: 'may-textbooks',
-    date: '19 May 2026',
+    date: { en: '19 May 2026', ta: '19 மே 2026' },
     category: 'curriculum',
-    status: 'VERIFIED',
+    status: { en: 'VERIFIED', ta: 'சரிபார்க்கப்பட்டது' },
     title: {
       en: '9 Revised Primary Textbooks & Two-Language Guarantee',
       ta: '1-3 வகுப்புகளுக்கான 9 புதிய பாடநூல்கள் வெளியீடு & இருமொழிக் கொள்கை',
@@ -35,13 +35,13 @@ const TIMELINE_NODES: TimelineNode[] = [
       en: 'Minister Rajmohan released nine activity-rich textbooks for Classes 1–3 to reduce rote memorisation and nurture motor development, while reaffirming Tamil Nadu’s historic two-language policy.',
       ta: 'மனப்பாடக் கல்வியைக் குறைத்து செயல்வழிக் கற்றலை ஊக்குவிக்கும் 9 புதிய பாடநூல்கள் வெளியீடு; இருமொழிக் கொள்கையில் உறுதியான நிலைப்பாடு அறிவிப்பு.',
     },
-    source: 'The Hindu & New Indian Express',
+    source: { en: 'The Hindu & New Indian Express', ta: 'தி இந்து & நியூ இந்தியன் எக்ஸ்பிரஸ்' },
   },
   {
     id: 'june-reopen',
-    date: '04 June 2026',
+    date: { en: '04 June 2026', ta: '04 ஜூன் 2026' },
     category: 'governance',
-    status: 'VERIFIED',
+    status: { en: 'VERIFIED', ta: 'சரிபார்க்கப்பட்டது' },
     title: {
       en: 'Heatwave-Adjusted School Reopening & 21 Smart Boards',
       ta: 'கோடை வெப்பத்திற்கேற்ப பள்ளி திறப்பு & 21 ஸ்மார்ட் போர்டுகள் பயன்பாடு',
@@ -50,13 +50,13 @@ const TIMELINE_NODES: TimelineNode[] = [
       en: 'Schools reopened with comprehensive water, ceiling fan, and structural stability audits. 21 new interactive smart boards were inaugurated across Chennai schools.',
       ta: 'கோடை வெப்பத் தணிப்பு ஆய்வுகளுக்குப் பின் பள்ளிகள் திறப்பு; சென்னையில் 21 புதிய ஸ்மார்ட் போர்டுகள் பயன்பாட்டுக்குத் திறக்கப்பட்டன.',
     },
-    source: 'Careers360 & The News Mill',
+    source: { en: 'Careers360 & The News Mill', ta: 'கேரியர்ஸ்360 & தி நியூஸ் மில்' },
   },
   {
     id: 'july-noc',
-    date: '01 July 2026',
+    date: { en: '01 July 2026', ta: '01 ஜூலை 2026' },
     category: 'governance',
-    status: 'VERIFIED',
+    status: { en: 'VERIFIED', ta: 'சரிபார்க்கப்பட்டது' },
     title: {
       en: 'Launch of Online Portal for Private School NOCs',
       ta: 'தனியார் பள்ளிகளுக்கான இணையவழி NOC அனுமதி தளம் தொடக்கம்',
@@ -65,13 +65,13 @@ const TIMELINE_NODES: TimelineNode[] = [
       en: 'Transitioned all private school recognition, upgrades, and NOC approvals to a 100% digital transparent submission workflow to eradicate middlemen.',
       ta: 'இடைத்தரகர்களை முற்றிலும் அகற்றும் வகையில் தனியார் பள்ளிகளுக்கான அனைத்து அனுமதிகளும் இணையவழியாக்கப்பட்டன.',
     },
-    source: 'New Indian Express (July 2026)',
+    source: { en: 'New Indian Express (July 2026)', ta: 'நியூ இந்தியன் எக்ஸ்பிரஸ் (ஜூலை 2026)' },
   },
   {
     id: 'july-ai',
-    date: '22 July 2026',
+    date: { en: '22 July 2026', ta: '22 ஜூலை 2026' },
     category: 'curriculum',
-    status: 'ACTIVE PILOT',
+    status: { en: 'ACTIVE PILOT', ta: 'செயல்பாட்டில்' },
     title: {
       en: 'TN SPARK: Artificial Intelligence Roadmap for 5,000 Schools',
       ta: 'டி.என் ஸ்பார்க்: 5,000 பள்ளிகளில் AI கல்வி முன்னோடித் திட்டம்',
@@ -80,13 +80,13 @@ const TIMELINE_NODES: TimelineNode[] = [
       en: 'Minister Rajmohan charted the state AI roadmap, establishing foundational computational logic and ethics modules across 5,000 government schools.',
       ta: '5,000 அரசுப் பள்ளிகளில் செயற்கை நுண்ணறிவு மற்றும் நெறிமுறை தர்க்கம் கற்பிக்கும் முன்னோடித் திட்டம் அறிவிக்கப்பட்டது.',
     },
-    source: 'New Indian Express (July 22, 2026)',
+    source: { en: 'New Indian Express (July 22, 2026)', ta: 'நியூ இந்தியன் எக்ஸ்பிரஸ் (ஜூலை 22, 2026)' },
   },
   {
     id: 'aug-enrolment',
-    date: '02 August 2026',
+    date: { en: '02 August 2026', ta: '02 ஆகஸ்ட் 2026' },
     category: 'welfare',
-    status: 'ACTIVE POLICY',
+    status: { en: 'ACTIVE POLICY', ta: 'அமலில் உள்ள கொள்கை' },
     title: {
       en: '10-Student Reopening Guarantee & ₹44,527 Cr Budget Defence',
       ta: '10 மாணவர்கள் சேர்ந்தாலே பள்ளி இயங்கும் உத்தரவு & பட்ஜெட் விளக்கம்',
@@ -95,13 +95,13 @@ const TIMELINE_NODES: TimelineNode[] = [
       en: 'Guaranteed that low-enrolment rural schools will remain open with at least 10 students; delivered detailed Assembly accounting of the ₹44,527 Cr budget.',
       ta: '10 மாணவர்கள் சேர்ந்தாலே கிராமப்புறப் பள்ளிகள் தொடர்ந்து இயங்கும் என்ற உத்தரவு; சட்டமன்றத்தில் ₹44,527 கோடி கல்வி பட்ஜெட் விரிவான விளக்கம்.',
     },
-    source: 'Dinamalar Kalvimalar & Legislative Assembly',
+    source: { en: 'Dinamalar Kalvimalar & Legislative Assembly', ta: 'தினமலர் கல்விமலர் & சட்டமன்றப் பதிவேடு' },
   },
   {
     id: 'aug-biryani',
-    date: '10 August 2026',
+    date: { en: '10 August 2026', ta: '10 ஆகஸ்ட் 2026' },
     category: 'welfare',
-    status: 'PROPOSAL / IN REVIEW',
+    status: { en: 'PROPOSAL / IN REVIEW', ta: 'முன்மொழிவு / பரிசீலனையில்' },
     title: {
       en: 'Weekly Chicken Biryani in Mid-Day Meals Proposal',
       ta: 'மதிய உணவுத் திட்டத்தில் வாரம் ஒரு முறை சிக்கன் பிரியாணி முன்மொழிவு',
@@ -110,7 +110,7 @@ const TIMELINE_NODES: TimelineNode[] = [
       en: 'Minister Rajmohan placed an ambitious nutritional proposal under government consideration to introduce chicken biryani once weekly in school lunches.',
       ta: 'அரசுப் பள்ளி மாணவர்களின் ஊட்டச்சத்தை அதிகரிக்க வாரம் ஒரு முறை மதிய உணவில் சிக்கன் பிரியாணி வழங்கும் முன்மொழிவு அரசின் தீவிரப் பரிசீலனைக்கு வைக்கப்பட்டது.',
     },
-    source: 'New Indian Express (August 10, 2026)',
+    source: { en: 'New Indian Express (August 10, 2026)', ta: 'நியூ இந்தியன் எக்ஸ்பிரஸ் (ஆகஸ்ட் 10, 2026)' },
   },
 ];
 
@@ -242,7 +242,7 @@ export function ChronologicalStream({ locale }: { locale: Locale }) {
             >
               {/* Date */}
               <div className="font-mono text-base text-maroon-700 font-bold">
-                {node.date}
+                {node.date[locale]}
               </div>
 
               {/* Title & Desc */}
@@ -254,14 +254,14 @@ export function ChronologicalStream({ locale }: { locale: Locale }) {
                   {node.desc[locale]}
                 </p>
                 <div className="text-sm text-charcoal-500 font-mono">
-                  Source: {node.source}
+                  {locale === 'ta' ? 'ஆதாரம்:' : 'Source:'} {node.source[locale]}
                 </div>
               </div>
 
               {/* Status Badge */}
               <div className="text-right lg:text-right">
                 <span className="text-sm font-mono font-bold uppercase tracking-wider text-charcoal-800">
-                  ● {node.status}
+                  ● {node.status[locale]}
                 </span>
               </div>
             </EduStaggerItem>

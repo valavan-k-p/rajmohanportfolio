@@ -269,7 +269,7 @@ export function TNSparkTechLab({ locale }: { locale: Locale }) {
               </p>
               <div className="text-xs font-mono text-maroon-800 font-medium pt-2 border-t border-sand-100 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-maroon-600 animate-pulse" />
-                <span>State Hi-Tech Computer Lab Connectivity</span>
+                <span>{locale === 'ta' ? 'அரசு ஹை-டெக் கணினி ஆய்வக இணைப்பு' : 'State Hi-Tech Computer Lab Connectivity'}</span>
               </div>
             </EduTopLineBox>
           </div>

@@ -16,11 +16,11 @@ import type { PortalId } from '@/config/portals';
 const LABELS: Record<PortalId, { readonly en: string; readonly ta: string }> = {
   'school-education': {
     en: 'Raise an Education Concern',
-    ta: 'கல்விக் கவலையைத் தெரிவிக்கவும்',
+    ta: 'கல்வி தொடர்பான கோரிக்கையைச் சமர்ப்பிக்கவும்',
   },
   'tamil-development': {
     en: 'Share a Tamil Development Concern',
-    ta: 'தமிழ் வளர்ச்சிக் கவலையைப் பகிரவும்',
+    ta: 'தமிழ் வளர்ச்சி தொடர்பான கோரிக்கையைப் பகிரவும்',
   },
   'information-publicity': {
     en: 'Submit an Information Request',
@@ -28,7 +28,7 @@ const LABELS: Record<PortalId, { readonly en: string; readonly ta: string }> = {
   },
   'mla-egmore': {
     en: 'Raise a Constituency Concern',
-    ta: 'தொகுதிக் கவலையைத் தெரிவிக்கவும்',
+    ta: 'தொகுதி தொடர்பான கோரிக்கையைத் தெரிவிக்கவும்',
   },
 };
 
