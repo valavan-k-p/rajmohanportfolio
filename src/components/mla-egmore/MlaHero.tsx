@@ -6,7 +6,6 @@ import { motion, useReducedMotion, AnimatePresence } from 'motion/react';
 import { cormorant } from './MlaTypography';
 import { useState, useEffect } from 'react';
 import { MlaScrollProgress } from './MlaMotion';
-import { MlaStickyNav } from './MlaStickyNav';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -151,7 +150,6 @@ export function MlaHero({ index, title, standfirst, backLabel }: MlaHeroProps) {
   return (
     <>
       <MlaScrollProgress />
-      <MlaStickyNav title={title} />
       <AnimatePresence>
         {showPreloader && <MlaPreloader onComplete={() => { document.body.style.overflow = ''; }} />}
       </AnimatePresence>
