@@ -2,7 +2,7 @@
 
 import type { Locale } from '@/lib/i18n/routing';
 import { EduReveal, EduStaggerContainer, EduStaggerItem } from './EduMotion';
-import { SCHOOL_EDUCATION_DATA } from '@/data/school-education';
+import { SCHOOL_EDUCATION_DATA, SCHOOL_STATUS_MAP } from '@/data/school-education';
 
 export function EduTimeline({ locale }: { locale: Locale }) {
   const { timelineEvents } = SCHOOL_EDUCATION_DATA;
@@ -45,10 +45,10 @@ export function EduTimeline({ locale }: { locale: Locale }) {
             <div className="bg-white p-6 border border-sand-300 shadow-sm space-y-3">
               <div className="flex flex-wrap items-center justify-between gap-2 border-b border-sand-200 pb-2.5">
                 <span className="font-mono text-sm text-maroon-700 font-bold tracking-wide">
-                  {evt.date}
+                  {typeof evt.date === 'string' ? evt.date : evt.date?.[locale]}
                 </span>
                 <span className="text-[11px] font-mono font-bold uppercase tracking-wider bg-sand-100 px-2.5 py-0.5 text-charcoal-800 border border-sand-300">
-                  {evt.status}
+                  {SCHOOL_STATUS_MAP[evt.status][locale]}
                 </span>
               </div>
               <h4 className="font-display text-xl text-charcoal-900 leading-snug font-semibold">
@@ -58,7 +58,7 @@ export function EduTimeline({ locale }: { locale: Locale }) {
                 {evt.desc[locale]}
               </p>
               <div className="text-[11px] text-charcoal-500 font-mono pt-1">
-                Source: {evt.source}
+                {locale === 'ta' ? 'ஆதாரம்:' : 'Source:'} {typeof evt.source === 'string' ? evt.source : evt.source[locale]}
               </div>
             </div>
           </EduStaggerItem>

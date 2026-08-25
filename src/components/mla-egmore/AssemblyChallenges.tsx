@@ -31,7 +31,7 @@ export function AssemblyChallenges({ locale }: SectionProps) {
       // Items stagger
       const items = gsap.utils.toArray('.timeline-item');
       items.forEach((item) => {
-        gsap.fromTo(item,
+        gsap.fromTo(item as Element,
           { opacity: 0, x: 30 },
           {
             opacity: 1,
@@ -39,7 +39,7 @@ export function AssemblyChallenges({ locale }: SectionProps) {
             duration: 0.8,
             ease: 'power3.out',
             scrollTrigger: {
-              trigger: item,
+              trigger: item as Element,
               start: 'top 85%',
             }
           }
@@ -105,11 +105,11 @@ export function AssemblyChallenges({ locale }: SectionProps) {
             <div className="flex flex-wrap gap-6">
               <div className="bg-sand-100 p-5 rounded-2xl min-w-[200px] border border-sand-200">
                 <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-2">2025–26</div>
-                <div className="font-display text-4xl text-charcoal-900 font-bold">₹46,767 <span className="text-sm font-sans font-normal text-charcoal-600">cr</span></div>
+                <div className="font-display text-4xl text-charcoal-900 font-bold">₹46,767 <span className="text-sm font-sans font-normal text-charcoal-600">{locale === 'ta' ? 'கோடி' : 'cr'}</span></div>
               </div>
               <div className="bg-sand-100 p-5 rounded-2xl min-w-[200px] border border-sand-200">
                 <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-2">2026–27</div>
-                <div className="font-display text-4xl text-charcoal-900 font-bold">₹44,527 <span className="text-sm font-sans font-normal text-charcoal-600">cr</span></div>
+                <div className="font-display text-4xl text-charcoal-900 font-bold">₹44,527 <span className="text-sm font-sans font-normal text-charcoal-600">{locale === 'ta' ? 'கோடி' : 'cr'}</span></div>
               </div>
             </div>
             <p className="text-charcoal-700 font-sans text-base leading-relaxed">

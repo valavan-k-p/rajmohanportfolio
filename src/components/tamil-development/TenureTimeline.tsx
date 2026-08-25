@@ -5,7 +5,7 @@ import { useIsomorphicLayoutEffect } from '@/lib/motion';
 import { gsap } from 'gsap';
 import { TamilSection } from './TamilSection';
 import type { Locale } from '@/lib/i18n/routing';
-import { TAMIL_DEVELOPMENT_DATA, type TimelineEvent } from '@/data/tamil-development';
+import { TAMIL_DEVELOPMENT_DATA, TAMIL_STATUS_MAP, type TimelineEvent } from '@/data/tamil-development';
 
 export function TenureTimeline({ locale }: { locale: Locale }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -120,7 +120,7 @@ function TimelineEntry({
           
           <div className={`flex flex-col md:flex-row gap-2 md:gap-4 mb-3 ${isLeft ? 'md:justify-end' : 'md:justify-start'} items-start md:items-center`}>
             <span className="font-tamil-sans text-sm font-bold text-[var(--color-tamil-red)] tracking-widest uppercase">
-              {item.date}
+              {typeof item.date === 'string' ? item.date : item.date?.[locale]}
             </span>
             {item.status && (
               <span className={`inline-block px-2 py-0.5 text-[0.65rem] font-bold tracking-wider uppercase rounded-full ${
@@ -130,9 +130,7 @@ function TimelineEntry({
                   ? 'border border-maroon-200 bg-maroon-50 text-maroon-800'
                   : 'border border-[var(--color-tamil-border)] bg-neutral-50 text-neutral-600'
               }`}>
-                {item.status === 'VERIFIED' && locale === 'ta' ? 'சரிபார்க்கப்பட்டது' :
-                 item.status === 'REPORTED' && locale === 'ta' ? 'அறிவிக்கப்பட்டது' :
-                 item.status}
+                {TAMIL_STATUS_MAP[item.status][locale]}
               </span>
             )}
           </div>

@@ -62,6 +62,7 @@ export function WaterSupply({ locale }: SectionProps) {
 
   const content = {
     en: {
+      title: 'Water Quality & Safety',
       p1: 'Water quality and supply remain significant everyday concerns for residents in various parts of Egmore. Addressing these issues requires continuous monitoring and incremental improvements rather than single, one-off projects.',
       p2: 'Following complaints regarding unclean drinking water, the constituency office has prioritised direct interventions to ensure water safety and reliability.',
       interventionsHeading: 'Priority Interventions',
@@ -75,6 +76,7 @@ export function WaterSupply({ locale }: SectionProps) {
       note: 'These efforts represent a response to everyday quality-of-life concerns, aiming to improve basic civic maintenance through sustained pressure on municipal bodies.',
     },
     ta: {
+      title: 'நீரின் தரம் மற்றும் பாதுகாப்பு',
       p1: 'எழும்பூரின் பல்வேறு பகுதிகளில் வசிக்கும் மக்களுக்கு நீரின் தரம் மற்றும் வழங்கல் ஆகியவை அன்றாட முக்கிய கவலைகளாகத் தொடர்கின்றன. இந்தப் பிரச்சினைகளைத் தீர்ப்பதற்கு, ஒற்றை, ஒரு முறைத் திட்டங்களைக் காட்டிலும் தொடர்ச்சியான கண்காணிப்பு மற்றும் படிப்படியான மேம்பாடுகள் தேவைப்படுகின்றன.',
       p2: 'சுத்தமற்ற குடிநீர் தொடர்பான புகார்களைத் தொடர்ந்து, குடிநீர் பாதுகாப்பையும் நம்பகத்தன்மையையும் உறுதி செய்வதற்கான நேரடித் தலையீடுகளுக்குத் தொகுதி அலுவலகம் முன்னுரிமை அளித்துள்ளது.',
       interventionsHeading: 'படிப்படியான மேம்பாடுகள்',
@@ -99,7 +101,7 @@ export function WaterSupply({ locale }: SectionProps) {
             <div className="flex items-center gap-3 mb-6">
               <Droplet className="text-maroon-600" size={24} />
               <h3 className="font-display text-2xl sm:text-3xl font-bold text-charcoal-950">
-                Water Quality & Safety
+                {content.title}
               </h3>
             </div>
             

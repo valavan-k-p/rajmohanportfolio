@@ -58,20 +58,18 @@ export function EduHeadingMask({
   delay?: number;
 }) {
   const prefersReducedMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, amount: 0.15 });
 
   return (
-    <div className="overflow-hidden">
+    <div ref={ref} className="overflow-hidden py-4 -my-4">
       <motion.div
         id={id}
-        initial={{
-          y: prefersReducedMotion ? '0%' : '110%',
-          opacity: prefersReducedMotion ? 1 : 0,
+        initial={false}
+        animate={{
+          y: isInView ? '0%' : (prefersReducedMotion ? '0%' : '110%'),
+          opacity: isInView ? 1 : (prefersReducedMotion ? 1 : 0),
         }}
-        whileInView={{
-          y: '0%',
-          opacity: 1,
-        }}
-        viewport={VIEWPORT_CONFIG}
         transition={{ duration: 0.75, delay, ease: CINEMATIC_EASE }}
         className={className}
       >

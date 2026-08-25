@@ -9,9 +9,16 @@ export async function Navbar() {
       <div className="mx-auto w-full max-w-[1920px] pointer-events-auto flex justify-center">
         <Link 
           href="/" 
-          className="font-display text-h3 text-charcoal-900 no-underline transition-opacity hover:opacity-70 drop-shadow-sm"
+          className="flex flex-col items-center justify-center font-display text-charcoal-900 no-underline transition-opacity hover:opacity-70 drop-shadow-sm text-center"
         >
-          {t('name')}
+          {t('name').split('·').map((part, index) => (
+            <span 
+              key={index} 
+              className={index === 0 ? "text-h3 leading-none text-maroon-700" : "text-2xl mt-1.5 leading-none text-yellow-600"}
+            >
+              {part.trim()}
+            </span>
+          ))}
         </Link>
       </div>
     </header>

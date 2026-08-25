@@ -62,6 +62,8 @@ export function HousingRegularisation({ locale }: SectionProps) {
 
   const content = {
     en: {
+      tag: 'Civic Demand',
+      title: 'Housing & Settlements',
       p1: 'Housing remains a central civic demand in Egmore. The constituency profile details ongoing policy-level commitments aimed at addressing settlement issues rather than completed large-scale projects at this stage.',
       listHeading: 'Key Policy Commitments',
       list: [
@@ -80,6 +82,8 @@ export function HousingRegularisation({ locale }: SectionProps) {
       note: 'Note: The source explicitly describes these interventions primarily as policy-level commitments and ongoing processes rather than completed infrastructure projects.',
     },
     ta: {
+      tag: 'குடிமைத் தேவை',
+      title: 'வீட்டுவசதி & குடியிருப்புகள்',
       p1: 'வீட்டுவசதி என்பது எழும்பூரில் ஒரு முக்கிய குடிமைத் தேவையாகத் தொடர்கிறது. நிறைவடைந்த பெரிய அளவிலான திட்டங்களைக் காட்டிலும், தற்போதைய நிலையில் குடியிருப்புகள் தொடர்பான பிரச்சினைகளைத் தீர்ப்பதை நோக்கமாகக் கொண்ட கொள்கை அளவிலான அர்ப்பணிப்புகளைத் தொகுதி விவரக்குறிப்பு விவரிக்கிறது.',
       listHeading: 'முக்கிய கொள்கை அர்ப்பணிப்புகள்',
       list: [
@@ -109,12 +113,12 @@ export function HousingRegularisation({ locale }: SectionProps) {
             <div className="flex items-center gap-3 mb-6">
               <div className="w-8 h-px bg-maroon-700" />
               <span className="font-mono text-xs font-bold uppercase tracking-widest text-maroon-700">
-                Civic Demand
+                {content.tag}
               </span>
             </div>
             
             <h3 className="font-display text-3xl sm:text-4xl font-bold text-charcoal-950 mb-6 tracking-tight">
-              Housing & Settlements
+              {content.title}
             </h3>
             
             <p className="font-sans text-base sm:text-lg text-charcoal-700 leading-relaxed">

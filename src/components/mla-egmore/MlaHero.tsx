@@ -15,10 +15,11 @@ export interface MlaHeroProps {
   readonly title: string;
   readonly standfirst: string;
   readonly backLabel: string;
+  readonly locale: string;
 }
 
 
-function FloatingNav({ backLabel }: { backLabel: string }) {
+function FloatingNav({ backLabel, locale }: { backLabel: string, locale: string }) {
   const prefersReducedMotion = useReducedMotion();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   
@@ -30,7 +31,13 @@ function FloatingNav({ backLabel }: { backLabel: string }) {
     }
   };
 
-  const navItems = [
+  const navItems = locale === 'ta' ? [
+    { label: backLabel, href: '/', type: 'link' },
+    { label: 'சுயவிவரம்', href: '#mla-at-a-glance', type: 'scroll' },
+    { label: 'பங்கு', href: '#about-egmore', type: 'scroll', hideOnMobile: true },
+    { label: 'திட்டங்கள்', href: '#neer-ezhil-palli', type: 'scroll' },
+    { label: 'பணிகள்', href: '#civic-work', type: 'scroll', hideOnTablet: true },
+  ] : [
     { label: backLabel, href: '/', type: 'link' },
     { label: 'Profile', href: '#mla-at-a-glance', type: 'scroll' },
     { label: 'Role', href: '#about-egmore', type: 'scroll', hideOnMobile: true },
@@ -85,7 +92,7 @@ function FloatingNav({ backLabel }: { backLabel: string }) {
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
             />
           )}
-          <span className="text-[#fdfbf7]/80 group-hover:text-white tracking-[0.15em] text-[9px] uppercase font-bold drop-shadow-md relative z-10">Language</span>
+          <span className="text-[#fdfbf7]/80 group-hover:text-white tracking-[0.15em] text-[9px] uppercase font-bold drop-shadow-md relative z-10">{locale === 'ta' ? 'மொழி' : 'Language'}</span>
           <div className="absolute bottom-[130%] right-0 mb-1 flex flex-col gap-2 bg-black/80 backdrop-blur-md rounded-md p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all border border-white/10 shadow-xl z-50">
             <Link href="/en/mla-egmore" className="text-[#d4af37] hover:text-[#fdfbf7] tracking-[0.15em] text-[9px] uppercase font-bold drop-shadow-md whitespace-nowrap transition-colors">English</Link>
             <div className="w-full h-[1px] bg-white/20"></div>
@@ -97,7 +104,7 @@ function FloatingNav({ backLabel }: { backLabel: string }) {
   );
 }
 
-export function MlaHero({ index, title, standfirst, backLabel }: MlaHeroProps) {
+export function MlaHero({ index, title, standfirst, backLabel, locale }: MlaHeroProps) {
   const prefersReducedMotion = useReducedMotion();
   return (
     <>
@@ -106,7 +113,7 @@ export function MlaHero({ index, title, standfirst, backLabel }: MlaHeroProps) {
       <header 
         className={`relative min-h-[100dvh] w-full bg-[#fdfbf7] flex flex-col items-center justify-center ${cormorant.variable} overflow-hidden`}
       >
-        <FloatingNav backLabel={backLabel} />
+        <FloatingNav backLabel={backLabel} locale={locale} />
 
         {/* Background / Group Photo Layer */}
         <motion.div 

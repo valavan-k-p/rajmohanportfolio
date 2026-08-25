@@ -1,6 +1,6 @@
 {
   "site": {
-    "name": "Rajmohan Arumugam",
+    "name": "Rajmohan Arumugam · ராஜ்மோகன் ஆறுமுகம்",
     "shortName": "Rajmohan",
     "skipToContent": "Skip to main content"
   },
@@ -11,23 +11,23 @@
     "portals": {
       "schoolEducation": {
         "index": "01",
-        "title": "School Education",
-        "meta": "Learning · Students · Future"
+        "title": "School Education · பள்ளிக் கல்வி",
+        "meta": "Learning · Students · Future | கற்றல் · மாணவர்கள் · எதிர்காலம்"
       },
       "tamilDevelopment": {
         "index": "02",
-        "title": "Tamil Development",
-        "meta": "Language · Literature · Heritage"
+        "title": "Tamil Development · தமிழ் வளர்ச்சி",
+        "meta": "Language · Literature · Heritage | மொழி · இலக்கியம் · பாரம்பரியம்"
       },
       "informationPublicity": {
         "index": "03",
-        "title": "Information & Publicity",
-        "meta": "Information · Media · Public Access"
+        "title": "Information & Publicity · தகவல் மற்றும் விளம்பரம்",
+        "meta": "Information · Media · Public Access | தகவல் · ஊடகம் · பொது அணுகல்"
       },
       "mlaEgmore": {
         "index": "04",
-        "title": "MLA · Egmore",
-        "meta": "People · Representation · Service"
+        "title": "MLA Egmore · சட்டமன்ற உறுப்பினர் எழும்பூர்",
+        "meta": "People · Representation · Service | மக்கள் · பிரதிநிதித்துவம் · பணி"
       }
     }
   },

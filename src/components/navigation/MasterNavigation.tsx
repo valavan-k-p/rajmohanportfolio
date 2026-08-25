@@ -85,46 +85,34 @@ export function MasterNavigation() {
                 onMouseEnter={() => setActive(index)}
                 onMouseLeave={() => setActive(null)}
                 className={[
-                  'group block min-h-[44px] px-gutter py-6 no-underline',
-                  'transition-[opacity,background-color] duration-[160ms] ease-[var(--ease-out-expo)]',
-                  // At `md`+ every dimension is container-relative (cqw against
-                  // the image), so the portal scales WITH the photograph. Fixed
-                  // px here would overflow the measured safe band on smaller
-                  // desktops — verified: a 138px box is 31% of image height at
-                  // 800px wide, which collided with the facade.
-                  'md:rounded-[2px] md:p-[clamp(0.375rem,0.7cqw,1rem)]',
-                  'md:hover:bg-white/8 md:focus-visible:bg-white/8',
-                  isRecessive ? 'md:opacity-55' : 'opacity-100',
+                  'group block min-h-[44px] px-gutter py-6 md:py-3 no-underline relative',
+                  'transition-all duration-[400ms] ease-[var(--ease-out-expo)]',
+                  'md:rounded-2xl md:p-[clamp(0.5rem,0.75cqw,1rem)]',
+                  'md:bg-maroon-700/90 md:backdrop-blur-xl md:border md:border-maroon-600 md:shadow-[0_8px_32px_rgba(0,0,0,0.2)]',
+                  'md:hover:bg-maroon-700 md:hover:-translate-y-1 md:hover:shadow-[0_16px_48px_rgba(0,0,0,0.3)] md:hover:border-maroon-500 md:focus-visible:bg-maroon-700',
+                  isRecessive ? 'md:opacity-40 md:scale-[0.98] md:blur-[2px]' : 'opacity-100 md:scale-100',
                 ].join(' ')}
               >
-                {/* Hairline top rule. Grows from the left on hover/focus —
-                    the only motion in the resting state. */}
-                <span
-                  aria-hidden="true"
-                  className={[
-                    'hidden h-px w-full origin-left bg-maroon-600 md:block',
-                    'transition-transform duration-[160ms] ease-[var(--ease-out-expo)]',
-                    'scale-x-100 group-hover:bg-maroon-700 group-focus-visible:bg-maroon-700',
-                  ].join(' ')}
-                />
+                {/* Accent glow on hover */}
+                <span className="absolute inset-0 bg-gradient-to-tr from-maroon-500/0 via-transparent to-yellow-500/0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none md:rounded-2xl" />
 
-                <span className="u-eyebrow mt-0 block text-maroon-700 md:mt-[clamp(0.25rem,0.5cqw,0.75rem)] md:text-[clamp(0.55rem,0.62cqw,0.75rem)]">
+                <span className="u-eyebrow mt-0 block text-white/60 md:mt-[clamp(0.2rem,0.4cqw,0.5rem)] md:text-[clamp(0.5rem,0.5cqw,0.65rem)]">
                   {t(`portals.${key}.index`)}
                 </span>
 
                 <span
                   className={[
-                    'mt-1 block font-display text-h3 leading-tight text-charcoal-900',
-                    'md:mt-[clamp(0.125rem,0.3cqw,0.5rem)] md:text-[clamp(0.95rem,1.45cqw,1.75rem)]',
+                    'mt-1 block font-display text-h3 leading-tight text-yellow-400',
+                    'md:mt-[clamp(0.125rem,0.25cqw,0.375rem)] md:text-[clamp(0.85rem,1.1cqw,1.35rem)]',
                     'transition-colors duration-[160ms]',
-                    'group-hover:text-maroon-700 group-focus-visible:text-maroon-700',
+                    'group-hover:text-yellow-300 group-focus-visible:text-yellow-300',
                   ].join(' ')}
                 >
                   {t(`portals.${key}.title`)}
                 </span>
 
-                <span className="mt-1 flex items-center gap-2 text-meta text-charcoal-700 md:mt-[clamp(0.125rem,0.3cqw,0.5rem)] md:text-[clamp(0.65rem,0.8cqw,0.875rem)]">
-                  {t(`portals.${key}.meta`)}
+                <span className="mt-1 flex items-start gap-2 text-meta text-white/90 md:mt-[clamp(0.125rem,0.25cqw,0.375rem)] md:text-[clamp(0.55rem,0.65cqw,0.75rem)] leading-snug">
+                  <span className="flex-1">{t(`portals.${key}.meta`)}</span>
                   <span
                     aria-hidden="true"
                     className={[

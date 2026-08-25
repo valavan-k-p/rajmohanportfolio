@@ -139,13 +139,14 @@ export function MlaImageReveal({ children, className = '' }: { children: ReactNo
 
 export function MlaTextReveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const prefersReducedMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, amount: 0.15 });
   
   return (
-    <div className={`overflow-hidden ${className}`}>
+    <div ref={ref} className={`overflow-hidden py-4 -my-4 ${className}`}>
       <motion.div
-        initial={{ y: prefersReducedMotion ? 0 : '100%', opacity: prefersReducedMotion ? 0 : 1 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ once: false, amount: 0.15 }}
+        initial={false}
+        animate={{ y: isInView ? 0 : (prefersReducedMotion ? 0 : '100%'), opacity: isInView ? 1 : (prefersReducedMotion ? 1 : 0) }}
         transition={{ duration: 0.8, delay, ease: EASE }}
       >
         {children}

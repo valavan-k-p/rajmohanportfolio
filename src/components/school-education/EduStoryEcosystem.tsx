@@ -74,6 +74,11 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
       coverSub2: 'STATE EDUCATION POLICY',
       coverYear: '2026–27',
       coverPrompt: 'Scroll down to open file and turn pages ↓',
+      insideCover: {
+        heading: 'INSIDE COVER · PREFACE',
+        quote: '“An integrated public education policy delivering quality, equity, and state autonomy for Tamil Nadu.”',
+        footer: 'DEPARTMENT OF SCHOOL EDUCATION · GOVERNMENT OF TAMIL NADU',
+      },
       leftBed: {
         header: 'POLICY MEMORANDUM · DEPARTMENT OF SCHOOL EDUCATION',
         title: 'Education Policy Framework',
@@ -188,6 +193,30 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
         cycle: ['ALLOCATE', 'SPEND', 'AUDIT', 'TRACK', 'ACCOUNTABILITY'],
         footnote: 'Source: Tamil Nadu Legislative Assembly Hansard & Official Gazettes',
       },
+      p4B: {
+        heading: 'SECTION 04 COMPLEMENT · FISCAL ACCOUNTABILITY',
+        title: 'Statutory Audits & Line-Item Transparency',
+        desc: 'All financial disbursements under the ₹44,527 Cr school education outlay are tied to specific school infrastructure deliverables, teacher salaries, and meal logistics.',
+        footer: 'PAGE 04B · ARCHIVE REFERENCE',
+      },
+      p3B: {
+        heading: 'SECTION 03 COMPLEMENT · LAB ROLLOUT',
+        title: 'High-Tech Classrooms for Rural Mandals',
+        desc: 'TN SPARK bridges the digital divide by introducing experiential AI and computational logic into rural middle and high schools across Tamil Nadu.',
+        footer: 'PAGE 03B · ARCHIVE REFERENCE',
+      },
+      p2B: {
+        heading: 'SECTION 02 COMPLEMENT · HUMAN RESOURCES',
+        title: 'Dignity of the Teaching Force',
+        desc: 'By eliminating non-teaching administrative burdens, teachers dedicate maximum classroom attention to foundational literacy and individual student mentoring.',
+        footer: 'PAGE 02B · ARCHIVE REFERENCE',
+      },
+      p1B: {
+        heading: 'SECTION 01 COMPLEMENT · PEDAGOGICAL METHOD',
+        title: 'Activity-Based Early Childhood Foundations',
+        desc: 'By introducing color-coded phonetic stories, picture puzzles, and hands-on activity modules, children develop natural language fluency without rote anxiety.',
+        footer: 'PAGE 01B · ARCHIVE REFERENCE',
+      },
     },
     ta: {
       coverTitle: 'பள்ளிக் கல்வி',
@@ -195,6 +224,11 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
       coverSub2: 'மாநில பள்ளிக் கல்வி கொள்கை',
       coverYear: '2026–27',
       coverPrompt: 'கோப்பைத் திறந்து பக்கங்களைத் திருப்ப கீழே ஸ்க்ரோல் செய்யவும் ↓',
+      insideCover: {
+        heading: 'உள்பக்கம் · முன்னுரை',
+        quote: '“தமிழ்நாட்டிற்கான தரம், சமத்துவம் மற்றும் மாநில சுயாட்சியை வழங்கும் ஒருங்கிணைந்த பொதுக் கல்விக் கொள்கை.”',
+        footer: 'பள்ளிக் கல்வித்துறை · தமிழ்நாடு அரசு',
+      },
       leftBed: {
         header: 'கொள்கைக் குறிப்பு · பள்ளிக் கல்வித்துறை',
         title: 'பள்ளிக் கல்வி கொள்கை ஆவணம்',
@@ -308,6 +342,30 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
         ],
         cycle: ['ஒதுக்கீடு', 'செலவினம்', 'தணிக்கை', 'கண்காணிப்பு', 'பொறுப்புடைமை'],
         footnote: 'சான்று: தமிழ்நாடு சட்டமன்றப் பதிவேடு & அரசு செய்திக் குறிப்புகள்',
+      },
+      p4B: {
+        heading: 'பிரிவு 04 இணைப்பு · நிதிப் பொறுப்புடைமை',
+        title: 'சட்டரீதியான தணிக்கைகள் & வெளிப்படைத்தன்மை',
+        desc: 'ரூ.44,527 கோடி பள்ளிக் கல்வி ஒதுக்கீட்டின் கீழான அனைத்து நிதிப் பகிர்வுகளும், பள்ளிக் கட்டமைப்பு மேம்பாடு, ஆசிரியர் ஊதியம் மற்றும் மதிய உணவுத் திட்டங்களுக்கு நேரடியாகச் சென்றடைவது உறுதி செய்யப்படுகிறது.',
+        footer: 'பக்கம் 04B · ஆவணக் காப்பகக் குறிப்பு',
+      },
+      p3B: {
+        heading: 'பிரிவு 03 இணைப்பு · ஆய்வக விரிவாக்கம்',
+        title: 'ஊரகப் பகுதிகளுக்கான அதிநவீன வகுப்பறைகள்',
+        desc: 'தமிழ்நாடு முழுவதும் உள்ள கிராமப்புற நடுநிலை மற்றும் உயர்நிலைப் பள்ளிகளில் செயல்முறை வழியிலான AI மற்றும் கணினித் தர்க்கக் கல்வியை அறிமுகப்படுத்துவதன் மூலம் டி.என் ஸ்பார்க் திட்டம் டிஜிட்டல் இடைவெளியைக் குறைக்கிறது.',
+        footer: 'பக்கம் 03B · ஆவணக் காப்பகக் குறிப்பு',
+      },
+      p2B: {
+        heading: 'பிரிவு 02 இணைப்பு · மனித வளம்',
+        title: 'ஆசிரியர் பணியின் கண்ணியம்',
+        desc: 'ஆசிரியர்கள் கற்பித்தல் அல்லாத நிர்வாகப் பணிகளிலிருந்து விடுவிக்கப்படுவதால், அவர்கள் முழு கவனத்தையும் மாணவர்களின் அடிப்படை எழுத்தறிவு மற்றும் தனிப்பட்ட வழிகாட்டலில் செலுத்த முடிகிறது.',
+        footer: 'பக்கம் 02B · ஆவணக் காப்பகக் குறிப்பு',
+      },
+      p1B: {
+        heading: 'பிரிவு 01 இணைப்பு · கற்பித்தல் முறை',
+        title: 'செயல்பாடு சார்ந்த குழந்தை பருவ அடித்தளங்கள்',
+        desc: 'நிறங்கள் சார்ந்த கதைகள், படப் புதிர்கள் மற்றும் செயல்முறை சார்ந்த கற்றல் வழியே குழந்தைகள் எவ்வித மனப்பாட அழுத்தமும் இன்றி இயல்பான மொழித் திறனை வளர்த்துக்கொள்கின்றனர்.',
+        footer: 'பக்கம் 01B · ஆவணக் காப்பகக் குறிப்பு',
       },
     },
   }[locale];
@@ -492,17 +550,17 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
               <div className="absolute inset-0 bg-[#FAF7EE] rounded-l-xs p-6 sm:p-8 flex flex-col justify-between overflow-hidden shadow-[inset_-14px_0_20px_rgba(0,0,0,0.05)] [transform:rotateY(180deg)] [backface-visibility:hidden]">
                 <div className="space-y-3">
                   <div className="text-xs font-mono text-charcoal-500 uppercase tracking-wider border-b border-[#DCD3C0] pb-2">
-                    SECTION 04 COMPLEMENT · FISCAL ACCOUNTABILITY
+                    {content.p4B.heading}
                   </div>
                   <h4 className="font-display text-xl font-normal text-charcoal-900">
-                    Statutory Audits & Line-Item Transparency
+                    {content.p4B.title}
                   </h4>
                   <p className="text-sm text-charcoal-700 font-sans leading-relaxed">
-                    All financial disbursements under the ₹44,527 Cr school education outlay are tied to specific school infrastructure deliverables, teacher salaries, and meal logistics.
+                    {content.p4B.desc}
                   </p>
                 </div>
                 <div className="text-xs font-mono text-charcoal-400 border-t border-[#E5DCB8] pt-2">
-                  PAGE 04B · ARCHIVE REFERENCE
+                  {content.p4B.footer}
                 </div>
               </div>
             </motion.div>
@@ -581,17 +639,17 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
               <div className="absolute inset-0 bg-[#FAF7EE] rounded-l-xs p-6 sm:p-8 flex flex-col justify-between overflow-hidden shadow-[inset_-14px_0_20px_rgba(0,0,0,0.05)] [transform:rotateY(180deg)] [backface-visibility:hidden]">
                 <div className="space-y-3">
                   <div className="text-xs font-mono text-charcoal-500 uppercase tracking-wider border-b border-[#DCD3C0] pb-2">
-                    SECTION 03 COMPLEMENT · LAB ROLLOUT
+                    {content.p3B.heading}
                   </div>
                   <h4 className="font-display text-xl font-normal text-charcoal-900">
-                    High-Tech Classrooms for Rural Mandals
+                    {content.p3B.title}
                   </h4>
                   <p className="text-sm text-charcoal-700 font-sans leading-relaxed">
-                    TN SPARK bridges the digital divide by introducing experiential AI and computational logic into rural middle and high schools across Tamil Nadu.
+                    {content.p3B.desc}
                   </p>
                 </div>
                 <div className="text-xs font-mono text-charcoal-400 border-t border-[#E5DCB8] pt-2">
-                  PAGE 03B · ARCHIVE REFERENCE
+                  {content.p3B.footer}
                 </div>
               </div>
             </motion.div>
@@ -669,17 +727,17 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
               <div className="absolute inset-0 bg-[#FAF7EE] rounded-l-xs p-6 sm:p-8 flex flex-col justify-between overflow-hidden shadow-[inset_-14px_0_20px_rgba(0,0,0,0.05)] [transform:rotateY(180deg)] [backface-visibility:hidden]">
                 <div className="space-y-3">
                   <div className="text-xs font-mono text-charcoal-500 uppercase tracking-wider border-b border-[#DCD3C0] pb-2">
-                    SECTION 02 COMPLEMENT · HUMAN RESOURCES
+                    {content.p2B.heading}
                   </div>
                   <h4 className="font-display text-xl font-normal text-charcoal-900">
-                    Dignity of the Teaching Force
+                    {content.p2B.title}
                   </h4>
                   <p className="text-sm text-charcoal-700 font-sans leading-relaxed">
-                    By eliminating non-teaching administrative burdens, teachers dedicate maximum classroom attention to foundational literacy and individual student mentoring.
+                    {content.p2B.desc}
                   </p>
                 </div>
                 <div className="text-xs font-mono text-charcoal-400 border-t border-[#E5DCB8] pt-2">
-                  PAGE 02B · ARCHIVE REFERENCE
+                  {content.p2B.footer}
                 </div>
               </div>
             </motion.div>
@@ -738,17 +796,17 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
               <div className="absolute inset-0 bg-[#FAF7EE] rounded-l-xs p-6 sm:p-8 flex flex-col justify-between overflow-hidden shadow-[inset_-14px_0_20px_rgba(0,0,0,0.05)] [transform:rotateY(180deg)] [backface-visibility:hidden]">
                 <div className="space-y-3">
                   <div className="text-xs font-mono text-charcoal-500 uppercase tracking-wider border-b border-[#DCD3C0] pb-2">
-                    SECTION 01 COMPLEMENT · PEDAGOGICAL METHOD
+                    {content.p1B.heading}
                   </div>
                   <h4 className="font-display text-xl font-normal text-charcoal-900">
-                    Activity-Based Early Childhood Foundations
+                    {content.p1B.title}
                   </h4>
                   <p className="text-sm text-charcoal-700 font-sans leading-relaxed">
-                    By introducing color-coded phonetic stories, picture puzzles, and hands-on activity modules, children develop natural language fluency without rote anxiety.
+                    {content.p1B.desc}
                   </p>
                 </div>
                 <div className="text-xs font-mono text-charcoal-400 border-t border-[#E5DCB8] pt-2">
-                  PAGE 01B · ARCHIVE REFERENCE
+                  {content.p1B.footer}
                 </div>
               </div>
             </motion.div>
@@ -810,14 +868,14 @@ export function EduStoryEcosystem({ locale }: { locale: Locale }) {
               <div className="absolute inset-0 bg-gradient-to-br from-[#381F12] to-[#25130A] text-[#EADFCB] rounded-l-xs p-8 flex flex-col justify-between overflow-hidden border-r border-[#200F07] [transform:rotateY(180deg)] [backface-visibility:hidden]">
                 <div className="space-y-2">
                   <div className="text-xs font-mono text-[#A89E87] uppercase tracking-widest border-b border-[#4A2E1B] pb-2">
-                    INSIDE COVER · PREFACE
+                    {content.insideCover.heading}
                   </div>
                   <p className="font-serif italic text-base text-[#FAF7EE] leading-relaxed">
-                    “An integrated public education policy delivering quality, equity, and state autonomy for Tamil Nadu.”
+                    {content.insideCover.quote}
                   </p>
                 </div>
-                <div className="text-xs font-mono text-[#8C7D6B]">
-                  DEPARTMENT OF SCHOOL EDUCATION · GOVERNMENT OF TAMIL NADU
+                <div className="text-xs font-mono text-[#8C7D6B] uppercase tracking-wider">
+                  {content.insideCover.footer}
                 </div>
               </div>
             </motion.div>

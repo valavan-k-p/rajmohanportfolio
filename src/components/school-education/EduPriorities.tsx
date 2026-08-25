@@ -2,7 +2,7 @@
 
 import type { Locale } from '@/lib/i18n/routing';
 import { EduReveal, EduStaggerContainer, EduStaggerItem, EduHorizontalLine } from './EduMotion';
-import { SCHOOL_EDUCATION_DATA } from '@/data/school-education';
+import { SCHOOL_EDUCATION_DATA, SCHOOL_STATUS_MAP } from '@/data/school-education';
 
 export function EduPriorities({ locale }: { locale: Locale }) {
   const { strategicDirectives } = SCHOOL_EDUCATION_DATA;
@@ -64,10 +64,10 @@ export function EduPriorities({ locale }: { locale: Locale }) {
             <div className="pt-1 md:col-start-2 lg:col-start-3 space-y-1.5 text-right lg:text-left">
               <div className="inline-flex items-center gap-1.5 text-sm font-mono font-bold uppercase tracking-wider text-charcoal-900">
                 <span className="w-2.5 h-2.5 rounded-full bg-maroon-700" />
-                <span>{item.status}</span>
+                <span>{SCHOOL_STATUS_MAP[item.status][locale]}</span>
               </div>
               <p className="text-sm text-charcoal-500 font-mono">
-                {item.source}
+                {typeof item.source === 'string' ? item.source : item.source[locale]}
               </p>
             </div>
           </EduStaggerItem>

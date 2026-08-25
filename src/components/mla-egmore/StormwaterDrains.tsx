@@ -129,7 +129,7 @@ export function StormwaterDrains({ locale }: SectionProps) {
                 <Waves size={28} className="text-white/50" />
                 <div className="text-5xl sm:text-6xl font-display font-bold tracking-tighter">
                   <MlaCounter value={content.stat1Value} format="decimal" />
-                  <span className="text-2xl sm:text-3xl text-yellow-400 ml-1">km</span>
+                  <span className="text-2xl sm:text-3xl text-yellow-400 ml-1">{locale === 'ta' ? 'கி.மீ' : 'km'}</span>
                 </div>
               </div>
               <p className="font-sans text-white/70">{content.stat1Label}</p>
@@ -141,7 +141,7 @@ export function StormwaterDrains({ locale }: SectionProps) {
                 <div className="text-5xl sm:text-6xl font-display font-bold tracking-tighter">
                   <span className="text-2xl sm:text-3xl text-yellow-400 mr-1">₹</span>
                   <MlaCounter value={content.stat2Value} format="decimal" />
-                  <span className="text-2xl sm:text-3xl text-yellow-400 ml-1">Cr</span>
+                  <span className="text-2xl sm:text-3xl text-yellow-400 ml-1">{locale === 'ta' ? 'கோடி' : 'Cr'}</span>
                 </div>
               </div>
               <p className="font-sans text-white/70">{content.stat2Label}</p>

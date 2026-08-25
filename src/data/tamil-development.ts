@@ -18,8 +18,8 @@ export interface BaseContent {
   readonly status: ContentStatus;
   readonly title: Bilingual;
   readonly description?: Bilingual;
-  readonly date?: string;
-  readonly source?: string;
+  readonly date?: Bilingual;
+  readonly source?: Bilingual;
 }
 
 export interface Scheme extends BaseContent {
@@ -31,6 +31,20 @@ export interface Scheme extends BaseContent {
 export interface TimelineEvent extends BaseContent {
   readonly importance: 'primary' | 'secondary';
 }
+
+export const TAMIL_STATUS_MAP: Record<ContentStatus, Bilingual> = {
+  'VERIFIED': { en: 'VERIFIED', ta: 'சரிபார்க்கப்பட்டது' },
+  'OFFICIAL SOURCE': { en: 'OFFICIAL SOURCE', ta: 'அதிகாரப்பூர்வ ஆதாரம்' },
+  'MINISTERIAL STATEMENT': { en: 'MINISTERIAL STATEMENT', ta: 'அமைச்சர் அறிக்கை' },
+  'REPORTED': { en: 'REPORTED', ta: 'செய்தி அறிக்கை' },
+  'PROPOSED': { en: 'PROPOSED', ta: 'முன்மொழியப்பட்டது' },
+  'INHERITED DEPARTMENTAL PROGRAMME': { en: 'INHERITED DEPARTMENTAL PROGRAMME', ta: 'தொடரும் துறைசார் திட்டம்' },
+  'UNDER HIS TENURE': { en: 'UNDER HIS TENURE', ta: 'பதவிக்காலத்தில்' },
+  'PUBLICLY ANNOUNCED': { en: 'PUBLICLY ANNOUNCED', ta: 'பொது அறிவிப்பு' },
+  'SUPPORTED GOVERNMENT / ASSEMBLY ACTION': { en: 'SUPPORTED GOVERNMENT / ASSEMBLY ACTION', ta: 'அரசு / சட்டமன்ற நடவடிக்கை' },
+  'EDITORIAL ROADMAP': { en: 'EDITORIAL ROADMAP', ta: 'செயல் திட்டம்' }
+};
+
 
 export const TAMIL_DEVELOPMENT_DATA = {
   ecosystemNodes: [
@@ -49,49 +63,49 @@ export const TAMIL_DEVELOPMENT_DATA = {
     {
       id: 'cabinet-entry',
       status: 'VERIFIED',
-      date: '10 May 2026',
+      date: { en: '10 May 2026', ta: '10 மே 2026' },
       title: { en: 'Entered Tamil Nadu cabinet', ta: 'தமிழக அமைச்சரவையில் நுழைந்தார்' },
       importance: 'primary'
     },
     {
       id: 'portfolio-allocation',
       status: 'VERIFIED',
-      date: '16 May 2026',
+      date: { en: '16 May 2026', ta: '16 மே 2026' },
       title: { en: 'Portfolio allocation', ta: 'பொருப்பு ஒதுக்கீடு' },
       importance: 'primary'
     },
     {
       id: 'department-review',
       status: 'REPORTED',
-      date: '17 May 2026',
+      date: { en: '17 May 2026', ta: '17 மே 2026' },
       title: { en: 'Reported departmental review', ta: 'அறிவிக்கப்பட்ட துறை ஆய்வு' },
       importance: 'secondary'
     },
     {
       id: 'tamil-thaai-vaazhthu-priority',
       status: 'MINISTERIAL STATEMENT',
-      date: '21 May 2026',
+      date: { en: '21 May 2026', ta: '21 மே 2026' },
       title: { en: 'Tamil Thaai Vaazhthu priority statement', ta: 'தமிழ்த் தாய் வாழ்த்து முன்னுரிமை அறிக்கை' },
       importance: 'primary'
     },
     {
       id: 'coimbatore-visit',
       status: 'REPORTED',
-      date: '11–12 June 2026',
+      date: { en: '11–12 June 2026', ta: '11–12 ஜூன் 2026' },
       title: { en: 'Coimbatore exhibition, AI-content review & awards discussion', ta: 'கோவை கண்காட்சி, AI உள்ளடக்க ஆய்வு மற்றும் விருதுகள் விவாதம்' },
       importance: 'secondary'
     },
     {
       id: 'us-consultations',
       status: 'REPORTED',
-      date: '1–7 July 2026',
+      date: { en: '1–7 July 2026', ta: '1–7 ஜூலை 2026' },
       title: { en: 'US consultations connected to proposed World Tamil Conference', ta: 'முன்மொழியப்பட்ட உலகத் தமிழ் மாநாடு தொடர்பான அமெரிக்க ஆலோசனைகள்' },
       importance: 'secondary'
     },
     {
       id: 'tamil-nadu-day',
       status: 'VERIFIED',
-      date: '18 July 2026',
+      date: { en: '18 July 2026', ta: '18 ஜூலை 2026' },
       title: { en: 'Tamil Nadu Day celebration at IITS', ta: 'ஐ.ஐ.டி.எஸ்-இல் தமிழ்நாடு நாள் கொண்டாட்டம்' },
       importance: 'primary'
     },

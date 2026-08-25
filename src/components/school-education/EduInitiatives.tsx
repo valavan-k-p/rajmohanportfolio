@@ -113,8 +113,8 @@ export function EduInitiatives({ locale }: { locale: Locale }) {
             </div>
 
             <div className="pt-3 border-t border-sand-200 text-[11px] text-charcoal-500 font-mono flex items-center justify-between">
-              <span>Source: {item.source}</span>
-              <span className="text-maroon-700 font-semibold">● Active Directive</span>
+              <span>{locale === 'ta' ? 'ஆதாரம்:' : 'Source:'} {item.source}</span>
+              <span className="text-maroon-700 font-semibold">● {locale === 'ta' ? 'செயல்பாட்டில் உள்ள உத்தரவு' : 'Active Directive'}</span>
             </div>
           </EduStaggerItem>
         ))}

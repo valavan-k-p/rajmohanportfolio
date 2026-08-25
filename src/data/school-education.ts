@@ -14,9 +14,9 @@ export interface EducationItem {
   readonly status: EducationStatus;
   readonly title: Bilingual;
   readonly summary: Bilingual;
-  readonly date?: string;
-  readonly source: string;
-  readonly category?: string;
+  readonly date?: Bilingual;
+  readonly source: Bilingual;
+  readonly category?: Bilingual;
   readonly metrics?: {
     readonly value: number;
     readonly prefix?: string;
@@ -24,6 +24,16 @@ export interface EducationItem {
     readonly label: Bilingual;
   };
 }
+
+export const SCHOOL_STATUS_MAP: Record<EducationStatus, Bilingual> = {
+  'VERIFIED': { en: 'VERIFIED', ta: 'சரிபார்க்கப்பட்டது' },
+  'OFFICIAL ORDER': { en: 'OFFICIAL ORDER', ta: 'அரசு ஆணை' },
+  'MINISTERIAL DIRECTIVE': { en: 'MINISTERIAL DIRECTIVE', ta: 'அமைச்சர் வழிகாட்டுதல்' },
+  'PILOT DEPLOYMENT': { en: 'PILOT DEPLOYMENT', ta: 'முன்னோடித் திட்டம்' },
+  'LEGISLATIVE ASSURANCE': { en: 'LEGISLATIVE ASSURANCE', ta: 'சட்டமன்ற உறுதிமொழி' },
+  'POLICY PROPOSAL': { en: 'POLICY PROPOSAL', ta: 'கொள்கை வரைவு' },
+  'STATUTORY POSITION': { en: 'STATUTORY POSITION', ta: 'சட்டரீதியான நிலைப்பாடு' }
+};
 
 export const SCHOOL_EDUCATION_DATA = {
   overview: {
@@ -116,7 +126,7 @@ export const SCHOOL_EDUCATION_DATA = {
         en: 'Classes 1, 2 & 3 statewide',
         ta: 'மாநிலம் முழுவதும் 1, 2, 3 வகுப்புகள்',
       },
-      source: 'The Hindu & New Indian Express, May 2026',
+      source: { en: 'The Hindu & New Indian Express, May 2026', ta: 'தி இந்து & நியூ இந்தியன் எக்ஸ்பிரஸ், மே 2026' },
     },
     {
       id: 'directive-2',
@@ -133,7 +143,7 @@ export const SCHOOL_EDUCATION_DATA = {
         en: 'Proactive door-to-door teacher surveys for dropout recovery',
         ta: 'இடைநிற்றல் குழந்தைகளை மீட்க வீடு வீடாக ஆசிரியர் கணக்கெடுப்பு',
       },
-      source: 'Dinamalar Kalvimalar, August 2026',
+      source: { en: 'Dinamalar Kalvimalar, August 2026', ta: 'தினமலர் கல்விமலர், ஆகஸ்ட் 2026' },
     },
     {
       id: 'directive-3',
@@ -150,7 +160,7 @@ export const SCHOOL_EDUCATION_DATA = {
         en: 'Restored clean records and career prospects for students',
         ta: 'மாணவர்களின் கல்வி மற்றும் எதிர்காலப் பாதுகாப்பு உறுதி செய்யப்பட்டது',
       },
-      source: 'The Hindu, August 2026',
+      source: { en: 'The Hindu, August 2026', ta: 'தி இந்து, ஆகஸ்ட் 2026' },
     },
     {
       id: 'directive-4',
@@ -167,7 +177,7 @@ export const SCHOOL_EDUCATION_DATA = {
         en: '5,000 pilot schools expanding to high-school coding labs',
         ta: '5,000 பள்ளிகளில் முன்னோடி; உயர்நிலைக் கல்வி வரை விரிவு',
       },
-      source: 'New Indian Express, July 2026',
+      source: { en: 'New Indian Express, July 2026', ta: 'நியூ இந்தியன் எக்ஸ்பிரஸ், ஜூலை 2026' },
     },
   ],
 
@@ -231,7 +241,7 @@ export const SCHOOL_EDUCATION_DATA = {
         en: 'Released 9 revised activity-rich textbooks for Classes 1–3 to reduce rote learning. Reaffirmed commitment to Tamil Nadu’s two-language formula.',
         ta: 'மனப்பாடக் கல்வியைக் குறைக்க 9 புதிய பாடநூல்கள் வெளியீடு; இருமொழிக் கொள்கையில் உறுதியான நிலைப்பாடு அறிவிப்பு.',
       },
-      source: 'The Hindu & New Indian Express',
+      source: { en: 'The Hindu & New Indian Express', ta: 'தி இந்து & நியூ இந்தியன் எக்ஸ்பிரஸ்' },
     },
     {
       date: '04 June 2026',
@@ -244,7 +254,7 @@ export const SCHOOL_EDUCATION_DATA = {
         en: 'Schools reopened with comprehensive audits for water, sanitation, and kitchens. Inaugurated 21 smart boards in Chennai.',
         ta: 'குடிநீர், சுகாதார ஆய்வுகளுடன் பள்ளிகள் திறப்பு; சென்னையில் 21 ஸ்மார்ட் போர்டுகள் பயன்பாட்டிற்கு வந்தன.',
       },
-      source: 'Careers360 & The News Mill',
+      source: { en: 'Careers360 & The News Mill', ta: 'கெரியர்ஸ்360 & தி நியூஸ் மில்' },
     },
     {
       date: '17 June 2026',
@@ -257,7 +267,7 @@ export const SCHOOL_EDUCATION_DATA = {
         en: 'Announced digital submission system from 1 July 2026 to curb middlemen and bribery in recognition approvals.',
         ta: 'இடைத்தரகர்களையும் லஞ்சத்தையும் தவிர்க்க ஜூலை 1 முதல் இணையவழி அனுமதி முறை அறிவிக்கப்பட்டது.',
       },
-      source: 'New Indian Express',
+      source: { en: 'New Indian Express', ta: 'நியூ இந்தியன் எக்ஸ்பிரஸ்' },
     },
     {
       date: '10 July 2026',
@@ -270,10 +280,10 @@ export const SCHOOL_EDUCATION_DATA = {
         en: 'Restricted political party and unauthorised visitor access to maintain instructional sanctuary and student safety.',
         ta: 'அரசியல் தலையீடுகளற்ற அமைதியான கற்றல் சூழலை உறுதி செய்ய பார்வையாளர்கள் கட்டுப்பாடு.',
       },
-      source: 'New Indian Express',
+      source: { en: 'New Indian Express', ta: 'நியூ இந்தியன் எக்ஸ்பிரஸ்' },
     },
     {
-      date: '22 July 2026',
+      date: { en: '22 July 2026', ta: '22 ஜூலை 2026' },
       status: 'PILOT DEPLOYMENT' as EducationStatus,
       title: {
         en: 'TN SPARK AI & Emerging Tech Roadmap Published',
@@ -283,7 +293,7 @@ export const SCHOOL_EDUCATION_DATA = {
         en: 'Outlined curriculum progression covering AI and coding from pilot schools to Classes 6–8 and 9–12.',
         ta: '5,000 பள்ளிகளில் முன்னோடித் திட்டம்; உயர் வகுப்புகளுக்கு கோடிங் கல்வி விரிவு வரைபடம் வெளியீடு.',
       },
-      source: 'New Indian Express',
+      source: { en: 'New Indian Express', ta: 'நியூ இந்தியன் எக்ஸ்பிரஸ்' },
     },
     {
       date: 'August 2026',
@@ -296,7 +306,7 @@ export const SCHOOL_EDUCATION_DATA = {
         en: 'Withdrew criminal cases against student protesters and established legislative rule to reopen closed schools with 10 students.',
         ta: 'மாணவர்கள் மீதான வழக்குகள் வாபஸ் மற்றும் குறைந்த சேர்க்கை அரசுப் பள்ளிகள் மறுதிறப்பு உத்தரவு.',
       },
-      source: 'The Hindu & Dinamalar Kalvimalar',
+      source: { en: 'The Hindu & Dinamalar Kalvimalar', ta: 'தி இந்து & தினமலர் கல்விமலர்' },
     },
   ],
 
@@ -347,7 +357,7 @@ export const SCHOOL_EDUCATION_DATA = {
         en: 'A proposal to serve chicken biryani once weekly in government-school noon meals is under ministerial review and final Chief Minister consideration to bolster nutrition and attendance.',
         ta: 'அரசுப் பள்ளி மதிய உணவுத் திட்டத்தில் வாரம் ஒரு முறை சிக்கன் பிரியாணி வழங்கும் முன்மொழிவு அரசின் தீவிரப் பரிசீலனையில் உள்ளது.',
       },
-      source: 'New Indian Express, August 2026',
+      source: { en: 'New Indian Express, August 2026', ta: 'நியூ இந்தியன் எக்ஸ்பிரஸ், ஆகஸ்ட் 2026' },
     },
     {
       id: 'private-fee-caps',
@@ -360,7 +370,7 @@ export const SCHOOL_EDUCATION_DATA = {
         en: 'Official warning issued to private schools against collecting unapproved fees above the state fee-determination committee limits, protecting parents from arbitrary inflation.',
         ta: 'அரசு நிர்ணயித்த கட்டணத்தை விட கூடுதலாக வசூலிக்கும் தனியார் பள்ளிகள் மீது கடுமையான நடவடிக்கை எடுக்கப்படும் என எச்சரிக்கை.',
       },
-      source: 'New Indian Express, June 2026',
+      source: { en: 'New Indian Express, June 2026', ta: 'நியூ இந்தியன் எக்ஸ்பிரஸ், ஜூன் 2026' },
     },
   ],
 };

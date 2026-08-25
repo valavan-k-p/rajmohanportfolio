@@ -85,7 +85,7 @@ export function MlaSectionShell({ id, title, layout, index, children, className,
               <h2
                 id={`${id}-heading`}
                 className={clsx(
-                  'font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1]',
+                  'font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-tight',
                   inverted ? 'text-white' : 'text-charcoal-900'
                 )}
               >

@@ -14,11 +14,11 @@
   --color-sand-200: #f7ddb4; /* sampled building stone */
   --color-sand-300: #e9c48f;
 
-  /* --- Maroon: flag hue, deepened to clear 7:1 --- */
-  --color-maroon-500: #b3241a; /*  6.10:1 on sand — large text only */
-  --color-maroon-600: #96170f; /*  8.01:1 on sand */
-  --color-maroon-700: #7a100b; /* 10.19:1 on sand */
-  --color-maroon-800: #5e0b08; /* 12.73:1 on sand */
+  /* --- Flag Red: vivid hue matching the flag (formerly maroon) --- */
+  --color-maroon-500: #f03e3e; /* vibrant red */
+  --color-maroon-600: #e03131; /* strong flag red */
+  --color-maroon-700: #c92a2a; /* deep flag red */
+  --color-maroon-800: #b02323; /* darker shade for hover/borders */
 
   /* --- Yellow: fills and markers. NEVER carries text on light. --- */
   --color-yellow-400: #fed427; /* 1.33:1 on sand — decorative only */
@@ -34,9 +34,9 @@
   --color-emblem-yellow: #fed427;
 
   /* --- Typography --- */
-  --font-display: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+  --font-display: var(--font-instrument-serif), var(--font-noto-serif-tamil), Georgia, 'Times New Roman', serif;
   --font-serif-editorial: var(--font-cormorant), var(--font-instrument-serif), Georgia, serif;
-  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-instrument-sans), var(--font-noto-sans-tamil), ui-sans-serif, system-ui, sans-serif;
   --font-tamil-display: var(--font-noto-serif-tamil), var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
   --font-tamil-sans: var(--font-noto-sans-tamil), var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
 

@@ -119,7 +119,7 @@ export function InfoSectionShell({
             <InfoHeadingMask delay={0.1}>
               <h2
                 id={`${id}-heading`}
-                className={`font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-medium tracking-tight leading-[1.08] ${
+                className={`font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-medium tracking-tight leading-tight ${
                   inverted ? 'text-white' : 'text-charcoal-900'
                 }`}
               >
