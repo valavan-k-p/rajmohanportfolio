@@ -170,7 +170,7 @@ export function GlobalTamilMap({ locale }: { locale: Locale }) {
           <Stat text={locale === 'ta' ? 'புலம்பெயர் அறிஞர்கள்' : 'Diaspora Scholars'} />
           <Stat text={locale === 'ta' ? 'மாநாடுகள்' : 'Conferences'} />
           <div className="flex flex-col items-center justify-center p-4">
-            <span className="font-medium text-white text-lg">{locale === 'ta' ? 'உலகத் தமிழ் மாநாடு' : 'World Tamil Conference'}</span>
+            <span className="font-tamil-display font-medium text-white text-lg">{locale === 'ta' ? 'உலகத் தமிழ் மாநாடு' : 'World Tamil Conference'}</span>
             <span className="text-[0.55rem] bg-white/10 px-2 py-0.5 rounded mt-1 font-bold tracking-widest text-[var(--color-tamil-gold)]">{locale === 'ta' ? 'முன்மொழியப்பட்டது / அறிக்கப்பட்டது' : 'PROPOSED / REPORTED'}</span>
           </div>
         </div>
@@ -182,7 +182,7 @@ export function GlobalTamilMap({ locale }: { locale: Locale }) {
 function Stat({ text }: { text: string }) {
   return (
     <div className="flex flex-col items-center justify-center p-4">
-      <span className="font-medium text-white text-lg">{text}</span>
+      <span className="font-tamil-display font-medium text-white text-lg">{text}</span>
     </div>
   );
 }

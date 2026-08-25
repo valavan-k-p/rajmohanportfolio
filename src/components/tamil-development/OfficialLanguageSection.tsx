@@ -126,7 +126,7 @@ export function OfficialLanguageSection({ locale }: { locale: Locale }) {
 function InfoBlock({ title, text }: { title: string; text: string }) {
   return (
     <div className="border-l-2 border-[var(--color-tamil-red)] pl-6">
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
+      <h3 className="font-tamil-display text-xl font-bold mb-2">{title}</h3>
       <p className="opacity-75">{text}</p>
     </div>
   );

@@ -142,7 +142,7 @@ export function TechnicalTamilSection({ locale }: { locale: Locale }) {
                   <step.Icon />
                 </div>
                 <div>
-                  <h4 className={`text-xl md:text-2xl tracking-wide ${
+                  <h4 className={`font-tamil-display text-xl md:text-2xl tracking-wide ${
                     step.isFinal ? 'text-[var(--color-tamil-red)] font-bold' : 'text-white/90 font-medium'
                   }`}>
                     {locale === 'ta' ? step.ta : step.en}
