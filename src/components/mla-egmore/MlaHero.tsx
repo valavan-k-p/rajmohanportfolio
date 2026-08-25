@@ -6,6 +6,7 @@ import { motion, useReducedMotion, AnimatePresence } from 'motion/react';
 import { cormorant } from './MlaTypography';
 import { useState, useEffect } from 'react';
 import { MlaScrollProgress } from './MlaMotion';
+import { MlaStickyNav } from './MlaStickyNav';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -15,6 +16,7 @@ export interface MlaHeroProps {
   readonly title: string;
   readonly standfirst: string;
   readonly backLabel: string;
+  readonly locale?: string;
 }
 
 function MlaPreloader({ onComplete }: { onComplete: () => void }) {
@@ -55,7 +57,7 @@ function MlaPreloader({ onComplete }: { onComplete: () => void }) {
   );
 }
 
-function FloatingNav({ backLabel }: { backLabel: string }) {
+function FloatingNav({ backLabel, locale }: { backLabel: string, locale?: string }) {
   const prefersReducedMotion = useReducedMotion();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   
@@ -67,12 +69,14 @@ function FloatingNav({ backLabel }: { backLabel: string }) {
     }
   };
 
+  const isTa = locale === 'ta';
+
   const navItems = [
     { label: backLabel, href: '/', type: 'link' },
-    { label: 'Profile', href: '#mla-at-a-glance', type: 'scroll' },
-    { label: 'Role', href: '#about-egmore', type: 'scroll', hideOnMobile: true },
-    { label: 'Projects', href: '#neer-ezhil-palli', type: 'scroll' },
-    { label: 'Civic Work', href: '#civic-work', type: 'scroll', hideOnTablet: true },
+    { label: isTa ? 'சுயவிவரம்' : 'Profile', href: '#mla-at-a-glance', type: 'scroll' },
+    { label: isTa ? 'பொறுப்பு' : 'Role', href: '#about-egmore', type: 'scroll', hideOnMobile: true },
+    { label: isTa ? 'திட்டங்கள்' : 'Projects', href: '#neer-ezhil-palli', type: 'scroll' },
+    { label: isTa ? 'மக்கள் பணி' : 'Civic Work', href: '#civic-work', type: 'scroll', hideOnTablet: true },
   ];
 
   return (
@@ -121,7 +125,7 @@ function FloatingNav({ backLabel }: { backLabel: string }) {
             transition={{ type: "spring", stiffness: 400, damping: 30 }}
           />
         )}
-        <span className="text-[#fdfbf7]/80 group-hover:text-white tracking-[0.15em] text-[9px] uppercase font-bold drop-shadow-md relative z-10">Language</span>
+        <span className="text-[#fdfbf7]/80 group-hover:text-white tracking-[0.15em] text-[9px] uppercase font-bold drop-shadow-md relative z-10">{isTa ? 'மொழி' : 'Language'}</span>
         <div className="absolute top-[130%] right-0 mt-0 flex flex-col gap-2 bg-black/70 backdrop-blur-md rounded-md p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all border border-white/10 shadow-xl z-50">
           <Link href="/en/mla-egmore" className="text-[#d4af37] hover:text-[#fdfbf7] tracking-[0.15em] text-[9px] uppercase font-bold drop-shadow-md whitespace-nowrap transition-colors">English</Link>
           <div className="w-full h-[1px] bg-white/20"></div>
@@ -132,7 +136,7 @@ function FloatingNav({ backLabel }: { backLabel: string }) {
   );
 }
 
-export function MlaHero({ index, title, standfirst, backLabel }: MlaHeroProps) {
+export function MlaHero({ index, title, standfirst, backLabel, locale }: MlaHeroProps) {
   const prefersReducedMotion = useReducedMotion();
   const [showPreloader, setShowPreloader] = useState(true);
 
@@ -153,11 +157,12 @@ export function MlaHero({ index, title, standfirst, backLabel }: MlaHeroProps) {
       <AnimatePresence>
         {showPreloader && <MlaPreloader onComplete={() => { document.body.style.overflow = ''; }} />}
       </AnimatePresence>
+      <MlaStickyNav title={title} locale={locale} />
 
       <header 
         className={`relative min-h-[100dvh] w-full bg-[#fdfbf7] flex flex-col items-center justify-center ${cormorant.variable} overflow-hidden`}
       >
-        <FloatingNav backLabel={backLabel} />
+        <FloatingNav backLabel={backLabel} locale={locale} />
 
         {/* Background / Group Photo Layer */}
         <motion.div 

@@ -64,14 +64,14 @@ export function StormwaterDrains({ locale }: SectionProps) {
     <MlaStaggerContainer className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-12 lg:gap-20 items-start">
       <MlaStaggerContainer className="space-y-12">
         <MlaStaggerItem>
-          <p className="text-xl md:text-2xl font-light text-slate-900 leading-relaxed">
+          <p className="text-xl md:text-2xl font-light text-charcoal-900 leading-relaxed">
             {content.p1}
           </p>
         </MlaStaggerItem>
 
         <MlaStaggerItem>
-          <h3 className="font-display text-2xl text-slate-900 mb-6">{content.actionsTitle}</h3>
-          <ul className="list-disc pl-6 space-y-3 text-lg text-slate-900 marker:text-slate-900">
+          <h3 className="font-display text-2xl text-charcoal-900 mb-6">{content.actionsTitle}</h3>
+          <ul className="list-disc pl-6 space-y-3 text-lg text-charcoal-800 marker:text-red-600">
             {content.actions.map((action, idx) => (
               <li key={idx}>{action}</li>
             ))}
@@ -79,10 +79,10 @@ export function StormwaterDrains({ locale }: SectionProps) {
         </MlaStaggerItem>
 
         <MlaStaggerItem>
-          <h3 className="font-display text-2xl text-slate-900 mb-6">{content.locationsTitle}</h3>
+          <h3 className="font-display text-2xl text-charcoal-900 mb-6">{content.locationsTitle}</h3>
           <div className="flex flex-wrap gap-3">
             {content.locations.map((loc, idx) => (
-              <span key={idx} className="inline-block px-4 py-2 bg-slate-50 border border-slate-200 text-slate-900 text-sm tracking-wide">
+              <span key={idx} className="inline-block px-4 py-2 bg-sand-100 border border-sand-300 text-charcoal-800 text-sm tracking-wide">
                 {loc}
               </span>
             ))}
@@ -91,49 +91,47 @@ export function StormwaterDrains({ locale }: SectionProps) {
       </MlaStaggerContainer>
 
       <MlaStaggerContainer className="space-y-8">
-        <MlaStaggerItem className="bg-slate-900 text-white p-8 border-t-4 border-slate-50/30">
-          <h4 className="text-sm uppercase tracking-widest text-slate-50 mb-6">{content.statsTitle}</h4>
+        <MlaStaggerItem className="bg-charcoal-900 text-white p-8 border-t-4 border-red-500">
+          <h4 className="text-sm uppercase tracking-widest text-red-400 mb-6">{content.statsTitle}</h4>
           
           <div className="mb-8">
             <MlaReveal scale={0.96}>
               <div className="flex items-center gap-3 mb-2">
-                <Waves size={28} className="text-slate-50" strokeWidth={1.5} />
+                <Waves size={28} className="text-red-400" strokeWidth={1.5} />
                 <div 
-                  className="text-5xl" 
+                  className="font-display text-5xl" 
                   style={{ 
-                    fontFamily: 'var(--font-cormorant)',
                     textShadow: '0 0 12px rgba(138, 115, 163, 0.25)' 
                   }}
                 >
-                  <MlaCounter value={1.91} format="decimal" /> <span className="text-2xl font-sans text-slate-50/80">km</span>
+                  <MlaCounter value={1.91} format="decimal" /> <span className="text-2xl font-sans text-red-500/80">km</span>
                 </div>
               </div>
             </MlaReveal>
-            <div className="text-slate-50">{content.stat1Label}</div>
+            <div className="text-sand-200">{content.stat1Label}</div>
           </div>
           
           <div>
             <MlaReveal scale={0.96}>
               <div className="flex items-center gap-3 mb-2">
-                <Banknote size={24} className="text-slate-50" strokeWidth={1.5} />
+                <Banknote size={24} className="text-red-400" strokeWidth={1.5} />
                 <div 
-                  className="text-4xl" 
+                  className="font-display text-4xl" 
                   style={{ 
-                    fontFamily: 'var(--font-cormorant)',
                     textShadow: '0 0 10px rgba(138, 115, 163, 0.25)' 
                   }}
                 >
-                  <span className="text-2xl font-sans text-slate-50/80">₹</span><MlaCounter value={2.06} format="decimal" /> <span className="text-2xl font-sans text-slate-50/80">Cr</span>
+                  <span className="text-2xl font-sans text-red-500/80">₹</span><MlaCounter value={2.06} format="decimal" /> <span className="text-2xl font-sans text-red-500/80">Cr</span>
                 </div>
               </div>
             </MlaReveal>
-            <div className="text-slate-50">{content.stat2Label}</div>
+            <div className="text-sand-200">{content.stat2Label}</div>
           </div>
         </MlaStaggerItem>
 
-        <MlaStaggerItem className="bg-slate-50 p-6 border border-slate-200">
-          <h4 className="font-display text-xl text-slate-900 mb-3">{content.contextTitle}</h4>
-          <p className="text-slate-900 text-sm leading-relaxed">{content.contextBody}</p>
+        <MlaStaggerItem className="bg-sand-50 p-6 border border-sand-300">
+          <h4 className="font-display text-xl text-maroon-800 mb-3">{content.contextTitle}</h4>
+          <p className="text-charcoal-700 text-sm leading-relaxed">{content.contextBody}</p>
         </MlaStaggerItem>
       </MlaStaggerContainer>
     </MlaStaggerContainer>

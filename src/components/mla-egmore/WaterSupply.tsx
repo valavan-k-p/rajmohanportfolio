@@ -1,5 +1,8 @@
+﻿'use client';
 import type { SectionProps } from './SectionMapper';
 import { MlaStaggerContainer, MlaStaggerItem } from './MlaMotion';
+import { motion } from 'motion/react';
+import { Droplets } from 'lucide-react';
 
 export function WaterSupply({ locale }: SectionProps) {
   const content = {
@@ -32,16 +35,65 @@ export function WaterSupply({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="prose prose-lg text-slate-900 prose-headings:font-display prose-headings:font-normal prose-li:marker:text-slate-900">
+    <MlaStaggerContainer className="prose prose-lg text-charcoal-800 prose-headings:font-display prose-headings:font-normal">
       <MlaStaggerItem><p>{content.p1}</p></MlaStaggerItem>
       <MlaStaggerItem><p>{content.p2}</p></MlaStaggerItem>
-      <MlaStaggerItem><h3 className="text-xl mt-8 mb-4">{content.interventionsHeading}</h3></MlaStaggerItem>
-      <ul className="list-disc pl-6 space-y-2">
+      
+      <MlaStaggerItem><h3 className="text-2xl mt-12 mb-6 text-maroon-900">{content.interventionsHeading}</h3></MlaStaggerItem>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 not-prose mb-12">
         {content.interventions.map((item, index) => (
-          <MlaStaggerItem key={index} y={0} x={15}><li>{item}</li></MlaStaggerItem>
+          <MlaStaggerItem key={index} y={30}>
+            <motion.div
+              initial="rest"
+              whileHover="hover"
+              className="group relative p-6 md:p-8 bg-white rounded-2xl border border-sand-200 shadow-sm overflow-hidden flex flex-col h-full cursor-default"
+            >
+              {/* Blue gradient hover background tailored for water theme */}
+              <motion.div 
+                variants={{ rest: { opacity: 0 }, hover: { opacity: 1 } }}
+                transition={{ duration: 0.4 }}
+                className="absolute inset-0 bg-gradient-to-br from-[#f0f9ff] to-transparent pointer-events-none"
+              />
+              
+              <div className="relative z-10 mb-6">
+                <motion.div
+                  variants={{
+                    rest: { scale: 1, rotate: 0, backgroundColor: '#f0f9ff', color: '#0284c7' },
+                    hover: { scale: 1.15, rotate: -10, backgroundColor: '#e0f2fe', color: '#0369a1' }
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="w-14 h-14 rounded-full flex items-center justify-center border border-[#bae6fd]"
+                >
+                  <Droplets size={24} />
+                </motion.div>
+              </div>
+              
+              <motion.div
+                variants={{ rest: { y: 0 }, hover: { y: -4 } }}
+                transition={{ duration: 0.3 }}
+                className="relative z-10 mt-auto"
+              >
+                <p className="text-lg text-charcoal-800 leading-snug font-medium group-hover:text-charcoal-900 transition-colors break-words hyphens-auto">
+                  {item}
+                </p>
+              </motion.div>
+            </motion.div>
+          </MlaStaggerItem>
         ))}
-      </ul>
-      <MlaStaggerItem><p className="mt-8 text-base text-slate-900 italic border-l-2 border-slate-200 pl-4">{content.note}</p></MlaStaggerItem>
+      </div>
+
+      <MlaStaggerItem y={20}>
+        <motion.div 
+          whileHover={{ x: 8 }}
+          className="mt-8 p-6 bg-sand-50 rounded-xl border-l-4 border-maroon-500 shadow-sm"
+        >
+          <p className="text-lg text-charcoal-700 italic m-0">
+            {content.note}
+          </p>
+        </motion.div>
+      </MlaStaggerItem>
     </MlaStaggerContainer>
   );
 }
+

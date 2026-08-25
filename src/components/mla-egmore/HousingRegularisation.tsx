@@ -1,5 +1,8 @@
+﻿'use client';
 import type { SectionProps } from './SectionMapper';
 import { MlaStaggerContainer, MlaStaggerItem } from './MlaMotion';
+import { motion } from 'motion/react';
+import { Star } from 'lucide-react';
 
 export function HousingRegularisation({ locale }: SectionProps) {
   const content = {
@@ -42,28 +45,83 @@ export function HousingRegularisation({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="prose prose-lg text-slate-900 prose-headings:font-display prose-headings:font-normal prose-li:marker:text-slate-900 space-y-6">
+    <MlaStaggerContainer className="prose prose-lg text-charcoal-800 prose-headings:font-display prose-headings:font-normal space-y-6">
       <MlaStaggerItem><p>{content.p1}</p></MlaStaggerItem>
       
       <MlaStaggerItem><h3 className="text-xl mt-8 mb-4">{content.listHeading}</h3></MlaStaggerItem>
-      <ul className="list-disc pl-6 space-y-2">
+      <ul className="space-y-4 not-prose">
         {content.list.map((item, index) => (
-          <MlaStaggerItem key={index} y={0} x={15}><li>{item}</li></MlaStaggerItem>
+          <MlaStaggerItem key={index} y={15} x={0}>
+            <motion.li 
+              initial="rest"
+              whileHover="hover"
+              className="flex items-start gap-4 text-lg group cursor-default"
+            >
+              <motion.div
+                variants={{
+                  rest: { rotate: 0, scale: 1, opacity: 0.7 },
+                  hover: { rotate: 180, scale: 1.25, opacity: 1 }
+                }}
+                transition={{ duration: 0.4, type: "spring" }}
+                className="mt-1 shrink-0 text-red-600"
+              >
+                <Star size={18} fill="currentColor" strokeWidth={1} />
+              </motion.div>
+              <motion.span
+                variants={{
+                  rest: { x: 0 },
+                  hover: { x: 6 }
+                }}
+                transition={{ duration: 0.3 }}
+                className="leading-snug transition-colors group-hover:text-charcoal-900"
+              >
+                {item}
+              </motion.span>
+            </motion.li>
+          </MlaStaggerItem>
         ))}
       </ul>
 
-      <MlaStaggerItem><h3 className="text-xl mt-8 mb-4">{content.locationsHeading}</h3></MlaStaggerItem>
-      <ul className="list-disc pl-6 space-y-2">
+      <MlaStaggerItem><h3 className="text-xl mt-10 mb-4">{content.locationsHeading}</h3></MlaStaggerItem>
+      <ul className="space-y-4 not-prose">
         {content.locations.map((item, index) => (
-          <MlaStaggerItem key={index} y={0} x={15}><li>{item}</li></MlaStaggerItem>
+          <MlaStaggerItem key={index} y={15} x={0}>
+            <motion.li 
+              initial="rest"
+              whileHover="hover"
+              className="flex items-start gap-4 text-lg group cursor-default"
+            >
+              <motion.div
+                variants={{
+                  rest: { rotate: 0, scale: 1, opacity: 0.7 },
+                  hover: { rotate: 180, scale: 1.25, opacity: 1 }
+                }}
+                transition={{ duration: 0.4, type: "spring" }}
+                className="mt-1 shrink-0 text-red-600"
+              >
+                <Star size={18} fill="currentColor" strokeWidth={1} />
+              </motion.div>
+              <motion.span
+                variants={{
+                  rest: { x: 0 },
+                  hover: { x: 6 }
+                }}
+                transition={{ duration: 0.3 }}
+                className="leading-snug transition-colors group-hover:text-charcoal-900"
+              >
+                {item}
+              </motion.span>
+            </motion.li>
+          </MlaStaggerItem>
         ))}
       </ul>
 
       <MlaStaggerItem>
-        <div className="mt-8 p-4 bg-slate-50 border-l-4 border-slate-200 text-base italic text-slate-900">
+        <div className="mt-10 p-5 bg-sand-100 border-l-4 border-red-400 text-base italic text-charcoal-700 shadow-sm rounded-r-md">
           {content.note}
         </div>
       </MlaStaggerItem>
     </MlaStaggerContainer>
   );
 }
+

@@ -79,12 +79,14 @@ function NavItem({
   number, 
   title, 
   isActive, 
-  onClick 
+  onClick,
+  isTa
 }: { 
   number: string, 
   title: string, 
   isActive: boolean,
-  onClick: () => void 
+  onClick: () => void,
+  isTa?: boolean
 }) {
   return (
     <div 
@@ -106,9 +108,8 @@ function NavItem({
           {number}
         </span>
         <h3 
-          className="font-display text-3xl md:text-5xl lg:text-6xl tracking-[0.1em] uppercase transition-colors duration-300"
+          className={`font-display tracking-[0.1em] uppercase transition-colors duration-300 ${isTa ? 'text-2xl md:text-4xl lg:text-5xl leading-normal' : 'text-3xl md:text-5xl lg:text-6xl'}`}
           style={{ 
-            fontFamily: 'var(--font-cormorant)',
             color: isActive ? '#fdfbf7' : '#a0a0a0',
             textShadow: isActive ? '0 0 20px rgba(255,255,255,0.3)' : 'none'
           }}
@@ -165,11 +166,11 @@ function ActiveContent({ content, activeIndex }: { content: any, activeIndex: nu
       <div className="flex flex-col gap-6 text-[#d0d0d0] text-lg md:text-xl font-light leading-relaxed max-w-2xl">
         <p>{content.p5}</p>
         <div className="mt-4">
-          <h4 className="text-sm uppercase tracking-[0.2em] text-slate-50 mb-8 font-semibold">{content.presenceHeading}</h4>
+          <h4 className="text-sm uppercase tracking-[0.2em] text-red-500 mb-8 font-semibold">{content.presenceHeading}</h4>
           <ul className="flex flex-col gap-5 text-base">
             {content.presence.map((item: string, idx: number) => (
               <li key={idx} className="flex items-center gap-6 border-b border-white/5 pb-4">
-                <span className="font-display text-2xl text-slate-50/40">{(idx + 1).toString().padStart(2, '0')}</span>
+                <span className="font-display text-2xl text-red-500/40">{(idx + 1).toString().padStart(2, '0')}</span>
                 <span className="text-[#fdfbf7] tracking-wide font-medium">{item}</span>
               </li>
             ))}
@@ -218,32 +219,38 @@ export function AboutEgmore({ locale }: SectionProps) {
         'Follow-up on pending projects',
         'Engagement around accountability in civic works',
       ],
+      nav1: 'THE MANDATE',
+      nav2: 'CIVIC PRIORITIES',
+      nav3: 'ACTIVE PRESENCE',
     },
     ta: {
-      p1: 'Rajmohan Arumugam’s tenure as the Member of the Legislative Assembly (MLA) for Egmore (SC) began in May 2026, following his victory in the Tamil Nadu Assembly elections.',
-      p2: 'Representing the Tamilaga Vettri Kazhagam (TVK), he assumed office amid public expectations for urban renewal, improved civic amenities, and stronger representation for a constituency that had long been a DMK stronghold.',
-      p3: 'His role has involved a dual responsibility: addressing constituency-level development demands while also handling statewide responsibilities as a senior cabinet minister.',
-      p4: 'From the beginning of his tenure, his constituency work has focused on long-standing civic concerns raised during the 2026 election campaign.',
-      concernsHeading: 'Key concerns include:',
+      p1: 'மே 2026 இல் நடைபெற்ற சட்டமன்றத் தேர்தலில் வெற்றி பெற்றதைத் தொடர்ந்து, எழும்பூர் (தனி) தொகுதியின் சட்டமன்ற உறுப்பினராக (MLA) ராஜ்மோகன் ஆறுமுகம் தனது பதவிக்காலத்தை தொடங்கினார்.',
+      p2: 'தமிழக வெற்றி கழகம் (TVK) சார்பாக போட்டியிட்ட இவர், நகர்ப்புற மறுமலர்ச்சி, மேம்படுத்தப்பட்ட குடிமை வசதிகள் மற்றும் நீண்ட காலமாக திமுகவின் கோட்டையாக இருந்த இத்தொகுதிக்கு வலுவான பிரதிநிதித்துவம் கிடைக்கும் என்ற மக்களின் எதிர்பார்ப்புகளுக்கு இடையே பதவியேற்றார்.',
+      p3: 'ஒரு மூத்த அமைச்சராக மாநில அளவிலான பொறுப்புகளை கவனிக்கும் அதே வேளையில், தொகுதி அளவிலான வளர்ச்சித் தேவைகளையும் பூர்த்தி செய்யும் இரட்டைப் பொறுப்பை அவரது பதவி உள்ளடக்கியுள்ளது.',
+      p4: 'அவரது பதவிக்காலத்தின் தொடக்கத்திலிருந்தே, 2026 தேர்தல் பிரச்சாரத்தின் போது எழுப்பப்பட்ட நீண்டகால குடிமைப் பிரச்சினைகளில் அவரது தொகுதிப் பணிகள் கவனம் செலுத்தி வருகின்றன.',
+      concernsHeading: 'முக்கிய பிரச்சினைகள்:',
       concerns: [
-        'Better housing tenements in Thattankulam',
-        'Better housing facilities in Thideer Nagar',
-        'Better housing facilities in Natesan Nagar',
-        'Issuance of pattas for eligible families',
-        'Modernisation of stormwater drains',
-        'Improvement of sewer networks',
-        'Relaying damaged roads in Choolai',
-        'Relaying damaged roads in Periamet',
+        'தட்டான் குளம் பகுதியில் சிறந்த வீட்டு வசதிகள்',
+        'திடீர் நகரில் சிறந்த வீட்டு வசதிகள்',
+        'நடேசன் நகரில் சிறந்த வீட்டு வசதிகள்',
+        'தகுதியான குடும்பங்களுக்கு பட்டா வழங்குதல்',
+        'மழைநீர் வடிகால்களை நவீனப்படுத்துதல்',
+        'கழிவுநீர் கால்வாய்களை மேம்படுத்துதல்',
+        'சூளையில் சேதமடைந்த சாலைகளை சீரமைத்தல்',
+        'பெரியமேட்டில் சேதமடைந்த சாலைகளை சீரமைத்தல்',
       ],
-      p5: 'His MLA role involves coordination with municipal authorities and state departments to prioritise infrastructure upgrades.',
-      presenceHeading: 'His constituency presence has included:',
+      p5: 'உள்கட்டமைப்பு மேம்பாடுகளுக்கு முன்னுரிமை அளிக்க, மாநகராட்சி அதிகாரிகள் மற்றும் மாநிலத் துறைகளுடன் ஒருங்கிணைந்து செயல்படுவதை அவரது சட்டமன்ற உறுப்பினர் பணி உள்ளடக்கியுள்ளது.',
+      presenceHeading: 'அவரது தொகுதிப் பணிகள் பின்வருவனவற்றை உள்ளடக்கியுள்ளது:',
       presence: [
-        'Public meetings',
-        'Ward-level interactions',
-        'Civic inspections',
-        'Follow-up on pending projects',
-        'Engagement around accountability in civic works',
+        'பொதுக் கூட்டங்கள்',
+        'வார்டு அளவிலான கலந்துரையாடல்கள்',
+        'குடிமைப் பணி ஆய்வுகள்',
+        'நிலுவையில் உள்ள திட்டங்களை பின்தொடர்தல்',
+        'குடிமைப் பணிகளில் பொறுப்புணர்வை உறுதி செய்தல்',
       ],
+      nav1: 'மக்கள் ஆணை',
+      nav2: 'குடிமை முன்னுரிமைகள்',
+      nav3: 'களப்பணி',
     },
   }[locale];
 
@@ -272,10 +279,10 @@ export function AboutEgmore({ locale }: SectionProps) {
   if (prefersReducedMotion) {
     return (
       <MlaStaggerContainer className="prose prose-lg text-[#d0d0d0] bg-[#030303] py-24 px-6 max-w-4xl mx-auto">
-        <MlaStaggerItem><h2 className="text-4xl text-white font-display mb-8">01. The Mandate</h2></MlaStaggerItem>
+        <MlaStaggerItem><h2 className="text-4xl text-white font-display mb-8">01. {content.nav1}</h2></MlaStaggerItem>
         <MlaStaggerItem><p>{content.p1}</p></MlaStaggerItem>
         <MlaStaggerItem><p>{content.p2}</p></MlaStaggerItem>
-        <MlaStaggerItem><h2 className="text-4xl text-white font-display mt-16 mb-8">02. Civic Priorities</h2></MlaStaggerItem>
+        <MlaStaggerItem><h2 className="text-4xl text-white font-display mt-16 mb-8">02. {content.nav2}</h2></MlaStaggerItem>
         <MlaStaggerItem><p>{content.p3}</p></MlaStaggerItem>
         <MlaStaggerItem><p>{content.p4}</p></MlaStaggerItem>
         <MlaStaggerItem><h3 className="text-xl text-[#d4af37] mt-8 mb-4">{content.concernsHeading}</h3></MlaStaggerItem>
@@ -284,9 +291,9 @@ export function AboutEgmore({ locale }: SectionProps) {
             <MlaStaggerItem key={index} y={0} x={15}><li>{item}</li></MlaStaggerItem>
           ))}
         </ul>
-        <MlaStaggerItem><h2 className="text-4xl text-white font-display mt-16 mb-8">03. Active Presence</h2></MlaStaggerItem>
+        <MlaStaggerItem><h2 className="text-4xl text-white font-display mt-16 mb-8">03. {content.nav3}</h2></MlaStaggerItem>
         <MlaStaggerItem><p className="mt-8">{content.p5}</p></MlaStaggerItem>
-        <MlaStaggerItem><h3 className="text-xl text-slate-50 mt-8 mb-4">{content.presenceHeading}</h3></MlaStaggerItem>
+        <MlaStaggerItem><h3 className="text-xl text-red-500 mt-8 mb-4">{content.presenceHeading}</h3></MlaStaggerItem>
         <ul className="list-disc pl-6 space-y-2">
           {content.presence.map((item, index) => (
             <MlaStaggerItem key={index} y={0} x={15}><li>{item}</li></MlaStaggerItem>
@@ -297,6 +304,7 @@ export function AboutEgmore({ locale }: SectionProps) {
   }
 
   const normIndex = activeIndex % 3;
+  const isTa = locale === 'ta';
 
   return (
     <section 
@@ -313,21 +321,24 @@ export function AboutEgmore({ locale }: SectionProps) {
           <div className="lg:col-span-5 flex flex-col gap-10 md:gap-14">
             <NavItem 
               number="01" 
-              title="THE MANDATE" 
+              title={content.nav1} 
               isActive={normIndex === 0} 
               onClick={() => {}} 
+              isTa={isTa}
             />
             <NavItem 
               number="02" 
-              title="CIVIC PRIORITIES" 
+              title={content.nav2} 
               isActive={normIndex === 1} 
               onClick={() => {}} 
+              isTa={isTa}
             />
             <NavItem 
               number="03" 
-              title="ACTIVE PRESENCE" 
+              title={content.nav3} 
               isActive={normIndex === 2} 
               onClick={() => {}} 
+              isTa={isTa}
             />
           </div>
 

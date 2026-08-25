@@ -1,5 +1,7 @@
+﻿'use client';
 import type { SectionProps } from './SectionMapper';
 import { MlaStaggerContainer, MlaStaggerItem } from './MlaMotion';
+import { motion } from 'motion/react';
 
 export function OverallAssessment({ locale }: SectionProps) {
   const content = {
@@ -16,10 +18,67 @@ export function OverallAssessment({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="prose prose-lg text-slate-900 prose-headings:font-display prose-headings:font-normal">
-      <MlaStaggerItem><p className="lead text-xl mb-8">{content.p1}</p></MlaStaggerItem>
-      <MlaStaggerItem><p>{content.p2}</p></MlaStaggerItem>
-      <MlaStaggerItem><p className="mt-6">{content.p3}</p></MlaStaggerItem>
+    <MlaStaggerContainer className="text-charcoal-800 space-y-8">
+      <MlaStaggerItem y={20}>
+        <motion.div 
+          initial="rest"
+          whileHover="hover"
+          className="relative pl-6 py-2 group"
+        >
+          <motion.div 
+            variants={{
+              rest: { height: '100%', opacity: 0.2 },
+              hover: { height: '100%', opacity: 1 }
+            }}
+            transition={{ duration: 0.3 }}
+            className="absolute left-0 top-0 w-1 bg-red-600 rounded-full"
+          />
+          <motion.div
+            variants={{ rest: { x: 0 }, hover: { x: 8 } }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            <p className="text-2xl font-light leading-relaxed text-maroon-900">{content.p1}</p>
+          </motion.div>
+        </motion.div>
+      </MlaStaggerItem>
+
+      <MlaStaggerItem y={20}>
+        <motion.div 
+          initial="rest"
+          whileHover="hover"
+          className="relative p-6 bg-sand-50 rounded-xl border border-sand-200 group overflow-hidden"
+        >
+          <motion.div 
+            variants={{ rest: { opacity: 0 }, hover: { opacity: 1 } }}
+            className="absolute inset-0 bg-gradient-to-r from-red-50/50 to-transparent pointer-events-none"
+          />
+          <motion.div
+            variants={{ rest: { x: 0 }, hover: { x: 4 } }}
+            transition={{ duration: 0.2 }}
+          >
+            <p className="text-lg leading-relaxed relative z-10">{content.p2}</p>
+          </motion.div>
+        </motion.div>
+      </MlaStaggerItem>
+
+      <MlaStaggerItem y={20}>
+        <motion.div 
+          initial="rest"
+          whileHover="hover"
+          className="relative p-6 bg-sand-50 rounded-xl border border-sand-200 group overflow-hidden"
+        >
+          <motion.div 
+            variants={{ rest: { opacity: 0 }, hover: { opacity: 1 } }}
+            className="absolute inset-0 bg-gradient-to-r from-maroon-50/50 to-transparent pointer-events-none"
+          />
+          <motion.div
+            variants={{ rest: { x: 0 }, hover: { x: 4 } }}
+            transition={{ duration: 0.2 }}
+          >
+            <p className="text-lg leading-relaxed relative z-10">{content.p3}</p>
+          </motion.div>
+        </motion.div>
+      </MlaStaggerItem>
     </MlaStaggerContainer>
   );
 }

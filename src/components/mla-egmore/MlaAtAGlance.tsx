@@ -28,40 +28,42 @@ export function MlaAtAGlance({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 text-left max-w-3xl mx-auto">
-      <MlaStaggerItem className="border-t border-red-200 pt-4">
-        <div className="text-sm uppercase tracking-widest text-slate-900 font-medium mb-1">{content.name.label}</div>
-        <div className="text-2xl font-display text-slate-900">{content.name.value}</div>
+    <MlaStaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 text-left max-w-4xl mx-auto">
+      <MlaStaggerItem className="relative p-6 md:p-8 bg-white/40 backdrop-blur-sm border border-sand-200/80 rounded-2xl transition-all duration-500 hover:bg-white hover:shadow-xl hover:shadow-maroon-900/5 group overflow-hidden" y={30}><div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-red-600 to-maroon-600 transition-all duration-700 ease-out group-hover:w-full" />
+        <div className="text-sm uppercase tracking-widest text-maroon-700 font-medium mb-2 opacity-80 group-hover:opacity-100 transition-opacity duration-500">{content.name.label}</div>
+        <div className="text-2xl font-display text-charcoal-900 group-hover:translate-x-1 transition-transform duration-500">{content.name.value}</div>
       </MlaStaggerItem>
       
-      <MlaStaggerItem className="border-t border-red-200 pt-4">
-        <div className="text-sm uppercase tracking-widest text-slate-900 font-medium mb-1">{content.constituency.label}</div>
-        <div className="text-2xl font-display text-slate-900">{content.constituency.value}</div>
+      <MlaStaggerItem className="relative p-6 md:p-8 bg-white/40 backdrop-blur-sm border border-sand-200/80 rounded-2xl transition-all duration-500 hover:bg-white hover:shadow-xl hover:shadow-maroon-900/5 group overflow-hidden" y={30}><div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-red-600 to-maroon-600 transition-all duration-700 ease-out group-hover:w-full" />
+        <div className="text-sm uppercase tracking-widest text-maroon-700 font-medium mb-2 opacity-80 group-hover:opacity-100 transition-opacity duration-500">{content.constituency.label}</div>
+        <div className="text-2xl font-display text-charcoal-900 group-hover:translate-x-1 transition-transform duration-500">{content.constituency.value}</div>
       </MlaStaggerItem>
 
-      <MlaStaggerItem className="border-t border-red-200 pt-4">
-        <div className="text-sm uppercase tracking-widest text-slate-900 font-medium mb-1">{content.role.label}</div>
-        <div className="text-xl text-slate-900">{content.role.value}</div>
+      <MlaStaggerItem className="relative p-6 md:p-8 bg-white/40 backdrop-blur-sm border border-sand-200/80 rounded-2xl transition-all duration-500 hover:bg-white hover:shadow-xl hover:shadow-maroon-900/5 group overflow-hidden" y={30}><div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-red-600 to-maroon-600 transition-all duration-700 ease-out group-hover:w-full" />
+        <div className="text-sm uppercase tracking-widest text-maroon-700 font-medium mb-2 opacity-80 group-hover:opacity-100 transition-opacity duration-500">{content.role.label}</div>
+        <div className="text-xl text-charcoal-800 group-hover:translate-x-1 transition-transform duration-500">{content.role.value}</div>
       </MlaStaggerItem>
 
-      <MlaStaggerItem className="border-t border-red-200 pt-4">
-        <div className="text-sm uppercase tracking-widest text-slate-900 font-medium mb-1">{content.tenure.label}</div>
-        <div className="text-xl text-slate-900">{content.tenure.value}</div>
+      <MlaStaggerItem className="relative p-6 md:p-8 bg-white/40 backdrop-blur-sm border border-sand-200/80 rounded-2xl transition-all duration-500 hover:bg-white hover:shadow-xl hover:shadow-maroon-900/5 group overflow-hidden" y={30}><div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-red-600 to-maroon-600 transition-all duration-700 ease-out group-hover:w-full" />
+        <div className="text-sm uppercase tracking-widest text-maroon-700 font-medium mb-2 opacity-80 group-hover:opacity-100 transition-opacity duration-500">{content.tenure.label}</div>
+        <div className="text-xl text-charcoal-800 group-hover:translate-x-1 transition-transform duration-500">{content.tenure.value}</div>
       </MlaStaggerItem>
 
-      <MlaStaggerItem className="border-t border-red-200 pt-4">
-        <div className="text-sm uppercase tracking-widest text-slate-900 font-medium mb-1">{content.party.label}</div>
-        <div className="text-xl text-slate-900">{content.party.value}</div>
+      <MlaStaggerItem className="relative p-6 md:p-8 bg-white/40 backdrop-blur-sm border border-sand-200/80 rounded-2xl transition-all duration-500 hover:bg-white hover:shadow-xl hover:shadow-maroon-900/5 group overflow-hidden" y={30}><div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-red-600 to-maroon-600 transition-all duration-700 ease-out group-hover:w-full" />
+        <div className="text-sm uppercase tracking-widest text-maroon-700 font-medium mb-2 opacity-80 group-hover:opacity-100 transition-opacity duration-500">{content.party.label}</div>
+        <div className="text-xl text-charcoal-800 group-hover:translate-x-1 transition-transform duration-500">{content.party.value}</div>
       </MlaStaggerItem>
 
-      <MlaStaggerItem className="border-t border-red-200 pt-4">
-        <div className="text-sm uppercase tracking-widest text-slate-900 font-medium mb-1">{content.ministries.label}</div>
-        <ul className="text-xl text-slate-900 space-y-1">
+      <MlaStaggerItem className="relative p-6 md:p-8 bg-white/40 backdrop-blur-sm border border-sand-200/80 rounded-2xl transition-all duration-500 hover:bg-white hover:shadow-xl hover:shadow-maroon-900/5 group overflow-hidden" y={30}><div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-red-600 to-maroon-600 transition-all duration-700 ease-out group-hover:w-full" />
+        <div className="text-sm uppercase tracking-widest text-maroon-700 font-medium mb-2 opacity-80 group-hover:opacity-100 transition-opacity duration-500">{content.ministries.label}</div>
+        <ul className="text-xl text-charcoal-800 space-y-1.5 group-hover:translate-x-1 transition-transform duration-500">
           {content.ministries.value.map((ministry, idx) => (
-            <li key={idx}>{ministry}</li>
+            <li key={idx} className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-red-400/60 group-hover:bg-red-500 transition-colors duration-500" />{ministry}</li>
           ))}
         </ul>
       </MlaStaggerItem>
     </MlaStaggerContainer>
   );
 }
+
+

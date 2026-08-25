@@ -1,4 +1,4 @@
-import type { SectionProps } from './SectionMapper';
+﻿import type { SectionProps } from './SectionMapper';
 import { MlaStaggerContainer, MlaStaggerItem } from './MlaMotion';
 
 export function AssemblyExperience({ locale }: SectionProps) {
@@ -14,17 +14,23 @@ export function AssemblyExperience({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="text-center space-y-6">
-      <MlaStaggerItem>
-        <p className="text-2xl md:text-3xl font-light text-slate-900 leading-relaxed">
-          {content.p1}
-        </p>
+    <MlaStaggerContainer className="relative max-w-4xl mx-auto py-8">
+      <MlaStaggerItem className="flex justify-center mb-8 md:mb-12">
+        <div className="w-12 h-1 bg-red-600 rounded-full" />
       </MlaStaggerItem>
-      <MlaStaggerItem>
-        <p className="text-lg md:text-xl text-slate-900 max-w-3xl mx-auto">
-          {content.p2}
-        </p>
-      </MlaStaggerItem>
+      
+      <div className="space-y-8 md:space-y-10">
+        <MlaStaggerItem y={30}>
+          <p className="text-3xl md:text-4xl lg:text-5xl font-display text-maroon-800 leading-tight text-center" style={{ textWrap: 'balance' }}>
+            {content.p1}
+          </p>
+        </MlaStaggerItem>
+        <MlaStaggerItem y={30}>
+          <p className="text-lg md:text-xl text-charcoal-700 max-w-3xl mx-auto text-center font-light leading-relaxed">
+            {content.p2}
+          </p>
+        </MlaStaggerItem>
+      </div>
     </MlaStaggerContainer>
   );
 }

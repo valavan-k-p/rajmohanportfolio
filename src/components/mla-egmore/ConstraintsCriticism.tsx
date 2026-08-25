@@ -1,5 +1,8 @@
+﻿'use client';
 import type { SectionProps } from './SectionMapper';
 import { MlaStaggerContainer, MlaStaggerItem } from './MlaMotion';
+import { motion } from 'motion/react';
+import { Star } from 'lucide-react';
 
 export function ConstraintsCriticism({ locale }: SectionProps) {
   const content = {
@@ -36,18 +39,41 @@ export function ConstraintsCriticism({ locale }: SectionProps) {
   return (
     <MlaStaggerContainer className="max-w-4xl space-y-12">
       {content.map((item, idx) => (
-        <MlaStaggerItem key={idx} className="flex gap-6 md:gap-10">
-          <div className="shrink-0 font-display text-4xl text-slate-900 select-none">
-            {(idx + 1).toString().padStart(2, '0')}
-          </div>
-          <div>
-            <h3 className="font-display text-2xl text-slate-900 mb-4">{item.title}</h3>
-            <p className="text-lg text-slate-900 leading-relaxed">
-              {item.body}
-            </p>
-          </div>
+        <MlaStaggerItem key={idx} y={30}>
+          <motion.div 
+            initial="rest"
+            whileHover="hover"
+            className="flex gap-6 md:gap-10 group cursor-default"
+          >
+            <motion.div
+              variants={{
+                rest: { rotate: 0, scale: 1, opacity: 0.7 },
+                hover: { rotate: 15, scale: 1.1, opacity: 1 }
+              }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="shrink-0 text-red-600 mt-1"
+            >
+              <Star size={32} fill="currentColor" strokeWidth={1} />
+            </motion.div>
+            
+            <motion.div
+              variants={{
+                rest: { x: 0 },
+                hover: { x: 10 }
+              }}
+              transition={{ duration: 0.4, type: "spring", bounce: 0.2 }}
+            >
+              <h3 className="font-display text-2xl text-charcoal-900 mb-4 transition-colors duration-300 group-hover:text-maroon-800">
+                {item.title}
+              </h3>
+              <p className="text-lg text-charcoal-700 leading-relaxed transition-colors duration-300 group-hover:text-charcoal-900">
+                {item.body}
+              </p>
+            </motion.div>
+          </motion.div>
         </MlaStaggerItem>
       ))}
     </MlaStaggerContainer>
   );
 }
+
