@@ -20,7 +20,7 @@ export interface EduHeroProps {
 export function EduHero({
   backLabel,
   locale,
-  heroImagePath = '/images/school-education-hero.jpg',
+  heroImagePath = '/images/school-education-hero-2.png',
 }: EduHeroProps) {
   const prefersReducedMotion = useReducedMotion();
   const pathname = usePathname();
