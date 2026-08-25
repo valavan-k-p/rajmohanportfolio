@@ -243,7 +243,7 @@ export function FiscalTransparencyBoard({ locale }: { locale: Locale }) {
           </div>
 
           <div className="pt-4 border-t border-charcoal-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-            <span className="text-xs sm:text-sm font-mono text-emerald-400 font-bold uppercase tracking-wider">
+            <span className="text-xs sm:text-sm font-mono text-yellow-400 font-bold uppercase tracking-wider">
               ● {content.deltaLabel}
             </span>
             <span className="text-xs sm:text-sm text-white/50 font-mono">

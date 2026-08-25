@@ -125,9 +125,9 @@ function TimelineEntry({
             {item.status && (
               <span className={`inline-block px-2 py-0.5 text-[0.65rem] font-bold tracking-wider uppercase rounded-full ${
                 item.status === 'VERIFIED' 
-                  ? 'border border-emerald-200 bg-emerald-50 text-emerald-800'
+                  ? 'border border-yellow-200 bg-yellow-50 text-yellow-800'
                   : item.status.includes('REPORTED')
-                  ? 'border border-blue-200 bg-blue-50 text-blue-800'
+                  ? 'border border-maroon-200 bg-maroon-50 text-maroon-800'
                   : 'border border-[var(--color-tamil-border)] bg-neutral-50 text-neutral-600'
               }`}>
                 {item.status === 'VERIFIED' && locale === 'ta' ? 'சரிபார்க்கப்பட்டது' :

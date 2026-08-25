@@ -1,12 +1,60 @@
+'use client';
+
+import { useRef } from 'react';
+import { useIsomorphicLayoutEffect } from '@/lib/motion';
+import { gsap } from 'gsap';
 import type { SectionProps } from './SectionMapper';
-import { MlaStaggerContainer, MlaStaggerItem, MlaVerticalLineReveal } from './MlaMotion';
+import { MessageSquare, ShieldAlert, Users, BookOpen, Scale } from 'lucide-react';
 
 export function AssemblyChallenges({ locale }: SectionProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useIsomorphicLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // Line animation
+      gsap.fromTo('.timeline-line',
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          duration: 1.5,
+          ease: 'power3.inOut',
+          transformOrigin: 'top',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 70%',
+            end: 'bottom 80%',
+            scrub: 1,
+          }
+        }
+      );
+
+      // Items stagger
+      const items = gsap.utils.toArray('.timeline-item');
+      items.forEach((item) => {
+        gsap.fromTo(item,
+          { opacity: 0, x: 30 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: item,
+              start: 'top 85%',
+            }
+          }
+        );
+      });
+    }, containerRef);
+    return () => ctx.revert();
+  }, []);
+
   const content = {
     en: [
       {
         date: 'June 2026',
         title: 'Live Telecast of Assembly Proceedings',
+        icon: MessageSquare,
         body: (
           <div className="space-y-4">
             <p>
@@ -21,6 +69,7 @@ export function AssemblyChallenges({ locale }: SectionProps) {
       {
         date: 'June 2026',
         title: 'Law and Order & Women’s Safety',
+        icon: ShieldAlert,
         body: (
           <div className="space-y-4">
             <p>
@@ -35,6 +84,7 @@ export function AssemblyChallenges({ locale }: SectionProps) {
       {
         date: 'July 2026',
         title: 'Defence of Cabinet Colleague',
+        icon: Users,
         body: (
           <div className="space-y-4">
             <p>
@@ -49,16 +99,17 @@ export function AssemblyChallenges({ locale }: SectionProps) {
       {
         date: 'August 2026',
         title: 'School Education Budget',
+        icon: BookOpen,
         body: (
           <div className="space-y-6">
-            <div className="flex flex-wrap gap-8">
-              <div className="bg-sand-50 p-4 border border-sand-300 rounded-xs min-w-[200px] shadow-xs">
-                <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-1">2025–26</div>
-                <div className="font-display text-3xl text-charcoal-900 font-bold">₹46,767 <span className="text-sm font-sans font-normal text-charcoal-600">crore</span></div>
+            <div className="flex flex-wrap gap-6">
+              <div className="bg-sand-100 p-5 rounded-2xl min-w-[200px] border border-sand-200">
+                <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-2">2025–26</div>
+                <div className="font-display text-4xl text-charcoal-900 font-bold">₹46,767 <span className="text-sm font-sans font-normal text-charcoal-600">cr</span></div>
               </div>
-              <div className="bg-sand-50 p-4 border border-sand-300 rounded-xs min-w-[200px] shadow-xs">
-                <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-1">2026–27</div>
-                <div className="font-display text-3xl text-charcoal-900 font-bold">₹44,527 <span className="text-sm font-sans font-normal text-charcoal-600">crore</span></div>
+              <div className="bg-sand-100 p-5 rounded-2xl min-w-[200px] border border-sand-200">
+                <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-2">2026–27</div>
+                <div className="font-display text-4xl text-charcoal-900 font-bold">₹44,527 <span className="text-sm font-sans font-normal text-charcoal-600">cr</span></div>
               </div>
             </div>
             <p className="text-charcoal-700 font-sans text-base leading-relaxed">
@@ -73,6 +124,7 @@ export function AssemblyChallenges({ locale }: SectionProps) {
       {
         date: 'August 2026',
         title: 'FCRA Amendment Bill Resolution',
+        icon: Scale,
         body: (
           <div className="space-y-4 text-charcoal-700 font-sans text-base leading-relaxed">
             <p>
@@ -89,6 +141,7 @@ export function AssemblyChallenges({ locale }: SectionProps) {
       {
         date: 'ஜூன் 2026',
         title: 'சட்டமன்ற நிகழ்வுகளின் நேரடி ஒளிபரப்பு',
+        icon: MessageSquare,
         body: (
           <div className="space-y-4 text-charcoal-700 font-sans text-base leading-relaxed">
             <p>
@@ -103,6 +156,7 @@ export function AssemblyChallenges({ locale }: SectionProps) {
       {
         date: 'ஜூன் 2026',
         title: 'சட்டம் ஒழுங்கு மற்றும் பெண்கள் பாதுகாப்பு',
+        icon: ShieldAlert,
         body: (
           <div className="space-y-4 text-charcoal-700 font-sans text-base leading-relaxed">
             <p>
@@ -117,6 +171,7 @@ export function AssemblyChallenges({ locale }: SectionProps) {
       {
         date: 'ஜூலை 2026',
         title: 'அமைச்சரவை சகாவைப் பாதுகாத்தல்',
+        icon: Users,
         body: (
           <div className="space-y-4 text-charcoal-700 font-sans text-base leading-relaxed">
             <p>
@@ -131,16 +186,17 @@ export function AssemblyChallenges({ locale }: SectionProps) {
       {
         date: 'ஆகஸ்ட் 2026',
         title: 'பள்ளிக் கல்வி பட்ஜெட்',
+        icon: BookOpen,
         body: (
           <div className="space-y-6">
             <div className="flex flex-wrap gap-6">
-              <div className="bg-sand-50 p-4 border border-sand-300 rounded-xs min-w-[200px] shadow-xs">
-                <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-1">2025–26</div>
-                <div className="font-display text-3xl text-charcoal-900 font-bold">₹46,767 <span className="text-sm font-sans font-normal text-charcoal-600">கோடி</span></div>
+              <div className="bg-sand-100 p-5 rounded-2xl min-w-[200px] border border-sand-200">
+                <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-2">2025–26</div>
+                <div className="font-display text-4xl text-charcoal-900 font-bold">₹46,767 <span className="text-sm font-sans font-normal text-charcoal-600">கோடி</span></div>
               </div>
-              <div className="bg-sand-50 p-4 border border-sand-300 rounded-xs min-w-[200px] shadow-xs">
-                <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-1">2026–27</div>
-                <div className="font-display text-3xl text-charcoal-900 font-bold">₹44,527 <span className="text-sm font-sans font-normal text-charcoal-600">கோடி</span></div>
+              <div className="bg-sand-100 p-5 rounded-2xl min-w-[200px] border border-sand-200">
+                <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-2">2026–27</div>
+                <div className="font-display text-4xl text-charcoal-900 font-bold">₹44,527 <span className="text-sm font-sans font-normal text-charcoal-600">கோடி</span></div>
               </div>
             </div>
             <p className="text-charcoal-700 font-sans text-base leading-relaxed">
@@ -155,6 +211,7 @@ export function AssemblyChallenges({ locale }: SectionProps) {
       {
         date: 'ஆகஸ்ட் 2026',
         title: 'FCRA திருத்த மசோதா தீர்மானம்',
+        icon: Scale,
         body: (
           <div className="space-y-4 text-charcoal-700 font-sans text-base leading-relaxed">
             <p>
@@ -170,20 +227,36 @@ export function AssemblyChallenges({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="space-y-12 max-w-4xl">
-      {content.map((item, idx) => (
-        <div key={idx} className="relative pl-8 md:pl-10 pb-2">
-          <MlaVerticalLineReveal className="absolute left-0 top-0 bottom-0 w-[2px] bg-sand-300" />
-          <MlaStaggerItem x={20} y={0}>
-            <div className="absolute left-0 top-1.5 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-maroon-700 ring-4 ring-sand-50" />
-            <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-1.5">{item.date}</div>
-            <h3 className="font-display text-2xl md:text-3xl text-charcoal-900 font-bold mb-4">{item.title}</h3>
-            <div className="text-charcoal-700 leading-relaxed font-sans text-base">
-              {item.body}
+    <div ref={containerRef} className="max-w-4xl mx-auto py-12 relative">
+      {/* Central Line */}
+      <div className="timeline-line absolute left-[28px] md:left-[39px] top-0 bottom-0 w-[2px] bg-sand-300 z-0 origin-top" />
+
+      <div className="space-y-16">
+        {content.map((item, idx) => {
+          const Icon = item.icon;
+          return (
+            <div key={idx} className="timeline-item relative pl-16 md:pl-24 z-10">
+              {/* Icon Marker */}
+              <div className="absolute left-0 top-0 w-14 h-14 md:w-20 md:h-20 rounded-full bg-white border-4 border-sand-100 shadow-sm flex items-center justify-center text-maroon-700 z-20">
+                <Icon className="w-5 h-5 md:w-8 md:h-8" strokeWidth={1.5} />
+              </div>
+
+              {/* Content Card */}
+              <div className="bg-white rounded-3xl p-8 md:p-10 shadow-lg border border-sand-200">
+                <div className="font-mono text-xs uppercase tracking-widest text-maroon-700 font-bold mb-3">
+                  {item.date}
+                </div>
+                <h3 className="font-display text-2xl md:text-3xl text-charcoal-900 font-bold mb-6">
+                  {item.title}
+                </h3>
+                <div className="text-charcoal-700 leading-relaxed font-sans text-lg">
+                  {item.body}
+                </div>
+              </div>
             </div>
-          </MlaStaggerItem>
-        </div>
-      ))}
-    </MlaStaggerContainer>
+          );
+        })}
+      </div>
+    </div>
   );
 }

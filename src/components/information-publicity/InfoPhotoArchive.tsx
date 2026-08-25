@@ -117,7 +117,7 @@ export function InfoPhotoArchive({ locale }: InfoSectionProps) {
               rel="noopener noreferrer"
               className="flex items-center gap-2.5 p-3 bg-white border border-sand-300 hover:border-maroon-700 hover:shadow-xs transition-all group rounded-2xs"
             >
-              <Instagram className="w-4 h-4 text-pink-600 shrink-0 group-hover:scale-110 transition-transform" />
+              <Instagram className="w-4 h-4 text-maroon-600 shrink-0 group-hover:scale-110 transition-transform" />
               <div className="min-w-0">
                 <div className="font-mono text-xs font-bold text-charcoal-900 truncate">@tndipr</div>
                 <div className="text-[11px] text-charcoal-500 font-sans">{isTa ? 'இன்ஸ்டாகிராம்' : 'Instagram'}</div>
@@ -130,7 +130,7 @@ export function InfoPhotoArchive({ locale }: InfoSectionProps) {
               rel="noopener noreferrer"
               className="flex items-center gap-2.5 p-3 bg-white border border-sand-300 hover:border-maroon-700 hover:shadow-xs transition-all group rounded-2xs"
             >
-              <Facebook className="w-4 h-4 text-blue-600 shrink-0 group-hover:scale-110 transition-transform" />
+              <Facebook className="w-4 h-4 text-charcoal-600 shrink-0 group-hover:scale-110 transition-transform" />
               <div className="min-w-0">
                 <div className="font-mono text-xs font-bold text-charcoal-900 truncate">TN DIPR Page</div>
                 <div className="text-[11px] text-charcoal-500 font-sans">{isTa ? 'ஃபேஸ்புக்' : 'Facebook'}</div>
@@ -138,7 +138,7 @@ export function InfoPhotoArchive({ locale }: InfoSectionProps) {
             </a>
 
             <div className="flex items-center gap-2.5 p-3 bg-white border border-sand-300 rounded-2xs">
-              <MessageCircle className="w-4 h-4 text-emerald-600 shrink-0" />
+              <MessageCircle className="w-4 h-4 text-yellow-600 shrink-0" />
               <div className="min-w-0">
                 <div className="font-mono text-xs font-bold text-charcoal-900 truncate">WhatsApp Channel</div>
                 <div className="text-[11px] text-charcoal-500 font-sans">{isTa ? 'வாட்ஸ்அப் சேனல்' : 'Broadcasts'}</div>

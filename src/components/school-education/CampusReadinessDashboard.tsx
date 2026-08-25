@@ -140,7 +140,7 @@ export function CampusReadinessDashboard({ locale }: { locale: Locale }) {
                     }`}
                   >
                     <div className="text-base font-semibold">{item.title[locale]}</div>
-                    <div className="text-xs sm:text-sm font-mono text-emerald-800 mt-1">● {item.standard[locale]}</div>
+                    <div className="text-xs sm:text-sm font-mono text-maroon-800 mt-1">● {item.standard[locale]}</div>
                   </button>
                 );
               })}

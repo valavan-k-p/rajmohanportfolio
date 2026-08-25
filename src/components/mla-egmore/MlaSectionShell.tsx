@@ -1,43 +1,44 @@
 'use client';
 
-import type { ReactNode } from 'react';
+
+
+import { type ReactNode } from 'react';
 import type { SectionLayout } from '@/data/portals';
+import clsx from 'clsx';
 import { MlaTextReveal, MlaLineReveal, MlaStaggerItem } from './MlaMotion';
 
-const GROUND: Partial<Record<SectionLayout, string>> = {
-  statement: 'bg-sand-100',
-  'numbered-list': 'bg-white',
-  'asymmetric-left': 'bg-white',
-  'full-bleed': 'bg-maroon-700 text-white',
-  'asymmetric-right': 'bg-white',
-  'prose-columns': 'bg-sand-100',
-  'data-band': 'bg-charcoal-900 text-white',
-  staggered: 'bg-white',
-  timeline: 'bg-sand-100',
-  'editorial-index': 'bg-white',
-  'category-grid': 'bg-sand-50',
-  'media-grid': 'bg-sand-100',
-  'link-list': 'bg-sand-50',
-  'feature-word': 'bg-sand-200',
-  contact: 'bg-sand-100',
+type BgVariant = 'paper' | 'cream' | 'maroon' | 'dark' | 'charcoal';
+
+const LAYOUT_TO_BG: Record<SectionLayout, BgVariant> = {
+  statement: 'cream',
+  'numbered-list': 'paper',
+  'asymmetric-left': 'paper',
+  'full-bleed': 'maroon',
+  'asymmetric-right': 'paper',
+  'prose-columns': 'cream',
+  'data-band': 'charcoal',
+  staggered: 'paper',
+  timeline: 'cream',
+  'editorial-index': 'paper',
+  'category-grid': 'paper',
+  'media-grid': 'cream',
+  'link-list': 'paper',
+  'feature-word': 'cream',
+  contact: 'cream',
+  hero: 'paper',
+  table: 'paper',
+  roll: 'paper',
+  catalogue: 'paper',
+  query: 'paper',
+  tracker: 'paper',
 };
 
-const INNER: Partial<Record<SectionLayout, string>> = {
-  statement: 'max-w-[50rem] mx-auto text-center',
-  'numbered-list': 'max-w-[68rem]',
-  'prose-columns': 'max-w-[72rem] md:columns-2 md:gap-16',
-  'editorial-index': 'max-w-[76rem]',
-  'link-list': 'max-w-[68rem]',
-  table: 'max-w-[76rem]',
-  roll: 'max-w-[68rem]',
-  catalogue: 'max-w-[72rem]',
-  'feature-word': 'max-w-[44rem] mx-auto text-center',
-  'category-grid': 'max-w-[76rem]',
-  'media-grid': 'max-w-[80rem]',
-  tracker: 'max-w-[50rem]',
-  contact: 'max-w-[68rem]',
-  timeline: 'max-w-[80rem]',
-  'data-band': 'max-w-[76rem]',
+const BG_STYLES: Record<BgVariant, string> = {
+  paper: 'bg-white text-charcoal-900 border-sand-300',
+  cream: 'bg-sand-50 text-charcoal-900 border-sand-300',
+  maroon: 'bg-maroon-700 text-white border-maroon-800',
+  dark: 'bg-maroon-900 text-sand-50 border-maroon-950',
+  charcoal: 'bg-charcoal-900 text-sand-50 border-charcoal-950',
 };
 
 export interface MlaSectionShellProps {
@@ -46,38 +47,47 @@ export interface MlaSectionShellProps {
   readonly layout: SectionLayout;
   readonly index: number;
   readonly children?: ReactNode;
+  readonly className?: string;
+  readonly innerClassName?: string;
 }
 
-export function MlaSectionShell({ id, title, layout, index, children }: MlaSectionShellProps) {
-  const ground = GROUND[layout] ?? 'bg-white';
-  const inner = INNER[layout] ?? 'max-w-[76rem]';
-  const inverted = layout === 'data-band' || layout === 'full-bleed';
+export function MlaSectionShell({ id, title, layout, index, children, className, innerClassName }: MlaSectionShellProps) {
+  const bgVariant = LAYOUT_TO_BG[layout] ?? 'paper';
+  const ground = BG_STYLES[bgVariant];
+  const inverted = bgVariant === 'maroon' || bgVariant === 'dark' || bgVariant === 'charcoal';
 
   return (
     <section
       id={id}
       aria-labelledby={`${id}-heading`}
-      className={`px-gutter py-section ${ground} border-b border-sand-300 relative overflow-hidden`}
+      className={clsx(
+        'relative w-full py-16 md:py-24 px-4 sm:px-8 md:px-12 lg:px-20 overflow-hidden border-b',
+        ground,
+        className
+      )}
     >
-      <div className={`mx-auto ${inner}`}>
-        <div className="mb-8 flex items-baseline gap-4">
+      <div className={clsx("mx-auto max-w-[80rem] relative z-10", innerClassName)}>
+        <div className="mb-10 flex flex-col sm:flex-row sm:items-end gap-2 sm:gap-6">
           <MlaStaggerItem y={10}>
             <span
               aria-hidden="true"
-              className={`font-mono text-xs uppercase tracking-widest font-bold ${
+              className={clsx(
+                'font-mono text-xs uppercase tracking-widest font-bold',
                 inverted ? 'text-yellow-400' : 'text-maroon-700'
-              }`}
+              )}
             >
               SEC · {String(index).padStart(2, '0')}
             </span>
           </MlaStaggerItem>
-          <MlaStaggerItem y={15} className="mt-8">
-            <MlaTextReveal delay={0.2}>
+          
+          <MlaStaggerItem y={15}>
+            <MlaTextReveal delay={0.1}>
               <h2
                 id={`${id}-heading`}
-                className={`font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-medium tracking-tight leading-[1.08] ${
+                className={clsx(
+                  'font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1]',
                   inverted ? 'text-white' : 'text-charcoal-900'
-                }`}
+                )}
               >
                 {title}
               </h2>
@@ -86,10 +96,15 @@ export function MlaSectionShell({ id, title, layout, index, children }: MlaSecti
         </div>
 
         <MlaLineReveal 
-          className={`mb-10 h-px w-full ${inverted ? 'bg-yellow-400/40' : 'bg-charcoal-900/20'}`}
+          className={clsx(
+            'mb-12 h-px w-full',
+            inverted ? 'bg-yellow-400/30' : 'bg-charcoal-900/15'
+          )}
         />
 
-        {children}
+        <div className="mt-8">
+          {children}
+        </div>
       </div>
     </section>
   );

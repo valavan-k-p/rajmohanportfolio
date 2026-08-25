@@ -114,7 +114,7 @@ export function EduInitiatives({ locale }: { locale: Locale }) {
 
             <div className="pt-3 border-t border-sand-200 text-[11px] text-charcoal-500 font-mono flex items-center justify-between">
               <span>Source: {item.source}</span>
-              <span className="text-emerald-700 font-semibold">● Active Directive</span>
+              <span className="text-maroon-700 font-semibold">● Active Directive</span>
             </div>
           </EduStaggerItem>
         ))}

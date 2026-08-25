@@ -1,7 +1,65 @@
+'use client';
+
+import { useRef } from 'react';
+import { useIsomorphicLayoutEffect } from '@/lib/motion';
+import { gsap } from 'gsap';
 import type { SectionProps } from './SectionMapper';
-import { MlaStaggerContainer, MlaStaggerItem } from './MlaMotion';
+import { Quote } from 'lucide-react';
 
 export function AssemblyExperience({ locale }: SectionProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  useIsomorphicLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // Intro Text Reveal
+      gsap.fromTo('.assembly-p1',
+        { opacity: 0, y: 30, rotationX: 15 },
+        {
+          opacity: 1,
+          y: 0,
+          rotationX: 0,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 85%',
+          }
+        }
+      );
+
+      gsap.fromTo('.assembly-p2',
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          delay: 0.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 80%',
+          }
+        }
+      );
+
+      // Decorative Element
+      gsap.fromTo('.quote-icon',
+        { opacity: 0, scale: 0.5, rotate: -20 },
+        {
+          opacity: 1,
+          scale: 1,
+          rotate: 0,
+          duration: 1,
+          ease: 'back.out(1.5)',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 85%',
+          }
+        }
+      );
+    }, containerRef);
+    return () => ctx.revert();
+  }, []);
+
   const content = {
     en: {
       p1: 'Rajmohan’s legislative experience in 2026 has been defined by his dual responsibilities as both School Education Minister and Minister for Information and Publicity.',
@@ -14,17 +72,25 @@ export function AssemblyExperience({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="text-center space-y-6 max-w-4xl mx-auto">
-      <MlaStaggerItem>
-        <p className="text-2xl md:text-3xl font-display text-charcoal-950 leading-relaxed font-medium">
+    <div ref={containerRef} className="max-w-4xl mx-auto py-16 text-center relative px-4">
+      
+      {/* Decorative Quote Mark */}
+      <div className="quote-icon absolute -top-8 left-1/2 -translate-x-1/2 text-sand-300 opacity-20 pointer-events-none">
+        <Quote size={120} strokeWidth={1} fill="currentColor" />
+      </div>
+
+      <div className="relative z-10 space-y-10">
+        <p className="assembly-p1 text-3xl md:text-4xl lg:text-5xl font-display text-charcoal-950 leading-tight md:leading-tight font-medium tracking-tight">
           {content.p1}
         </p>
-      </MlaStaggerItem>
-      <MlaStaggerItem>
-        <p className="text-base md:text-lg font-sans text-charcoal-700 max-w-3xl mx-auto leading-relaxed">
-          {content.p2}
-        </p>
-      </MlaStaggerItem>
-    </MlaStaggerContainer>
+        
+        <div className="assembly-p2 relative">
+          <div className="w-16 h-[2px] bg-maroon-700 mx-auto mb-8" />
+          <p className="text-lg md:text-xl font-sans text-charcoal-700 max-w-3xl mx-auto leading-relaxed font-light">
+            {content.p2}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }

@@ -183,7 +183,7 @@ export function InfoGovCommunication({ locale }: InfoSectionProps) {
                 <div className="text-charcoal-500 font-mono text-[11px]">{isTa ? 'அதிமுக்கியம்' : 'High'}</div>
               </div>
               <div className="p-2.5 bg-white border border-sand-200 shadow-2xs">
-                <div className="text-amber-700 font-bold text-base sm:text-lg font-display">
+                <div className="text-yellow-700 font-bold text-base sm:text-lg font-display">
                   &lt; <InfoCounter value={3} />h
                 </div>
                 <div className="text-charcoal-500 font-mono text-[11px]">{isTa ? 'நடுத்தரம்' : 'Medium'}</div>

@@ -1,7 +1,48 @@
+'use client';
+
+import { useRef } from 'react';
+import { useIsomorphicLayoutEffect } from '@/lib/motion';
+import { gsap } from 'gsap';
 import type { SectionProps } from './SectionMapper';
-import { MlaStaggerContainer, MlaStaggerItem } from './MlaMotion';
 
 export function OverallAssessment({ locale }: SectionProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useIsomorphicLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.assessment-text',
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.2,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 80%',
+          }
+        }
+      );
+
+      gsap.fromTo('.assessment-highlight',
+        { scaleX: 0 },
+        {
+          scaleX: 1,
+          duration: 1,
+          delay: 0.5,
+          ease: 'power4.inOut',
+          transformOrigin: 'left',
+          scrollTrigger: {
+            trigger: '.assessment-highlight',
+            start: 'top 85%',
+          }
+        }
+      );
+    }, containerRef);
+    return () => ctx.revert();
+  }, []);
+
   const content = {
     en: {
       p1: 'Rajmohan’s experience as MLA of Egmore reflects a combination of grassroots constituency management and high-level policy leadership. His ministerial responsibilities have provided a statewide platform, while his constituency role has focused on immediate urban challenges, school programmes, water conservation, civic inspections, grievance redressal, infrastructure coordination, and community engagement.',
@@ -16,10 +57,32 @@ export function OverallAssessment({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="prose prose-lg text-charcoal-900 prose-headings:font-display prose-headings:font-normal font-sans">
-      <MlaStaggerItem><p className="lead text-xl text-charcoal-800 leading-relaxed mb-6">{content.p1}</p></MlaStaggerItem>
-      <MlaStaggerItem><p className="text-base md:text-lg text-charcoal-700 leading-relaxed mb-6">{content.p2}</p></MlaStaggerItem>
-      <MlaStaggerItem><p className="text-base md:text-lg text-charcoal-700 leading-relaxed">{content.p3}</p></MlaStaggerItem>
-    </MlaStaggerContainer>
+    <div ref={containerRef} className="max-w-4xl mx-auto py-16 px-4 md:px-0">
+      <div className="space-y-12 relative">
+        {/* Decorative Background Element */}
+        <div className="absolute top-0 left-0 w-32 h-32 bg-maroon-700/5 rounded-full blur-[40px] pointer-events-none" />
+        
+        <p className="assessment-text text-2xl md:text-3xl lg:text-4xl font-display text-charcoal-950 leading-tight font-medium tracking-tight">
+          <span className="relative inline-block">
+            <span className="relative z-10">{content.p1.substring(0, 50)}</span>
+            <span className="assessment-highlight absolute bottom-2 left-0 right-0 h-4 bg-yellow-400/40 -z-0" />
+          </span>
+          {content.p1.substring(50)}
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 assessment-text">
+          <div className="p-8 bg-sand-50/80 border border-sand-200 rounded-2xl shadow-sm">
+            <p className="text-lg text-charcoal-700 leading-relaxed font-sans">
+              {content.p2}
+            </p>
+          </div>
+          <div className="p-8 bg-white border border-sand-200 rounded-2xl shadow-sm">
+            <p className="text-lg text-charcoal-700 leading-relaxed font-sans">
+              {content.p3}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

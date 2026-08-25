@@ -147,7 +147,7 @@ export function InfoPublications({ locale }: InfoSectionProps) {
 
             <div className="mt-6 pt-4 border-t border-sand-200 flex items-center justify-between text-xs">
               <span className="inline-flex items-center gap-1.5 text-charcoal-500 font-mono">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-maroon-600" />
                 {isTa ? 'அரசு ஆவணம்' : 'Verified Official Record'}
               </span>
               <motion.button

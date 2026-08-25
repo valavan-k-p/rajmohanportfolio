@@ -89,11 +89,11 @@ export function OfficialLanguageSection({ locale }: { locale: Locale }) {
             </div>
             <div className="space-y-4">
               <div className="flex gap-4 items-center p-3 rounded bg-slate-50">
-                <div className="w-8 h-8 rounded-full bg-blue-100" />
+                <div className="w-8 h-8 rounded-full bg-sand-200" />
                 <div className="h-3 w-48 bg-slate-300 rounded" />
               </div>
               <div className="flex gap-4 items-center p-3 rounded bg-slate-50">
-                <div className="w-8 h-8 rounded-full bg-emerald-100" />
+                <div className="w-8 h-8 rounded-full bg-sand-200" />
                 <div className="h-3 w-40 bg-slate-300 rounded" />
               </div>
             </div>
