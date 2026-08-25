@@ -16,12 +16,12 @@ export function AssemblyExperience({ locale }: SectionProps) {
   return (
     <MlaStaggerContainer className="text-center space-y-6">
       <MlaStaggerItem>
-        <p className="text-2xl md:text-3xl font-light text-charcoal-900 leading-relaxed">
+        <p className="text-2xl md:text-3xl font-light text-slate-900 leading-relaxed">
           {content.p1}
         </p>
       </MlaStaggerItem>
       <MlaStaggerItem>
-        <p className="text-lg md:text-xl text-charcoal-700 max-w-3xl mx-auto">
+        <p className="text-lg md:text-xl text-slate-900 max-w-3xl mx-auto">
           {content.p2}
         </p>
       </MlaStaggerItem>

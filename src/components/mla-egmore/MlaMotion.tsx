@@ -164,10 +164,10 @@ export function MlaScrollProgress() {
 
   return (
     <motion.div
-      className="fixed left-0 top-0 bottom-0 w-1 bg-red-600/20 origin-top z-50"
+      className="fixed left-0 top-0 bottom-0 w-1 bg-slate-900/20 origin-top z-50"
       style={{ scaleY }}
     >
-      <motion.div className="w-full h-full bg-maroon-700" />
+      <motion.div className="w-full h-full bg-slate-900" />
     </motion.div>
   );
 }

@@ -20,26 +20,26 @@ export function FurtherResearch({ locale }: SectionProps) {
   return (
     <MlaStaggerContainer className="max-w-3xl mx-auto text-center">
       <MlaStaggerItem>
-        <p className="text-xl text-charcoal-800 mb-8 font-light">
+        <p className="text-xl text-slate-900 mb-8 font-light">
           {content.p1}
         </p>
       </MlaStaggerItem>
       
       <MlaStaggerItem>
-        <div className="space-y-6 text-lg text-charcoal-700 mb-12 text-left bg-sand-100 p-8 border border-sand-300">
+        <div className="space-y-6 text-lg text-slate-900 mb-12 text-left bg-slate-50 p-8 border border-slate-200">
           <div className="flex gap-4">
-            <span className="text-red-500 font-bold shrink-0">1</span>
+            <span className="text-slate-50 font-bold shrink-0">1</span>
             <span>{content.item1}</span>
           </div>
           <div className="flex gap-4">
-            <span className="text-red-500 font-bold shrink-0">2</span>
+            <span className="text-slate-50 font-bold shrink-0">2</span>
             <span>{content.item2}</span>
           </div>
         </div>
       </MlaStaggerItem>
 
       <MlaStaggerItem>
-        <div className="inline-block px-6 py-3 border border-red-200 text-maroon-700 uppercase tracking-widest text-sm font-medium">
+        <div className="inline-block px-6 py-3 border border-red-200 text-slate-900 uppercase tracking-widest text-sm font-medium">
           {content.note}
         </div>
       </MlaStaggerItem>

@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import Link from 'next/link';
 import type { PortalId } from '@/config/portals';
@@ -169,43 +169,15 @@ export function MlaHero({ index, title, standfirst, backLabel }: MlaHeroProps) {
           transition={{ duration: 2.0, delay: 1.8, ease: EASE }}
         >
           <div 
-            className="absolute inset-0 bg-[url('/images/mla-egmore-new-portrait-wide.jpg')] bg-cover bg-center contrast-110 saturate-110 brightness-105" 
+            className="absolute inset-0 bg-cover bg-center contrast-110 saturate-110 brightness-105" 
+            style={{ backgroundImage: "url('/images/optimized/ChatGPT%20Image%20Aug%2024,%202026,%2007_05_35%20PM%20(1).webp')" }}
           />
           {/* Subtle cinematic treatment */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0.35)_0%,_transparent_70%)]" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#060a14]/80" />
         </motion.div>
 
-        {/* Glowing MLA EGMORE Element in Center */}
-        <motion.div
-          className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-3"
-          initial={{ opacity: 0, y: 20, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ 
-            type: "spring",
-            stiffness: 120,
-            damping: 14,
-            delay: 2.2 
-          }}
-        >
-          <h2 
-            className="text-black font-display font-bold text-3xl md:text-5xl lg:text-7xl tracking-[0.1em] md:tracking-[0.2em] uppercase text-center"
-            style={{ 
-              fontFamily: 'var(--font-cormorant)',
-              textShadow: '0 0 10px rgba(255,255,255,1), 0 0 20px rgba(255,255,255,0.9), 0 0 40px rgba(255,255,255,0.7)'
-            }}
-          >
-            MLA &middot; EGMORE
-          </h2>
-          {/* One line element in red color */}
-          <motion.div 
-            className="w-32 md:w-48 h-[3px] bg-red-600 rounded-full"
-            style={{ boxShadow: '0 0 10px rgba(255,255,255,0.5)' }}
-            initial={{ scaleX: 0, opacity: 0 }}
-            animate={{ scaleX: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 2.8, ease: EASE, transformOrigin: 'center' }}
-          />
-        </motion.div>
+
       </header>
     </>
   );

@@ -25,7 +25,7 @@ export function GrievanceRedressal({ locale }: SectionProps) {
 
   return (
     <MlaStaggerContainer className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-12 lg:gap-24 items-start">
-      <MlaStaggerContainer className="prose prose-lg text-charcoal-800 prose-headings:font-display prose-headings:font-normal">
+      <MlaStaggerContainer className="prose prose-lg text-slate-900 prose-headings:font-display prose-headings:font-normal">
         <MlaStaggerItem><p className="text-xl leading-relaxed mb-12">{content.p1}</p></MlaStaggerItem>
         
         <MlaStaggerItem><h3 className="text-2xl mt-8 mb-4">{content.meetingsTitle}</h3></MlaStaggerItem>
@@ -35,9 +35,9 @@ export function GrievanceRedressal({ locale }: SectionProps) {
         <MlaStaggerItem><p>{content.digitalBody}</p></MlaStaggerItem>
       </MlaStaggerContainer>
 
-      <MlaStaggerItem className="bg-sand-100 p-8 border-t-4 border-red-500 text-center">
-        <div className="text-sm uppercase tracking-widest text-maroon-700 font-medium mb-3">{content.whatsappLabel}</div>
-        <div className="font-display text-3xl text-charcoal-900 tracking-wider">
+      <MlaStaggerItem className="bg-slate-50 p-8 border-t-4 border-slate-50/30 text-center">
+        <div className="text-sm uppercase tracking-widest text-slate-900 font-medium mb-3">{content.whatsappLabel}</div>
+        <div className="font-display text-3xl text-slate-900 tracking-wider">
           {content.whatsappNumber}
         </div>
       </MlaStaggerItem>

@@ -32,7 +32,7 @@ export function WaterSupply({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="prose prose-lg text-charcoal-800 prose-headings:font-display prose-headings:font-normal prose-li:marker:text-red-600">
+    <MlaStaggerContainer className="prose prose-lg text-slate-900 prose-headings:font-display prose-headings:font-normal prose-li:marker:text-slate-900">
       <MlaStaggerItem><p>{content.p1}</p></MlaStaggerItem>
       <MlaStaggerItem><p>{content.p2}</p></MlaStaggerItem>
       <MlaStaggerItem><h3 className="text-xl mt-8 mb-4">{content.interventionsHeading}</h3></MlaStaggerItem>
@@ -41,7 +41,7 @@ export function WaterSupply({ locale }: SectionProps) {
           <MlaStaggerItem key={index} y={0} x={15}><li>{item}</li></MlaStaggerItem>
         ))}
       </ul>
-      <MlaStaggerItem><p className="mt-8 text-base text-charcoal-600 italic border-l-2 border-sand-300 pl-4">{content.note}</p></MlaStaggerItem>
+      <MlaStaggerItem><p className="mt-8 text-base text-slate-900 italic border-l-2 border-slate-200 pl-4">{content.note}</p></MlaStaggerItem>
     </MlaStaggerContainer>
   );
 }

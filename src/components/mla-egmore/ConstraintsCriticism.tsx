@@ -37,12 +37,12 @@ export function ConstraintsCriticism({ locale }: SectionProps) {
     <MlaStaggerContainer className="max-w-4xl space-y-12">
       {content.map((item, idx) => (
         <MlaStaggerItem key={idx} className="flex gap-6 md:gap-10">
-          <div className="shrink-0 font-display text-4xl text-maroon-300 select-none">
+          <div className="shrink-0 font-display text-4xl text-slate-900 select-none">
             {(idx + 1).toString().padStart(2, '0')}
           </div>
           <div>
-            <h3 className="font-display text-2xl text-charcoal-900 mb-4">{item.title}</h3>
-            <p className="text-lg text-charcoal-700 leading-relaxed">
+            <h3 className="font-display text-2xl text-slate-900 mb-4">{item.title}</h3>
+            <p className="text-lg text-slate-900 leading-relaxed">
               {item.body}
             </p>
           </div>

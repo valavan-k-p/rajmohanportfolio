@@ -165,11 +165,11 @@ function ActiveContent({ content, activeIndex }: { content: any, activeIndex: nu
       <div className="flex flex-col gap-6 text-[#d0d0d0] text-lg md:text-xl font-light leading-relaxed max-w-2xl">
         <p>{content.p5}</p>
         <div className="mt-4">
-          <h4 className="text-sm uppercase tracking-[0.2em] text-red-500 mb-8 font-semibold">{content.presenceHeading}</h4>
+          <h4 className="text-sm uppercase tracking-[0.2em] text-slate-50 mb-8 font-semibold">{content.presenceHeading}</h4>
           <ul className="flex flex-col gap-5 text-base">
             {content.presence.map((item: string, idx: number) => (
               <li key={idx} className="flex items-center gap-6 border-b border-white/5 pb-4">
-                <span className="font-display text-2xl text-red-500/40">{(idx + 1).toString().padStart(2, '0')}</span>
+                <span className="font-display text-2xl text-slate-50/40">{(idx + 1).toString().padStart(2, '0')}</span>
                 <span className="text-[#fdfbf7] tracking-wide font-medium">{item}</span>
               </li>
             ))}
@@ -286,7 +286,7 @@ export function AboutEgmore({ locale }: SectionProps) {
         </ul>
         <MlaStaggerItem><h2 className="text-4xl text-white font-display mt-16 mb-8">03. Active Presence</h2></MlaStaggerItem>
         <MlaStaggerItem><p className="mt-8">{content.p5}</p></MlaStaggerItem>
-        <MlaStaggerItem><h3 className="text-xl text-red-500 mt-8 mb-4">{content.presenceHeading}</h3></MlaStaggerItem>
+        <MlaStaggerItem><h3 className="text-xl text-slate-50 mt-8 mb-4">{content.presenceHeading}</h3></MlaStaggerItem>
         <ul className="list-disc pl-6 space-y-2">
           {content.presence.map((item, index) => (
             <MlaStaggerItem key={index} y={0} x={15}><li>{item}</li></MlaStaggerItem>

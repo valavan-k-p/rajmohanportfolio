@@ -42,7 +42,7 @@ export function HousingRegularisation({ locale }: SectionProps) {
   }[locale];
 
   return (
-    <MlaStaggerContainer className="prose prose-lg text-charcoal-800 prose-headings:font-display prose-headings:font-normal prose-li:marker:text-red-600 space-y-6">
+    <MlaStaggerContainer className="prose prose-lg text-slate-900 prose-headings:font-display prose-headings:font-normal prose-li:marker:text-slate-900 space-y-6">
       <MlaStaggerItem><p>{content.p1}</p></MlaStaggerItem>
       
       <MlaStaggerItem><h3 className="text-xl mt-8 mb-4">{content.listHeading}</h3></MlaStaggerItem>
@@ -60,7 +60,7 @@ export function HousingRegularisation({ locale }: SectionProps) {
       </ul>
 
       <MlaStaggerItem>
-        <div className="mt-8 p-4 bg-sand-100 border-l-4 border-sand-400 text-base italic text-charcoal-700">
+        <div className="mt-8 p-4 bg-slate-50 border-l-4 border-slate-200 text-base italic text-slate-900">
           {content.note}
         </div>
       </MlaStaggerItem>

@@ -30,33 +30,33 @@ export function MlaAtAGlance({ locale }: SectionProps) {
   return (
     <MlaStaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 text-left max-w-3xl mx-auto">
       <MlaStaggerItem className="border-t border-red-200 pt-4">
-        <div className="text-sm uppercase tracking-widest text-maroon-700 font-medium mb-1">{content.name.label}</div>
-        <div className="text-2xl font-display text-charcoal-900">{content.name.value}</div>
+        <div className="text-sm uppercase tracking-widest text-slate-900 font-medium mb-1">{content.name.label}</div>
+        <div className="text-2xl font-display text-slate-900">{content.name.value}</div>
       </MlaStaggerItem>
       
       <MlaStaggerItem className="border-t border-red-200 pt-4">
-        <div className="text-sm uppercase tracking-widest text-maroon-700 font-medium mb-1">{content.constituency.label}</div>
-        <div className="text-2xl font-display text-charcoal-900">{content.constituency.value}</div>
+        <div className="text-sm uppercase tracking-widest text-slate-900 font-medium mb-1">{content.constituency.label}</div>
+        <div className="text-2xl font-display text-slate-900">{content.constituency.value}</div>
       </MlaStaggerItem>
 
       <MlaStaggerItem className="border-t border-red-200 pt-4">
-        <div className="text-sm uppercase tracking-widest text-maroon-700 font-medium mb-1">{content.role.label}</div>
-        <div className="text-xl text-charcoal-800">{content.role.value}</div>
+        <div className="text-sm uppercase tracking-widest text-slate-900 font-medium mb-1">{content.role.label}</div>
+        <div className="text-xl text-slate-900">{content.role.value}</div>
       </MlaStaggerItem>
 
       <MlaStaggerItem className="border-t border-red-200 pt-4">
-        <div className="text-sm uppercase tracking-widest text-maroon-700 font-medium mb-1">{content.tenure.label}</div>
-        <div className="text-xl text-charcoal-800">{content.tenure.value}</div>
+        <div className="text-sm uppercase tracking-widest text-slate-900 font-medium mb-1">{content.tenure.label}</div>
+        <div className="text-xl text-slate-900">{content.tenure.value}</div>
       </MlaStaggerItem>
 
       <MlaStaggerItem className="border-t border-red-200 pt-4">
-        <div className="text-sm uppercase tracking-widest text-maroon-700 font-medium mb-1">{content.party.label}</div>
-        <div className="text-xl text-charcoal-800">{content.party.value}</div>
+        <div className="text-sm uppercase tracking-widest text-slate-900 font-medium mb-1">{content.party.label}</div>
+        <div className="text-xl text-slate-900">{content.party.value}</div>
       </MlaStaggerItem>
 
       <MlaStaggerItem className="border-t border-red-200 pt-4">
-        <div className="text-sm uppercase tracking-widest text-maroon-700 font-medium mb-1">{content.ministries.label}</div>
-        <ul className="text-xl text-charcoal-800 space-y-1">
+        <div className="text-sm uppercase tracking-widest text-slate-900 font-medium mb-1">{content.ministries.label}</div>
+        <ul className="text-xl text-slate-900 space-y-1">
           {content.ministries.value.map((ministry, idx) => (
             <li key={idx}>{ministry}</li>
           ))}

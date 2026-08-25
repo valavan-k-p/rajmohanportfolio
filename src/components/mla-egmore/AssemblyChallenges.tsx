@@ -52,13 +52,13 @@ export function AssemblyChallenges({ locale }: SectionProps) {
         body: (
           <div className="space-y-6">
             <div className="flex flex-wrap gap-8">
-              <div className="bg-white p-4 border border-sand-300 min-w-[200px]">
-                <div className="text-sm uppercase tracking-widest text-maroon-700 mb-1">2025–26</div>
-                <div className="font-display text-3xl">₹46,767 <span className="text-lg font-sans text-charcoal-600">crore</span></div>
+              <div className="bg-white p-4 border border-slate-200 min-w-[200px]">
+                <div className="text-sm uppercase tracking-widest text-slate-900 mb-1">2025–26</div>
+                <div className="font-display text-3xl">₹46,767 <span className="text-lg font-sans text-slate-900">crore</span></div>
               </div>
-              <div className="bg-white p-4 border border-sand-300 min-w-[200px]">
-                <div className="text-sm uppercase tracking-widest text-maroon-700 mb-1">2026–27</div>
-                <div className="font-display text-3xl">₹44,527 <span className="text-lg font-sans text-charcoal-600">crore</span></div>
+              <div className="bg-white p-4 border border-slate-200 min-w-[200px]">
+                <div className="text-sm uppercase tracking-widest text-slate-900 mb-1">2026–27</div>
+                <div className="font-display text-3xl">₹44,527 <span className="text-lg font-sans text-slate-900">crore</span></div>
               </div>
             </div>
             <p>
@@ -134,13 +134,13 @@ export function AssemblyChallenges({ locale }: SectionProps) {
         body: (
           <div className="space-y-6">
             <div className="flex flex-wrap gap-8">
-              <div className="bg-white p-4 border border-sand-300 min-w-[200px]">
-                <div className="text-sm uppercase tracking-widest text-maroon-700 mb-1">2025–26</div>
-                <div className="font-display text-3xl">₹46,767 <span className="text-lg font-sans text-charcoal-600">கோடி</span></div>
+              <div className="bg-white p-4 border border-slate-200 min-w-[200px]">
+                <div className="text-sm uppercase tracking-widest text-slate-900 mb-1">2025–26</div>
+                <div className="font-display text-3xl">₹46,767 <span className="text-lg font-sans text-slate-900">கோடி</span></div>
               </div>
-              <div className="bg-white p-4 border border-sand-300 min-w-[200px]">
-                <div className="text-sm uppercase tracking-widest text-maroon-700 mb-1">2026–27</div>
-                <div className="font-display text-3xl">₹44,527 <span className="text-lg font-sans text-charcoal-600">கோடி</span></div>
+              <div className="bg-white p-4 border border-slate-200 min-w-[200px]">
+                <div className="text-sm uppercase tracking-widest text-slate-900 mb-1">2026–27</div>
+                <div className="font-display text-3xl">₹44,527 <span className="text-lg font-sans text-slate-900">கோடி</span></div>
               </div>
             </div>
             <p>
@@ -175,10 +175,10 @@ export function AssemblyChallenges({ locale }: SectionProps) {
         <div key={idx} className="relative pl-8 md:pl-12 pb-2">
           <MlaVerticalLineReveal className="absolute left-0 top-0 bottom-0 w-[2px] bg-red-200" />
           <MlaStaggerItem x={20} y={0}>
-            <div className="absolute left-0 top-1.5 -translate-x-1/2 w-4 h-4 rounded-full bg-red-500 ring-4 ring-white" />
-            <div className="text-sm uppercase tracking-widest text-red-600 font-medium mb-2">{item.date}</div>
-            <h3 className="font-display text-2xl md:text-3xl text-charcoal-900 mb-6">{item.title}</h3>
-            <div className="text-lg text-charcoal-700 leading-relaxed">
+            <div className="absolute left-0 top-1.5 -translate-x-1/2 w-4 h-4 rounded-full bg-slate-50 ring-4 ring-white" />
+            <div className="text-sm uppercase tracking-widest text-slate-900 font-medium mb-2">{item.date}</div>
+            <h3 className="font-display text-2xl md:text-3xl text-slate-900 mb-6">{item.title}</h3>
+            <div className="text-lg text-slate-900 leading-relaxed">
               {item.body}
             </div>
           </MlaStaggerItem>

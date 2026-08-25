@@ -103,22 +103,22 @@ export function ConstituencyPriorities({ locale }: SectionProps) {
       {content.map((category, idx) => (
         <MlaStaggerItem key={idx} y={25} className="h-full">
           <MlaHoverCard className="h-full group">
-            <div className="bg-sand-50 p-6 border border-sand-300 shadow-sm h-full transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:border-maroon-300 group-hover:shadow-[0_15px_30px_-5px_rgba(138,115,163,0.15)] relative overflow-hidden">
+            <div className="bg-slate-50 p-6 border border-slate-200 shadow-sm h-full transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:border-slate-900 group-hover:shadow-[0_15px_30px_-5px_rgba(138,115,163,0.15)] relative overflow-hidden">
               {/* Red accent line that expands on hover */}
-              <div className="absolute top-0 left-0 w-full h-[3px] bg-red-600 scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100" />
+              <div className="absolute top-0 left-0 w-full h-[3px] bg-slate-900 scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100" />
               
               <div className="flex items-center gap-4 mb-5 pb-3 border-b border-red-200/50">
                 <MlaReveal 
                   scale={0.92}
                   y={0}
-                  className="text-maroon-700 transition-transform duration-500 ease-out group-hover:[transform:rotate(5deg)_scale(1.1)]"
+                  className="text-slate-900 transition-transform duration-500 ease-out group-hover:[transform:rotate(5deg)_scale(1.1)]"
                 >
                   <div style={{ filter: 'drop-shadow(0 0 6px rgba(138, 115, 163, 0.3))' }}>
                     <category.icon size={22} strokeWidth={1.5} />
                   </div>
                 </MlaReveal>
                 <h3 
-                  className="text-[1.35rem] text-maroon-800 tracking-wide transition-colors duration-300 group-hover:text-red-700"
+                  className="text-[1.35rem] text-slate-900 tracking-wide transition-colors duration-300 group-hover:text-slate-900"
                   style={{ fontFamily: 'var(--font-cormorant)' }}
                 >
                   {category.title}
@@ -126,8 +126,8 @@ export function ConstituencyPriorities({ locale }: SectionProps) {
               </div>
               <ul className="space-y-3">
                 {category.items.map((item, itemIdx) => (
-                  <li key={itemIdx} className="text-charcoal-700 flex items-start gap-2.5 transition-transform duration-300 group-hover:translate-x-1">
-                    <span className="text-red-500/80 mt-[5px] text-[0.65rem] leading-none shrink-0 transition-transform duration-300 group-hover:scale-125" aria-hidden="true">■</span>
+                  <li key={itemIdx} className="text-slate-900 flex items-start gap-2.5 transition-transform duration-300 group-hover:translate-x-1">
+                    <span className="text-slate-50/80 mt-[5px] text-[0.65rem] leading-none shrink-0 transition-transform duration-300 group-hover:scale-125" aria-hidden="true">■</span>
                     <span className="leading-snug">{item}</span>
                   </li>
                 ))}

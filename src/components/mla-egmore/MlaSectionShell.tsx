@@ -6,12 +6,12 @@ import { cormorant } from './MlaTypography';
 import { MlaTextReveal, MlaLineReveal, MlaStaggerItem } from './MlaMotion';
 
 const GROUND: Partial<Record<SectionLayout, string>> = {
-  statement: 'bg-sand-100',
-  'prose-columns': 'bg-sand-100',
-  'data-band': 'bg-charcoal-900 text-white',
-  'feature-word': 'bg-sand-200',
-  'full-bleed': 'bg-charcoal-900 text-white',
-  contact: 'bg-sand-200',
+  statement: 'bg-slate-50',
+  'prose-columns': 'bg-slate-50',
+  'data-band': 'bg-slate-900 text-white',
+  'feature-word': 'bg-slate-50',
+  'full-bleed': 'bg-slate-900 text-white',
+  contact: 'bg-slate-50',
 };
 
 const INNER: Partial<Record<SectionLayout, string>> = {
@@ -56,7 +56,7 @@ export function MlaSectionShell({ id, title, layout, index, children }: MlaSecti
           <MlaStaggerItem y={10}>
             <span
               aria-hidden="true"
-              className={`u-eyebrow ${inverted ? 'text-yellow-400' : 'text-maroon-700'}`}
+              className={`u-eyebrow ${inverted ? 'text-slate-50' : 'text-slate-900'}`}
             >
               {String(index).padStart(2, '0')}
             </span>
@@ -65,7 +65,7 @@ export function MlaSectionShell({ id, title, layout, index, children }: MlaSecti
             <MlaTextReveal delay={0.2}>
               <h2
                 id={`${id}-heading`}
-                className={`font-display text-h2 ${inverted ? 'text-white' : 'text-charcoal-900'}`}
+                className={`font-display text-h2 ${inverted ? 'text-white' : 'text-slate-900'}`}
                 style={{ 
                   fontFamily: 'var(--font-cormorant)',
                   textShadow: inverted ? '0 0 15px rgba(255,255,255,0.1)' : '0 0 15px rgba(138, 115, 163, 0.15)'
@@ -78,7 +78,7 @@ export function MlaSectionShell({ id, title, layout, index, children }: MlaSecti
         </div>
 
         <MlaLineReveal 
-          className={`mb-10 h-px w-full ${inverted ? 'bg-white/25' : 'bg-sand-300'}`}
+          className={`mb-10 h-px w-full ${inverted ? 'bg-white/25' : 'bg-slate-50'}`}
         />
 
         {children}
