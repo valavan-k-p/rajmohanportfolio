@@ -1,14 +1,21 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useIsomorphicLayoutEffect } from '@/lib/motion';
 import { gsap } from 'gsap';
-import type { Locale } from '@/lib/i18n/routing';
+import { locales, type Locale } from '@/lib/i18n/routing';
 
-export function HeroSection({ locale: _locale }: { locale: Locale }) {
+export function HeroSection({ locale }: { locale: Locale }) {
   const containerRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isTa = locale === 'ta';
 
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -24,11 +31,42 @@ export function HeroSection({ locale: _locale }: { locale: Locale }) {
     return () => ctx.revert();
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 30);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const pathFor = (target: Locale) => {
+    if (!pathname) return `/${target}/tamil-development`;
+    const segments = pathname.split('/');
+    if (locales.includes(segments[1] as Locale)) {
+      segments[1] = target;
+      return segments.join('/');
+    }
+    return `/${target}/tamil-development`;
+  };
+
+  const navLinks = [
+    { id: 'ecosystem', label: isTa ? 'துறை கட்டமைப்பு' : 'Ecosystem' },
+    { id: 'official-language', label: isTa ? 'ஆட்சிமொழி' : 'Official Language' },
+    { id: 'minister', label: isTa ? 'அமைச்சர்' : 'Leadership' },
+    { id: 'timeline', label: isTa ? 'காலவரிசை' : 'Timeline' },
+    { id: 'sorkuvai', label: isTa ? 'சொற்குவை' : 'Sorkuvai' },
+    { id: 'literature', label: isTa ? 'இலக்கியம்' : 'Literature' },
+    { id: 'research', label: isTa ? 'ஆராய்ச்சி' : 'Research' },
+    { id: 'global', label: isTa ? 'உலகத் தமிழ்' : 'Global Tamil' },
+  ];
+
   return (
     <section 
       ref={containerRef}
       className="relative w-full aspect-[1600/725] min-h-[45vh] md:min-h-[65vh] lg:min-h-[85vh] xl:min-h-[92vh] flex items-center justify-center bg-[var(--color-tamil-ink)] overflow-hidden"
     >
+      {/* 1. HERO BANNER IMAGE (Unmodified, Full Quality, Preserved Aspect) */}
       <div 
         ref={imageRef}
         className="absolute inset-0 w-full h-full"
@@ -42,6 +80,148 @@ export function HeroSection({ locale: _locale }: { locale: Locale }) {
           className="w-full h-full object-cover object-center"
         />
       </div>
+
+      {/* 2. HERO-INTEGRATED INSTITUTIONAL NAVIGATION BAR */}
+      <nav
+        aria-label="Tamil Development Portal Navigation"
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ease-out ${
+          isScrolled
+            ? 'bg-[#1c1a17]/92 backdrop-blur-md py-3 sm:py-3.5 border-b border-[#cfa830]/25 shadow-[0_4px_24px_rgba(0,0,0,0.4)]'
+            : 'bg-gradient-to-b from-black/80 via-black/40 to-transparent pt-4 sm:pt-5 pb-8 sm:pb-10 border-b border-transparent'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+          {/* Left: Portal Identity & Back to Home Link */}
+          <div className="flex items-center gap-3">
+            <Link
+              href={`/${locale}`}
+              className="group inline-flex items-center gap-2 text-xs sm:text-sm text-[var(--color-tamil-paper)] hover:text-[var(--color-tamil-gold)] transition-colors no-underline"
+              aria-label={isTa ? 'முகப்புக்குத் திரும்பு' : 'Back to Home'}
+            >
+              <span 
+                className="inline-block font-bold text-[var(--color-tamil-gold)] transition-transform duration-200 group-hover:-translate-x-1 drop-shadow-sm text-sm sm:text-base"
+                aria-hidden="true"
+              >
+                ←
+              </span>
+              <span className="font-serif tracking-wider text-xs sm:text-sm hidden xs:inline drop-shadow-sm">
+                {isTa ? 'முகப்பு' : 'Home'}
+              </span>
+            </Link>
+
+            <span className="text-[var(--color-tamil-gold)]/40 text-xs hidden sm:inline" aria-hidden="true">
+              |
+            </span>
+
+            {/* Department Title */}
+            <div className="flex flex-col">
+              <span className="font-tamil-display text-sm sm:text-base font-semibold text-[var(--color-tamil-white)] leading-tight tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+                {isTa ? 'தமிழ் வளர்ச்சித் துறை' : 'Tamil Development'}
+              </span>
+              <span className="font-mono text-[9.5px] sm:text-[10.5px] uppercase tracking-widest text-[var(--color-tamil-gold-soft)]/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+                {isTa ? 'தமிழ்நாடு அரசு' : 'Government of Tamil Nadu'}
+              </span>
+            </div>
+          </div>
+
+          {/* Center: Primary Section Navigation Links (Desktop) */}
+          <div className="hidden lg:flex items-center gap-4.5 xl:gap-6">
+            {navLinks.map((link) => (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                className="relative py-1 text-xs xl:text-[13.5px] font-tamil-display font-medium tracking-wide text-[var(--color-tamil-paper)]/90 hover:text-[var(--color-tamil-gold)] transition-colors duration-200 group drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]"
+              >
+                <span>{link.label}</span>
+                <span className="absolute bottom-0 inset-x-0 h-[1.5px] bg-[var(--color-tamil-gold)] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-250 ease-out" />
+              </a>
+            ))}
+          </div>
+
+          {/* Right: Language Switcher & Mobile Menu Toggle */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Cultural Language Switcher Pill */}
+            <div 
+              aria-label="Language Selector"
+              className="flex items-center gap-1 text-xs font-mono bg-black/35 backdrop-blur-xs px-2.5 sm:px-3 py-1 rounded-xs border border-[var(--color-tamil-gold)]/30 shadow-xs"
+            >
+              <span className="text-[10px] text-[var(--color-tamil-gold)] font-bold uppercase tracking-wider hidden sm:inline mr-0.5">
+                {isTa ? 'மொழி' : 'LANG'}:
+              </span>
+              <Link
+                href={pathFor('en')}
+                lang="en"
+                hrefLang="en"
+                aria-current={locale === 'en' ? 'true' : undefined}
+                className={`px-1.5 py-0.5 rounded-2xs transition-colors no-underline text-xs ${
+                  locale === 'en'
+                    ? 'font-bold text-[var(--color-tamil-gold)] border-b border-[var(--color-tamil-gold)]'
+                    : 'text-[var(--color-tamil-paper)]/75 hover:text-white'
+                }`}
+              >
+                EN
+              </Link>
+              <span className="text-[var(--color-tamil-gold)]/30 text-xs" aria-hidden="true">|</span>
+              <Link
+                href={pathFor('ta')}
+                lang="ta"
+                hrefLang="ta"
+                aria-current={locale === 'ta' ? 'true' : undefined}
+                className={`px-1.5 py-0.5 rounded-2xs font-tamil-display transition-colors no-underline text-xs ${
+                  locale === 'ta'
+                    ? 'font-bold text-[var(--color-tamil-gold)] border-b border-[var(--color-tamil-gold)]'
+                    : 'text-[var(--color-tamil-paper)]/75 hover:text-white'
+                }`}
+              >
+                தமிழ்
+              </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-expanded={mobileMenuOpen}
+              aria-label={isTa ? 'பட்டியலைத் திற/மூடு' : 'Toggle navigation menu'}
+              className="lg:hidden p-1.5 text-[var(--color-tamil-paper)] hover:text-[var(--color-tamil-gold)] transition-colors border border-[var(--color-tamil-gold)]/30 bg-black/40 rounded-xs flex items-center justify-center"
+            >
+              <svg 
+                className="w-5 h-5" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                {mobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Dropdown Menu (Understated cultural drawer) */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden mt-2 pt-3 pb-5 px-6 bg-[#1c1a17]/96 backdrop-blur-lg border-t border-b border-[#cfa830]/30 shadow-2xl animate-fadeIn">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-3 pt-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.id}
+                  href={`#${link.id}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-1.5 text-sm font-tamil-display text-[var(--color-tamil-paper)] hover:text-[var(--color-tamil-gold)] transition-colors flex items-center gap-1.5 border-b border-[#cfa830]/10"
+                >
+                  <span className="text-[var(--color-tamil-gold)] text-xs font-bold leading-none">›</span>
+                  <span>{link.label}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </nav>
     </section>
   );
 }
+
