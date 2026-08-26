@@ -20,7 +20,7 @@ export function OfficialLanguageSection({ locale }: { locale: Locale }) {
       <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
         
         {/* Image block with hover zoom */}
-        <div className="relative aspect-[3/4] md:aspect-[4/5] w-full overflow-hidden rounded-sm bg-neutral-100 shadow-2xl">
+        <div className="relative aspect-[3/4] md:aspect-[4/5] w-4/5 md:w-3/4 lg:w-2/3 mx-auto overflow-hidden rounded-sm bg-neutral-100 shadow-2xl">
           <img 
             src="/images/tamil-development/kalvettu.png" 
             alt="Official Language Inscription"
