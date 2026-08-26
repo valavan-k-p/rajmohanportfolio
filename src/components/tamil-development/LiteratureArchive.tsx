@@ -1,105 +1,127 @@
 'use client';
 
 import { useRef } from 'react';
-import { useIsomorphicLayoutEffect } from '@/lib/motion';
+import { useIsomorphicLayoutEffect, EASING, DURATION } from '@/lib/motion';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TamilSection } from './TamilSection';
 import type { Locale } from '@/lib/i18n/routing';
 
 export function LiteratureArchive({ locale }: { locale: Locale }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const booksRef = useRef<HTMLDivElement>(null);
+  const archiveRef = useRef<HTMLDivElement>(null);
 
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      // 1. Books emerging from shelves
       gsap.fromTo(
-        '.book-item',
-        { opacity: 0, y: 40 },
+        '.library-book',
+        { opacity: 0, rotationY: -90, x: -50, transformPerspective: 1000 },
         {
           opacity: 1,
-          y: 0,
+          rotationY: 0,
+          x: 0,
           stagger: 0.1,
-          duration: 0.8,
-          ease: 'power2.out',
+          duration: DURATION.story,
+          ease: EASING.cinematic,
           scrollTrigger: {
-            trigger: '.book-grid',
-            start: 'top 75%',
+            trigger: booksRef.current,
+            start: 'top 80%',
           }
         }
       );
+
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
+  // Generate 24 decorative fragments for the animation
+  const fragments = Array.from({ length: 24 });
+
   return (
-    <TamilSection
-      id="literature"
-      chapterNumber="07"
-      category={locale === 'ta' ? 'இலக்கியம்' : 'LITERATURE'}
-      title={locale === 'ta' ? 'படைப்புகளைப் பாதுகாத்தல்' : 'Preserving the Works'}
-      bgVariant="paper"
+    <section 
+      id="books-literature" 
+      ref={containerRef}
+      className="relative w-full py-24 md:py-32 overflow-hidden bg-[var(--color-tamil-paper)] text-[var(--color-tamil-ink)]"
     >
-      <div ref={containerRef} className="mt-8">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         
-        {/* Abstract Book/Archive Grid */}
-        <div className="book-grid grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 my-16">
-          <BookItem name={locale === 'ta' ? 'அறிஞர் பெயர்' : 'Scholar Name'} year="2024-25" status={locale === 'ta' ? 'நாட்டுடைமை' : 'Nationalised'} index={0} />
-          <BookItem name={locale === 'ta' ? 'அறிஞர் பெயர்' : 'Scholar Name'} year="2024-25" status={locale === 'ta' ? 'நாட்டுடைமை' : 'Nationalised'} index={1} />
-          <BookItem name={locale === 'ta' ? 'அறிஞர் பெயர்' : 'Scholar Name'} year="2024-25" status={locale === 'ta' ? 'நாட்டுடைமை' : 'Nationalised'} index={2} />
-          <div className="book-item relative aspect-[3/4] bg-[var(--color-tamil-gold-soft)]/20 border-2 border-dashed border-[var(--color-tamil-gold)]/40 flex items-center justify-center p-4 text-center">
-            <span className="text-sm font-medium opacity-60">
-              {locale === 'ta' ? '+6 அறிஞர்கள் 2024-25 இல்' : '+6 scholars in 2024-25'}
-            </span>
+        {/* Section Header */}
+        <div className="mb-20 max-w-3xl">
+          <div className="text-[var(--color-tamil-gold)] font-bold tracking-[0.2em] uppercase text-sm mb-4">
+            {locale === 'ta' ? 'இலக்கிய மரபு' : 'Literary Memory'}
+          </div>
+          <h2 className="font-tamil-display text-4xl md:text-5xl lg:text-6xl text-[var(--color-tamil-red-deep)] mb-6 leading-tight">
+            {locale === 'ta' ? 'புத்தகங்கள் & படைப்பாளர்கள்' : 'Books, Writers & Literary Memory'}
+          </h2>
+        </div>
+
+        {/* --- PART 1: NATIONALISATION OF BOOKS --- */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-32">
+          <div>
+            <h3 className="font-tamil-display text-3xl mb-6 border-b border-[var(--color-tamil-ink)]/10 pb-4">
+              {locale === 'ta' ? 'நூல்கள் நாட்டுடைமையாக்கம்' : 'Nationalisation of Books'}
+            </h3>
+            
+            <p className="font-tamil-sans text-lg opacity-80 leading-relaxed mb-8">
+              {locale === 'ta' 
+                ? 'மாநிலத்தின் கொள்கை விளக்கக் குறிப்பு அடிப்படையில், சிறந்த தமிழ் அறிஞர்களின் படைப்புகளை அரசு நாட்டுடைமையாக்குகிறது.'
+                : 'Based on the state policy note baseline, the government nationalises the works of distinguished Tamil scholars to preserve them for the public domain.'}
+            </p>
+
+            <div className="grid grid-cols-2 gap-8 mt-12">
+              <div className="border-l-2 border-[var(--color-tamil-red)] pl-4">
+                <div className="font-tamil-display text-5xl font-bold mb-1">189</div>
+                <div className="text-xs uppercase tracking-widest opacity-50 mb-2">
+                  {locale === 'ta' ? 'வரலாற்று அறிஞர்கள்' : 'Historical Scholars'}
+                </div>
+                <div className="text-[0.65rem] opacity-40">
+                  {locale === 'ta' ? '(கொள்கை விளக்கக் குறிப்பு வரை)' : '(up to policy note baseline)'}
+                </div>
+              </div>
+              <div className="border-l-2 border-[var(--color-tamil-gold)] pl-4">
+                <div className="font-tamil-display text-5xl font-bold mb-1">9</div>
+                <div className="text-xs uppercase tracking-widest opacity-50 mb-2">
+                  {locale === 'ta' ? 'அறிஞர்கள்' : 'Scholars'}
+                </div>
+                <div className="text-[0.65rem] opacity-40">
+                  {locale === 'ta' ? '(2024-25 நிதியாண்டில்)' : '(during 2024-25)'}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-12 p-6 bg-[var(--color-tamil-white)] border border-[var(--color-tamil-ink)]/10 rounded-sm">
+              <div className="font-tamil-display text-3xl font-bold text-[var(--color-tamil-red)] mb-1">₹91.35 <span className="text-xl text-[var(--color-tamil-ink)]">{locale === 'ta' ? 'லட்சம்' : 'Lakh'}</span></div>
+              <div className="text-xs uppercase tracking-widest opacity-60">
+                {locale === 'ta' ? 'வழங்கப்பட்ட ராயல்டி' : 'Royalty Disbursed'}
+              </div>
+              <div className="text-[0.65rem] opacity-40 mt-1">
+                {locale === 'ta' ? '(2024-25 நிதியாண்டில் வரலாற்று அறிஞர்களின் வாரிசுகளுக்கு)' : '(during 2024-25 to heirs of historical figures)'}
+              </div>
+            </div>
+          </div>
+
+          {/* Abstract Library Visual */}
+          <div ref={booksRef} className="relative flex items-center justify-center min-h-[400px] perspective-1000">
+            <div className="grid grid-cols-3 gap-4 w-full">
+              {[1,2,3,4,5,6].map((i) => (
+                <div key={i} className="library-book aspect-[2/3] bg-gradient-to-br from-[#e0d6c3] to-[#d1c5ae] shadow-lg border-l-4 border-[var(--color-tamil-red-deep)] flex items-center justify-center relative overflow-hidden">
+                  <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/aged-paper.png')]" />
+                  <div className="w-[1px] h-3/4 bg-black/10 absolute left-2" />
+                  <div className="font-tamil-display text-2xl text-[var(--color-tamil-red-deep)] opacity-20 transform -rotate-90 origin-center whitespace-nowrap">
+                    {locale === 'ta' ? 'தமிழ் இலக்கியம்' : 'Tamil Literature'}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Info Strip */}
-        <div className="flex flex-col md:flex-row gap-8 justify-between items-center border-y border-[var(--color-tamil-ink)]/10 py-8">
-          <div className="text-center md:text-left">
-            <div className="font-display text-4xl font-bold mb-1">189</div>
-            <div className="text-sm uppercase tracking-widest opacity-60">
-              {locale === 'ta' ? 'நாட்டுடைமையாக்கப்பட்ட அறிஞர்கள்' : 'Scholars Nationalised'}
-            </div>
-            <div className="text-[0.6rem] uppercase tracking-wider opacity-40 mt-1">
-              {locale === 'ta' ? '(கொள்கை விளக்கக் குறிப்பு வரை)' : '(up to policy note baseline)'}
-            </div>
-          </div>
-          
-          <div className="w-[1px] h-12 bg-[var(--color-tamil-ink)]/10 hidden md:block" />
-          
-          <div className="text-center md:text-left">
-            <div className="font-display text-4xl font-bold mb-1 text-[var(--color-tamil-red)]">₹91.35 <span className="text-2xl">{locale === 'ta' ? 'லட்சம்' : 'Lakh'}</span></div>
-            <div className="text-sm uppercase tracking-widest opacity-60">
-              {locale === 'ta' ? 'வழங்கப்பட்ட ராயல்டி' : 'Royalty Disbursed'}
-            </div>
-            <div className="text-[0.6rem] uppercase tracking-wider opacity-40 mt-1">
-              {locale === 'ta' ? '(2024-25 நிதியாண்டில்)' : '(during 2024-25)'}
-            </div>
-          </div>
-        </div>
+
 
       </div>
-    </TamilSection>
-  );
-}
-
-function BookItem({ name, year, status, index }: { name: string; year: string; status: string; index: number }) {
-  // Varying heights and offsets for an organic archival look
-  const mt = index % 2 !== 0 ? 'md:mt-8' : '';
-  const height = index === 1 ? 'aspect-[3/4.5]' : 'aspect-[3/4]';
-  
-  return (
-    <div className={`book-item relative ${height} ${mt} bg-[var(--color-tamil-white)] shadow-md border-l-8 border-[var(--color-tamil-red)] p-4 flex flex-col justify-end transition-transform hover:-translate-y-2`}>
-      <div className="absolute top-4 right-4 opacity-10">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5C5.12 2 4 3.12 4 4.5v15ZM6.5 19C6.22 19 6 18.78 6 18.5S6.22 18 6.5 18H20v1H6.5Z"/>
-        </svg>
-      </div>
-      <div className="text-[0.65rem] uppercase tracking-widest opacity-50 mb-1">{year}</div>
-      <div className="font-display font-bold leading-tight mb-2 opacity-80">{name}</div>
-      <div className="inline-block bg-black/5 rounded px-2 py-0.5 text-[0.6rem] uppercase tracking-widest w-max opacity-60">
-        {status}
-      </div>
-    </div>
+    </section>
   );
 }

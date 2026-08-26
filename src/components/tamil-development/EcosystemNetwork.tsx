@@ -32,7 +32,7 @@ const TranslationIcon = () => (
     <rect x="3" y="3" width="8" height="8" rx="2" stroke="var(--color-tamil-red)" />
     <text x="7" y="9" textAnchor="middle" className="font-tamil-display font-bold" fontSize="6" fill="var(--color-tamil-red)" stroke="none">அ</text>
     <rect x="13" y="13" width="8" height="8" rx="2" stroke="var(--color-tamil-gold)" />
-    <text x="17" y="19" textAnchor="middle" className="font-display font-bold" fontSize="6" fill="var(--color-tamil-gold)" stroke="none">A</text>
+    <text x="17" y="19" textAnchor="middle" className="font-sans font-bold" fontSize="6" fill="var(--color-tamil-gold)" stroke="none">A</text>
     <path d="M11 7h4a2 2 0 0 1 2 2v2" stroke="var(--color-tamil-red)" strokeOpacity="0.6" />
     <path d="M15 9l2 2 2-2" stroke="var(--color-tamil-red)" strokeOpacity="0.6" />
     <path d="M13 17H9a2 2 0 0 1-2-2v-2" stroke="var(--color-tamil-gold)" strokeOpacity="0.6" />
@@ -180,11 +180,18 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
 
   const title = locale === 'ta' ? 'தமிழ் வளர்ச்சி எவ்வாறு இணைகிறது' : 'How Tamil Development Connects';
 
-  // Calculate radial positions for desktop
-  const radiusX = 480;
-  const radiusY = 360;
-  const centerX = 650;
-  const centerY = 450;
+  // Manually adjusted positions to prevent box overlapping (x, y percentage offsets from center)
+  const NODE_POSITIONS = [
+    { x: 0, y: -44 },     // 0: Language (Top Center)
+    { x: 32, y: -30 },    // 1: Literature (Top Right)
+    { x: 45, y: -3 },     // 2: Translation (Right)
+    { x: 40, y: 24 },     // 3: Lexicography (Bottom Right)
+    { x: 15, y: 46 },     // 4: Research (Bottom Center-Right)
+    { x: -15, y: 46 },    // 5: Students (Bottom Center-Left)
+    { x: -40, y: 24 },    // 6: Culture (Bottom Left)
+    { x: -45, y: -3 },    // 7: Global Tamil (Left)
+    { x: -32, y: -30 },   // 8: Digital Tamil (Top Left)
+  ];
 
   return (
     <TamilSection
@@ -197,18 +204,17 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
       <div ref={containerRef} className="relative mt-8 md:mt-16 pb-12 w-full flex justify-center overflow-visible">
         
         {/* Desktop Radial Layout */}
-        <div className="hidden md:block relative w-[1300px] h-[900px]">
-          {/* SVG Connection Lines */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" viewBox="0 0 1300 900">
+        <div className="hidden md:flex relative w-full justify-center items-center h-[600px] lg:h-[750px] overflow-visible">
+          <div className="relative w-[1400px] h-[1000px] shrink-0 scale-[0.6] lg:scale-[0.75] origin-center">
+            {/* SVG Connection Lines */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
             {ECOSYSTEM_DOMAINS.map((_, i) => {
-              const angle = (i / ECOSYSTEM_DOMAINS.length) * 2 * Math.PI - Math.PI / 2;
-              const x2 = centerX + Math.cos(angle) * radiusX;
-              const y2 = centerY + Math.sin(angle) * radiusY;
+              const pos = NODE_POSITIONS[i]!;
               return (
                 <line 
                   key={`line-${i}`}
                   className={`eco-line-${i}`}
-                  x1={centerX} y1={centerY} x2={x2} y2={y2}
+                  x1="50%" y1="50%" x2={`${50 + pos.x}%`} y2={`${50 + pos.y}%`}
                   stroke="var(--color-tamil-gold)"
                   strokeWidth="2"
                   strokeOpacity="0.4"
@@ -218,14 +224,14 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
           </svg>
 
           {/* Central Core */}
-          <div className="absolute top-[450px] left-[650px] -translate-x-1/2 -translate-y-1/2 z-20 eco-core">
-            <div className="relative flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-tamil-red-deep)] to-[var(--color-tamil-red)] text-white shadow-2xl border-4 border-white">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 eco-core">
+            <div className="relative flex h-36 w-36 md:h-40 md:w-40 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-tamil-red-deep)] to-[var(--color-tamil-red)] text-white shadow-2xl border-4 border-white">
               <div className="absolute inset-0 rounded-full border-2 border-[var(--color-tamil-gold)] eco-core-ring" />
               <div className="text-center flex flex-col items-center">
-                <span className="font-display text-2xl font-bold tracking-wider leading-tight">
+                <span className="font-tamil-display text-2xl font-bold tracking-wider leading-tight">
                   {locale === 'ta' ? 'தமிழ்' : 'TAMIL'}
                 </span>
-                <span className="text-xs tracking-widest opacity-80 uppercase mt-1">
+                <span className="font-tamil-sans text-xs tracking-widest opacity-80 uppercase mt-1">
                   {locale === 'ta' ? 'வளர்ச்சி' : 'Development'}
                 </span>
               </div>
@@ -234,29 +240,28 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
 
           {/* Radial Nodes */}
           {ECOSYSTEM_DOMAINS.map((domain, i) => {
-            const angle = (i / ECOSYSTEM_DOMAINS.length) * 2 * Math.PI - Math.PI / 2;
-            const x = centerX + Math.cos(angle) * radiusX;
-            const y = centerY + Math.sin(angle) * radiusY;
+            const pos = NODE_POSITIONS[i]!;
             return (
               <div 
                 key={domain.id}
-                className={`absolute z-10 w-64 -translate-x-1/2 -translate-y-1/2 eco-node-${i}`}
-                style={{ left: `${x}px`, top: `${y}px` }}
+                className={`absolute z-10 w-56 lg:w-64 -translate-x-1/2 -translate-y-1/2 eco-node-${i}`}
+                style={{ left: `${50 + pos.x}%`, top: `${50 + pos.y}%` }}
               >
                 <div className="bg-white/90 backdrop-blur-md rounded-2xl p-5 shadow-lg border border-[var(--color-tamil-gold)]/20 hover:border-[var(--color-tamil-red)]/40 hover:shadow-xl transition-all group flex flex-col items-center text-center">
                   <div className={`w-12 h-12 rounded-full bg-[var(--color-tamil-paper)] flex items-center justify-center text-xl mb-3 border border-[var(--color-tamil-gold)]/30 group-hover:bg-[var(--color-tamil-gold)]/10 transition-colors eco-icon-${i}`}>
                     {domain.icon}
                   </div>
-                  <h4 className="font-display text-lg font-bold text-[var(--color-tamil-red)] mb-2">
+                  <h4 className="font-tamil-display text-lg font-bold text-[var(--color-tamil-red)] mb-2">
                     {locale === 'ta' ? domain.taLabel : domain.label}
                   </h4>
-                  <p className="text-xs text-[var(--color-tamil-ink)]/70 leading-relaxed">
+                  <p className="font-tamil-sans text-xs text-[var(--color-tamil-ink)]/70 leading-relaxed">
                     {domain.desc}
                   </p>
                 </div>
               </div>
             );
           })}
+          </div>
         </div>
 
         {/* Mobile Vertical Flow Layout */}
@@ -265,10 +270,10 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
           <div className="relative z-20 flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-tamil-red-deep)] to-[var(--color-tamil-red)] text-white shadow-xl eco-core border-4 border-white mb-4">
             <div className="absolute inset-0 rounded-full border-2 border-[var(--color-tamil-gold)] eco-core-ring" />
             <div className="text-center flex flex-col items-center">
-              <span className="font-display text-xl font-bold tracking-wider leading-tight">
+              <span className="font-tamil-display text-xl font-bold tracking-wider leading-tight">
                 {locale === 'ta' ? 'தமிழ்' : 'TAMIL'}
               </span>
-              <span className="text-[10px] tracking-widest opacity-80 uppercase mt-1">
+              <span className="font-tamil-sans text-[10px] tracking-widest opacity-80 uppercase mt-1">
                 {locale === 'ta' ? 'வளர்ச்சி' : 'Development'}
               </span>
             </div>
@@ -289,10 +294,10 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
                     {domain.icon}
                   </div>
                   <div>
-                    <h4 className="font-display text-md font-bold text-[var(--color-tamil-red)] mb-1">
+                    <h4 className="font-tamil-display text-md font-bold text-[var(--color-tamil-red)] mb-1">
                       {locale === 'ta' ? domain.taLabel : domain.label}
                     </h4>
-                    <p className="text-xs text-[var(--color-tamil-ink)]/70 leading-relaxed">
+                    <p className="font-tamil-sans text-xs text-[var(--color-tamil-ink)]/70 leading-relaxed">
                       {domain.desc}
                     </p>
                   </div>

@@ -9,7 +9,7 @@ export interface TamilSectionProps {
   description?: ReactNode;
   children: ReactNode;
   className?: string;
-  bgVariant?: 'paper' | 'cream' | 'red' | 'dark' | 'charcoal';
+  bgVariant?: 'paper' | 'cream' | 'red' | 'dark' | 'charcoal' | 'maroon';
 }
 
 const BG_VARIANTS = {
@@ -17,7 +17,8 @@ const BG_VARIANTS = {
   cream: 'bg-[var(--color-tamil-white)] text-[var(--color-tamil-ink)]',
   red: 'bg-[var(--color-tamil-red)] text-white',
   dark: 'bg-[var(--color-tamil-red-deep)] text-[var(--color-tamil-paper)]',
-  charcoal: 'bg-[var(--color-tamil-ink)] text-[var(--color-tamil-gold-soft)]'
+  charcoal: 'bg-[var(--color-tamil-ink)] text-[var(--color-tamil-gold-soft)]',
+  maroon: 'bg-[var(--color-maroon-800)] text-[var(--color-tamil-gold-soft)]'
 };
 
 export function TamilSection({
@@ -43,13 +44,13 @@ export function TamilSection({
         {/* Removed chapterNumber and category as requested */}
         
         {title && (
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6 text-balance leading-tight">
+          <h2 className="font-tamil-display text-4xl md:text-5xl lg:text-6xl mb-6 text-balance leading-tight">
             {title}
           </h2>
         )}
         
         {description && (
-          <p className="text-lg md:text-xl max-w-2xl opacity-80 mb-12 text-pretty">
+          <p className="font-tamil-sans text-lg md:text-xl max-w-2xl opacity-80 mb-12 text-pretty">
             {description}
           </p>
         )}

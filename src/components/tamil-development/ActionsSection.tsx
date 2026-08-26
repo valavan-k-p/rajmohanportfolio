@@ -129,7 +129,7 @@ export function ActionsSection({ locale }: { locale: Locale }) {
         {/* Headers */}
         <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 mb-16 relative z-10">
           <div className="action-header text-center md:text-right">
-            <h3 className="font-display text-2xl font-bold text-[var(--color-tamil-ink)]/70">
+            <h3 className="font-tamil-display text-2xl font-bold text-[var(--color-tamil-ink)]/70">
               {locale === 'ta' ? 'துறையின் தொடர்ச்சியான பணிகள்' : 'Departmental Continuity'}
             </h3>
             <p className="text-xs mt-2 opacity-50 uppercase tracking-widest font-bold">
@@ -142,7 +142,7 @@ export function ActionsSection({ locale }: { locale: Locale }) {
           </div>
 
           <div className="action-header text-center md:text-left">
-            <h3 className="font-display text-2xl font-bold text-[var(--color-tamil-red)]">
+            <h3 className="font-tamil-display text-2xl font-bold text-[var(--color-tamil-red)]">
               {locale === 'ta' ? 'அமைச்சரின் பணிக்காலத்தில்' : 'Rajmohan Tenure Actions'}
             </h3>
             <p className="text-xs mt-2 opacity-70 uppercase tracking-widest text-[var(--color-tamil-red)] font-bold">
@@ -173,7 +173,7 @@ export function ActionsSection({ locale }: { locale: Locale }) {
                         {ACTION_ICONS[i]}
                       </div>
                       <div>
-                        <h4 className="font-display font-semibold text-lg text-[var(--color-tamil-ink)]/80">
+                        <h4 className="font-tamil-sans font-semibold text-lg text-[var(--color-tamil-ink)]/80">
                           {item.title?.[locale]}
                         </h4>
                         <div className="mt-1 text-[0.65rem] font-bold tracking-widest uppercase text-[var(--color-tamil-ink)]/40">
@@ -194,7 +194,7 @@ export function ActionsSection({ locale }: { locale: Locale }) {
                   <div className="w-full md:w-5/6 bg-white border border-[var(--color-tamil-red)]/20 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-[var(--color-tamil-red)]/40 transition-shadow">
                     <div className="flex items-center gap-4">
                       <div>
-                        <h4 className="font-display font-medium text-lg text-[var(--color-tamil-red)]">
+                        <h4 className="font-tamil-sans font-medium text-lg text-[var(--color-tamil-red)]">
                           {TAMIL_DEVELOPMENT_DATA.rajmohanTenureActions[i]?.title?.[locale]}
                         </h4>
                         <div className="mt-1 inline-block rounded bg-[var(--color-tamil-red)]/10 px-2 py-0.5 text-[0.65rem] font-bold tracking-widest uppercase text-[var(--color-tamil-red)]">
