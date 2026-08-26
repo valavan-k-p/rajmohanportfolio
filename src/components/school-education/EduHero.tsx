@@ -47,30 +47,30 @@ export function EduHero({
   ];
 
   return (
-    <header className="relative w-full aspect-[16/9] sm:aspect-[21/9] min-h-[52vh] md:min-h-[68vh] lg:min-h-[82vh] flex flex-col justify-start p-4 sm:p-6 lg:p-8 border-b border-sand-300 overflow-hidden bg-sand-100">
-      {/* 1. CINEMATIC BACKGROUND IMAGE WITH PROGRESSIVE ZOOM & REVEAL */}
+    <header className="relative w-full aspect-[1854/848] min-h-[240px] sm:min-h-0 flex flex-col justify-start p-3 sm:p-6 lg:p-8 border-b border-sand-300 overflow-hidden bg-sand-100">
+      {/* 1. CINEMATIC BACKGROUND IMAGE WITH PROGRESSIVE REVEAL (100% UNMAPPED & UNCROPPED) */}
       <motion.div
         initial={{
           opacity: 0,
-          scale: prefersReducedMotion ? 1 : 1.05,
-          filter: prefersReducedMotion ? 'none' : 'blur(6px) brightness(0.9)',
+          scale: prefersReducedMotion ? 1 : 1.02,
+          filter: prefersReducedMotion ? 'none' : 'blur(4px) brightness(0.95)',
         }}
         animate={{
           opacity: 1,
           scale: 1,
           filter: 'blur(0px) brightness(1.0)',
         }}
-        transition={{ duration: 0.95, ease: CINEMATIC_EASE }}
-        className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
+        transition={{ duration: 0.85, ease: CINEMATIC_EASE }}
+        className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-center"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={heroImagePath}
           alt="School Education — Minister Rajmohan Arumugam with students and Thiruvalluvar"
-          className="w-full h-full object-cover object-center sm:object-top filter contrast-[1.02] saturate-[1.05]"
+          className="w-full h-full object-contain object-center filter contrast-[1.02] saturate-[1.05]"
         />
         {/* Soft edge gradient to gracefully integrate with the background palette */}
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-sand-100/50 via-sand-100/15 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-16 sm:h-20 bg-gradient-to-b from-sand-100/40 via-sand-100/10 to-transparent pointer-events-none" />
       </motion.div>
 
       {/* 2. TOP BAR: BACK BUTTON + QUICK NAVIGATION + LANGUAGE SWITCHER */}
