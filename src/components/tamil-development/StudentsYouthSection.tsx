@@ -42,22 +42,27 @@ export function StudentsYouthSection({ locale }: { locale: Locale }) {
     >
       <div ref={containerRef} className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-16">
         
-        {/* Notebook metaphor */}
-        <div className="student-notebook relative aspect-square md:aspect-[4/3] bg-[var(--color-tamil-paper)] text-[var(--color-tamil-ink)] rounded-sm p-8 md:p-12 shadow-2xl flex flex-col justify-center overflow-hidden">
-          <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjIwcHgiPjxsaW5lIHgxPSIwIiB5MT0iMTkiIHgyPSIxMDAlIiB5Mj0iMTkiIHN0cm9rZT0iIzE3MTQxMSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+')] bg-repeat-y" />
-          
-          <div className="student-text relative z-10 font-tamil-display text-4xl md:text-5xl leading-relaxed font-bold opacity-80">
-            {locale === 'ta' 
-              ? 'எங்கள் குரல்'
-              : 'Our Voice'}
-          </div>
-          <div className="student-text relative z-10 mt-6 font-tamil-sans text-xl opacity-60">
-            {locale === 'ta' ? 'வருங்காலத் தமிழ்' : 'Tamil of tomorrow'}
-          </div>
+        {/* Image frame replacing notebook metaphor */}
+        <div className="student-notebook relative aspect-square md:aspect-[4/3] bg-[var(--color-tamil-paper)] rounded-sm p-0 shadow-2xl flex flex-col justify-center overflow-hidden">
+          <img 
+            src="/images/tamil-development/voice.png" 
+            alt="The Next Generation"
+            className="student-text w-full h-full object-cover object-center"
+          />
         </div>
 
         {/* Activities List */}
         <div className="flex flex-col justify-center gap-8">
+          
+          <div className="flex flex-col gap-2">
+            <h3 className="font-tamil-display text-4xl md:text-5xl font-bold opacity-90">
+              {locale === 'ta' ? 'எங்கள் குரல்' : 'Our Voice'}
+            </h3>
+            <div className="font-tamil-sans text-xl opacity-75">
+              {locale === 'ta' ? 'வருங்காலத் தமிழ்' : 'Tamil of tomorrow'}
+            </div>
+          </div>
+
           <p className="font-tamil-sans text-xl opacity-90 leading-relaxed text-balance">
             {locale === 'ta'
               ? 'பள்ளி மற்றும் கல்லூரி மாணவர்களிடையே தமிழை ஊக்கப்படுத்த பேச்சுப் போட்டிகள், கட்டுரைப் போட்டிகள் மற்றும் இலக்கியப் பட்டறைகள்.'
