@@ -121,98 +121,44 @@ const ECOSYSTEM_DOMAINS = [
 
 export function EcosystemNetwork({ locale }: { locale: Locale }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  const trackRef = useRef<HTMLDivElement>(null);
 
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      
       const mm = gsap.matchMedia();
 
-      // Desktop: Pin and Storytelling Scrub
+      // Desktop: Horizontal Scroll Journey
       mm.add("(min-width: 768px)", () => {
-        // Continuous time-based pulse
-        gsap.to('.eco-core-ring', {
-          scale: 1.3,
-          opacity: 0,
-          duration: 2,
-          repeat: -1,
-          ease: 'power2.out'
-        });
+        // Calculate the total width to scroll
+        const trackWidth = trackRef.current ? trackRef.current.scrollWidth : 0;
+        const scrollAmount = trackWidth - window.innerWidth + window.innerWidth * 0.2; // Add padding
 
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: '#ecosystem',
             start: 'top top',
-            end: '+=150%',
-            scrub: 1,
+            end: () => `+=${scrollAmount}`,
             pin: true,
+            scrub: 1,
+            invalidateOnRefresh: true
           }
         });
 
-        // 1. Central Core drops in
-        tl.fromTo('.eco-core',
-          { scale: 0.5, opacity: 0 },
-          { scale: 1, opacity: 1, duration: 1, ease: 'power2.out' }
-        );
-
-        // 2. Draw all lines out at the same time (The Roots)
-        tl.fromTo('[class^="eco-line-"]',
-          { strokeDasharray: 400, strokeDashoffset: 400 },
-          { strokeDashoffset: 0, duration: 2, ease: 'power1.inOut' },
-          "+=0.2" 
-        );
-
-        // 3. Reveal nodes sequentially (The Branches)
-        ECOSYSTEM_DOMAINS.forEach((_, i) => {
-          tl.fromTo(`.eco-node-${i}`,
-            { opacity: 0, scale: 0.8, y: 15 },
-            { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'back.out(1.2)' },
-            i === 0 ? "-=1.0" : "-=0.6" 
-          );
+        tl.to('.horizontal-track', {
+          x: () => -scrollAmount,
+          ease: 'none'
         });
-
-        // 4. Subtle ending pause to let user digest before unpinning
-        tl.to({}, { duration: 1 });
       });
 
-      // Mobile: Standard Scroll Reveal (because it's too tall to pin)
+      // Mobile: Vertical Storytelling Cascade
       mm.add("(max-width: 767px)", () => {
-        // Continuous pulse
-        gsap.to('.eco-core-ring', {
-          scale: 1.3,
-          opacity: 0,
-          duration: 2,
-          repeat: -1,
-          ease: 'power2.out'
-        });
-
-        // The core pulses in on enter
-        gsap.fromTo('.eco-core',
-          { scale: 0.5, opacity: 0 },
-          { 
-            scale: 1, opacity: 1, duration: 1, ease: 'back.out(1.5)',
-            scrollTrigger: {
-              trigger: '.eco-core',
-              start: 'top 80%'
-            }
-          }
-        );
-
-        // Nodes pop in as they scroll into view
-        ECOSYSTEM_DOMAINS.forEach((_, i) => {
-          gsap.fromTo(`.eco-node-${i}`,
-            { opacity: 0, y: 30, scale: 0.9 },
+        gsap.utils.toArray('.mobile-story-card').forEach((card: any) => {
+          gsap.fromTo(card,
+            { opacity: 0, x: -30, scale: 0.95 },
             { 
-              opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power2.out',
+              opacity: 1, x: 0, scale: 1, duration: 0.6, ease: 'power2.out',
               scrollTrigger: {
-                trigger: `.eco-node-${i}`,
+                trigger: card,
                 start: 'top 85%'
               }
             }
@@ -220,154 +166,108 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
         });
       });
 
-    });
+    }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
   const title = locale === 'ta' ? 'தமிழ் வளர்ச்சி எவ்வாறு இணைகிறது' : 'How Tamil Development Connects';
 
-  // Mathematically perfect radial distribution, constrained to R=38% to prevent overflow
-  const NODE_POSITIONS = ECOSYSTEM_DOMAINS.map((_, i) => {
-    const totalNodes = ECOSYSTEM_DOMAINS.length;
-    // 0 degrees is straight up (top center), angle increases clockwise
-    const angle = (i * 2 * Math.PI) / totalNodes;
-    // Perfect circle radius 38%
-    return {
-      x: parseFloat((38 * Math.sin(angle)).toFixed(2)),
-      y: parseFloat((-38 * Math.cos(angle)).toFixed(2))
-    };
-  });
-
-  // Calculate where the line intersects the boundary of the node box to prevent it from going underneath
-  const getLineEndpoint = (pos: {x: number, y: number}) => {
-    if (pos.x === 0 && pos.y === 0) return pos;
-    const hw = 9.2; // half-width of box in % (approx 128px / 1400px)
-    const hh = 8.4; // half-height of box in % (approx 84px / 1000px)
-    const tX = pos.x !== 0 ? 1 - hw / Math.abs(pos.x) : 0;
-    const tY = pos.y !== 0 ? 1 - hh / Math.abs(pos.y) : 0;
-    const t = Math.max(tX, tY);
-    if (t < 0) return { x: 0, y: 0 };
-    return { x: pos.x * t, y: pos.y * t };
-  };
-
   return (
-    <TamilSection
-      id="ecosystem"
-      chapterNumber="02"
-      category="THE DEPARTMENT"
-      title={title}
-      bgVariant="paper"
-      className="bg-[url('/images/tamil-development/bg.png')] bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:bg-[var(--color-tamil-paper)] before:opacity-70 before:z-0"
-    >
-      <div ref={containerRef} className="relative mt-8 md:mt-16 pb-12 w-full flex justify-center overflow-visible">
-        
-        {/* Desktop Radial Layout */}
-        <div className="hidden md:flex relative w-full justify-center items-center h-[600px] lg:h-[750px] overflow-visible">
-          <div className="relative w-[1400px] h-[1000px] shrink-0 scale-[0.6] lg:scale-[0.75] origin-center">
-            {/* SVG Connection Lines */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
-            {ECOSYSTEM_DOMAINS.map((_, i) => {
-              const pos = NODE_POSITIONS[i]!;
-              const endPos = getLineEndpoint(pos);
-              return (
-                <line 
-                  key={`line-${i}`}
-                  className={`eco-line-${i}`}
-                  x1="50%" y1="50%" x2={`${50 + endPos.x}%`} y2={`${50 + endPos.y}%`}
-                  stroke="var(--color-tamil-red)"
-                  strokeWidth="2"
-                  strokeOpacity="0.5"
-                />
-              );
-            })}
-          </svg>
+    <div ref={containerRef}>
+      <TamilSection
+        id="ecosystem"
+        chapterNumber="02"
+        category="THE DEPARTMENT"
+        title={title}
+        bgVariant="paper"
+        className="bg-[url('/images/tamil-development/bg.png')] bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:bg-[var(--color-tamil-paper)] before:opacity-85 before:z-0 overflow-hidden"
+      >
+        {/* Desktop Horizontal Track */}
+        <div className="hidden md:flex relative h-[700px] items-center mt-12 mb-12">
+          <div ref={trackRef} className="horizontal-track flex flex-row items-center gap-20 px-[10vw] min-w-max w-max">
+            
+            {/* The Connecting Line (Thread) */}
+            <div className="absolute left-[10vw] top-1/2 -translate-y-1/2 h-[3px] bg-[var(--color-tamil-gold)] w-[calc(100%-20vw)] -z-10 opacity-40" />
 
-          {/* Central Core */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 eco-core">
-            <div className="relative flex h-36 w-36 md:h-40 md:w-40 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-tamil-red-deep)] to-[var(--color-tamil-red)] text-white shadow-2xl border-4 border-white">
-              <div className="absolute inset-0 rounded-full border-2 border-[var(--color-tamil-gold)] eco-core-ring" />
-              <div className="text-center flex flex-col items-center">
-                <span className="font-tamil-display text-2xl font-bold tracking-wider leading-tight">
-                  {locale === 'ta' ? 'தமிழ்' : 'TAMIL'}
-                </span>
-                <span className="font-tamil-sans text-xs tracking-widest opacity-80 uppercase mt-1">
-                  {locale === 'ta' ? 'வளர்ச்சி' : 'Development'}
-                </span>
+            {/* Title Card / Core */}
+            <div className="w-96 flex flex-col items-center justify-center story-card shrink-0 z-10 relative">
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[var(--color-tamil-paper)] rounded-full blur-3xl opacity-80 -z-10" />
+              <div className="relative flex h-56 w-56 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-tamil-red-deep)] to-[var(--color-tamil-red)] text-white shadow-2xl border-4 border-[var(--color-tamil-gold)] mb-8">
+                <div className="text-center flex flex-col items-center">
+                  <span className="font-tamil-display text-4xl font-bold tracking-wider leading-tight">
+                    {locale === 'ta' ? 'தமிழ்' : 'TAMIL'}
+                  </span>
+                  <span className="font-tamil-sans text-sm tracking-widest opacity-80 uppercase mt-2">
+                    {locale === 'ta' ? 'வளர்ச்சி' : 'Development'}
+                  </span>
+                </div>
               </div>
+              <p className="text-center text-[var(--color-tamil-ink)] font-tamil-sans max-w-sm text-lg leading-relaxed">
+                A connected ecosystem driving the future of the Tamil language across all domains.
+              </p>
             </div>
-          </div>
 
-          {/* Radial Nodes */}
-          {ECOSYSTEM_DOMAINS.map((domain, i) => {
-            const pos = NODE_POSITIONS[i]!;
-            return (
-              <div 
-                key={domain.id}
-                className={`absolute z-10 w-56 lg:w-64 -translate-x-1/2 -translate-y-1/2 eco-node-${i}`}
-                style={{ left: `${50 + pos.x}%`, top: `${50 + pos.y}%` }}
-              >
-                <div className="bg-white/90 backdrop-blur-md rounded-2xl p-5 shadow-lg border border-[var(--color-tamil-gold)]/20 hover:border-[var(--color-tamil-red)]/40 hover:shadow-xl transition-all group flex flex-col items-center text-center">
-                  <div className={`w-12 h-12 rounded-full bg-[var(--color-tamil-paper)] flex items-center justify-center text-xl mb-3 border border-[var(--color-tamil-gold)]/30 group-hover:bg-[var(--color-tamil-gold)]/10 transition-colors eco-icon-${i}`}>
+            {/* Story Cards */}
+            {ECOSYSTEM_DOMAINS.map((domain, i) => (
+              <div key={domain.id} className="story-card relative flex flex-col w-80 shrink-0 group z-10 mt-12">
+                <div className="absolute top-1/2 left-0 -translate-x-10 -translate-y-1/2 w-4 h-4 rounded-full bg-[var(--color-tamil-gold)] border-4 border-white z-0 shadow-sm" />
+                <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-[var(--color-tamil-gold)]/20 hover:border-[var(--color-tamil-red)] transition-all duration-500 hover:-translate-y-2">
+                  <div className={`w-16 h-16 rounded-2xl bg-[var(--color-tamil-paper)] flex items-center justify-center text-3xl mb-6 border border-[var(--color-tamil-gold)]/30 group-hover:bg-[var(--color-tamil-gold)]/20 transition-colors text-[var(--color-tamil-red)] shadow-sm`}>
                     {domain.icon}
                   </div>
-                  <h4 className="font-tamil-display text-lg font-bold text-[var(--color-tamil-red)] mb-2">
+                  <h4 className="font-tamil-display text-2xl font-bold text-[var(--color-tamil-red)] mb-4">
                     {locale === 'ta' ? domain.taLabel : domain.label}
                   </h4>
-                  <p className="font-tamil-sans text-xs text-[var(--color-tamil-ink)]/70 leading-relaxed">
+                  <p className="font-tamil-sans text-[var(--color-tamil-ink)]/80 leading-relaxed">
                     {domain.desc}
                   </p>
                 </div>
               </div>
-            );
-          })}
+            ))}
+            
+            {/* End padding block to ensure smooth scroll out */}
+            <div className="w-[15vw] shrink-0" />
           </div>
         </div>
 
-        {/* Mobile Vertical Flow Layout */}
-        <div className="md:hidden relative w-full px-4 flex flex-col items-center gap-12 pt-8">
-          {/* Central Core (Top) */}
-          <div className="relative z-20 flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-tamil-red-deep)] to-[var(--color-tamil-red)] text-white shadow-xl eco-core border-4 border-white mb-4">
-            <div className="absolute inset-0 rounded-full border-2 border-[var(--color-tamil-gold)] eco-core-ring" />
+        {/* Mobile Vertical Cascade */}
+        <div className="md:hidden relative w-full px-4 flex flex-col items-start gap-12 pt-12 pb-16">
+          {/* Vertical Thread */}
+          <div className="w-[3px] h-[calc(100%-100px)] absolute left-[2.2rem] top-40 bg-[var(--color-tamil-gold)] opacity-40 z-0" />
+          
+          <div className="relative z-20 flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-tamil-red-deep)] to-[var(--color-tamil-red)] text-white shadow-xl border-4 border-[var(--color-tamil-gold)] mb-4 self-center">
             <div className="text-center flex flex-col items-center">
-              <span className="font-tamil-display text-xl font-bold tracking-wider leading-tight">
+              <span className="font-tamil-display text-2xl font-bold tracking-wider leading-tight">
                 {locale === 'ta' ? 'தமிழ்' : 'TAMIL'}
               </span>
-              <span className="font-tamil-sans text-[10px] tracking-widest opacity-80 uppercase mt-1">
+              <span className="font-tamil-sans text-xs tracking-widest opacity-80 uppercase mt-1">
                 {locale === 'ta' ? 'வளர்ச்சி' : 'Development'}
               </span>
             </div>
           </div>
 
-          {/* SVG Spine for Mobile */}
-          <svg className="absolute left-1/2 top-40 bottom-0 w-[2px] h-[calc(100%-160px)] -translate-x-1/2 pointer-events-none" preserveAspectRatio="none">
-             <line x1="1" y1="0" x2="1" y2="100%" stroke="var(--color-tamil-gold)" strokeWidth="2" strokeOpacity="0.4" strokeDasharray="6,6" />
-          </svg>
-
-          {/* Mobile Nodes */}
           {ECOSYSTEM_DOMAINS.map((domain, i) => (
-            <div key={domain.id} className={`relative z-10 w-full max-w-sm eco-node-${i}`}>
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-[var(--color-tamil-gold)] border-4 border-white z-0" />
-              <div className="bg-white/95 backdrop-blur-md rounded-xl p-5 shadow-sm border border-[var(--color-tamil-gold)]/20 relative z-10">
-                <div className="flex items-start gap-4">
-                  <div className={`w-10 h-10 shrink-0 rounded-full bg-[var(--color-tamil-paper)] flex items-center justify-center text-lg border border-[var(--color-tamil-gold)]/30 eco-icon-${i}`}>
+            <div key={domain.id} className="mobile-story-card relative w-full flex items-center gap-6 pl-2 z-10">
+              <div className="w-5 h-5 shrink-0 rounded-full bg-[var(--color-tamil-gold)] border-[4px] border-[var(--color-tamil-paper)] shadow-md z-10" />
+              <div className="bg-white/95 backdrop-blur-xl rounded-xl p-6 shadow-lg border border-[var(--color-tamil-gold)]/20 w-full hover:border-[var(--color-tamil-red)]/50 transition-colors">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-12 h-12 shrink-0 rounded-xl bg-[var(--color-tamil-paper)] flex items-center justify-center text-xl border border-[var(--color-tamil-gold)]/30 text-[var(--color-tamil-red)]">
                     {domain.icon}
                   </div>
-                  <div>
-                    <h4 className="font-tamil-display text-md font-bold text-[var(--color-tamil-red)] mb-1">
-                      {locale === 'ta' ? domain.taLabel : domain.label}
-                    </h4>
-                    <p className="font-tamil-sans text-xs text-[var(--color-tamil-ink)]/70 leading-relaxed">
-                      {domain.desc}
-                    </p>
-                  </div>
+                  <h4 className="font-tamil-display text-lg font-bold text-[var(--color-tamil-red)]">
+                    {locale === 'ta' ? domain.taLabel : domain.label}
+                  </h4>
                 </div>
+                <p className="font-tamil-sans text-sm text-[var(--color-tamil-ink)]/80 leading-relaxed">
+                  {domain.desc}
+                </p>
               </div>
             </div>
           ))}
         </div>
 
-      </div>
-    </TamilSection>
+      </TamilSection>
+    </div>
   );
 }
