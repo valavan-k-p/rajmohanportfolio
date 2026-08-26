@@ -102,18 +102,14 @@
   }
 
   /* --- Tamil Development Bespoke Typography Override --- */
-  /* Force Cormorant Garamond for all textual elements in this section as per MASTER PROMPT */
+  /* Fetched from School Education section (Instrument Serif / Instrument Sans) */
   .tamil-development-section {
-    --font-sans: var(--font-cormorant), var(--font-noto-serif-tamil), serif;
-    --font-display: var(--font-cormorant), var(--font-noto-serif-tamil), serif;
-    --font-tamil-sans: var(--font-cormorant), var(--font-noto-serif-tamil), serif;
-    --font-tamil-display: var(--font-cormorant), var(--font-noto-serif-tamil), serif;
-    --font-serif-editorial: var(--font-cormorant), var(--font-noto-serif-tamil), serif;
-    font-family: var(--font-cormorant), var(--font-noto-serif-tamil), serif;
-  }
-  
-  .tamil-development-section * {
-    font-family: var(--font-cormorant), var(--font-noto-serif-tamil), serif !important;
+    --font-sans: var(--font-instrument-sans), var(--font-noto-sans-tamil), ui-sans-serif, system-ui, sans-serif;
+    --font-display: var(--font-instrument-serif), var(--font-noto-serif-tamil), Georgia, serif;
+    --font-tamil-sans: var(--font-instrument-sans), var(--font-noto-sans-tamil), ui-sans-serif, system-ui, sans-serif;
+    --font-tamil-display: var(--font-instrument-serif), var(--font-noto-serif-tamil), Georgia, serif;
+    --font-serif-editorial: var(--font-cormorant), var(--font-instrument-serif), Georgia, serif;
+    font-family: var(--font-sans);
   }
   
   body {
