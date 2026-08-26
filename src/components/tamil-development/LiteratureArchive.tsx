@@ -114,14 +114,14 @@ export function LiteratureArchive({ locale }: { locale: Locale }) {
                 'ponniyin selvan.png',
                 'silappathikaram_webpage.png'
               ].map((book, i) => (
-                <div key={i} className="library-book aspect-[2/3] bg-gradient-to-br from-[#e0d6c3] to-[#d1c5ae] shadow-lg border-l-4 border-[var(--color-tamil-red-deep)] flex items-center justify-center relative overflow-hidden">
+                <div key={i} className="library-book group aspect-[2/3] bg-gradient-to-br from-[#e0d6c3] to-[#d1c5ae] shadow-lg border-l-4 border-[var(--color-tamil-red-deep)] flex items-center justify-center relative overflow-hidden cursor-pointer">
                   <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/aged-paper.png')]" />
                   <img 
                     src={`/images/tamil-development/books/${book}`} 
                     alt="Tamil Book Cover" 
-                    className="absolute inset-0 w-full h-full object-cover object-center" 
+                    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105" 
                   />
-                  <div className="w-[1px] h-3/4 bg-black/10 absolute left-2 z-10" />
+                  <div className="w-[1px] h-3/4 bg-black/10 absolute left-2 z-10 pointer-events-none" />
                 </div>
               ))}
             </div>
