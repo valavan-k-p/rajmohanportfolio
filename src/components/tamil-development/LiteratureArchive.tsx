@@ -108,7 +108,7 @@ export function LiteratureArchive({ locale }: { locale: Locale }) {
             <div className="grid grid-cols-3 gap-4 w-full">
               {[
                 'kannan_paattu_webpage.png',
-                'kuyil.png',
+                'kuyil_paattu_webpage.png',
                 'manimegalai_nadagam_webpage.png',
                 'panchali.png',
                 'ponniyin selvan.png',
