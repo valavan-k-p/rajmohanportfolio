@@ -62,7 +62,7 @@ export function HeroSection({ locale }: { locale: Locale }) {
         className="absolute inset-0 w-full h-full"
       >
         <Image
-          src="/images/tamil-development/header one.html"
+          src="/images/tamil-cultural-banner-1600x725.webp"
           alt="Tamil Cultural Heritage — Tamil Development"
           fill
           priority
