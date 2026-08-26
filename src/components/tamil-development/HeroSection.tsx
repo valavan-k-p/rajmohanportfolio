@@ -111,15 +111,14 @@ export function HeroSection({ locale }: { locale: Locale }) {
           </div>
 
           {/* Center: Primary Section Navigation Links (Desktop) */}
-          <div className="hidden lg:flex items-center gap-4.5 xl:gap-6">
+          <div className="hidden lg:flex items-stretch justify-center gap-2 xl:gap-3 flex-1 mx-4">
             {navLinks.map((link) => (
               <a
                 key={link.id}
                 href={`#${link.id}`}
-                className="relative py-1 text-xs xl:text-[13.5px] font-display font-medium tracking-wide text-[var(--color-tamil-paper)]/90 hover:text-[var(--color-tamil-gold)] transition-colors duration-200 group drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]"
+                className="relative px-3 py-2 text-[13px] xl:text-[15px] font-display font-medium tracking-wide text-[var(--color-tamil-paper)] hover:text-white transition-all duration-300 group border border-[var(--color-tamil-gold)]/40 rounded bg-black/40 hover:bg-[var(--color-tamil-gold)]/20 hover:border-[var(--color-tamil-gold)]/80 text-center flex-1 flex justify-center items-center backdrop-blur-sm shadow-md"
               >
                 <span>{link.label}</span>
-                <span className="absolute bottom-0 inset-x-0 h-[1.5px] bg-[var(--color-tamil-gold)] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-250 ease-out" />
               </a>
             ))}
           </div>
