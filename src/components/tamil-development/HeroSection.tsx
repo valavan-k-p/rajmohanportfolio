@@ -54,7 +54,7 @@ export function HeroSection({ locale }: { locale: Locale }) {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full aspect-[1600/725] min-h-[45vh] md:min-h-[65vh] lg:min-h-[85vh] xl:min-h-[92vh] flex items-center justify-center bg-[var(--color-tamil-ink)] overflow-hidden"
+      className="relative w-full aspect-[1600/725] min-h-[45vh] md:min-h-[65vh] lg:min-h-screen xl:min-h-screen flex items-center justify-center bg-[var(--color-tamil-ink)] overflow-hidden"
     >
       {/* 1. HERO BANNER IMAGE (Unmodified, Full Quality, Preserved Aspect) */}
       <div 
