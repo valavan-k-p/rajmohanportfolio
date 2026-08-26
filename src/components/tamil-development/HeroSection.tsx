@@ -21,8 +21,8 @@ export function HeroSection({ locale }: { locale: Locale }) {
       if (imageRef.current) {
         gsap.fromTo(
           imageRef.current,
-          { opacity: 0, scale: 1.02 },
-          { opacity: 1, scale: 1, duration: 0.9, ease: 'power2.out' }
+          { opacity: 0, scale: 1.1 },
+          { opacity: 1, scale: 1, duration: 1.2, ease: 'power2.out' }
         );
       }
     }, containerRef);
@@ -62,7 +62,7 @@ export function HeroSection({ locale }: { locale: Locale }) {
         className="absolute inset-0 w-full h-full"
       >
         <Image
-          src="/images/tamil-cultural-banner-1600x725.webp"
+          src="/images/tamil-development/header one.html"
           alt="Tamil Cultural Heritage — Tamil Development"
           fill
           priority
