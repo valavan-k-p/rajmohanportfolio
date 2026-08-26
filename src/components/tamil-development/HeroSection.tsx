@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -11,7 +11,6 @@ import { locales, type Locale } from '@/lib/i18n/routing';
 export function HeroSection({ locale }: { locale: Locale }) {
   const containerRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -29,15 +28,6 @@ export function HeroSection({ locale }: { locale: Locale }) {
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const pathFor = (target: Locale) => {
@@ -81,16 +71,12 @@ export function HeroSection({ locale }: { locale: Locale }) {
         />
       </div>
 
-      {/* 2. HERO-INTEGRATED INSTITUTIONAL NAVIGATION BAR */}
+      {/* 2. HERO-INTEGRATED INSTITUTIONAL NAVIGATION BAR (Absolute to Hero, Scrolls naturally with Hero) */}
       <nav
         aria-label="Tamil Development Portal Navigation"
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ease-out ${
-          isScrolled
-            ? 'bg-[#1c1a17]/92 backdrop-blur-md py-3 sm:py-3.5 border-b border-[#cfa830]/25 shadow-[0_4px_24px_rgba(0,0,0,0.4)]'
-            : 'bg-gradient-to-b from-black/80 via-black/40 to-transparent pt-4 sm:pt-5 pb-8 sm:pb-10 border-b border-transparent'
-        }`}
+        className="absolute top-0 inset-x-0 z-20 pt-4 sm:pt-5 lg:pt-6 px-4 sm:px-6 lg:px-8"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           {/* Left: Portal Identity & Back to Home Link */}
           <div className="flex items-center gap-3">
             <Link
@@ -99,12 +85,12 @@ export function HeroSection({ locale }: { locale: Locale }) {
               aria-label={isTa ? 'முகப்புக்குத் திரும்பு' : 'Back to Home'}
             >
               <span 
-                className="inline-block font-bold text-[var(--color-tamil-gold)] transition-transform duration-200 group-hover:-translate-x-1 drop-shadow-sm text-sm sm:text-base"
+                className="inline-block font-bold text-[var(--color-tamil-gold)] transition-transform duration-200 group-hover:-translate-x-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] text-sm sm:text-base"
                 aria-hidden="true"
               >
                 ←
               </span>
-              <span className="font-serif tracking-wider text-xs sm:text-sm hidden xs:inline drop-shadow-sm">
+              <span className="font-serif tracking-wider text-xs sm:text-sm hidden xs:inline drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
                 {isTa ? 'முகப்பு' : 'Home'}
               </span>
             </Link>
