@@ -56,12 +56,8 @@ const AUDIT_ITEMS: AuditItem[] = [
 ];
 
 export function CampusReadinessDashboard({ locale }: { locale: Locale }) {
-  const [selectedAudit, setSelectedAudit] = useState<AuditItem>(AUDIT_ITEMS[0] ?? {
-    id: 'structural',
-    title: { en: 'Structural Stability', ta: 'கட்டட உறுதித்தன்மை' },
-    standard: { en: 'Collectorate Clearance', ta: 'ஆட்சியர் உத்தரவு' },
-    desc: { en: '', ta: '' },
-  });
+  const [selectedAuditId, setSelectedAuditId] = useState<string>('structural');
+  const selectedAudit = AUDIT_ITEMS.find((a) => a.id === selectedAuditId) ?? AUDIT_ITEMS[0]!;
 
   const content = {
     en: {
@@ -128,11 +124,11 @@ export function CampusReadinessDashboard({ locale }: { locale: Locale }) {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               {AUDIT_ITEMS.map((item) => {
-                const isSelected = selectedAudit.id === item.id;
+                const isSelected = selectedAuditId === item.id;
                 return (
                   <button
                     key={item.id}
-                    onClick={() => setSelectedAudit(item)}
+                    onClick={() => setSelectedAuditId(item.id)}
                     className={`p-4 text-left border-b transition-all ${
                       isSelected
                         ? 'border-maroon-700 bg-sand-100/70 text-charcoal-900 shadow-xs'

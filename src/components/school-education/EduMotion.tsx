@@ -15,9 +15,9 @@ export const CINEMATIC_EASE = [0.16, 1, 0.3, 1] as const;
 export const MOTION_EASE = CINEMATIC_EASE;
 export const SMOOTH_EASE = [0.25, 0.1, 0.25, 1] as const;
 
-// Viewport settings for replaying animations on every scroll pass
-export const VIEWPORT_CONFIG = { once: false, amount: 0.12 } as const;
-export const VIEWPORT_STRICT = { once: false, amount: 0.25 } as const;
+// Viewport settings for smooth entrances that stay visible once revealed
+export const VIEWPORT_CONFIG = { once: true, amount: 0.05 } as const;
+export const VIEWPORT_STRICT = { once: true, amount: 0.12 } as const;
 
 /**
  * 1. EduScrollProgressBar: Global Luxury Scroll Progress Indicator
@@ -59,17 +59,14 @@ export function EduHeadingMask({
 }) {
   const prefersReducedMotion = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: false, amount: 0.15 });
+  const isInView = useInView(ref, { once: true, amount: 0.05 });
 
   return (
     <div ref={ref} className="overflow-hidden py-4 -my-4">
       <motion.div
         id={id}
-        initial={false}
-        animate={{
-          y: isInView ? '0%' : (prefersReducedMotion ? '0%' : '110%'),
-          opacity: isInView ? 1 : (prefersReducedMotion ? 1 : 0),
-        }}
+        initial={prefersReducedMotion ? false : { y: '105%', opacity: 0 }}
+        animate={isInView ? { y: '0%', opacity: 1 } : (prefersReducedMotion ? { y: '0%', opacity: 1 } : { y: '105%', opacity: 0 })}
         transition={{ duration: 0.75, delay, ease: CINEMATIC_EASE }}
         className={className}
       >
@@ -167,16 +164,16 @@ export function EduReveal({
     if (prefersReducedMotion) return { opacity: 1, x: 0, y: 0, scale: 1, filter: 'none' };
     switch (direction) {
       case 'left':
-        return { opacity: 0, x: -28, y: 0, scale: 1, filter: 'blur(4px)' };
+        return { opacity: 0, x: -20, y: 0, scale: 1, filter: 'blur(3px)' };
       case 'right':
-        return { opacity: 0, x: 28, y: 0, scale: 1, filter: 'blur(4px)' };
+        return { opacity: 0, x: 20, y: 0, scale: 1, filter: 'blur(3px)' };
       case 'scale':
-        return { opacity: 0, x: 0, y: 16, scale: 0.94, filter: 'blur(6px)' };
+        return { opacity: 0, x: 0, y: 12, scale: 0.96, filter: 'blur(4px)' };
       case 'fade':
         return { opacity: 0, x: 0, y: 0, scale: 1, filter: 'none' };
       case 'up':
       default:
-        return { opacity: 0, x: 0, y: 24, scale: 0.97, filter: 'blur(6px)' };
+        return { opacity: 0, x: 0, y: 16, scale: 0.98, filter: 'blur(4px)' };
     }
   };
 
@@ -190,8 +187,8 @@ export function EduReveal({
         scale: 1,
         filter: 'blur(0px)',
       }}
-      viewport={VIEWPORT_CONFIG}
-      transition={{ duration: 0.65, delay, ease: CINEMATIC_EASE }}
+      viewport={{ once: true, amount: 0.05 }}
+      transition={{ duration: 0.6, delay, ease: CINEMATIC_EASE }}
       className={`relative ${className}`}
     >
       {showTopLine && (
@@ -199,8 +196,8 @@ export function EduReveal({
           aria-hidden="true"
           initial={{ scaleX: prefersReducedMotion ? 1 : 0 }}
           whileInView={{ scaleX: 1 }}
-          viewport={VIEWPORT_CONFIG}
-          transition={{ duration: 0.75, delay: delay + 0.08, ease: CINEMATIC_EASE }}
+          viewport={{ once: true, amount: 0.05 }}
+          transition={{ duration: 0.7, delay: delay + 0.08, ease: CINEMATIC_EASE }}
           style={{ transformOrigin: 'left' }}
           className={`absolute top-0 inset-x-0 h-[1.5px] ${topLineColor} pointer-events-none z-10`}
         />
@@ -234,14 +231,14 @@ export function EduTopLineBox({
     if (prefersReducedMotion) return { opacity: 1, x: 0, y: 0, scale: 1, filter: 'none' };
     switch (direction) {
       case 'left':
-        return { opacity: 0, x: -24, y: 0, scale: 0.97, filter: 'blur(6px)' };
+        return { opacity: 0, x: -18, y: 0, scale: 0.98, filter: 'blur(3px)' };
       case 'right':
-        return { opacity: 0, x: 24, y: 0, scale: 0.97, filter: 'blur(6px)' };
+        return { opacity: 0, x: 18, y: 0, scale: 0.98, filter: 'blur(3px)' };
       case 'scale':
-        return { opacity: 0, x: 0, y: 16, scale: 0.93, filter: 'blur(8px)' };
+        return { opacity: 0, x: 0, y: 12, scale: 0.96, filter: 'blur(4px)' };
       case 'up':
       default:
-        return { opacity: 0, x: 0, y: 24, scale: 0.96, filter: 'blur(6px)' };
+        return { opacity: 0, x: 0, y: 16, scale: 0.98, filter: 'blur(3px)' };
     }
   };
 
@@ -255,8 +252,8 @@ export function EduTopLineBox({
         scale: 1,
         filter: 'blur(0px)',
       }}
-      viewport={VIEWPORT_CONFIG}
-      transition={{ duration: 0.65, delay, ease: CINEMATIC_EASE }}
+      viewport={{ once: true, amount: 0.05 }}
+      transition={{ duration: 0.6, delay, ease: CINEMATIC_EASE }}
       whileHover={
         hoverEffect && !prefersReducedMotion
           ? {
@@ -273,8 +270,8 @@ export function EduTopLineBox({
         aria-hidden="true"
         initial={{ scaleX: prefersReducedMotion ? 1 : 0 }}
         whileInView={{ scaleX: 1 }}
-        viewport={VIEWPORT_CONFIG}
-        transition={{ duration: 0.75, delay: delay + 0.08, ease: CINEMATIC_EASE }}
+        viewport={{ once: true, amount: 0.05 }}
+        transition={{ duration: 0.7, delay: delay + 0.08, ease: CINEMATIC_EASE }}
         style={{ transformOrigin: 'left' }}
         className={`absolute top-0 inset-x-0 h-[2px] ${topLineColor} pointer-events-none z-20`}
       />
@@ -311,7 +308,7 @@ export function EduStaggerContainer({
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={VIEWPORT_CONFIG}
+      viewport={{ once: true, amount: 0.05 }}
       variants={containerVariants}
       className={className}
     >
@@ -336,17 +333,17 @@ export function EduStaggerItem({
   const prefersReducedMotion = useReducedMotion();
 
   const getHiddenTransform = () => {
-    if (prefersReducedMotion) return { opacity: 0 };
+    if (prefersReducedMotion) return { opacity: 1 };
     switch (direction) {
       case 'left':
-        return { opacity: 0, x: -20, y: 0, scale: 0.98, filter: 'blur(4px)' };
+        return { opacity: 0, x: -16, y: 0, scale: 0.99, filter: 'blur(3px)' };
       case 'right':
-        return { opacity: 0, x: 20, y: 0, scale: 0.98, filter: 'blur(4px)' };
+        return { opacity: 0, x: 16, y: 0, scale: 0.99, filter: 'blur(3px)' };
       case 'scale':
-        return { opacity: 0, x: 0, y: 12, scale: 0.94, filter: 'blur(4px)' };
+        return { opacity: 0, x: 0, y: 10, scale: 0.96, filter: 'blur(3px)' };
       case 'up':
       default:
-        return { opacity: 0, x: 0, y: 18, scale: 0.97, filter: 'blur(4px)' };
+        return { opacity: 0, x: 0, y: 14, scale: 0.98, filter: 'blur(3px)' };
     }
   };
 
@@ -404,7 +401,7 @@ export function EduQuoteBlock({
         aria-hidden="true"
         initial={{ scaleY: prefersReducedMotion ? 1 : 0 }}
         whileInView={{ scaleY: 1 }}
-        viewport={VIEWPORT_CONFIG}
+        viewport={{ once: true, amount: 0.05 }}
         transition={{ duration: 0.8, ease: CINEMATIC_EASE }}
         style={{ transformOrigin: 'top' }}
         className="absolute left-0 inset-y-0 w-[2.5px] bg-maroon-700 pointer-events-none"
@@ -412,10 +409,10 @@ export function EduQuoteBlock({
 
       {/* Quote Text */}
       <motion.p
-        initial={{ opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 14 }}
+        initial={{ opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 12 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={VIEWPORT_CONFIG}
-        transition={{ duration: 0.6, delay: 0.15, ease: CINEMATIC_EASE }}
+        viewport={{ once: true, amount: 0.05 }}
+        transition={{ duration: 0.6, delay: 0.1, ease: CINEMATIC_EASE }}
         className="font-serif italic text-xl sm:text-2xl text-charcoal-800 leading-relaxed"
       >
         {quote}
@@ -424,10 +421,10 @@ export function EduQuoteBlock({
       {/* Attribution */}
       {attribution && (
         <motion.p
-          initial={{ opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 10 }}
+          initial={{ opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 8 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={VIEWPORT_CONFIG}
-          transition={{ duration: 0.5, delay: 0.28, ease: CINEMATIC_EASE }}
+          viewport={{ once: true, amount: 0.05 }}
+          transition={{ duration: 0.5, delay: 0.2, ease: CINEMATIC_EASE }}
           className="text-sm font-mono text-charcoal-500 uppercase tracking-wider mt-2.5"
         >
           — {attribution}
@@ -457,8 +454,9 @@ export function EduCounter({
 }: EduCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const prefersReducedMotion = useReducedMotion();
-  const isInView = useInView(ref, { once: false, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.05 });
   const [displayValue, setDisplayValue] = useState(prefersReducedMotion ? value : 0);
+  const hasAnimatedRef = useRef(false);
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -467,9 +465,13 @@ export function EduCounter({
     }
 
     if (!isInView) {
-      setDisplayValue(0);
+      if (!hasAnimatedRef.current) {
+        setDisplayValue(0);
+      }
       return;
     }
+
+    hasAnimatedRef.current = true;
 
     let startTime: number | null = null;
     let animationFrameId: number;

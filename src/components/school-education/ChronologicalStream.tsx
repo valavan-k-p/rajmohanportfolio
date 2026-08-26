@@ -230,15 +230,16 @@ export function ChronologicalStream({ locale }: { locale: Locale }) {
       </div>
 
       {/* Archival Timeline Stream with Progressive Left-to-Right Drawing Lines */}
-      <EduStaggerContainer className="space-y-2" stagger={0.08}>
+      <div className="space-y-2">
         <AnimatePresence mode="popLayout">
           {filteredNodes.map((node, idx) => (
-            <EduStaggerItem
+            <motion.div
               key={node.id}
-              direction={idx % 2 === 0 ? 'left' : 'right'}
-              showTopLine={true}
-              topLineColor="bg-sand-300"
-              className="pt-6 pb-2 grid grid-cols-1 md:grid-cols-[8.5rem_1fr] lg:grid-cols-[11rem_1fr_13rem] gap-4 lg:gap-8 items-baseline"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -14 }}
+              transition={{ duration: 0.4, delay: idx * 0.04, ease: CINEMATIC_EASE }}
+              className="relative pt-6 pb-2 grid grid-cols-1 md:grid-cols-[8.5rem_1fr] lg:grid-cols-[11rem_1fr_13rem] gap-4 lg:gap-8 items-baseline border-t border-sand-300"
             >
               {/* Date */}
               <div className="font-mono text-base text-maroon-700 font-bold">
@@ -264,10 +265,10 @@ export function ChronologicalStream({ locale }: { locale: Locale }) {
                   ● {node.status[locale]}
                 </span>
               </div>
-            </EduStaggerItem>
+            </motion.div>
           ))}
         </AnimatePresence>
-      </EduStaggerContainer>
+      </div>
 
       <div className="text-sm text-charcoal-500 font-mono pt-4 border-t border-sand-200">
         {content.sourceSummary}
