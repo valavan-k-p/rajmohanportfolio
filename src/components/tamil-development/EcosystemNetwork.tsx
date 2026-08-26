@@ -184,7 +184,7 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
         className="bg-[url('/images/tamil-development/bg.png')] bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:bg-[var(--color-tamil-paper)] before:opacity-85 before:z-0 overflow-hidden"
       >
         {/* Desktop Horizontal Track */}
-        <div className="hidden md:flex relative h-[700px] items-center mt-12 mb-12">
+        <div className="hidden md:flex relative h-[500px] lg:h-[600px] items-center mt-4 mb-8">
           <div ref={trackRef} className="horizontal-track flex flex-row items-center gap-20 px-[10vw] min-w-max w-max">
             
             {/* The Connecting Line (Thread) */}
