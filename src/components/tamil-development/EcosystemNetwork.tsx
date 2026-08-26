@@ -132,48 +132,95 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
 
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 60%',
-        }
+      
+      const mm = gsap.matchMedia();
+
+      // Desktop: Pin and Storytelling Scrub
+      mm.add("(min-width: 768px)", () => {
+        // Continuous time-based pulse
+        gsap.to('.eco-core-ring', {
+          scale: 1.3,
+          opacity: 0,
+          duration: 2,
+          repeat: -1,
+          ease: 'power2.out'
+        });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '#ecosystem',
+            start: 'top top',
+            end: '+=150%',
+            scrub: 1,
+            pin: true,
+          }
+        });
+
+        // 1. Central Core drops in
+        tl.fromTo('.eco-core',
+          { scale: 0.5, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 1, ease: 'power2.out' }
+        );
+
+        // 2. Draw all lines out at the same time (The Roots)
+        tl.fromTo('[class^="eco-line-"]',
+          { strokeDasharray: 400, strokeDashoffset: 400 },
+          { strokeDashoffset: 0, duration: 2, ease: 'power1.inOut' },
+          "+=0.2" 
+        );
+
+        // 3. Reveal nodes sequentially (The Branches)
+        ECOSYSTEM_DOMAINS.forEach((_, i) => {
+          tl.fromTo(`.eco-node-${i}`,
+            { opacity: 0, scale: 0.8, y: 15 },
+            { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'back.out(1.2)' },
+            i === 0 ? "-=1.0" : "-=0.6" 
+          );
+        });
+
+        // 4. Subtle ending pause to let user digest before unpinning
+        tl.to({}, { duration: 1 });
       });
 
-      // 1. Heading is handled by TamilSection normally, we animate the core
-      tl.fromTo('.eco-core',
-        { scale: 0, opacity: 0, rotate: -45 },
-        { scale: 1, opacity: 1, rotate: 0, duration: 1, ease: 'back.out(1.5)' }
-      );
+      // Mobile: Standard Scroll Reveal (because it's too tall to pin)
+      mm.add("(max-width: 767px)", () => {
+        // Continuous pulse
+        gsap.to('.eco-core-ring', {
+          scale: 1.3,
+          opacity: 0,
+          duration: 2,
+          repeat: -1,
+          ease: 'power2.out'
+        });
 
-      // 2. Animate nodes sequentially
-      ECOSYSTEM_DOMAINS.forEach((_, i) => {
-        // Line draws out
-        tl.fromTo(`.eco-line-${i}`,
-          { strokeDasharray: 300, strokeDashoffset: 300 },
-          { strokeDashoffset: 0, duration: 0.4, ease: 'power2.out' },
-          "-=0.1"
+        // The core pulses in on enter
+        gsap.fromTo('.eco-core',
+          { scale: 0.5, opacity: 0 },
+          { 
+            scale: 1, opacity: 1, duration: 1, ease: 'back.out(1.5)',
+            scrollTrigger: {
+              trigger: '.eco-core',
+              start: 'top 80%'
+            }
+          }
         );
-        // Node pops in
-        tl.fromTo(`.eco-node-${i}`,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
-          "-=0.2"
-        );
-        // Icon subtle scale/fade
-        tl.fromTo(`.eco-icon-${i}`,
-          { scale: 0.8, opacity: 0 },
-          { scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' },
-          "-=0.4"
-        );
+
+        // Nodes pop in as they scroll into view
+        ECOSYSTEM_DOMAINS.forEach((_, i) => {
+          gsap.fromTo(`.eco-node-${i}`,
+            { opacity: 0, y: 30, scale: 0.9 },
+            { 
+              opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power2.out',
+              scrollTrigger: {
+                trigger: `.eco-node-${i}`,
+                start: 'top 85%'
+              }
+            }
+          );
+        });
       });
 
-      // 3. Final connection pulse
-      tl.to('.eco-core-ring',
-        { scale: 1.2, opacity: 0, duration: 2, repeat: -1, ease: 'power2.out' },
-        "-=0.5"
-      );
-
-    }, containerRef);
+    });
 
     return () => ctx.revert();
   }, []);
