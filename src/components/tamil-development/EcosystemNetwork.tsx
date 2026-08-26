@@ -222,7 +222,7 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
             <div className="relative flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-tamil-red-deep)] to-[var(--color-tamil-red)] text-white shadow-2xl border-4 border-white">
               <div className="absolute inset-0 rounded-full border-2 border-[var(--color-tamil-gold)] eco-core-ring" />
               <div className="text-center flex flex-col items-center">
-                <span className="font-tamil-display text-2xl font-bold tracking-wider leading-tight">
+                <span className="font-display text-2xl font-bold tracking-wider leading-tight">
                   {locale === 'ta' ? 'தமிழ்' : 'TAMIL'}
                 </span>
                 <span className="text-xs tracking-widest opacity-80 uppercase mt-1">
@@ -247,7 +247,7 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
                   <div className={`w-12 h-12 rounded-full bg-[var(--color-tamil-paper)] flex items-center justify-center text-xl mb-3 border border-[var(--color-tamil-gold)]/30 group-hover:bg-[var(--color-tamil-gold)]/10 transition-colors eco-icon-${i}`}>
                     {domain.icon}
                   </div>
-                  <h4 className="font-tamil-display text-lg font-bold text-[var(--color-tamil-red)] mb-2">
+                  <h4 className="font-display text-lg font-bold text-[var(--color-tamil-red)] mb-2">
                     {locale === 'ta' ? domain.taLabel : domain.label}
                   </h4>
                   <p className="text-xs text-[var(--color-tamil-ink)]/70 leading-relaxed">
@@ -265,7 +265,7 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
           <div className="relative z-20 flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-tamil-red-deep)] to-[var(--color-tamil-red)] text-white shadow-xl eco-core border-4 border-white mb-4">
             <div className="absolute inset-0 rounded-full border-2 border-[var(--color-tamil-gold)] eco-core-ring" />
             <div className="text-center flex flex-col items-center">
-              <span className="font-tamil-display text-xl font-bold tracking-wider leading-tight">
+              <span className="font-display text-xl font-bold tracking-wider leading-tight">
                 {locale === 'ta' ? 'தமிழ்' : 'TAMIL'}
               </span>
               <span className="text-[10px] tracking-widest opacity-80 uppercase mt-1">
@@ -289,7 +289,7 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
                     {domain.icon}
                   </div>
                   <div>
-                    <h4 className="font-tamil-display text-md font-bold text-[var(--color-tamil-red)] mb-1">
+                    <h4 className="font-display text-md font-bold text-[var(--color-tamil-red)] mb-1">
                       {locale === 'ta' ? domain.taLabel : domain.label}
                     </h4>
                     <p className="text-xs text-[var(--color-tamil-ink)]/70 leading-relaxed">

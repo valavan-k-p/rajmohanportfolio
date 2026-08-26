@@ -135,7 +135,7 @@ function TimelineEntry({
             )}
           </div>
           
-          <h4 className="font-tamil-display text-2xl md:text-3xl font-bold text-[var(--color-tamil-ink)] leading-tight mb-2 text-balance">
+          <h4 className="font-display text-2xl md:text-3xl font-bold text-[var(--color-tamil-ink)] leading-tight mb-2 text-balance">
             {item.title[locale]}
           </h4>
           

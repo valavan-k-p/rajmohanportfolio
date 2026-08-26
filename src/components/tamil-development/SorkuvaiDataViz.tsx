@@ -243,7 +243,7 @@ function FloatingWord({ word, onComplete }: { word: ActiveWord, onComplete: () =
       className="absolute px-4 py-2 rounded-full border border-[var(--color-tamil-gold)]/30 bg-[var(--color-tamil-ink)]/70 backdrop-blur-md shadow-[0_0_20px_rgba(207,168,48,0.1)] flex flex-col items-center justify-center min-w-[max-content]"
       style={{ left: `${word.x}%`, top: `${word.y}%`, transform: 'translate(-50%, -50%)' }}
     >
-      <div className="font-tamil-display text-[#fcd567] drop-shadow-[0_0_8px_rgba(252,213,103,0.4)] text-sm md:text-lg whitespace-nowrap">
+      <div className="font-display text-[#fcd567] drop-shadow-[0_0_8px_rgba(252,213,103,0.4)] text-sm md:text-lg whitespace-nowrap">
         {word.ta}
       </div>
       {word.en && (
@@ -469,8 +469,8 @@ function Milestone({ value, title, subtitle, context }: { value: string, title: 
   return (
     <div className="milestone flex flex-col items-center text-center p-8 border-t border-[var(--color-tamil-gold)]/20 bg-[var(--color-tamil-ink)]/50 backdrop-blur-md rounded-b-2xl relative group shadow-xl">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#fcd567] group-hover:scale-150 transition-transform shadow-[0_0_10px_rgba(252,213,103,0.5)]" />
-      <div className="font-tamil-display text-4xl md:text-5xl font-bold text-white mb-2">{value}</div>
-      <div className="font-tamil-display text-lg text-[#fcd567] font-medium mb-4">{title}</div>
+      <div className="font-display text-4xl md:text-5xl font-bold text-white mb-2">{value}</div>
+      <div className="font-display text-lg text-[#fcd567] font-medium mb-4">{title}</div>
       <div className="text-[0.65rem] font-bold tracking-widest uppercase text-white/50 mb-2">{subtitle}</div>
       <div className="text-[0.65rem] uppercase tracking-wider text-[var(--color-tamil-red)]">{context}</div>
     </div>

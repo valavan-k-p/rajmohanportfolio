@@ -80,7 +80,7 @@ export function FutureVisionSection({ locale }: { locale: Locale }) {
           <div className="now-column flex-1 bg-white/40 p-8 md:p-12 rounded-[2rem] border border-[var(--color-tamil-gold)]/30 shadow-sm relative overflow-hidden backdrop-blur-md">
              {/* Decorative element */}
              <div className="absolute -right-16 -top-16 w-64 h-64 bg-[var(--color-tamil-gold)]/10 rounded-full blur-3xl pointer-events-none" />
-             <h3 className="font-tamil-display text-3xl mb-8 flex items-center gap-4 text-[var(--color-tamil-ink)]/70">
+             <h3 className="font-display text-3xl mb-8 flex items-center gap-4 text-[var(--color-tamil-ink)]/70">
                <span className="w-8 h-[2px] bg-[var(--color-tamil-ink)]/30"></span>
                {locale === 'ta' ? 'தற்போது' : 'NOW'}
              </h3>
@@ -104,7 +104,7 @@ export function FutureVisionSection({ locale }: { locale: Locale }) {
             {/* Animated glow */}
             <div className="absolute -left-32 -bottom-32 w-96 h-96 bg-[var(--color-tamil-red)]/40 rounded-full blur-3xl transition-transform duration-1000 group-hover:scale-150 pointer-events-none" />
             
-            <h3 className="font-tamil-display text-4xl mb-10 flex items-center gap-4 text-white">
+            <h3 className="font-display text-4xl mb-10 flex items-center gap-4 text-white">
               <span className="w-12 h-[2px] bg-[var(--color-tamil-gold)]"></span>
               {locale === 'ta' ? 'அடுத்து' : 'NEXT'}
             </h3>

@@ -97,7 +97,7 @@ function TimelineItem({
       {/* Node */}
       <div className="absolute -left-[37px] top-1 h-3 w-3 rounded-full bg-[var(--color-tamil-gold)] md:static md:mx-auto md:mb-4 md:-mt-[38px] md:h-4 md:w-4" />
       
-      <div className="font-tamil-display text-2xl md:text-3xl font-bold mb-2">
+      <div className="font-display text-2xl md:text-3xl font-bold mb-2">
         {year}
       </div>
       <div className="text-sm md:text-base opacity-90 max-w-[200px] md:mx-auto">

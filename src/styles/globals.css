@@ -111,7 +111,8 @@
   h4,
   h5,
   h6,
-  .font-display {
+  .font-display,
+  .font-tamil-display {
     font-family: var(--font-display), var(--font-noto-serif-tamil), var(--font-serif-editorial), Georgia, 'Times New Roman', serif;
     letter-spacing: -0.02em;
     line-height: 1.02;
@@ -119,12 +120,12 @@
   }
 
   .font-tamil-display {
-    font-family: var(--font-noto-serif-tamil), serif !important;
+    font-family: var(--font-display), var(--font-noto-serif-tamil), var(--font-serif-editorial), Georgia, 'Times New Roman', serif;
   }
 
   /* All Body, Descriptions, Supporting text, Metadata, Labels, Cards across all 4 Portals */
   p,
-  span:not(.font-mono),
+  span:not(.font-mono):not(.font-display):not(.font-tamil-display),
   a,
   button,
   input,
@@ -134,7 +135,6 @@
   li,
   td,
   th,
-  div,
   blockquote,
   cite,
   small,
@@ -146,31 +146,26 @@
 
   /* ==========================================================================
      TAMIL TYPOGRAPHY SYSTEM ACROSS ALL FOUR PORTALS
-     Headings, Body Text, Supporting Text, Cards & Metadata: STRICTLY Noto Serif Tamil
-     (Zero Noto Sans Tamil mixing)
+     Headings: STRICTLY Noto Serif Tamil
+     Body Text: STRICTLY Noto Sans Tamil
      ========================================================================== */
 
   :lang(ta),
   [lang="ta"],
-  .locale-ta,
-  [lang="ta"] *,
-  .locale-ta *,
-  :lang(ta) * {
+  .locale-ta {
     --font-display: var(--font-noto-serif-tamil), serif !important;
-    --font-serif-editorial: var(--font-noto-serif-tamil), serif !important;
-    --font-sans: var(--font-noto-serif-tamil), serif !important;
+    --font-serif-editorial: var(--font-noto-sans-tamil), sans-serif !important;
+    --font-sans: var(--font-noto-sans-tamil), sans-serif !important;
     --font-tamil-display: var(--font-noto-serif-tamil), serif !important;
-    --font-tamil-sans: var(--font-noto-serif-tamil), serif !important;
-
-    font-family: var(--font-noto-serif-tamil), serif;
+    --font-tamil-sans: var(--font-noto-sans-tamil), sans-serif !important;
   }
 
   :lang(ta) body,
   [lang="ta"] body,
   .locale-ta body {
-    font-family: var(--font-noto-serif-tamil), serif !important;
+    font-family: var(--font-noto-sans-tamil), sans-serif !important;
     font-size: calc(var(--text-body) * 1.06);
-    line-height: 1.77;
+    line-height: 1.75;
   }
 
   /* Headings in Tamil Mode: STRICTLY Noto Serif Tamil */
@@ -198,9 +193,6 @@
   :lang(ta) .font-serif,
   [lang="ta"] .font-serif,
   .locale-ta .font-serif,
-  :lang(ta) .font-serif-editorial,
-  [lang="ta"] .font-serif-editorial,
-  .locale-ta .font-serif-editorial,
   :lang(ta) .font-tamil-display,
   [lang="ta"] .font-tamil-display,
   .locale-ta .font-tamil-display,
@@ -210,53 +202,50 @@
     line-height: 1.28;
   }
 
-  /* Body, Content, Cards, Lists, Labels, SVGs & Animation Layers in Tamil Mode: STRICTLY Noto Serif Tamil */
-  :lang(ta) *:not(.font-mono),
-  [lang="ta"] *:not(.font-mono),
-  .locale-ta *:not(.font-mono),
-  :lang(ta) svg text,
-  [lang="ta"] svg text,
-  .locale-ta svg text,
-  :lang(ta) svg tspan,
-  [lang="ta"] svg tspan,
-  .locale-ta svg tspan,
+  /* Body, Content, Cards, Lists, Labels, SVGs & Animation Layers in Tamil Mode: STRICTLY Noto Sans Tamil */
   :lang(ta) p,
-  :lang(ta) a,
-  :lang(ta) button,
-  :lang(ta) input,
-  :lang(ta) textarea,
-  :lang(ta) select,
-  :lang(ta) label,
-  :lang(ta) li,
-  :lang(ta) td,
-  :lang(ta) th,
   [lang="ta"] p,
-  [lang="ta"] a,
-  [lang="ta"] button,
-  [lang="ta"] input,
-  [lang="ta"] textarea,
-  [lang="ta"] select,
-  [lang="ta"] label,
-  [lang="ta"] li,
-  [lang="ta"] td,
-  [lang="ta"] th,
   .locale-ta p,
+  :lang(ta) a,
+  [lang="ta"] a,
   .locale-ta a,
+  :lang(ta) span:not(.font-mono):not(.font-display):not(.font-tamil-display),
+  [lang="ta"] span:not(.font-mono):not(.font-display):not(.font-tamil-display),
+  .locale-ta span:not(.font-mono):not(.font-display):not(.font-tamil-display),
+  :lang(ta) button,
+  [lang="ta"] button,
   .locale-ta button,
+  :lang(ta) input,
+  [lang="ta"] input,
   .locale-ta input,
+  :lang(ta) textarea,
+  [lang="ta"] textarea,
   .locale-ta textarea,
+  :lang(ta) select,
+  [lang="ta"] select,
   .locale-ta select,
+  :lang(ta) label,
+  [lang="ta"] label,
   .locale-ta label,
+  :lang(ta) li,
+  [lang="ta"] li,
   .locale-ta li,
+  :lang(ta) td,
+  [lang="ta"] td,
   .locale-ta td,
+  :lang(ta) th,
+  [lang="ta"] th,
   .locale-ta th,
   :lang(ta) .font-sans,
   [lang="ta"] .font-sans,
   .locale-ta .font-sans,
+  :lang(ta) .font-serif-editorial,
+  [lang="ta"] .font-serif-editorial,
+  .locale-ta .font-serif-editorial,
   :lang(ta) .font-tamil-sans,
   [lang="ta"] .font-tamil-sans,
   .locale-ta .font-tamil-sans {
-    font-family: var(--font-noto-serif-tamil), serif !important;
+    font-family: var(--font-noto-sans-tamil), sans-serif !important;
   }
 
   p {

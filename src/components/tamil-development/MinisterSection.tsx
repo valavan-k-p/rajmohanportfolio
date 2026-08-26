@@ -64,7 +64,7 @@ export function MinisterSection({ locale }: { locale: Locale }) {
           <div className="minister-portrait absolute inset-0 bg-neutral-800 bg-[url('/images/navigation.jpeg')] bg-cover bg-[50%_25%] bg-blend-overlay mix-blend-multiply opacity-0" />
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-tamil-ink)] to-transparent opacity-60" />
           <div className="absolute bottom-6 left-6 text-white">
-            <div className="font-tamil-display text-xl font-bold tracking-wide">{locale === 'ta' ? 'ராஜ்மோகன் ஆறுமுகம்' : 'Rajmohan Arumugam'}</div>
+            <div className="font-display text-xl font-bold tracking-wide">{locale === 'ta' ? 'ராஜ்மோகன் ஆறுமுகம்' : 'Rajmohan Arumugam'}</div>
             <div className="text-sm opacity-80 uppercase tracking-widest mt-1">{locale === 'ta' ? 'தமிழ் வளர்ச்சித் துறை அமைச்சர்' : 'Minister for Tamil Development'}</div>
           </div>
         </div>
@@ -112,7 +112,7 @@ function EvolutionStep({ label, title, desc }: { label: string; title: string; d
       <div className="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-[var(--color-tamil-gold)] mb-1">
         {label}
       </div>
-      <div className="font-tamil-display text-2xl font-bold mb-2">
+      <div className="font-display text-2xl font-bold mb-2">
         {title}
       </div>
       <div className="text-base opacity-75">

@@ -58,7 +58,7 @@ export function DreamHouseSection({ locale }: { locale: Locale }) {
       <div ref={containerRef} className="max-w-4xl mx-auto pt-12 flex flex-col items-center">
         
         {/* Story Intro */}
-        <h2 className="story-title font-tamil-display text-3xl md:text-5xl font-bold mb-4 text-[var(--color-tamil-red)] leading-tight text-balance">
+        <h2 className="story-title font-display text-3xl md:text-5xl font-bold mb-4 text-[var(--color-tamil-red)] leading-tight text-balance">
           {locale === 'ta' ? 'தமிழை வளர்த்தவர்களை அங்கீகரித்தல்' : 'Recognising the People Who Built Tamil'}
         </h2>
         
@@ -111,14 +111,14 @@ export function DreamHouseSection({ locale }: { locale: Locale }) {
             </g>
 
             {/* Tamil Letter form hovering as knowledge */}
-            <text x="200" y="230" textAnchor="middle" className="arch-details font-tamil-display opacity-10" fontSize="40" fill="var(--color-tamil-red)" stroke="none">அ</text>
+            <text x="200" y="230" textAnchor="middle" className="arch-details font-display opacity-10" fontSize="40" fill="var(--color-tamil-red)" stroke="none">அ</text>
             
           </svg>
         </div>
 
         {/* Content details */}
         <div className="scheme-content mb-8">
-          <h3 className="font-tamil-display text-2xl md:text-4xl font-bold mb-4 text-[var(--color-tamil-ink)]">
+          <h3 className="font-display text-2xl md:text-4xl font-bold mb-4 text-[var(--color-tamil-ink)]">
             {locale === 'ta' ? 'கனவு இல்லம்' : 'Dream House Scheme'}
           </h3>
           <div className="w-16 h-1 bg-[var(--color-tamil-gold)] mx-auto mb-6" />

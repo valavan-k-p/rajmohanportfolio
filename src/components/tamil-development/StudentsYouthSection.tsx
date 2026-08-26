@@ -46,7 +46,7 @@ export function StudentsYouthSection({ locale }: { locale: Locale }) {
         <div className="student-notebook relative aspect-square md:aspect-[4/3] bg-[var(--color-tamil-paper)] text-[var(--color-tamil-ink)] rounded-sm p-8 md:p-12 shadow-2xl flex flex-col justify-center overflow-hidden">
           <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjIwcHgiPjxsaW5lIHgxPSIwIiB5MT0iMTkiIHgyPSIxMDAlIiB5Mj0iMTkiIHN0cm9rZT0iIzE3MTQxMSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+')] bg-repeat-y" />
           
-          <div className="student-text relative z-10 font-tamil-display text-4xl md:text-5xl leading-relaxed font-bold opacity-80">
+          <div className="student-text relative z-10 font-display text-4xl md:text-5xl leading-relaxed font-bold opacity-80">
             {locale === 'ta' 
               ? 'எங்கள் குரல்'
               : 'Our Voice'}

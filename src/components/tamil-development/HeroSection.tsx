@@ -115,7 +115,7 @@ export function HeroSection({ locale }: { locale: Locale }) {
 
             {/* Department Title */}
             <div className="flex flex-col">
-              <span className="font-tamil-display text-sm sm:text-base font-semibold text-[var(--color-tamil-white)] leading-tight tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+              <span className="font-display text-sm sm:text-base font-semibold text-[var(--color-tamil-white)] leading-tight tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
                 {isTa ? 'தமிழ் வளர்ச்சித் துறை' : 'Tamil Development'}
               </span>
               <span className="font-mono text-[9.5px] sm:text-[10.5px] uppercase tracking-widest text-[var(--color-tamil-gold-soft)]/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
@@ -130,7 +130,7 @@ export function HeroSection({ locale }: { locale: Locale }) {
               <a
                 key={link.id}
                 href={`#${link.id}`}
-                className="relative py-1 text-xs xl:text-[13.5px] font-tamil-display font-medium tracking-wide text-[var(--color-tamil-paper)]/90 hover:text-[var(--color-tamil-gold)] transition-colors duration-200 group drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]"
+                className="relative py-1 text-xs xl:text-[13.5px] font-display font-medium tracking-wide text-[var(--color-tamil-paper)]/90 hover:text-[var(--color-tamil-gold)] transition-colors duration-200 group drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]"
               >
                 <span>{link.label}</span>
                 <span className="absolute bottom-0 inset-x-0 h-[1.5px] bg-[var(--color-tamil-gold)] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-250 ease-out" />
@@ -167,7 +167,7 @@ export function HeroSection({ locale }: { locale: Locale }) {
                 lang="ta"
                 hrefLang="ta"
                 aria-current={locale === 'ta' ? 'true' : undefined}
-                className={`px-1.5 py-0.5 rounded-2xs font-tamil-display transition-colors no-underline text-xs ${
+                className={`px-1.5 py-0.5 rounded-2xs font-display transition-colors no-underline text-xs ${
                   locale === 'ta'
                     ? 'font-bold text-[var(--color-tamil-gold)] border-b border-[var(--color-tamil-gold)]'
                     : 'text-[var(--color-tamil-paper)]/75 hover:text-white'
@@ -211,7 +211,7 @@ export function HeroSection({ locale }: { locale: Locale }) {
                   key={link.id}
                   href={`#${link.id}`}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="py-1.5 text-sm font-tamil-display text-[var(--color-tamil-paper)] hover:text-[var(--color-tamil-gold)] transition-colors flex items-center gap-1.5 border-b border-[#cfa830]/10"
+                  className="py-1.5 text-sm font-display text-[var(--color-tamil-paper)] hover:text-[var(--color-tamil-gold)] transition-colors flex items-center gap-1.5 border-b border-[#cfa830]/10"
                 >
                   <span className="text-[var(--color-tamil-gold)] text-xs font-bold leading-none">›</span>
                   <span>{link.label}</span>

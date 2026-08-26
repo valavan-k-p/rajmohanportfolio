@@ -56,7 +56,7 @@ export function LiteratureArchive({ locale }: { locale: Locale }) {
         {/* Info Strip */}
         <div className="flex flex-col md:flex-row gap-8 justify-between items-center border-y border-[var(--color-tamil-ink)]/10 py-8">
           <div className="text-center md:text-left">
-            <div className="font-tamil-display text-4xl font-bold mb-1">189</div>
+            <div className="font-display text-4xl font-bold mb-1">189</div>
             <div className="text-sm uppercase tracking-widest opacity-60">
               {locale === 'ta' ? 'நாட்டுடைமையாக்கப்பட்ட அறிஞர்கள்' : 'Scholars Nationalised'}
             </div>
@@ -68,7 +68,7 @@ export function LiteratureArchive({ locale }: { locale: Locale }) {
           <div className="w-[1px] h-12 bg-[var(--color-tamil-ink)]/10 hidden md:block" />
           
           <div className="text-center md:text-left">
-            <div className="font-tamil-display text-4xl font-bold mb-1 text-[var(--color-tamil-red)]">₹91.35 <span className="text-2xl">{locale === 'ta' ? 'லட்சம்' : 'Lakh'}</span></div>
+            <div className="font-display text-4xl font-bold mb-1 text-[var(--color-tamil-red)]">₹91.35 <span className="text-2xl">{locale === 'ta' ? 'லட்சம்' : 'Lakh'}</span></div>
             <div className="text-sm uppercase tracking-widest opacity-60">
               {locale === 'ta' ? 'வழங்கப்பட்ட ராயல்டி' : 'Royalty Disbursed'}
             </div>
@@ -96,7 +96,7 @@ function BookItem({ name, year, status, index }: { name: string; year: string; s
         </svg>
       </div>
       <div className="text-[0.65rem] uppercase tracking-widest opacity-50 mb-1">{year}</div>
-      <div className="font-tamil-display font-bold leading-tight mb-2 opacity-80">{name}</div>
+      <div className="font-display font-bold leading-tight mb-2 opacity-80">{name}</div>
       <div className="inline-block bg-black/5 rounded px-2 py-0.5 text-[0.6rem] uppercase tracking-widest w-max opacity-60">
         {status}
       </div>

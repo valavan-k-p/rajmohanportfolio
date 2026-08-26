@@ -116,7 +116,7 @@ export function TechnicalTamilSection({ locale }: { locale: Locale }) {
         
         {/* Story Title */}
         <div className="text-center mb-16">
-          <h2 className="font-tamil-display text-4xl md:text-5xl text-[var(--color-tamil-gold)] mb-6">
+          <h2 className="font-display text-4xl md:text-5xl text-[var(--color-tamil-gold)] mb-6">
             {locale === 'ta' ? 'மாறும் உலகிற்கான தமிழ்' : 'Tamil for a Changing World'}
           </h2>
           <p className="text-xl opacity-80 max-w-2xl mx-auto leading-relaxed text-white">
@@ -142,7 +142,7 @@ export function TechnicalTamilSection({ locale }: { locale: Locale }) {
                   <step.Icon />
                 </div>
                 <div>
-                  <h4 className={`font-tamil-display text-xl md:text-2xl tracking-wide ${
+                  <h4 className={`font-display text-xl md:text-2xl tracking-wide ${
                     step.isFinal ? 'text-[var(--color-tamil-red)] font-bold' : 'text-white/90 font-medium'
                   }`}>
                     {locale === 'ta' ? step.ta : step.en}
@@ -165,7 +165,7 @@ export function TechnicalTamilSection({ locale }: { locale: Locale }) {
                 <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
                   <path d="M100 0L200 100L100 200L0 100L100 0Z" stroke="var(--color-tamil-gold)" strokeWidth="1" />
                   <circle cx="100" cy="100" r="50" stroke="var(--color-tamil-gold)" strokeWidth="1" />
-                  <text x="100" y="115" textAnchor="middle" className="font-tamil-display" fontSize="40" fill="var(--color-tamil-gold)">அ</text>
+                  <text x="100" y="115" textAnchor="middle" className="font-display" fontSize="40" fill="var(--color-tamil-gold)">அ</text>
                 </svg>
               </div>
 
@@ -173,7 +173,7 @@ export function TechnicalTamilSection({ locale }: { locale: Locale }) {
                 TRADITIONAL KNOWLEDGE + MODERN TECHNOLOGY
               </div>
 
-              <h4 className="font-tamil-display text-3xl mb-6 text-[var(--color-tamil-red)]">
+              <h4 className="font-display text-3xl mb-6 text-[var(--color-tamil-red)]">
                 {locale === 'ta' ? 'அரசு உள்ளடக்கத்தில் AI சிக்கல்கள்' : 'AI in Government Content'}
               </h4>
               

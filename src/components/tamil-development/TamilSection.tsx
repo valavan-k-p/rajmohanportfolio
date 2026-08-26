@@ -43,7 +43,7 @@ export function TamilSection({
         {/* Removed chapterNumber and category as requested */}
         
         {title && (
-          <h2 className="font-tamil-display text-4xl md:text-5xl lg:text-6xl mb-6 text-balance leading-tight">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6 text-balance leading-tight">
             {title}
           </h2>
         )}
