@@ -25,6 +25,7 @@ export function MinisterSection({ locale }: { locale: Locale }) {
           filter: 'grayscale(0%) blur(0px)',
           duration: 1.5,
           ease: 'power2.out',
+          clearProps: 'transform',
           scrollTrigger: {
             trigger: visualRef.current,
             start: 'top 75%',
@@ -109,8 +110,8 @@ export function MinisterSection({ locale }: { locale: Locale }) {
       <div ref={containerRef} className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         {/* Restrained Portrait */}
-        <div ref={visualRef} className="lg:col-span-5 relative aspect-[3/4] w-full max-w-md mx-auto overflow-hidden rounded-sm bg-neutral-200">
-          <div className="minister-portrait absolute inset-0 bg-[url('/images/tamil-development/port.png')] bg-cover bg-[50%_15%] opacity-0" />
+        <div ref={visualRef} className="lg:col-span-5 relative aspect-[3/4] w-full max-w-md mx-auto overflow-hidden rounded-sm bg-neutral-200 group">
+          <div className="minister-portrait absolute inset-0 bg-[url('/images/tamil-development/port.png')] bg-cover bg-[50%_15%] opacity-0 transition-transform duration-700 ease-out group-hover:scale-105" />
           
           {/* Enhanced gradient for better text visibility */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80" />
