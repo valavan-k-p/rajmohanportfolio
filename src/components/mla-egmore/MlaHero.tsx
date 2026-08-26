@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import type { PortalId } from '@/config/portals';
-import { motion, useReducedMotion, AnimatePresence } from 'motion/react';
+import { useState } from 'react';
+import { motion, useReducedMotion } from 'motion/react';
 import { cormorant } from './MlaTypography';
-import { useState, useEffect } from 'react';
 import { MlaScrollProgress } from './MlaMotion';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -104,8 +104,7 @@ function FloatingNav({ backLabel, locale }: { backLabel: string, locale: string 
   );
 }
 
-export function MlaHero({ index, title, standfirst, backLabel, locale }: MlaHeroProps) {
-  const prefersReducedMotion = useReducedMotion();
+export function MlaHero({ backLabel, locale }: MlaHeroProps) {
   return (
     <>
       <MlaScrollProgress />

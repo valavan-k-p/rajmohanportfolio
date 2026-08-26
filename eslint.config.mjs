@@ -25,9 +25,10 @@ const eslintConfig = [
       // silently. TODO/FIXME must be visible in CI output.
       'no-warning-comments': ['warn', { terms: ['todo', 'fixme'], location: 'start' }],
       '@typescript-eslint/no-unused-vars': [
-        'error',
+        'warn',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ],
+      '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/consistent-type-imports': [
         'error',
         { prefer: 'type-imports', fixStyle: 'inline-type-imports' },

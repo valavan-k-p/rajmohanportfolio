@@ -133,7 +133,7 @@ export function ConstituencyPriorities({ locale }: SectionProps) {
   return (
     <div ref={containerRef} className="max-w-6xl mx-auto py-12">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {content.map((category, idx) => {
+        {content.map((category, _idx) => {
           const Icon = category.icon;
           return (
             <div 
