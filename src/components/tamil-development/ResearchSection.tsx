@@ -45,6 +45,7 @@ export function ResearchSection({ locale }: { locale: Locale }) {
           title={locale === 'ta' ? 'உலகத் தமிழாராய்ச்சி நிறுவனம்' : 'International Institute of Tamil Studies'}
           tags={locale === 'ta' ? ['சுவடிகள்', 'ஆராய்ச்சி', 'திருக்குறள்', 'நூலகம்'] : ['Manuscripts', 'Research', 'Thirukkural', 'Library']}
           imageColor="bg-[#D9C4A9]"
+          imageSrc="/images/tamil-development/institute.png"
           locale={locale}
         />
 
@@ -52,6 +53,7 @@ export function ResearchSection({ locale }: { locale: Locale }) {
           title={locale === 'ta' ? 'தமிழ்ப் பல்கலைக்கழகம், தஞ்சாவூர்' : 'Tamil University, Thanjavur'}
           tags={locale === 'ta' ? ['கல்வெட்டுகள்', 'ஒப்பிலக்கணம்', 'நாட்டுப்புறவியல்', 'கவின் கலைகள்'] : ['Inscriptions', 'Comparative Study', 'Folklore', 'Fine Arts']}
           imageColor="bg-[#A68F74]"
+          imageSrc="/images/tamil-development/university.png"
           locale={locale}
         />
 
@@ -60,16 +62,23 @@ export function ResearchSection({ locale }: { locale: Locale }) {
   );
 }
 
-function InstitutionCard({ title, tags, imageColor, locale }: { title: string; tags: string[]; imageColor: string; locale: Locale }) {
+function InstitutionCard({ title, tags, imageColor, imageSrc, locale }: { title: string; tags: string[]; imageColor: string; imageSrc?: string; locale: Locale }) {
   return (
     <div className="institution-card flex flex-col bg-white border border-[var(--color-tamil-ink)]/10 shadow-lg rounded-sm overflow-hidden group">
-      <div className={`w-full aspect-[16/9] ${imageColor} relative overflow-hidden flex items-center justify-center p-6`}>
-        {/* Subtle decorative motif replacing an image */}
-        <div className="w-full h-full border border-[var(--color-tamil-ink)]/10 flex items-center justify-center transition-transform duration-1000 group-hover:scale-105">
-          <div className="font-tamil-display text-4xl opacity-20 text-[var(--color-tamil-ink)] font-bold tracking-widest uppercase">
-            {locale === 'ta' ? 'ஆவணகம்' : 'ARCHIVE'}
+      <div className={`w-full aspect-[16/9] ${imageColor} relative overflow-hidden flex items-center justify-center p-0 md:p-0`}>
+        {imageSrc ? (
+          <img 
+            src={imageSrc} 
+            alt={title} 
+            className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
+          />
+        ) : (
+          <div className="w-full h-full border border-[var(--color-tamil-ink)]/10 flex items-center justify-center transition-transform duration-1000 group-hover:scale-105 m-6">
+            <div className="font-tamil-display text-4xl opacity-20 text-[var(--color-tamil-ink)] font-bold tracking-widest uppercase">
+              {locale === 'ta' ? 'ஆவணகம்' : 'ARCHIVE'}
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <div className="p-8 flex-1 flex flex-col">
         <h4 className="font-tamil-display text-2xl font-bold mb-6">{title}</h4>
