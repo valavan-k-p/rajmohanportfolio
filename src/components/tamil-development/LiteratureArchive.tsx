@@ -106,13 +106,22 @@ export function LiteratureArchive({ locale }: { locale: Locale }) {
           {/* Abstract Library Visual */}
           <div ref={booksRef} className="relative flex items-center justify-center min-h-[400px] perspective-1000">
             <div className="grid grid-cols-3 gap-4 w-full">
-              {[1,2,3,4,5,6].map((i) => (
+              {[
+                'kannan_paattu_webpage.png',
+                'kuyil.png',
+                'manimegalai_nadagam_webpage.png',
+                'panchali.png',
+                'ponniyin selvan.png',
+                'silappathikaram_webpage.png'
+              ].map((book, i) => (
                 <div key={i} className="library-book aspect-[2/3] bg-gradient-to-br from-[#e0d6c3] to-[#d1c5ae] shadow-lg border-l-4 border-[var(--color-tamil-red-deep)] flex items-center justify-center relative overflow-hidden">
                   <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/aged-paper.png')]" />
-                  <div className="w-[1px] h-3/4 bg-black/10 absolute left-2" />
-                  <div className="font-tamil-display text-2xl text-[var(--color-tamil-red-deep)] opacity-20 transform -rotate-90 origin-center whitespace-nowrap">
-                    {locale === 'ta' ? 'தமிழ் இலக்கியம்' : 'Tamil Literature'}
-                  </div>
+                  <img 
+                    src={`/images/tamil-development/books/${book}`} 
+                    alt="Tamil Book Cover" 
+                    className="absolute inset-0 w-full h-full object-cover object-center" 
+                  />
+                  <div className="w-[1px] h-3/4 bg-black/10 absolute left-2 z-10" />
                 </div>
               ))}
             </div>
