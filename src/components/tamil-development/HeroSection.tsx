@@ -44,7 +44,7 @@ export function HeroSection({ locale }: { locale: Locale }) {
     { id: 'ecosystem', label: isTa ? 'துறை கட்டமைப்பு' : 'Ecosystem' },
     { id: 'official-language', label: isTa ? 'ஆட்சிமொழி' : 'Official Language' },
     { id: 'minister', label: isTa ? 'அமைச்சர்' : 'Leadership' },
-    { id: 'timeline', label: isTa ? 'காலவரிசை' : 'Timeline' },
+    { id: 'tenure-2026', label: isTa ? 'காலவரிசை' : 'Timeline' },
     { id: 'sorkuvai', label: isTa ? 'சொற்குவை' : 'Sorkuvai' },
     { id: 'literature', label: isTa ? 'இலக்கியம்' : 'Literature' },
     { id: 'research', label: isTa ? 'ஆராய்ச்சி' : 'Research' },
