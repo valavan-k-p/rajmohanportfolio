@@ -227,18 +227,29 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
 
   const title = locale === 'ta' ? 'தமிழ் வளர்ச்சி எவ்வாறு இணைகிறது' : 'How Tamil Development Connects';
 
-  // Hardcoded symmetrical positions to form a visually perfect circle and prevent bottom crowding
-  const NODE_POSITIONS = [
-    { x: 0, y: -45 },     // 0: Language (Top Center)
-    { x: 30, y: -25 },    // 1: Literature
-    { x: 44, y: 0 },      // 2: Translation (Perfectly horizontal)
-    { x: 34, y: 25 },     // 3: Lexicography
-    { x: 14, y: 44 },     // 4: Research
-    { x: -14, y: 44 },    // 5: Students
-    { x: -34, y: 25 },    // 6: Culture
-    { x: -44, y: 0 },     // 7: Global Tamil (Perfectly horizontal)
-    { x: -30, y: -25 }    // 8: Digital Tamil
-  ];
+  // Mathematically perfect radial distribution, constrained to R=38% to prevent overflow
+  const NODE_POSITIONS = ECOSYSTEM_DOMAINS.map((_, i) => {
+    const totalNodes = ECOSYSTEM_DOMAINS.length;
+    // 0 degrees is straight up (top center), angle increases clockwise
+    const angle = (i * 2 * Math.PI) / totalNodes;
+    // Perfect circle radius 38%
+    return {
+      x: parseFloat((38 * Math.sin(angle)).toFixed(2)),
+      y: parseFloat((-38 * Math.cos(angle)).toFixed(2))
+    };
+  });
+
+  // Calculate where the line intersects the boundary of the node box to prevent it from going underneath
+  const getLineEndpoint = (pos: {x: number, y: number}) => {
+    if (pos.x === 0 && pos.y === 0) return pos;
+    const hw = 9.2; // half-width of box in % (approx 128px / 1400px)
+    const hh = 8.4; // half-height of box in % (approx 84px / 1000px)
+    const tX = pos.x !== 0 ? 1 - hw / Math.abs(pos.x) : 0;
+    const tY = pos.y !== 0 ? 1 - hh / Math.abs(pos.y) : 0;
+    const t = Math.max(tX, tY);
+    if (t < 0) return { x: 0, y: 0 };
+    return { x: pos.x * t, y: pos.y * t };
+  };
 
   return (
     <TamilSection
@@ -258,14 +269,15 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
             <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
             {ECOSYSTEM_DOMAINS.map((_, i) => {
               const pos = NODE_POSITIONS[i]!;
+              const endPos = getLineEndpoint(pos);
               return (
                 <line 
                   key={`line-${i}`}
                   className={`eco-line-${i}`}
-                  x1="50%" y1="50%" x2={`${50 + pos.x}%`} y2={`${50 + pos.y}%`}
-                  stroke="var(--color-tamil-gold)"
+                  x1="50%" y1="50%" x2={`${50 + endPos.x}%`} y2={`${50 + endPos.y}%`}
+                  stroke="var(--color-tamil-red)"
                   strokeWidth="2"
-                  strokeOpacity="0.4"
+                  strokeOpacity="0.5"
                 />
               );
             })}
