@@ -180,18 +180,17 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
 
   const title = locale === 'ta' ? 'தமிழ் வளர்ச்சி எவ்வாறு இணைகிறது' : 'How Tamil Development Connects';
 
-  // Manually adjusted positions to prevent box overlapping (x, y percentage offsets from center)
-  const NODE_POSITIONS = [
-    { x: 0, y: -44 },     // 0: Language (Top Center)
-    { x: 32, y: -30 },    // 1: Literature (Top Right)
-    { x: 45, y: -3 },     // 2: Translation (Right)
-    { x: 40, y: 24 },     // 3: Lexicography (Bottom Right)
-    { x: 15, y: 46 },     // 4: Research (Bottom Center-Right)
-    { x: -15, y: 46 },    // 5: Students (Bottom Center-Left)
-    { x: -40, y: 24 },    // 6: Culture (Bottom Left)
-    { x: -45, y: -3 },    // 7: Global Tamil (Left)
-    { x: -32, y: -30 },   // 8: Digital Tamil (Top Left)
-  ];
+  // Mathematically perfect radial distribution for equal spacing
+  const NODE_POSITIONS = ECOSYSTEM_DOMAINS.map((_, i) => {
+    const totalNodes = ECOSYSTEM_DOMAINS.length;
+    // 0 degrees is straight up (top center), angle increases clockwise
+    const angle = (i * 2 * Math.PI) / totalNodes;
+    // Using an ellipse (Rx=42, Ry=45) to fit the 1400x1000 container well
+    return {
+      x: 42 * Math.sin(angle),
+      y: -45 * Math.cos(angle)
+    };
+  });
 
   return (
     <TamilSection

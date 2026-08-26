@@ -4,7 +4,6 @@ import { setRequestLocale } from 'next-intl/server';
 import { locales, type Locale } from '@/lib/i18n/routing';
 import { SiteFooter } from '@/components/common/SiteFooter';
 import { CitizenQueryBlock } from '@/components/citizen/CitizenQueryBlock';
-import { TAMIL_DEVELOPMENT_DATA } from '@/data/tamil-development';
 
 // Specific layout components
 import { HeroSection } from '@/components/tamil-development/HeroSection';
