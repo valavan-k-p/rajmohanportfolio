@@ -98,7 +98,25 @@
     color: var(--color-charcoal-900);
     font-family: var(--font-sans);
     font-size: var(--text-body);
-    line-height: 1.65;
+    line-height: 1.6;
+  }
+
+  /* --- Tamil Development Bespoke Typography Override --- */
+  /* Force Cormorant Garamond for all textual elements in this section as per MASTER PROMPT */
+  .tamil-development-section {
+    --font-sans: var(--font-cormorant), var(--font-noto-serif-tamil), serif;
+    --font-display: var(--font-cormorant), var(--font-noto-serif-tamil), serif;
+    --font-tamil-sans: var(--font-cormorant), var(--font-noto-serif-tamil), serif;
+    --font-tamil-display: var(--font-cormorant), var(--font-noto-serif-tamil), serif;
+    --font-serif-editorial: var(--font-cormorant), var(--font-noto-serif-tamil), serif;
+    font-family: var(--font-cormorant), var(--font-noto-serif-tamil), serif;
+  }
+  
+  .tamil-development-section * {
+    font-family: var(--font-cormorant), var(--font-noto-serif-tamil), serif !important;
+  }
+  
+  body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;

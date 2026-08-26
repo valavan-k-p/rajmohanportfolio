@@ -63,7 +63,7 @@ export default async function TamilDevelopmentBespokePage({ params }: { params: 
 
   return (
     <>
-      <main id="main" className="relative w-full overflow-hidden bg-[var(--color-tamil-paper)] text-[var(--color-tamil-ink)]">
+      <main id="main" className="tamil-development-section relative w-full overflow-hidden bg-[var(--color-tamil-paper)] text-[var(--color-tamil-ink)]">
         {/* The continuous golden thread SVG motif spanning sections */}
         <LivingScriptLine />
 
