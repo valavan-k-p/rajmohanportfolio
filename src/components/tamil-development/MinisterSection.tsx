@@ -116,7 +116,7 @@ export function MinisterSection({ locale }: { locale: Locale }) {
           {/* Enhanced gradient for better text visibility */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80" />
           
-          <div className="absolute bottom-6 left-6 text-white font-tamil-sans z-10">
+          <div className="absolute bottom-6 left-6 text-white font-sans z-10">
             <div className="text-xl md:text-2xl font-bold tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
               {locale === 'ta' ? 'ராஜ்மோகன் ஆறுமுகம்' : 'Rajmohan Arumugam'}
             </div>
@@ -128,7 +128,7 @@ export function MinisterSection({ locale }: { locale: Locale }) {
 
         {/* Narrative / Evolution */}
         <div className="lg:col-span-7 flex flex-col justify-center">
-          <p className="font-tamil-sans text-xl leading-relaxed opacity-90 mb-12 text-pretty">
+          <p className="font-sans text-xl leading-relaxed opacity-90 mb-12 text-pretty">
             {locale === 'ta' 
               ? 'பாரம்பரிய தமிழ் மேடைப் பேச்சிலிருந்து டிஜிட்டல் முதல் பொதுத் தொடர்புக்கான மாற்றம். இளைஞர்கள், ஊடகம் மற்றும் பொதுச் சேவையில் பின்னணி கொண்டவர்.'
               : 'A background rooted in traditional Tamil oratory, transitioning toward digital-first public communication. Connecting classical language with youth, media, and technology.'}
@@ -174,10 +174,10 @@ function EvolutionStep({ label, title, desc }: { label: string; title: string; d
       <div className="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-[var(--color-tamil-gold)] mb-1 relative z-20">
         {label}
       </div>
-      <div className="font-tamil-display text-2xl font-bold mb-2 relative z-20">
+      <div className="font-display text-2xl font-bold mb-2 relative z-20">
         {title}
       </div>
-      <div className="font-tamil-sans text-base opacity-75 relative z-20">
+      <div className="font-sans text-base opacity-75 relative z-20">
         {desc}
       </div>
     </div>

@@ -58,8 +58,8 @@ export function DreamHouseSection({ locale }: { locale: Locale }) {
       <div ref={containerRef} className="max-w-4xl mx-auto pt-12 flex flex-col items-center">
         
         {/* Story Intro */}
-        <h2 className="story-title font-tamil-display text-3xl md:text-5xl font-bold mb-4 text-[var(--color-tamil-red)] leading-tight text-balance">
-          {locale === 'ta' ? 'தமிழை வளர்த்தவர்களை அங்கீகரித்தல்' : 'Recognising the People Who Built Tamil'}
+        <h2 className="story-title font-display text-3xl md:text-5xl font-bold mb-4 text-[var(--color-tamil-red)] leading-tight text-balance">
+          {locale === 'ta' ? 'எழுத்தாளர்களுக்கு கனவு இல்லம்' : 'Dream House for Writers'}
         </h2>
         
         <div className="story-title mb-16 opacity-60 font-bold uppercase tracking-widest text-xs">
@@ -111,20 +111,20 @@ export function DreamHouseSection({ locale }: { locale: Locale }) {
             </g>
 
             {/* Tamil Letter form hovering as knowledge */}
-            <text x="200" y="230" textAnchor="middle" className="arch-details font-tamil-display opacity-10" fontSize="40" fill="var(--color-tamil-red)" stroke="none">அ</text>
+            <text x="200" y="230" textAnchor="middle" className="arch-details font-display opacity-10" fontSize="40" fill="var(--color-tamil-red)" stroke="none">அ</text>
             
           </svg>
         </div>
 
         {/* Content details */}
         <div className="scheme-content mb-8">
-          <h3 className="font-tamil-display text-2xl md:text-4xl font-bold mb-4 text-[var(--color-tamil-ink)]">
+          <h3 className="font-display text-2xl md:text-4xl font-bold mb-4 text-[var(--color-tamil-ink)]">
             {locale === 'ta' ? 'கனவு இல்லம்' : 'Dream House Scheme'}
           </h3>
           <div className="w-16 h-1 bg-[var(--color-tamil-gold)] mx-auto mb-6" />
         </div>
         
-        <p className="scheme-content font-tamil-sans text-lg md:text-xl font-medium opacity-80 text-balance leading-relaxed max-w-2xl text-[var(--color-tamil-ink)]">
+        <p className="scheme-content font-sans text-lg md:text-xl font-medium opacity-80 text-balance leading-relaxed max-w-2xl text-[var(--color-tamil-ink)]">
           {locale === 'ta'
             ? 'தகுதியான சிறந்த தமிழ் எழுத்தாளர்கள் மற்றும் மொழிபெயர்ப்பாளர்களுக்கு நலத்திட்ட உதவியாக குடியிருப்பு அங்கீகாரம் வழங்குதல்.'
             : 'Providing welfare-oriented residential support for eligible distinguished Tamil writers and extending recognition to translators.'}

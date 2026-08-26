@@ -9,7 +9,7 @@ import type { Locale } from '@/lib/i18n/routing';
 const LanguageIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="var(--color-tamil-gold)" strokeWidth="1.5">
     <path d="M3 10C3 6.134 6.134 3 10 3C13.866 3 17 6.134 17 10C17 11.59 16.47 13.056 15.576 14.25L18.5 18H13.6C12.56 18.667 11.33 19 10 19C6.134 19 3 15.866 3 12" strokeLinecap="round" />
-    <text x="10" y="14" textAnchor="middle" className="font-tamil-display font-bold" fontSize="10" fill="var(--color-tamil-red)" stroke="none">அ</text>
+    <text x="10" y="14" textAnchor="middle" className="font-display font-bold" fontSize="10" fill="var(--color-tamil-red)" stroke="none">அ</text>
     <path d="M21 10a4 4 0 0 0-4-4" strokeLinecap="round" strokeOpacity="0.5" />
     <path d="M19 14a4 4 0 0 0 2-4" strokeLinecap="round" strokeOpacity="0.5" />
   </svg>
@@ -17,26 +17,22 @@ const LanguageIcon = () => (
 
 const LiteratureIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M4 10h16c1.1 0 2 .9 2 2v2c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2v-2c0-1.1.9-2 2-2z" stroke="var(--color-tamil-gold)" fill="var(--color-tamil-gold)" fillOpacity="0.1" />
-    <path d="M4 6h16c1.1 0 2 .9 2 2v2c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2z" strokeOpacity="0.4" stroke="var(--color-tamil-red)" />
-    <path d="M4 14h16c1.1 0 2 .9 2 2v2c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2v-2c0-1.1.9-2 2-2z" strokeOpacity="0.4" stroke="var(--color-tamil-red)" />
-    <circle cx="12" cy="12" r="1.5" stroke="var(--color-tamil-red)" fill="var(--color-tamil-red)" />
-    <path d="M12 10v4" stroke="var(--color-tamil-red)" />
-    <path d="M6 12h4" stroke="var(--color-tamil-gold)" />
-    <path d="M14 12h4" stroke="var(--color-tamil-gold)" />
+    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" stroke="var(--color-tamil-red)" />
+    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" stroke="var(--color-tamil-red)" />
+    <path d="M6 8h2" stroke="var(--color-tamil-gold)" />
+    <path d="M6 12h2" stroke="var(--color-tamil-gold)" />
+    <path d="M16 8h2" stroke="var(--color-tamil-gold)" />
+    <path d="M16 12h2" stroke="var(--color-tamil-gold)" />
   </svg>
 );
 
 const TranslationIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="3" width="8" height="8" rx="2" stroke="var(--color-tamil-red)" />
-    <text x="7" y="9" textAnchor="middle" className="font-tamil-display font-bold" fontSize="6" fill="var(--color-tamil-red)" stroke="none">அ</text>
-    <rect x="13" y="13" width="8" height="8" rx="2" stroke="var(--color-tamil-gold)" />
-    <text x="17" y="19" textAnchor="middle" className="font-sans font-bold" fontSize="6" fill="var(--color-tamil-gold)" stroke="none">A</text>
-    <path d="M11 7h4a2 2 0 0 1 2 2v2" stroke="var(--color-tamil-red)" strokeOpacity="0.6" />
-    <path d="M15 9l2 2 2-2" stroke="var(--color-tamil-red)" strokeOpacity="0.6" />
-    <path d="M13 17H9a2 2 0 0 1-2-2v-2" stroke="var(--color-tamil-gold)" strokeOpacity="0.6" />
-    <path d="M5 15l2-2 2 2" stroke="var(--color-tamil-gold)" strokeOpacity="0.6" />
+    <circle cx="12" cy="12" r="10" stroke="var(--color-tamil-red)" />
+    <path d="M2 12h20" stroke="var(--color-tamil-gold)" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="var(--color-tamil-gold)" />
+    <text x="7" y="9" textAnchor="middle" className="font-display font-bold" fontSize="6" fill="var(--color-tamil-red)" stroke="none">அ</text>
+    <text x="17" y="17" textAnchor="middle" className="font-sans font-bold" fontSize="6" fill="var(--color-tamil-red)" stroke="none">A</text>
   </svg>
 );
 
@@ -46,7 +42,7 @@ const LexicographyIcon = () => (
     <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="var(--color-tamil-red)" />
     <path d="M20 6h2v3h-2" stroke="var(--color-tamil-gold)" />
     <path d="M20 11h2v3h-2" stroke="var(--color-tamil-gold)" />
-    <text x="12" y="11" textAnchor="middle" className="font-tamil-display font-bold" fontSize="7" fill="var(--color-tamil-red)" stroke="none">அ</text>
+    <text x="12" y="11" textAnchor="middle" className="font-display font-bold" fontSize="7" fill="var(--color-tamil-red)" stroke="none">அ</text>
     <path d="M9 14h6" stroke="var(--color-tamil-gold)" strokeOpacity="0.6" />
     <path d="M10 16h4" stroke="var(--color-tamil-gold)" strokeOpacity="0.6" />
   </svg>
@@ -58,7 +54,7 @@ const ResearchIcon = () => (
     <path d="M14 2v6h6" stroke="var(--color-tamil-gold)" strokeOpacity="0.6" />
     <circle cx="11" cy="12" r="4" stroke="var(--color-tamil-red)" fill="var(--color-tamil-paper)" />
     <line x1="13.83" y1="14.83" x2="18" y2="19" stroke="var(--color-tamil-red)" strokeWidth="2" />
-    <text x="11" y="14" textAnchor="middle" className="font-tamil-display" fontSize="6" fill="var(--color-tamil-red)" stroke="none">ஆ</text>
+    <text x="11" y="14" textAnchor="middle" className="font-display" fontSize="6" fill="var(--color-tamil-red)" stroke="none">ஆ</text>
   </svg>
 );
 
@@ -103,7 +99,7 @@ const DigitalTamilIcon = () => (
     <path d="M2 12h3" stroke="var(--color-tamil-gold)" />
     <path d="M19 12h3" stroke="var(--color-tamil-gold)" />
     <rect x="8" y="8" width="8" height="8" rx="1" stroke="var(--color-tamil-gold)" fill="var(--color-tamil-gold)" fillOpacity="0.1" />
-    <text x="12" y="14" textAnchor="middle" className="font-tamil-display font-bold" fontSize="6" fill="var(--color-tamil-red)" stroke="none">அ</text>
+    <text x="12" y="14" textAnchor="middle" className="font-display font-bold" fontSize="6" fill="var(--color-tamil-red)" stroke="none">அ</text>
   </svg>
 );
 
@@ -195,15 +191,15 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[var(--color-tamil-paper)] rounded-full blur-3xl opacity-80 -z-10" />
               <div className="relative flex h-56 w-56 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-tamil-red-deep)] to-[var(--color-tamil-red)] text-white shadow-2xl border-4 border-[var(--color-tamil-gold)] mb-8">
                 <div className="text-center flex flex-col items-center">
-                  <span className="font-tamil-display text-4xl font-bold tracking-wider leading-tight">
+                  <span className="font-display text-4xl lg:text-5xl font-bold tracking-wider leading-tight">
                     {locale === 'ta' ? 'தமிழ்' : 'TAMIL'}
                   </span>
-                  <span className="font-tamil-sans text-sm tracking-widest opacity-80 uppercase mt-2">
+                  <span className="font-sans text-sm tracking-widest opacity-80 uppercase mt-2">
                     {locale === 'ta' ? 'வளர்ச்சி' : 'Development'}
                   </span>
                 </div>
               </div>
-              <p className="text-center text-[var(--color-tamil-ink)] font-tamil-sans max-w-sm text-lg leading-relaxed">
+              <p className="text-center text-[var(--color-tamil-ink)] font-sans max-w-sm text-lg leading-relaxed">
                 A connected ecosystem driving the future of the Tamil language across all domains.
               </p>
             </div>
@@ -216,10 +212,10 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
                   <div className={`w-16 h-16 rounded-2xl bg-[var(--color-tamil-paper)] flex items-center justify-center text-3xl mb-6 border border-[var(--color-tamil-gold)]/30 group-hover:bg-[var(--color-tamil-gold)]/20 transition-colors text-[var(--color-tamil-red)] shadow-sm`}>
                     {domain.icon}
                   </div>
-                  <h4 className="font-tamil-display text-2xl font-bold text-[var(--color-tamil-red)] mb-4">
+                  <h4 className="font-display text-2xl font-bold text-[var(--color-tamil-red)] mb-4">
                     {locale === 'ta' ? domain.taLabel : domain.label}
                   </h4>
-                  <p className="font-tamil-sans text-[var(--color-tamil-ink)]/80 leading-relaxed">
+                  <p className="font-sans text-[var(--color-tamil-ink)]/80 leading-relaxed">
                     {domain.desc}
                   </p>
                 </div>
@@ -238,10 +234,10 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
           
           <div className="relative z-20 flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-tamil-red-deep)] to-[var(--color-tamil-red)] text-white shadow-xl border-4 border-[var(--color-tamil-gold)] mb-4 self-center">
             <div className="text-center flex flex-col items-center">
-              <span className="font-tamil-display text-2xl font-bold tracking-wider leading-tight">
+              <span className="font-display text-2xl font-bold tracking-wider leading-tight">
                 {locale === 'ta' ? 'தமிழ்' : 'TAMIL'}
               </span>
-              <span className="font-tamil-sans text-xs tracking-widest opacity-80 uppercase mt-1">
+              <span className="font-sans text-xs tracking-widest opacity-80 uppercase mt-1">
                 {locale === 'ta' ? 'வளர்ச்சி' : 'Development'}
               </span>
             </div>
@@ -255,11 +251,11 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
                   <div className="w-12 h-12 shrink-0 rounded-xl bg-[var(--color-tamil-paper)] flex items-center justify-center text-xl border border-[var(--color-tamil-gold)]/30 text-[var(--color-tamil-red)]">
                     {domain.icon}
                   </div>
-                  <h4 className="font-tamil-display text-lg font-bold text-[var(--color-tamil-red)]">
+                  <h4 className="font-display text-lg font-bold text-[var(--color-tamil-red)]">
                     {locale === 'ta' ? domain.taLabel : domain.label}
                   </h4>
                 </div>
-                <p className="font-tamil-sans text-sm text-[var(--color-tamil-ink)]/80 leading-relaxed">
+                <p className="font-sans text-sm text-[var(--color-tamil-ink)]/80 leading-relaxed">
                   {domain.desc}
                 </p>
               </div>

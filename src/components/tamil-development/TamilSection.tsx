@@ -44,13 +44,13 @@ export function TamilSection({
         {/* Removed chapterNumber and category as requested */}
         
         {title && (
-          <h2 className="font-tamil-display text-4xl md:text-5xl lg:text-6xl mb-6 text-balance leading-tight">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6 text-balance leading-tight">
             {title}
           </h2>
         )}
         
         {description && (
-          <p className="font-tamil-sans text-lg md:text-xl max-w-2xl opacity-80 mb-12 text-pretty">
+          <p className="font-sans text-lg md:text-xl max-w-2xl opacity-80 mb-12 text-pretty">
             {description}
           </p>
         )}

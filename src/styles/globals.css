@@ -37,8 +37,8 @@
   --font-display: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
   --font-serif-editorial: var(--font-cormorant), var(--font-instrument-serif), Georgia, serif;
   --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-tamil-display: var(--font-cormorant), var(--font-noto-serif-tamil), serif;
-  --font-tamil-sans: var(--font-cormorant), var(--font-noto-serif-tamil), ui-sans-serif, system-ui, sans-serif;
+  --font-tamil-display: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+  --font-tamil-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
 
   --text-display: clamp(3.75rem, 8vw, 7.5rem);
   --text-h1: clamp(2.85rem, 5.5vw, 4.5rem);
@@ -99,58 +99,52 @@
     font-family: var(--font-sans);
     font-size: var(--text-body);
     line-height: 1.6;
-  }
-
-  /* --- Tamil Development Bespoke Typography Override --- */
-  /* Fetched from School Education section (Instrument Serif / Instrument Sans) */
-  .tamil-development-section {
-    --font-sans: var(--font-instrument-sans), var(--font-noto-sans-tamil), ui-sans-serif, system-ui, sans-serif;
-    --font-display: var(--font-instrument-serif), var(--font-noto-serif-tamil), Georgia, serif;
-    --font-tamil-sans: var(--font-instrument-sans), var(--font-noto-sans-tamil), ui-sans-serif, system-ui, sans-serif;
-    --font-tamil-display: var(--font-instrument-serif), var(--font-noto-serif-tamil), Georgia, serif;
-    --font-serif-editorial: var(--font-cormorant), var(--font-instrument-serif), Georgia, serif;
-    font-family: var(--font-sans);
-  }
-  
-  body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
-  /* Tamil is a parallel first-class stack, not a fallback.
-     Headings: Noto Serif Tamil
-     Body & UI: Noto Sans Tamil */
-  :lang(ta),
-  [lang="ta"],
-  .locale-ta {
-    --font-display: var(--font-noto-serif-tamil), var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
-    --font-serif-editorial: var(--font-noto-serif-tamil), var(--font-cormorant), var(--font-instrument-serif), Georgia, serif;
-    --font-sans: var(--font-noto-sans-tamil), var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
-    --font-tamil-display: var(--font-noto-serif-tamil), serif;
-    --font-tamil-sans: var(--font-noto-sans-tamil), sans-serif;
-
-    font-family: var(--font-noto-sans-tamil), var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
-  }
-
-  :lang(ta) body,
-  [lang="ta"] body,
-  .locale-ta body {
-    font-family: var(--font-noto-sans-tamil), var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
-    font-size: calc(var(--text-body) * 1.06);
-    line-height: 1.77;
-  }
-
+  /* All Headings across all 4 Portals & Site: Instrument Serif */
   h1,
   h2,
   h3,
   h4,
   h5,
-  h6 {
+  h6,
+  .font-display,
+  .font-tamil-display {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
     line-height: 1.02;
     text-wrap: balance;
+  }
+
+  /* Body, Paragraphs, UI across all 4 Portals: Instrument Sans */
+  p,
+  .font-sans,
+  .font-tamil-sans {
+    font-family: var(--font-sans);
+  }
+
+  /* Tamil Language Stack: Headings -> Noto Serif Tamil, Body -> Noto Sans Tamil */
+  :lang(ta),
+  [lang="ta"],
+  .locale-ta {
+    --font-display: var(--font-noto-serif-tamil), serif !important;
+    --font-serif-editorial: var(--font-noto-serif-tamil), serif !important;
+    --font-sans: var(--font-noto-sans-tamil), sans-serif !important;
+    --font-tamil-display: var(--font-noto-serif-tamil), serif !important;
+    --font-tamil-sans: var(--font-noto-sans-tamil), sans-serif !important;
+
+    font-family: var(--font-noto-sans-tamil), sans-serif;
+  }
+
+  :lang(ta) body,
+  [lang="ta"] body,
+  .locale-ta body {
+    font-family: var(--font-noto-sans-tamil), sans-serif;
+    font-size: calc(var(--text-body) * 1.06);
+    line-height: 1.77;
   }
 
   /* All Headings in Tamil Mode: Noto Serif Tamil */
@@ -184,7 +178,7 @@
   :lang(ta) .font-tamil-display,
   [lang="ta"] .font-tamil-display,
   .locale-ta .font-tamil-display {
-    font-family: var(--font-noto-serif-tamil), var(--font-instrument-serif), Georgia, 'Times New Roman', serif !important;
+    font-family: var(--font-noto-serif-tamil), serif !important;
     letter-spacing: 0;
     line-height: 1.28;
   }
@@ -226,7 +220,7 @@
   :lang(ta) .font-tamil-sans,
   [lang="ta"] .font-tamil-sans,
   .locale-ta .font-tamil-sans {
-    font-family: var(--font-noto-sans-tamil), var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-noto-sans-tamil), sans-serif !important;
   }
 
   p {

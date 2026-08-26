@@ -55,15 +55,15 @@ export function StudentsYouthSection({ locale }: { locale: Locale }) {
         <div className="flex flex-col justify-center gap-8">
           
           <div className="flex flex-col gap-2">
-            <h3 className="font-tamil-display text-4xl md:text-5xl font-bold opacity-90">
+            <h3 className="font-display text-4xl md:text-5xl font-bold opacity-90">
               {locale === 'ta' ? 'எங்கள் குரல்' : 'Our Voice'}
             </h3>
-            <div className="font-tamil-sans text-xl opacity-75">
+            <div className="font-sans text-xl opacity-75">
               {locale === 'ta' ? 'வருங்காலத் தமிழ்' : 'Tamil of tomorrow'}
             </div>
           </div>
 
-          <p className="font-tamil-sans text-xl opacity-90 leading-relaxed text-balance">
+          <p className="font-sans text-xl opacity-90 leading-relaxed text-balance">
             {locale === 'ta'
               ? 'பள்ளி மற்றும் கல்லூரி மாணவர்களிடையே தமிழை ஊக்கப்படுத்த பேச்சுப் போட்டிகள், கட்டுரைப் போட்டிகள் மற்றும் இலக்கியப் பட்டறைகள்.'
               : 'Encouraging Tamil among school and college students through speech competitions, essay writing, and literary workshops.'}
@@ -86,7 +86,7 @@ function ActivityItem({ text }: { text: string }) {
   return (
     <li className="flex items-center gap-4 border-b border-white/20 pb-4">
       <div className="h-2 w-2 rounded-full bg-[var(--color-tamil-gold)]" />
-      <span className="font-tamil-sans text-lg">{text}</span>
+      <span className="font-sans text-lg">{text}</span>
     </li>
   );
 }

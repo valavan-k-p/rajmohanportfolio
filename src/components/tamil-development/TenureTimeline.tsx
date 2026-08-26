@@ -143,7 +143,7 @@ export function TenureTimeline({ locale }: { locale: Locale }) {
           <div className="text-[var(--color-tamil-gold)] font-bold tracking-[0.2em] uppercase text-sm mb-4">
             {locale === 'ta' ? '2026 பதவிக்காலம்' : '2026 Tenure'}
           </div>
-          <h2 className="font-tamil-display text-4xl md:text-5xl lg:text-6xl text-white drop-shadow-md">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-white drop-shadow-md">
             {locale === 'ta' ? 'நிர்வாகப் பயணம்' : 'Administrative Actions'}
           </h2>
         </div>
@@ -177,9 +177,9 @@ export function TenureTimeline({ locale }: { locale: Locale }) {
                     {isEven ? (
                       // Text
                       <>
-                        <div className="font-tamil-display text-2xl md:text-3xl text-[var(--color-tamil-gold)] mb-2">{locale === 'ta' ? event.dateTa : event.dateEn}</div>
-                        <h3 className="font-tamil-sans font-bold text-xl text-white mb-3">{locale === 'ta' ? event.titleTa : event.titleEn}</h3>
-                        <p className="text-white/60 leading-relaxed">{locale === 'ta' ? event.descTa : event.descEn}</p>
+                        <div className="font-display text-2xl md:text-3xl text-[var(--color-tamil-gold)] mb-2">{locale === 'ta' ? event.dateTa : event.dateEn}</div>
+                        <h3 className="font-display font-bold text-xl text-white mb-3">{locale === 'ta' ? event.titleTa : event.titleEn}</h3>
+                        <p className="text-white/60 leading-relaxed font-sans">{locale === 'ta' ? event.descTa : event.descEn}</p>
                       </>
                     ) : (
                       // Image Frame
@@ -195,9 +195,9 @@ export function TenureTimeline({ locale }: { locale: Locale }) {
                     {!isEven ? (
                       // Text
                       <>
-                        <div className="font-tamil-display text-2xl md:text-3xl text-[var(--color-tamil-gold)] mb-2">{locale === 'ta' ? event.dateTa : event.dateEn}</div>
-                        <h3 className="font-tamil-sans font-bold text-xl text-white mb-3">{locale === 'ta' ? event.titleTa : event.titleEn}</h3>
-                        <p className="text-white/60 leading-relaxed">{locale === 'ta' ? event.descTa : event.descEn}</p>
+                        <div className="font-display text-2xl md:text-3xl text-[var(--color-tamil-gold)] mb-2">{locale === 'ta' ? event.dateTa : event.dateEn}</div>
+                        <h3 className="font-display font-bold text-xl text-white mb-3">{locale === 'ta' ? event.titleTa : event.titleEn}</h3>
+                        <p className="text-white/60 leading-relaxed font-sans">{locale === 'ta' ? event.descTa : event.descEn}</p>
                       </>
                     ) : (
                       // Image Frame
@@ -207,9 +207,9 @@ export function TenureTimeline({ locale }: { locale: Locale }) {
 
                   {/* Mobile Content (Text + Image) */}
                   <div className="w-full md:hidden pl-12 order-4 mt-2">
-                    <div className="font-tamil-display text-xl text-[var(--color-tamil-gold)] mb-1">{locale === 'ta' ? event.dateTa : event.dateEn}</div>
-                    <h3 className="font-tamil-sans font-bold text-lg text-white mb-2">{locale === 'ta' ? event.titleTa : event.titleEn}</h3>
-                    <p className="text-white/60 text-sm leading-relaxed mb-8">{locale === 'ta' ? event.descTa : event.descEn}</p>
+                    <div className="font-display text-xl text-[var(--color-tamil-gold)] mb-1">{locale === 'ta' ? event.dateTa : event.dateEn}</div>
+                    <h3 className="font-display font-bold text-lg text-white mb-2">{locale === 'ta' ? event.titleTa : event.titleEn}</h3>
+                    <p className="text-white/60 text-sm leading-relaxed mb-8 font-sans">{locale === 'ta' ? event.descTa : event.descEn}</p>
                     <TimelineImageFrame id={imageId} align="left" src={event.imageSrc} />
                   </div>
 

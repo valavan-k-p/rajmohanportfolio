@@ -11,39 +11,41 @@ import { TAMIL_DEVELOPMENT_DATA } from '@/data/tamil-development';
 // CUSTOM SVG ICONS FOR PROGRAMS
 // ---------------------------------------------------------
 const OfficialLanguageIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
-    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5z" strokeOpacity="0.4" />
-    <text x="12" y="14" textAnchor="middle" className="font-tamil-display font-bold" fontSize="10" fill="currentColor" stroke="none">அ</text>
+  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5z" stroke="var(--color-tamil-gold)" />
+    <path d="M6 2v20" stroke="var(--color-tamil-red)" />
+    <text x="12" y="14" textAnchor="middle" className="font-display font-bold" fontSize="10" fill="currentColor" stroke="none">அ</text>
   </svg>
 );
 
 const AwardsIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
-    <circle cx="12" cy="8" r="6" />
-    <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="8" r="7" stroke="var(--color-tamil-gold)" />
+    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" stroke="var(--color-tamil-red)" />
   </svg>
 );
 
 const BooksIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
-    <path d="M4 10h16c1.1 0 2 .9 2 2v2c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2v-2c0-1.1.9-2 2-2z" strokeOpacity="0.4" />
-    <path d="M4 6h16c1.1 0 2 .9 2 2v2c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2z" />
-    <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5z" stroke="var(--color-tamil-red)" />
+    <path d="M9 10h6" stroke="var(--color-tamil-gold)" />
+    <path d="M9 14h6" stroke="var(--color-tamil-gold)" />
   </svg>
 );
 
 const DreamHouseIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
-    <path d="M3 10l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" strokeOpacity="0.4" />
-    <path d="M9 22V12h6v10" />
+  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="var(--color-tamil-red)" />
+    <polyline points="9 22 9 12 15 12 15 22" stroke="var(--color-tamil-gold)" />
   </svg>
 );
 
 const SorkuvaiIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
-    <rect x="3" y="3" width="18" height="18" rx="2" strokeOpacity="0.4" />
-    <path d="M8 12h8" />
-    <path d="M12 8v8" />
+  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" stroke="var(--color-tamil-red)" />
+    <line x1="2" y1="12" x2="22" y2="12" stroke="var(--color-tamil-gold)" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="var(--color-tamil-gold)" />
+    <text x="11" y="13" textAnchor="middle" className="font-display" fontSize="6" fill="currentColor" stroke="none">ஆ</text>
   </svg>
 );
 
@@ -51,7 +53,7 @@ const ResearchIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
     <circle cx="11" cy="11" r="6" strokeOpacity="0.4" />
     <path d="M15.5 15.5L21 21" />
-    <text x="11" y="13" textAnchor="middle" className="font-tamil-display" fontSize="6" fill="currentColor" stroke="none">ஆ</text>
+    <text x="11" y="13" textAnchor="middle" className="font-display" fontSize="6" fill="currentColor" stroke="none">ஆ</text>
   </svg>
 );
 
@@ -129,7 +131,7 @@ export function ActionsSection({ locale }: { locale: Locale }) {
         {/* Headers */}
         <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 mb-16 relative z-10">
           <div className="action-header text-center md:text-right">
-            <h3 className="font-tamil-display text-2xl font-bold text-[var(--color-tamil-ink)]/70">
+            <h3 className="font-display text-2xl font-bold text-[var(--color-tamil-ink)]/70">
               {locale === 'ta' ? 'துறையின் தொடர்ச்சியான பணிகள்' : 'Departmental Continuity'}
             </h3>
             <p className="text-xs mt-2 opacity-50 uppercase tracking-widest font-bold">
@@ -142,7 +144,7 @@ export function ActionsSection({ locale }: { locale: Locale }) {
           </div>
 
           <div className="action-header text-center md:text-left">
-            <h3 className="font-tamil-display text-2xl font-bold text-[var(--color-tamil-red)]">
+            <h3 className="font-display text-2xl font-bold text-[var(--color-tamil-red)]">
               {locale === 'ta' ? 'அமைச்சரின் பணிக்காலத்தில்' : 'Rajmohan Tenure Actions'}
             </h3>
             <p className="text-xs mt-2 opacity-70 uppercase tracking-widest text-[var(--color-tamil-red)] font-bold">
@@ -173,7 +175,7 @@ export function ActionsSection({ locale }: { locale: Locale }) {
                         {ACTION_ICONS[i]}
                       </div>
                       <div>
-                        <h4 className="font-tamil-sans font-semibold text-lg text-[var(--color-tamil-ink)]/80">
+                        <h4 className="font-display font-semibold text-lg text-[var(--color-tamil-ink)]/80">
                           {item.title?.[locale]}
                         </h4>
                         <div className="mt-1 text-[0.65rem] font-bold tracking-widest uppercase text-[var(--color-tamil-ink)]/40">
@@ -194,7 +196,7 @@ export function ActionsSection({ locale }: { locale: Locale }) {
                   <div className="w-full md:w-5/6 bg-white border border-[var(--color-tamil-red)]/20 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-[var(--color-tamil-red)]/40 transition-shadow">
                     <div className="flex items-center gap-4">
                       <div>
-                        <h4 className="font-tamil-sans font-medium text-lg text-[var(--color-tamil-red)]">
+                        <h4 className="font-display font-medium text-lg text-[var(--color-tamil-red)]">
                           {TAMIL_DEVELOPMENT_DATA.rajmohanTenureActions[i]?.title?.[locale]}
                         </h4>
                         <div className="mt-1 inline-block rounded bg-[var(--color-tamil-red)]/10 px-2 py-0.5 text-[0.65rem] font-bold tracking-widest uppercase text-[var(--color-tamil-red)]">

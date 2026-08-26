@@ -34,7 +34,7 @@ const FactCheckIcon = () => (
 const TerminologyIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
     <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5z" strokeOpacity="0.4" />
-    <text x="12" y="14" textAnchor="middle" className="font-tamil-display font-bold" fontSize="8" fill="currentColor" stroke="none">அ</text>
+    <text x="12" y="14" textAnchor="middle" className="font-display font-bold" fontSize="8" fill="currentColor" stroke="none">அ</text>
   </svg>
 );
 
@@ -116,10 +116,10 @@ export function TechnicalTamilSection({ locale }: { locale: Locale }) {
         
         {/* Story Title */}
         <div className="text-center mb-16">
-          <h2 className="font-tamil-display text-4xl md:text-5xl text-[var(--color-tamil-gold)] mb-6">
+          <h2 className="font-display text-4xl md:text-5xl text-[var(--color-tamil-gold)] mb-6">
             {locale === 'ta' ? 'மாறும் உலகிற்கான தமிழ்' : 'Tamil for a Changing World'}
           </h2>
-          <p className="font-tamil-sans text-xl opacity-80 max-w-2xl mx-auto leading-relaxed text-white">
+          <p className="font-sans text-xl opacity-80 max-w-2xl mx-auto leading-relaxed text-white">
             {locale === 'ta'
               ? 'செயற்கை நுண்ணறிவு (AI), இணையப் பாதுகாப்பு, உயிரித் தொழில்நுட்பம் மற்றும் விண்வெளி அறிவியல் ஆகியவற்றிற்கான கலைச்சொற்கள் மூலம் தமிழை அடுத்த தலைமுறைக்குக் கொண்டு செல்லுதல்.'
               : 'Supporting the next generation of knowledge through technical terminology for AI, cybersecurity, biotechnology, and space science.'}
@@ -142,7 +142,7 @@ export function TechnicalTamilSection({ locale }: { locale: Locale }) {
                   <step.Icon />
                 </div>
                 <div>
-                  <h4 className={`font-tamil-sans text-xl md:text-2xl tracking-wide ${
+                  <h4 className={`font-display text-xl md:text-2xl tracking-wide ${
                     step.isFinal ? 'text-[var(--color-tamil-red)] font-bold' : 'text-white/90 font-medium'
                   }`}>
                     {locale === 'ta' ? step.ta : step.en}
@@ -165,7 +165,7 @@ export function TechnicalTamilSection({ locale }: { locale: Locale }) {
                 <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
                   <path d="M100 0L200 100L100 200L0 100L100 0Z" stroke="var(--color-tamil-gold)" strokeWidth="1" />
                   <circle cx="100" cy="100" r="50" stroke="var(--color-tamil-gold)" strokeWidth="1" />
-                  <text x="100" y="115" textAnchor="middle" className="font-tamil-display" fontSize="40" fill="var(--color-tamil-gold)">அ</text>
+                  <text x="100" y="115" textAnchor="middle" className="font-display" fontSize="40" fill="var(--color-tamil-gold)">அ</text>
                 </svg>
               </div>
 
@@ -173,11 +173,11 @@ export function TechnicalTamilSection({ locale }: { locale: Locale }) {
                 TRADITIONAL KNOWLEDGE + MODERN TECHNOLOGY
               </div>
 
-              <h4 className="font-tamil-display text-3xl mb-6 text-[var(--color-tamil-red)]">
+              <h4 className="font-display text-3xl mb-6 text-[var(--color-tamil-red)]">
                 {locale === 'ta' ? 'அரசு உள்ளடக்கத்தில் AI சிக்கல்கள்' : 'AI in Government Content'}
               </h4>
               
-              <p className="font-tamil-sans text-white/80 text-base leading-loose mb-8 text-pretty">
+              <p className="font-sans text-white/80 text-base leading-loose mb-8 text-pretty">
                 {locale === 'ta'
                   ? 'AI உருவாக்கும் தமிழ் உள்ளடக்கங்களில் உள்ள பிழைகள் மற்றும் பண்பாட்டுத் தவறுகளை ஆய்வு செய்து சீரமைக்கும் பணிகள் துறை அளவில் கவனிக்கப்படுகின்றன.'
                   : 'Addressing the governance concern of AI-generated content accuracy. Implementing scrutiny directions to ensure technical terminology and cultural precision are maintained in digital administrative outputs.'}

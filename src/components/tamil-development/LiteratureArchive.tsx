@@ -53,7 +53,7 @@ export function LiteratureArchive({ locale }: { locale: Locale }) {
           <div className="text-[var(--color-tamil-gold)] font-bold tracking-[0.2em] uppercase text-sm mb-4">
             {locale === 'ta' ? 'இலக்கிய மரபு' : 'Literary Memory'}
           </div>
-          <h2 className="font-tamil-display text-4xl md:text-5xl lg:text-6xl text-[var(--color-tamil-red-deep)] mb-6 leading-tight">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-[var(--color-tamil-red-deep)] mb-6 leading-tight">
             {locale === 'ta' ? 'புத்தகங்கள் & படைப்பாளர்கள்' : 'Books, Writers & Literary Memory'}
           </h2>
         </div>
@@ -61,11 +61,11 @@ export function LiteratureArchive({ locale }: { locale: Locale }) {
         {/* --- PART 1: NATIONALISATION OF BOOKS --- */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-32">
           <div>
-            <h3 className="font-tamil-display text-3xl mb-6 border-b border-[var(--color-tamil-ink)]/10 pb-4">
+            <h3 className="font-display text-3xl mb-6 border-b border-[var(--color-tamil-ink)]/10 pb-4">
               {locale === 'ta' ? 'நூல்கள் நாட்டுடைமையாக்கம்' : 'Nationalisation of Books'}
             </h3>
             
-            <p className="font-tamil-sans text-lg opacity-80 leading-relaxed mb-8">
+            <p className="font-sans text-lg opacity-80 leading-relaxed mb-8">
               {locale === 'ta' 
                 ? 'மாநிலத்தின் கொள்கை விளக்கக் குறிப்பு அடிப்படையில், சிறந்த தமிழ் அறிஞர்களின் படைப்புகளை அரசு நாட்டுடைமையாக்குகிறது.'
                 : 'Based on the state policy note baseline, the government nationalises the works of distinguished Tamil scholars to preserve them for the public domain.'}
@@ -73,7 +73,7 @@ export function LiteratureArchive({ locale }: { locale: Locale }) {
 
             <div className="grid grid-cols-2 gap-8 mt-12">
               <div className="border-l-2 border-[var(--color-tamil-red)] pl-4">
-                <div className="font-tamil-display text-5xl font-bold mb-1">189</div>
+                <div className="font-display text-5xl font-bold mb-1">189</div>
                 <div className="text-xs uppercase tracking-widest opacity-50 mb-2">
                   {locale === 'ta' ? 'வரலாற்று அறிஞர்கள்' : 'Historical Scholars'}
                 </div>
@@ -82,7 +82,7 @@ export function LiteratureArchive({ locale }: { locale: Locale }) {
                 </div>
               </div>
               <div className="border-l-2 border-[var(--color-tamil-gold)] pl-4">
-                <div className="font-tamil-display text-5xl font-bold mb-1">9</div>
+                <div className="font-display text-5xl font-bold mb-1">9</div>
                 <div className="text-xs uppercase tracking-widest opacity-50 mb-2">
                   {locale === 'ta' ? 'அறிஞர்கள்' : 'Scholars'}
                 </div>
@@ -93,7 +93,7 @@ export function LiteratureArchive({ locale }: { locale: Locale }) {
             </div>
 
             <div className="mt-12 p-6 bg-[var(--color-tamil-white)] border border-[var(--color-tamil-ink)]/10 rounded-sm">
-              <div className="font-tamil-display text-3xl font-bold text-[var(--color-tamil-red)] mb-1">₹91.35 <span className="text-xl text-[var(--color-tamil-ink)]">{locale === 'ta' ? 'லட்சம்' : 'Lakh'}</span></div>
+              <div className="font-display text-3xl font-bold text-[var(--color-tamil-red)] mb-1">₹91.35 <span className="text-xl text-[var(--color-tamil-ink)]">{locale === 'ta' ? 'லட்சம்' : 'Lakh'}</span></div>
               <div className="text-xs uppercase tracking-widest opacity-60">
                 {locale === 'ta' ? 'வழங்கப்பட்ட ராயல்டி' : 'Royalty Disbursed'}
               </div>

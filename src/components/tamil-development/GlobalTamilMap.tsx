@@ -103,7 +103,7 @@ export function GlobalTamilMap({ locale }: { locale: Locale }) {
       className="text-center"
     >
       <div ref={containerRef} className="mt-8 flex flex-col items-center relative w-full">
-        <p className="font-tamil-sans text-lg md:text-xl max-w-2xl text-[var(--color-tamil-gold-soft)]/90 mb-12 text-balance leading-relaxed">
+        <p className="font-sans text-lg md:text-xl max-w-2xl text-[var(--color-tamil-gold-soft)]/90 mb-12 text-balance leading-relaxed">
           {locale === 'ta' 
             ? 'தமிழர்கள் எங்கெல்லாம் வாழ்கிறார்களோ, அங்கெல்லாம் தமிழ் தலைமுறைகளையும், கலாச்சாரங்களையும், சமூகங்களையும் தொடர்ந்து இணைக்கிறது.' 
             : 'Wherever Tamils live, Tamil continues to connect generations, cultures and communities.'}
@@ -170,7 +170,7 @@ export function GlobalTamilMap({ locale }: { locale: Locale }) {
           <Stat text={locale === 'ta' ? 'புலம்பெயர் அறிஞர்கள்' : 'Diaspora Scholars'} />
           <Stat text={locale === 'ta' ? 'மாநாடுகள்' : 'Conferences'} />
           <div className="flex flex-col items-center justify-center p-4">
-            <span className="font-tamil-sans font-medium text-white text-lg">{locale === 'ta' ? 'உலகத் தமிழ் மாநாடு' : 'World Tamil Conference'}</span>
+            <span className="font-sans font-medium text-white text-lg">{locale === 'ta' ? 'உலகத் தமிழ் மாநாடு' : 'World Tamil Conference'}</span>
             <span className="text-[0.55rem] bg-white/10 px-2 py-0.5 rounded mt-1 font-bold tracking-widest text-[var(--color-tamil-gold)]">{locale === 'ta' ? 'முன்மொழியப்பட்டது / அறிக்கப்பட்டது' : 'PROPOSED / REPORTED'}</span>
           </div>
         </div>
@@ -182,7 +182,7 @@ export function GlobalTamilMap({ locale }: { locale: Locale }) {
 function Stat({ text }: { text: string }) {
   return (
     <div className="flex flex-col items-center justify-center p-4">
-      <span className="font-tamil-sans font-medium text-white text-lg">{text}</span>
+      <span className="font-sans font-medium text-white text-lg">{text}</span>
     </div>
   );
 }

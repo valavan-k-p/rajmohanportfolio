@@ -74,14 +74,14 @@ function InstitutionCard({ title, tags, imageColor, imageSrc, locale }: { title:
           />
         ) : (
           <div className="w-full h-full border border-[var(--color-tamil-ink)]/10 flex items-center justify-center transition-transform duration-1000 group-hover:scale-105 m-6">
-            <div className="font-tamil-display text-4xl opacity-20 text-[var(--color-tamil-ink)] font-bold tracking-widest uppercase">
+            <div className="font-display text-4xl opacity-20 text-[var(--color-tamil-ink)] font-bold tracking-widest uppercase">
               {locale === 'ta' ? 'ஆவணகம்' : 'ARCHIVE'}
             </div>
           </div>
         )}
       </div>
       <div className="p-8 flex-1 flex flex-col">
-        <h4 className="font-tamil-display text-2xl font-bold mb-6">{title}</h4>
+        <h4 className="font-display text-2xl font-bold mb-6">{title}</h4>
         <div className="flex flex-wrap gap-2 mt-auto">
           {tags.map((tag) => (
             <span key={tag} className="text-xs font-bold uppercase tracking-widest text-[var(--color-tamil-ink)]/60 bg-[var(--color-tamil-ink)]/5 px-2 py-1 rounded">

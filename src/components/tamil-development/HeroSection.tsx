@@ -90,7 +90,7 @@ export function HeroSection({ locale }: { locale: Locale }) {
               >
                 ←
               </span>
-              <span className="font-serif tracking-wider text-xs sm:text-sm hidden xs:inline drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
+              <span className="font-display tracking-wider text-xs sm:text-sm hidden xs:inline drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
                 {isTa ? 'முகப்பு' : 'Home'}
               </span>
             </Link>
