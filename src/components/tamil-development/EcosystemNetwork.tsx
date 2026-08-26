@@ -187,8 +187,8 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
     const angle = (i * 2 * Math.PI) / totalNodes;
     // Using an ellipse (Rx=42, Ry=45) to fit the 1400x1000 container well
     return {
-      x: 42 * Math.sin(angle),
-      y: -45 * Math.cos(angle)
+      x: parseFloat((42 * Math.sin(angle)).toFixed(2)),
+      y: parseFloat((-45 * Math.cos(angle)).toFixed(2))
     };
   });
 
