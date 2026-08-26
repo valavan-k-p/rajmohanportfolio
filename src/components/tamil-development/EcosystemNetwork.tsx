@@ -199,6 +199,7 @@ export function EcosystemNetwork({ locale }: { locale: Locale }) {
       category="THE DEPARTMENT"
       title={title}
       bgVariant="paper"
+      className="bg-[url('/images/tamil-development/bg.png')] bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:bg-[var(--color-tamil-paper)] before:opacity-85 before:z-0"
     >
       <div ref={containerRef} className="relative mt-8 md:mt-16 pb-12 w-full flex justify-center overflow-visible">
         
