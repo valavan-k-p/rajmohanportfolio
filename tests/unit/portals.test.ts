@@ -1,82 +1,93 @@
 import { describe, expect, it } from 'vitest';
-import { PORTALS, resolveArrowTarget } from '@/config/portals';
+import { PORTALS, PORTAL_IDS, getPortal, getPortalBySlug } from '@/config/portals';
+import { PRIMARY_NAV, SOCIAL_LINKS, verifiedSocialLinks } from '@/config/site';
+import { href, swapLocale, withParams } from '@/lib/i18n/href';
+import { locales } from '@/lib/i18n/routing';
 
-/**
- * The master navigation must be fully operable without a mouse — called out in
- * both specifications as a release gate, so it is tested rather than assumed.
- */
-
-const SUBJECT_BAND = { from: 38, to: 63 } as const;
-const pct = (v: string) => Number.parseFloat(v);
-
-describe('portal composition', () => {
-  it('defines exactly four portals in a 2x2 flanking arrangement', () => {
+describe('portals', () => {
+  it('defines exactly the four portals, with unique slugs', () => {
     expect(PORTALS).toHaveLength(4);
-    expect(PORTALS.filter((p) => p.column === 'left')).toHaveLength(2);
-    expect(PORTALS.filter((p) => p.column === 'right')).toHaveLength(2);
-    expect(new Set(PORTALS.map((p) => `${p.column}-${p.row}`)).size).toBe(4);
+    expect(new Set(PORTALS.map((p) => p.slug)).size).toBe(4);
+    expect(PORTALS.map((p) => p.id)).toEqual([...PORTAL_IDS]);
   });
 
-  it('never overlaps the central subject (measured at x 38-63% of the image)', () => {
+  it('gives every portal its own cover image', () => {
+    // The brief forbids reusing one photograph across the portals.
+    expect(new Set(PORTALS.map((p) => p.cover)).size).toBe(PORTALS.length);
+  });
+
+  it('gives every portal its own accent, and no portal borrows another', () => {
+    expect(new Set(PORTALS.map((p) => p.accentVar)).size).toBe(PORTALS.length);
+  });
+
+  it('resolves by id and by slug', () => {
     for (const portal of PORTALS) {
-      const left = pct(portal.position.left);
-      const right = left + pct(portal.position.width);
-      const clears = right <= SUBJECT_BAND.from || left >= SUBJECT_BAND.to;
-      expect(clears, `${portal.id} spans ${left}-${right}%, which enters the subject band`).toBe(
-        true,
-      );
+      expect(getPortal(portal.id)).toBe(portal);
+      expect(getPortalBySlug(portal.slug)).toBe(portal);
     }
+    expect(getPortalBySlug('not-a-portal')).toBeUndefined();
   });
 
-  it('keeps every portal inside the measured flat band (y <= 46% start)', () => {
+  it('carries both languages for every label', () => {
     for (const portal of PORTALS) {
-      expect(pct(portal.position.top)).toBeLessThanOrEqual(46);
+      for (const locale of locales) {
+        expect(portal.title[locale].trim()).not.toBe('');
+        expect(portal.standfirst[locale].trim()).not.toBe('');
+        for (const facet of portal.facets) {
+          expect(facet[locale].trim()).not.toBe('');
+        }
+      }
     }
   });
 });
 
-describe('roving-tabindex arrow navigation', () => {
-  const indexOf = (column: 'left' | 'right', row: 0 | 1) =>
-    PORTALS.findIndex((p) => p.column === column && p.row === row);
+describe('navigation', () => {
+  it('keeps the primary navigation small', () => {
+    // "Keep header minimal. No giant navigation." — brief §11.
+    expect(PRIMARY_NAV.length).toBeLessThanOrEqual(7);
+  });
+});
 
-  const topLeft = indexOf('left', 0);
-  const bottomLeft = indexOf('left', 1);
-  const topRight = indexOf('right', 0);
-  const bottomRight = indexOf('right', 1);
-
-  it('moves down and up within a column', () => {
-    expect(resolveArrowTarget(topLeft, 'ArrowDown')).toBe(bottomLeft);
-    expect(resolveArrowTarget(bottomLeft, 'ArrowUp')).toBe(topLeft);
+describe('locale-prefixed hrefs', () => {
+  it('prefixes every path', () => {
+    expect(href('en', '/news')).toBe('/en/news');
+    expect(href('ta', 'news')).toBe('/ta/news');
+    expect(href('ta')).toBe('/ta');
+    expect(href('en', '/')).toBe('/en');
   });
 
-  it('moves across columns preserving the row', () => {
-    expect(resolveArrowTarget(topLeft, 'ArrowRight')).toBe(topRight);
-    expect(resolveArrowTarget(bottomRight, 'ArrowLeft')).toBe(bottomLeft);
+  it('swaps only the locale segment, keeping the reader in place', () => {
+    expect(swapLocale('/en/school-education/go', 'ta')).toBe('/ta/school-education/go');
+    expect(swapLocale('/ta', 'en')).toBe('/en');
+    expect(swapLocale('/', 'ta')).toBe('/ta');
   });
 
-  it('returns null for a move that would leave the group', () => {
-    expect(resolveArrowTarget(topLeft, 'ArrowUp')).toBeNull();
-    expect(resolveArrowTarget(topLeft, 'ArrowLeft')).toBeNull();
-    expect(resolveArrowTarget(bottomRight, 'ArrowDown')).toBeNull();
-    expect(resolveArrowTarget(bottomRight, 'ArrowRight')).toBeNull();
+  it('drops empty params so URLs stay clean', () => {
+    expect(withParams('/en/news', { category: undefined, page: '2' })).toBe('/en/news?page=2');
+    expect(withParams('/en/news', { category: undefined })).toBe('/en/news');
+  });
+});
+
+describe('official social accounts', () => {
+  it('never publishes a facebook /share/ redirect as an official account', () => {
+    for (const link of verifiedSocialLinks()) {
+      expect(link.url).not.toMatch(/facebook\.com\/share\//);
+    }
   });
 
-  it('every portal is reachable from every other portal', () => {
-    const keys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
-    for (let start = 0; start < PORTALS.length; start += 1) {
-      const seen = new Set<number>([start]);
-      const queue = [start];
-      while (queue.length > 0) {
-        const node = queue.shift()!;
-        for (const key of keys) {
-          const next = resolveArrowTarget(node, key);
-          if (next !== null && !seen.has(next)) {
-            seen.add(next);
-            queue.push(next);
-          }
-        }
-      }
-      expect(seen.size, `portal ${start} cannot reach all others`).toBe(PORTALS.length);
+  it('requires a verification date on every published account', () => {
+    for (const link of verifiedSocialLinks()) {
+      expect(link.verificationDate, `${link.id} is published without a check date`).toBeTruthy();
+    }
+  });
+
+  it('withholds every account that could not be confirmed', () => {
+    const withheld = SOCIAL_LINKS.filter((link) => !link.verified);
+    expect(withheld.length).toBeGreaterThan(0);
+    for (const link of withheld) {
+      expect(verifiedSocialLinks()).not.toContain(link);
+      // An editor needs to know why something is being held back.
+      expect(link.note?.trim()).toBeTruthy();
     }
   });
 });

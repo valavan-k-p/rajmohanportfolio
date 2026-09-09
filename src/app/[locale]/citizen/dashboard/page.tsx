@@ -106,9 +106,9 @@ export default async function CitizenDashboardPage({
 
 function Shell({ heading, children }: { heading: string; children: React.ReactNode }) {
   return (
-    <main id="main" className="min-h-dvh bg-sand-100 px-gutter py-section">
+    <main id="main" className="min-h-dvh bg-paper px-gutter py-section">
       <div className="mx-auto flex max-w-[62rem] flex-col gap-12">
-        <h1 className="font-display text-h1 text-charcoal-900">{heading}</h1>
+        <h1 className="font-display text-h1 text-ink">{heading}</h1>
         {children}
       </div>
     </main>
@@ -130,20 +130,20 @@ function QueryGroup({
 
   return (
     <section aria-labelledby={`group-${id}`}>
-      <h2 id={`group-${id}`} className="u-eyebrow mb-6 text-maroon-700">
+      <h2 id={`group-${id}`} className="u-label mb-6 text-accent">
         {heading}
       </h2>
       <ul className="flex flex-col">
         {rows.map((row) => (
-          <li key={row.id} className="border-b border-sand-300 py-6 last:border-b-0">
+          <li key={row.id} className="border-b border-border py-6 last:border-b-0">
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div className="flex flex-col gap-1">
-                <span className="u-tabular text-meta text-maroon-700">
+                <span className="u-tabular text-small text-accent">
                   {row.reference_number}
                 </span>
-                <span className="font-display text-h3 text-charcoal-900">{row.subject}</span>
+                <span className="font-display text-h3 text-ink">{row.subject}</span>
                 {row.departments ? (
-                  <span className="text-meta text-charcoal-700">
+                  <span className="text-small text-ink-muted">
                     {locale === 'ta' ? row.departments.name_ta : row.departments.name_en}
                   </span>
                 ) : null}

@@ -145,13 +145,13 @@ export function OtpLoginForm({ locale }: { readonly locale: 'en' | 'ta' }) {
     window.location.assign(`/${locale}/citizen/dashboard`);
   }, [phone, code, post, locale]);
 
-  const label = 'mb-2 block text-meta font-medium text-charcoal-900';
+  const label = 'mb-2 block text-small font-medium text-ink';
   const field =
-    'w-full min-h-[48px] rounded-[2px] border border-sand-300 bg-white px-4 py-3 ' +
-    'text-body text-charcoal-900 placeholder:text-charcoal-500';
+    'w-full min-h-[48px] rounded-[2px] border border-border bg-white px-4 py-3 ' +
+    'text-body text-ink placeholder:text-ink-faint';
   const button =
-    'inline-flex min-h-[48px] items-center justify-center rounded-[2px] bg-maroon-700 ' +
-    'px-6 py-3 text-meta font-medium text-white transition-opacity duration-[160ms] ' +
+    'inline-flex min-h-[48px] items-center justify-center rounded-[2px] bg-accent ' +
+    'px-6 py-3 text-small font-medium text-white transition-opacity duration-[160ms] ' +
     'hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50';
 
   return (
@@ -168,7 +168,7 @@ export function OtpLoginForm({ locale }: { readonly locale: 'en' | 'ta' }) {
           screen readers drop announcements. */}
       <div role="alert" aria-live="polite" className="min-h-[1.5rem]">
         {error ? (
-          <p className="flex items-start gap-2 text-meta text-maroon-700">
+          <p className="flex items-start gap-2 text-small text-accent">
             <span aria-hidden="true">&#9888;</span>
             <span>{MESSAGES[error][ta ? 'ta' : 'en']}</span>
           </p>
@@ -193,7 +193,7 @@ export function OtpLoginForm({ locale }: { readonly locale: 'en' | 'ta' }) {
             className={field}
             placeholder="9876543210"
           />
-          <p id="phone-hint" className="mt-2 text-meta text-charcoal-700">
+          <p id="phone-hint" className="mt-2 text-small text-ink-muted">
             {ta
               ? 'உங்கள் எண்ணுக்கு 6 இலக்கக் குறியீடு அனுப்பப்படும்.'
               : 'A 6-digit code will be sent to this number.'}
@@ -219,7 +219,7 @@ export function OtpLoginForm({ locale }: { readonly locale: 'en' | 'ta' }) {
             onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
             className={`${field} u-tabular tracking-[0.4em]`}
           />
-          <p className="mt-2 text-meta text-charcoal-700">
+          <p className="mt-2 text-small text-ink-muted">
             {ta ? 'அனுப்பப்பட்டது: ' : 'Sent to '}
             {phone}
           </p>
@@ -245,7 +245,7 @@ export function OtpLoginForm({ locale }: { readonly locale: 'en' | 'ta' }) {
           type="button"
           disabled={cooldown > 0 || busy}
           onClick={() => void sendCode()}
-          className="min-h-[44px] text-meta text-charcoal-700 underline underline-offset-4 disabled:no-underline disabled:opacity-60"
+          className="min-h-[44px] text-small text-ink-muted underline underline-offset-4 disabled:no-underline disabled:opacity-60"
         >
           {cooldown > 0
             ? ta

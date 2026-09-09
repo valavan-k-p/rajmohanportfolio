@@ -19,7 +19,7 @@ export default async function AdminLoginPage() {
   if (!isSupabaseConfigured) {
     return (
       <>
-        <h1 className="mb-8 font-display text-h1 text-charcoal-900">Sign in</h1>
+        <h1 className="mb-8 font-display text-h1 text-ink">Sign in</h1>
         <EmptyState
           title="Not connected"
           body="Admin sign-in requires Supabase. Set the environment variables and run the migrations."
@@ -34,8 +34,8 @@ export default async function AdminLoginPage() {
 
   return (
     <div className="mx-auto max-w-[26rem]">
-      <h1 className="mb-2 font-display text-h1 text-charcoal-900">Sign in</h1>
-      <p className="mb-8 text-meta text-charcoal-700">Staff access only.</p>
+      <h1 className="mb-2 font-display text-h1 text-ink">Sign in</h1>
+      <p className="mb-8 text-small text-ink-muted">Staff access only.</p>
       <AdminLoginForm />
     </div>
   );

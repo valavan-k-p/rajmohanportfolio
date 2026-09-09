@@ -179,31 +179,31 @@ export function QuerySubmissionForm({
 
   const detailsValid = subject.trim().length >= 3 && description.trim().length >= 10;
 
-  const label = 'mb-2 block text-meta font-medium text-charcoal-900';
+  const label = 'mb-2 block text-small font-medium text-ink';
   const field =
-    'w-full min-h-[48px] rounded-[2px] border border-sand-300 bg-white px-4 py-3 ' +
-    'text-body text-charcoal-900';
+    'w-full min-h-[48px] rounded-[2px] border border-border bg-white px-4 py-3 ' +
+    'text-body text-ink';
   const primary =
-    'inline-flex min-h-[48px] items-center justify-center rounded-[2px] bg-maroon-700 ' +
-    'px-6 py-3 text-meta font-medium text-white transition-opacity duration-[160ms] ' +
+    'inline-flex min-h-[48px] items-center justify-center rounded-[2px] bg-accent ' +
+    'px-6 py-3 text-small font-medium text-white transition-opacity duration-[160ms] ' +
     'hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50';
   const secondary =
     'inline-flex min-h-[48px] items-center justify-center rounded-[2px] border ' +
-    'border-maroon-600 px-6 py-3 text-meta text-maroon-700';
+    'border-accent px-6 py-3 text-small text-accent';
 
   if (step === 'done' && reference) {
     return (
-      <div className="flex max-w-[36rem] flex-col gap-4 border border-sand-300 bg-white p-8">
+      <div className="flex max-w-[36rem] flex-col gap-4 border border-border bg-white p-8">
         <h3
           ref={headingRef}
           tabIndex={-1}
-          className="font-display text-h2 text-charcoal-900 outline-none"
+          className="font-display text-h2 text-ink outline-none"
         >
           {t('successTitle')}
         </h3>
-        <p className="u-eyebrow text-maroon-700">{t('reference')}</p>
-        <p className="u-tabular text-h2 font-display text-maroon-800">{reference}</p>
-        <p className="u-measure text-body text-charcoal-700">{t('keepReference')}</p>
+        <p className="u-label text-accent">{t('reference')}</p>
+        <p className="u-tabular text-h2 font-display text-accent-hover">{reference}</p>
+        <p className="max-w-text text-body text-ink-muted">{t('keepReference')}</p>
         <a
           href={`/${locale}/citizen/dashboard`}
           className={`${primary} w-fit no-underline`}
@@ -227,7 +227,7 @@ export function QuerySubmissionForm({
       className="flex w-full max-w-[36rem] flex-col gap-6"
     >
       {/* Progress is announced as text, never by colour alone. */}
-      <p className="u-eyebrow text-charcoal-700">
+      <p className="u-label text-ink-muted">
         {locale === 'ta' ? 'படி' : 'Step'}{' '}
         {step === 'details' ? 1 : step === 'attachments' ? 2 : 3} / 3
       </p>
@@ -235,7 +235,7 @@ export function QuerySubmissionForm({
       <h3
         ref={headingRef}
         tabIndex={-1}
-        className="font-display text-h3 text-charcoal-900 outline-none"
+        className="font-display text-h3 text-ink outline-none"
       >
         {step === 'details'
           ? t('description')
@@ -246,7 +246,7 @@ export function QuerySubmissionForm({
 
       <div role="alert" aria-live="polite" className="min-h-[1.5rem]">
         {message ? (
-          <p className="flex items-start gap-2 text-meta text-maroon-700">
+          <p className="flex items-start gap-2 text-small text-accent">
             <span aria-hidden="true">&#9888;</span>
             <span>{message}</span>
           </p>
@@ -334,23 +334,23 @@ export function QuerySubmissionForm({
               onChange={(e) => addFiles(e.target.files)}
               className={field}
             />
-            <p className="mt-2 text-meta text-charcoal-700">
+            <p className="mt-2 text-small text-ink-muted">
               JPEG, PNG, WebP, PDF · max 10 MB · up to 5
             </p>
           </div>
 
           {files.length > 0 ? (
-            <ul className="flex flex-col border-t border-sand-300">
+            <ul className="flex flex-col border-t border-border">
               {files.map((file, index) => (
                 <li
                   key={`${file.name}-${index}`}
-                  className="flex items-center justify-between gap-4 border-b border-sand-300 py-3"
+                  className="flex items-center justify-between gap-4 border-b border-border py-3"
                 >
-                  <span className="text-meta text-charcoal-900">{file.name}</span>
+                  <span className="text-small text-ink">{file.name}</span>
                   <button
                     type="button"
                     onClick={() => setFiles((c) => c.filter((_, i) => i !== index))}
-                    className="min-h-[44px] text-meta text-maroon-700 underline underline-offset-4"
+                    className="min-h-[44px] text-small text-accent underline underline-offset-4"
                   >
                     {locale === 'ta' ? 'நீக்கு' : 'Remove'}
                   </button>
@@ -362,27 +362,27 @@ export function QuerySubmissionForm({
       ) : null}
 
       {step === 'review' ? (
-        <dl className="flex flex-col gap-4 border border-sand-300 bg-white p-6">
+        <dl className="flex flex-col gap-4 border border-border bg-white p-6">
           <div>
-            <dt className="u-eyebrow text-charcoal-700">{t('subject')}</dt>
-            <dd className="text-body text-charcoal-900">{subject}</dd>
+            <dt className="u-label text-ink-muted">{t('subject')}</dt>
+            <dd className="text-body text-ink">{subject}</dd>
           </div>
           <div>
-            <dt className="u-eyebrow text-charcoal-700">{t('description')}</dt>
-            <dd className="u-measure whitespace-pre-wrap text-body text-charcoal-900">
+            <dt className="u-label text-ink-muted">{t('description')}</dt>
+            <dd className="max-w-text whitespace-pre-wrap text-body text-ink">
               {description}
             </dd>
           </div>
           {location ? (
             <div>
-              <dt className="u-eyebrow text-charcoal-700">{t('location')}</dt>
-              <dd className="text-body text-charcoal-900">{location}</dd>
+              <dt className="u-label text-ink-muted">{t('location')}</dt>
+              <dd className="text-body text-ink">{location}</dd>
             </div>
           ) : null}
           {files.length > 0 ? (
             <div>
-              <dt className="u-eyebrow text-charcoal-700">{t('attachments')}</dt>
-              <dd className="text-body text-charcoal-900">
+              <dt className="u-label text-ink-muted">{t('attachments')}</dt>
+              <dd className="text-body text-ink">
                 {files.map((f) => f.name).join(', ')}
               </dd>
             </div>

@@ -81,9 +81,9 @@ export function QueryTracker({ locale }: { readonly locale: 'en' | 'ta' }) {
     }
   }, [reference, last4, ta]);
 
-  const label = 'mb-2 block text-meta font-medium text-charcoal-900';
+  const label = 'mb-2 block text-small font-medium text-ink';
   const field =
-    'w-full min-h-[48px] rounded-[2px] border border-sand-300 bg-white px-4 py-3 text-body text-charcoal-900';
+    'w-full min-h-[48px] rounded-[2px] border border-border bg-white px-4 py-3 text-body text-ink';
 
   return (
     <div className="flex w-full max-w-[36rem] flex-col gap-6">
@@ -97,7 +97,7 @@ export function QueryTracker({ locale }: { readonly locale: 'en' | 'ta' }) {
       >
         <div role="alert" aria-live="polite" className="min-h-[1.5rem]">
           {error ? (
-            <p className="flex items-start gap-2 text-meta text-maroon-700">
+            <p className="flex items-start gap-2 text-small text-accent">
               <span aria-hidden="true">&#9888;</span>
               <span>{error}</span>
             </p>
@@ -136,29 +136,29 @@ export function QueryTracker({ locale }: { readonly locale: 'en' | 'ta' }) {
         <button
           type="submit"
           disabled={busy}
-          className="inline-flex min-h-[48px] w-fit items-center rounded-[2px] bg-maroon-700 px-6 py-3 text-meta font-medium text-white disabled:opacity-50"
+          className="inline-flex min-h-[48px] w-fit items-center rounded-[2px] bg-accent px-6 py-3 text-small font-medium text-white disabled:opacity-50"
         >
           {busy ? (ta ? 'தேடுகிறது…' : 'Checking…') : ta ? 'நிலையைக் காண்க' : 'Check status'}
         </button>
       </form>
 
       {result ? (
-        <dl className="flex flex-col gap-4 border border-sand-300 bg-white p-6">
+        <dl className="flex flex-col gap-4 border border-border bg-white p-6">
           <div>
-            <dt className="u-eyebrow text-charcoal-700">{ta ? 'குறிப்பு' : 'Reference'}</dt>
-            <dd className="u-tabular text-body text-charcoal-900">{result.referenceNumber}</dd>
+            <dt className="u-label text-ink-muted">{ta ? 'குறிப்பு' : 'Reference'}</dt>
+            <dd className="u-tabular text-body text-ink">{result.referenceNumber}</dd>
           </div>
           <div>
-            <dt className="u-eyebrow text-charcoal-700">{ta ? 'நிலை' : 'Status'}</dt>
-            <dd className="font-display text-h3 text-maroon-800">
+            <dt className="u-label text-ink-muted">{ta ? 'நிலை' : 'Status'}</dt>
+            <dd className="font-display text-h3 text-accent-hover">
               {STATUS_LABELS[result.status][locale]}
             </dd>
           </div>
           <div>
-            <dt className="u-eyebrow text-charcoal-700">
+            <dt className="u-label text-ink-muted">
               {ta ? 'சமர்ப்பிக்கப்பட்டது' : 'Submitted'}
             </dt>
-            <dd className="u-tabular text-body text-charcoal-900">
+            <dd className="u-tabular text-body text-ink">
               {new Date(result.submittedAt).toLocaleDateString(ta ? 'ta-IN' : 'en-IN')}
             </dd>
           </div>

@@ -1,273 +1,560 @@
 @import 'tailwindcss';
 
 /* ==========================================================================
-   RAJMOHAN PUBLIC PORTAL — DESIGN TOKENS
-   Authority: design-system/MASTER.md
-   Core colours sampled from public/images/navigation.jpeg, then adjusted only
-   as far as the 7:1 contrast floor required. Ratios are recorded in MASTER.md §1.3.
+   RAJMOHAN ARUMUGAM — DIGITAL OFFICE
+   Design tokens. Authority: docs/REDESIGN-PLAN.md §7.
+
+   One paper ground, one ink, one accent, hairline rules. Colour is scarce on
+   purpose: hierarchy is carried by type, space and rules, never by decoration.
    ========================================================================== */
 
 @theme {
-  /* --- Sand: sampled from the sky and stone of the navigation asset --- */
-  --color-sand-50: #fffbf0;
-  --color-sand-100: #fff6d9; /* sampled sky — primary editorial ground */
-  --color-sand-200: #f7ddb4; /* sampled building stone */
-  --color-sand-300: #e9c48f;
+  /* ------------------------------------------------------------------ *
+   * COLOUR
+   * Contrast ratios are against --color-paper unless noted. Every pairing
+   * used for text clears WCAG AA; body ink clears AAA.
+   * ------------------------------------------------------------------ */
 
-  /* --- Maroon: flag hue, deepened to clear 7:1 --- */
-  --color-maroon-500: #b3241a; /*  6.10:1 on sand — large text only */
-  --color-maroon-600: #96170f; /*  8.01:1 on sand */
-  --color-maroon-700: #7a100b; /* 10.19:1 on sand */
-  --color-maroon-800: #5e0b08; /* 12.73:1 on sand */
+  /* Grounds */
+  --color-paper: #fcfbf8; /* page background — warm, not white          */
+  --color-surface: #ffffff; /* raised blocks, tables, document rows      */
+  --color-surface-sunken: #f4f2ec; /* tinted bands, filter bars         */
+  --color-ink-ground: #1b1a17; /* inverted sections (footer, hero scrim) */
 
-  /* --- Yellow: fills and markers. NEVER carries text on light. --- */
-  --color-yellow-400: #fed427; /* 1.33:1 on sand — decorative only */
-  --color-yellow-600: #c9a200; /* the only yellow safe as a hairline */
+  /* Ink */
+  --color-ink: #1b1a17; /* 15.9:1 — body and headings                   */
+  --color-ink-muted: #57534a; /*  7.4:1 — standfirsts, summaries        */
+  --color-ink-faint: #6f6a5f; /*  5.1:1 — metadata, captions, labels    */
+  --color-ink-inverse: #f6f4ef; /* text on --color-ink-ground           */
+  --color-ink-inverse-muted: #b5afa2;
 
-  /* --- Charcoal: sampled from the crowd, lifted off pure black --- */
-  --color-charcoal-900: #1a1714; /* 16.52:1 on sand — body */
-  --color-charcoal-700: #3a342d; /* 11.37:1 on sand — secondary */
-  --color-charcoal-500: #6b625a; /* metadata on white only */
+  /* Rules — never carry text */
+  --color-border: #e4e0d6; /* hairline, the default divider             */
+  --color-border-strong: #c8c2b4; /* table heads, active filter        */
 
-  /* --- Emblem colours: photograph and emblem ONLY, never UI --- */
-  --color-emblem-red: #fe4933;
-  --color-emblem-yellow: #fed427;
+  /* Accent — a single deep maroon. Used for links, active state and the
+     rare emphasis rule. Never as a large fill. */
+  --color-accent: #8a1c13; /* 10.4:1 — links, active nav               */
+  --color-accent-hover: #6d150e; /* 13.2:1                             */
+  --color-accent-soft: #f5eae8; /* the only accent fill permitted      */
 
-  /* --- Typography --- */
-  --font-display: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
-  --font-serif-editorial: var(--font-cormorant), var(--font-instrument-serif), Georgia, serif;
-  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-tamil-display: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
-  --font-tamil-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+  /* Portal accents. Each portal gets one editorial personality, expressed
+     ONLY as a 2px rule and an eyebrow colour. All are dark enough to carry
+     text on paper (>= 7:1) so they never need a second variant. */
+  --color-portal-education: #1f3a5f; /*  9.9:1 — institutional blue    */
+  --color-portal-tamil: #7a1d2b; /* 10.5:1 — literary oxblood          */
+  --color-portal-information: #33302a; /* 12.7:1 — newsroom graphite   */
+  --color-portal-egmore: #1d4635; /* 10.1:1 — civic green              */
 
-  --text-display: clamp(3.75rem, 8vw, 7.5rem);
-  --text-h1: clamp(2.85rem, 5.5vw, 4.5rem);
-  --text-h2: clamp(2.125rem, 3.6vw, 3.125rem);
-  --text-h3: clamp(1.55rem, 2vw, 2rem);
-  --text-lead: clamp(1.25rem, 1.6vw, 1.55rem);
-  --text-body: 1.1875rem;
-  --text-meta: 0.975rem;
-  --text-micro: 0.85rem;
+  /* Status — meaning is always carried by text as well as colour */
+  --color-status-ok: #1d5c3a;
+  --color-status-pending: #7a5a12;
+  --color-status-alert: #8a1c13;
 
-  /* --- Spacing: 8px base, no values between --- */
-  --spacing-gutter: clamp(1rem, 4vw, 2.5rem);
-  --spacing-section: clamp(4rem, 9vw, 8rem);
+  /* ------------------------------------------------------------------ *
+   * TYPOGRAPHY
+   * Two families, each with its Tamil companion declared INSIDE the same
+   * stack. A Tamil string on an English page therefore renders in the
+   * matching companion face, with no per-string class needed.
+   * ------------------------------------------------------------------ */
+  --font-display:
+    var(--font-source-serif), var(--font-noto-serif-tamil), 'Noto Serif Tamil', Georgia,
+    'Times New Roman', serif;
+  --font-sans:
+    var(--font-inter), var(--font-noto-sans-tamil), 'Noto Sans Tamil', ui-sans-serif, system-ui,
+    -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, monospace;
 
-  /* --- Motion --- */
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out-quart: cubic-bezier(0.65, 0, 0.35, 1);
-  --duration-micro: 160ms;
-  --duration-ui: 280ms;
-  --duration-portal: 620ms;
+  /* Scale. Restrained ranges — the largest display type is 64px, not 120px. */
+  --text-display: clamp(2.5rem, 1.6rem + 3.4vw, 4rem);
+  --text-h1: clamp(2rem, 1.5rem + 2vw, 3rem);
+  --text-h2: clamp(1.5rem, 1.25rem + 1.1vw, 2rem);
+  --text-h3: clamp(1.1875rem, 1.1rem + 0.4vw, 1.375rem);
+  --text-lead: clamp(1.125rem, 1.06rem + 0.3vw, 1.3125rem);
+  --text-body: 1.0625rem;
+  --text-small: 0.9375rem;
+  --text-caption: 0.8125rem;
+  --text-label: 0.75rem;
 
-  /* --- Breakpoints (composition-derived, see MASTER.md §4) --- */
+  /* ------------------------------------------------------------------ *
+   * SPACE — 4px base
+   * ------------------------------------------------------------------ */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2.5rem;
+  --spacing-2xl: 4rem;
+  --spacing-3xl: 6rem;
+
+  /* Layout rhythm */
+  --spacing-gutter: clamp(1.25rem, 4vw, 3rem);
+  --spacing-section: clamp(3.5rem, 7vw, 6rem);
+
+  /* Measures — reading widths.
+   *
+   * NAME THESE EXPLICITLY. Tailwind resolves `max-w-<name>` against the
+   * container scale and falls back to the SPACING scale when the name is not
+   * found there. Because this theme defines `--spacing-sm` and friends,
+   * `max-w-sm` silently resolved to 0.75rem — twelve pixels — which is how the
+   * mobile menu sheet shipped 12px wide. Any width utility on this site must
+   * use a name that exists here, or an explicit bracket value. */
+  --container-prose: 39rem; /* ~68ch of body serif                      */
+  --container-text: 52rem;
+  --container-page: 78rem;
+  --container-wide: 90rem;
+  --container-sheet: 24rem; /* the mobile navigation sheet              */
+
+  /* ------------------------------------------------------------------ *
+   * RADIUS + SHADOW — deliberately almost nothing
+   * ------------------------------------------------------------------ */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-image: 2px;
+
+  --shadow-sheet: 0 8px 40px -12px rgb(27 26 23 / 0.28);
+
+  /* ------------------------------------------------------------------ *
+   * MOTION — the entire budget. See docs/REDESIGN-PLAN.md §7.
+   * ------------------------------------------------------------------ */
+  --duration-fast: 120ms;
+  --duration-base: 160ms;
+  --duration-slow: 200ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0.2, 1);
+
+  /* Breakpoints */
   --breakpoint-sm: 30rem;
   --breakpoint-md: 48rem;
   --breakpoint-lg: 64rem;
   --breakpoint-xl: 80rem;
-  --breakpoint-2xl: 96rem;
-
-  /* --- Tamil Development Bespoke Tokens --- */
-  --color-tamil-red: #9e1b11; /* Deep Crimson */
-  --color-tamil-red-deep: #7a110a; /* Darker red for contrast */
-  --color-tamil-gold: #cfa830; /* Warm Golden Yellow */
-  --color-tamil-gold-soft: #e3cc88;
-  --color-tamil-ink: #1c1a17; /* Near-black / Charcoal */
-  --color-tamil-paper: #f2ebd9; /* Warm parchment / ivory / aged-paper tones */
-  --color-tamil-white: #faf7f0; /* Soft cream / warm white */
-  --color-tamil-border: #e3dcc5;
-
-  /* --- Information & Publicity Cinematic Tokens --- */
-  --color-cinematic-bg: #090706;
-  --color-cinematic-maroon: #250806;
-  --color-cinematic-brown: #18110b;
-  --color-cinematic-gold: #c5a059;
-  --color-cinematic-gold-light: #e6c888;
-  --color-cinematic-gold-dim: #8a6c3b;
-  --color-cinematic-ivory: #fbf9f4;
-  --color-cinematic-cream: #efe5d0;
 }
 
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
 @layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   html {
     -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    /* Header height + a little air, so anchor links don't hide under it. */
+    scroll-padding-top: 5.5rem;
   }
 
   body {
-    background-color: var(--color-sand-100);
-    color: var(--color-charcoal-900);
+    margin: 0;
+    background-color: var(--color-paper);
+    color: var(--color-ink);
     font-family: var(--font-sans);
     font-size: var(--text-body);
-    line-height: 1.6;
-    overflow-x: hidden;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    font-feature-settings: 'kern' 1;
   }
 
-  /* All Headings across all 4 Portals & Site: Instrument Serif */
   h1,
   h2,
   h3,
   h4,
   h5,
-  h6,
-  .font-display,
-  .font-tamil-display {
+  h6 {
+    margin: 0;
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
-    line-height: 1.02;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.011em;
     text-wrap: balance;
+    color: var(--color-ink);
   }
 
-  /* Body, Paragraphs, UI across all 4 Portals: Instrument Sans */
   p,
-  .font-sans,
-  .font-tamil-sans {
-    font-family: var(--font-sans);
+  ul,
+  ol,
+  figure,
+  blockquote {
+    margin: 0;
   }
 
-  /* Tamil Language Stack: Headings -> Noto Serif Tamil, Body -> Noto Sans Tamil */
-  :lang(ta),
-  [lang="ta"],
-  .locale-ta {
-    --font-display: var(--font-noto-serif-tamil), serif !important;
-    --font-serif-editorial: var(--font-noto-serif-tamil), serif !important;
-    --font-sans: var(--font-noto-sans-tamil), sans-serif !important;
-    --font-tamil-display: var(--font-noto-serif-tamil), serif !important;
-    --font-tamil-sans: var(--font-noto-sans-tamil), sans-serif !important;
-
-    font-family: var(--font-noto-sans-tamil), sans-serif;
-  }
-
-  :lang(ta) body,
-  [lang="ta"] body,
-  .locale-ta body {
-    font-family: var(--font-noto-sans-tamil), sans-serif;
-    font-size: calc(var(--text-body) * 1.06);
-    line-height: 1.77;
-  }
-
-  /* All Headings in Tamil Mode: Noto Serif Tamil */
-  :lang(ta) h1,
-  :lang(ta) h2,
-  :lang(ta) h3,
-  :lang(ta) h4,
-  :lang(ta) h5,
-  :lang(ta) h6,
-  [lang="ta"] h1,
-  [lang="ta"] h2,
-  [lang="ta"] h3,
-  [lang="ta"] h4,
-  [lang="ta"] h5,
-  [lang="ta"] h6,
-  .locale-ta h1,
-  .locale-ta h2,
-  .locale-ta h3,
-  .locale-ta h4,
-  .locale-ta h5,
-  .locale-ta h6,
-  :lang(ta) .font-display,
-  [lang="ta"] .font-display,
-  .locale-ta .font-display,
-  :lang(ta) .font-serif,
-  [lang="ta"] .font-serif,
-  .locale-ta .font-serif,
-  :lang(ta) .font-serif-editorial,
-  [lang="ta"] .font-serif-editorial,
-  .locale-ta .font-serif-editorial,
-  :lang(ta) .font-tamil-display,
-  [lang="ta"] .font-tamil-display,
-  .locale-ta .font-tamil-display {
-    font-family: var(--font-noto-serif-tamil), serif !important;
+  /* ---------------------------------------------------------------- *
+   * TAMIL
+   *
+   * Tamil glyphs sit smaller on the em than Latin and stack taller, so the
+   * script needs slightly more size and considerably more leading to read
+   * at the same comfort. Three rules do that, and one trap has to be
+   * avoided while doing it.
+   *
+   * THE TRAP: `lang` is inherited, so `:lang(ta)` matches every descendant
+   * of the locale wrapper, not just the wrapper. A relative `font-size`
+   * there compounds once per nesting level — a paragraph six levels deep
+   * rendered 21% larger than the same paragraph near the top of the page,
+   * and the size varied by page. The size bump is therefore applied ONCE,
+   * on the locale root, in `rem`, and inherits from there.
+   * ---------------------------------------------------------------- */
+  [data-locale-root='ta'] {
+    /* Bumped against the root, not the parent. Cannot compound. */
+    font-size: 1.0625rem;
+    line-height: 1.8;
     letter-spacing: 0;
-    line-height: 1.28;
   }
 
-  /* Body, Paragraphs, UI, Buttons, Navigation, Labels in Tamil Mode: Noto Sans Tamil */
-  :lang(ta) p,
-  :lang(ta) a:not(.font-display):not(.font-serif-editorial):not(.font-tamil-display),
-  :lang(ta) button,
-  :lang(ta) input,
-  :lang(ta) textarea,
-  :lang(ta) select,
-  :lang(ta) label,
-  :lang(ta) li,
-  :lang(ta) td,
-  :lang(ta) th,
-  [lang="ta"] p,
-  [lang="ta"] a:not(.font-display):not(.font-serif-editorial):not(.font-tamil-display),
-  [lang="ta"] button,
-  [lang="ta"] input,
-  [lang="ta"] textarea,
-  [lang="ta"] select,
-  [lang="ta"] label,
-  [lang="ta"] li,
-  [lang="ta"] td,
-  [lang="ta"] th,
-  .locale-ta p,
-  .locale-ta a:not(.font-display):not(.font-serif-editorial):not(.font-tamil-display),
-  .locale-ta button,
-  .locale-ta input,
-  .locale-ta textarea,
-  .locale-ta select,
-  .locale-ta label,
-  .locale-ta li,
-  .locale-ta td,
-  .locale-ta th,
-  :lang(ta) .font-sans,
-  [lang="ta"] .font-sans,
-  .locale-ta .font-sans,
-  :lang(ta) .font-tamil-sans,
-  [lang="ta"] .font-tamil-sans,
-  .locale-ta .font-tamil-sans {
-    font-family: var(--font-noto-sans-tamil), sans-serif !important;
+  :lang(ta) {
+    /* Tamil has no hyphenation rules in browsers, and its compound words
+       are long. Without this, a single word can push a column wider than
+       the viewport on a narrow screen. */
+    overflow-wrap: break-word;
   }
 
-  p {
-    text-wrap: pretty;
+  /* ---------------------------------------------------------------- *
+   * LINKS
+   * ---------------------------------------------------------------- */
+  a {
+    color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    transition:
+      color var(--duration-fast) var(--ease-standard),
+      text-decoration-color var(--duration-fast) var(--ease-standard);
   }
 
-  /* Focus is always visible. MASTER.md §7 — never removed without an
-     equal-or-better replacement. */
+  /* ---------------------------------------------------------------- *
+   * FOCUS — always visible, never removed
+   * ---------------------------------------------------------------- */
   :focus-visible {
-    outline: 2px solid var(--color-maroon-700);
+    outline: 2px solid var(--color-accent);
     outline-offset: 2px;
-    border-radius: 2px;
+    border-radius: 1px;
+  }
+
+  .u-on-ink :focus-visible,
+  [data-ground='ink'] :focus-visible {
+    outline-color: var(--color-ink-inverse);
+  }
+
+  /* ---------------------------------------------------------------- *
+   * FORMS
+   * ---------------------------------------------------------------- */
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  button {
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+
+  /* ---------------------------------------------------------------- *
+   * MEDIA + TABLES
+   * ---------------------------------------------------------------- */
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--color-border);
+    margin: 0;
   }
 
   ::selection {
-    background-color: var(--color-yellow-400);
-    color: var(--color-charcoal-900); /* 12.46:1 */
-  }
-
-  /* Reduced motion is a supported mode, not a downgrade. Nothing becomes
-     unreachable and no information is lost. MASTER.md §6. */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
+    background: var(--color-accent-soft);
+    color: var(--color-accent-hover);
   }
 }
 
+/* ==========================================================================
+   UTILITIES — the few patterns that recur everywhere
+   ========================================================================== */
+
 @layer utilities {
-  /* Eyebrow / index numeral treatment — used by the master nav portals. */
-  .u-eyebrow {
-    font-size: var(--text-micro);
+  /* An eyebrow / kicker label. Small, tracked, uppercase in Latin — but NOT
+     uppercased in Tamil, where capitalisation does not exist and the
+     transform is a no-op that only distorts tracking. */
+  .u-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 600;
+    letter-spacing: 0.09em;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-variant-numeric: tabular-nums;
+    line-height: 1.4;
+    color: var(--color-ink-faint);
   }
 
-  .u-measure {
-    max-width: 68ch;
+  :lang(ta) .u-label {
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: var(--text-caption);
   }
 
-  .u-tabular {
-    font-variant-numeric: tabular-nums;
+  .u-meta {
+    font-family: var(--font-sans);
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+    line-height: 1.5;
+  }
+
+  /* Editorial prose block — used by article and document bodies. */
+  .u-prose {
+    font-family: var(--font-display);
+    font-size: var(--text-lead);
+    line-height: 1.7;
+    color: var(--color-ink);
+  }
+
+  .u-prose > * + * {
+    margin-top: 1.1em;
+  }
+
+  .u-prose h2 {
+    font-size: var(--text-h2);
+    margin-top: 1.8em;
+  }
+
+  .u-prose h3 {
+    font-size: var(--text-h3);
+    margin-top: 1.6em;
+  }
+
+  .u-prose a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  }
+
+  .u-prose a:hover {
+    color: var(--color-accent-hover);
+    text-decoration-color: currentColor;
+  }
+
+  .u-prose ul,
+  .u-prose ol {
+    padding-left: 1.35em;
+  }
+
+  .u-prose li + li {
+    margin-top: 0.45em;
+  }
+
+  .u-prose blockquote {
+    border-left: 2px solid var(--color-accent);
+    padding-left: 1.1em;
+    font-style: italic;
+    color: var(--color-ink-muted);
+  }
+
+  /*
+   * A 44px touch target, without a 44px visual box.
+   *
+   * WCAG 2.5.8 asks for 24px minimum; 44px is the platform guidance from
+   * both Apple and Google and is what a thumb actually needs. Several links
+   * on this site are correctly small as TYPE — a 13px footer link should
+   * look like a 13px footer link — so this grows the hit area with a
+   * pseudo-element instead of padding the text.
+   *
+   * Requires a positioned ancestor, which every row here already has.
+   */
+  .u-tap {
+    position: relative;
+  }
+
+  .u-tap::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 44px;
+    transform: translateY(-50%);
+    /* Behind the text, so it never intercepts a selection. */
+    z-index: -1;
+  }
+
+  /* Where the control IS the box — buttons, selects, icon links — grow it
+     properly rather than faking it. */
+  .u-tap-box {
+    min-height: 44px;
+  }
+
+  /* Coarse pointers only. On a mouse, a 44px row would space the footer out
+     for no reason. */
+  @media (pointer: coarse) {
+    .u-tap-list > li {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  /* Visually hidden, still announced. */
+  .u-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Covers a card: the whole block becomes the link target while the anchor
+     stays the only focusable element. */
+  .u-stretch::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Horizontal scroll container for wide tables and filter rails. Scrolls
+     itself so the page body never does. */
+  .u-scroll-x {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ==========================================================================
+   TOUCH FORM CONTROLS — DELIBERATELY UNLAYERED
+   ==========================================================================
+
+   iOS Safari zooms the page when a form control smaller than 16px is focused,
+   and it does not zoom back out — the reader is left pinching their way out of
+   a magnified layout after tapping a filter.
+
+   The filter selects and the document search are set at 15px for density on a
+   desktop, using Tailwind's `text-small`. That utility lives in
+   `@layer utilities` and beat this correction while it sat in `@layer base`,
+   so the rule is unlayered: below the tablet breakpoint, 16px wins.
+   ========================================================================== */
+
+@media (max-width: 47.99rem) {
+  input,
+  select,
+  textarea {
+    font-size: 1rem;
+  }
+}
+
+/* ==========================================================================
+   TAMIL SCRIPT CORRECTIONS — DELIBERATELY UNLAYERED
+   ==========================================================================
+
+   These rules sit outside every `@layer`, which means they beat Tailwind's
+   utilities no matter how specific the utility is. That is the point, and it
+   is the only place in this stylesheet that does it.
+
+   Tailwind's `tracking-*` and `leading-*` utilities are tuned for Latin. Two
+   of them were being applied to Tamil headings with results that are not a
+   matter of taste:
+
+     - `tracking-[-0.02em]` on the display heading resolved to -0.8px of
+       letter-spacing. Tamil combining vowel signs (ெ ே ை ொ ோ) hang off the
+       side of their consonant; negative tracking slides them into the
+       neighbouring glyph.
+     - `leading-[1.06]` gave a 40px Tamil heading 42px of line box. Tamil
+       stacks marks both above and below the baseline, so ascenders and
+       descenders of adjacent lines overlapped.
+
+   Inside `@layer base` these corrections lost to the utilities every time.
+   Unlayered, they win — while still only touching leading and tracking, so
+   the type scale, weight and colour set by utilities all still apply.
+   ========================================================================== */
+
+:lang(ta) {
+  /* Never inherit Latin display tracking into Tamil. */
+  letter-spacing: 0;
+}
+
+:lang(ta) h1,
+:lang(ta) h2,
+:lang(ta) h3,
+:lang(ta) h4,
+:lang(ta) h5,
+:lang(ta) h6,
+:lang(ta) .font-display {
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+/* Dense contexts get the leading back down: a table row or a metadata line
+   at the body's 1.8 reads as though it has fallen apart. */
+:lang(ta) th,
+:lang(ta) td,
+:lang(ta) .u-meta,
+:lang(ta) .u-label,
+:lang(ta) .u-tap-list {
+  line-height: 1.55;
+}
+
+/* Editorial prose is the one place Tamil takes MORE leading, not less —
+   these are the longest continuous passages on the site. */
+:lang(ta) .u-prose {
+  line-height: 1.85;
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   The site is authored to be correct with every transition removed. This
+   block is the guarantee, not a nicety.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   PRINT — documents and articles must print cleanly
+   ========================================================================== */
+
+@media print {
+  [data-print='hide'] {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+  }
+
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 9pt;
+    color: #444;
   }
 }

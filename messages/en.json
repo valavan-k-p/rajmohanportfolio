@@ -1,47 +1,10 @@
 {
   "site": {
-    "name": "Rajmohan Arumugam · ராஜ்மோகன் ஆறுமுகம்",
-    "shortName": "Rajmohan",
+    "name": "Rajmohan Arumugam",
     "skipToContent": "Skip to main content"
-  },
-  "nav": {
-    "ariaLabel": "Portal navigation",
-    "heading": "Choose a portal",
-    "enterPortal": "Enter the {portal} portal",
-    "portals": {
-      "schoolEducation": {
-        "index": "01",
-        "title": "School Education · பள்ளிக் கல்வி",
-        "meta": "Learning · Students · Future | கற்றல் · மாணவர்கள் · எதிர்காலம்"
-      },
-      "tamilDevelopment": {
-        "index": "02",
-        "title": "Tamil Development · தமிழ் வளர்ச்சி",
-        "meta": "Language · Literature · Heritage | மொழி · இலக்கியம் · பாரம்பரியம்"
-      },
-      "informationPublicity": {
-        "index": "03",
-        "title": "Information & Publicity · தகவல் மற்றும் விளம்பரம்",
-        "meta": "Information · Media · Public Access | தகவல் · ஊடகம் · பொது அணுகல்"
-      },
-      "mlaEgmore": {
-        "index": "04",
-        "title": "MLA Egmore · சட்டமன்ற உறுப்பினர் எழும்பூர்",
-        "meta": "People · Representation · Service | மக்கள் · பிரதிநிதித்துவம் · பணி"
-      }
-    }
-  },
-  "locale": {
-    "switchLabel": "Language",
-    "switchTo": "Switch to {language}"
   },
   "common": {
     "loading": "Loading",
-    "retry": "Try again",
-    "backToNavigation": "Back to portals"
-  },
-  "content": {
-    "unverifiedNotice": "Content pending verification",
-    "unverifiedDescription": "This section is structurally complete. Verified content has not yet been supplied and will not be published until it is."
+    "retry": "Try again"
   }
 }

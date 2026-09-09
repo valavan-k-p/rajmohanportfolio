@@ -28,3 +28,12 @@ next-env.d.ts
 .next-e2e/
 playwright-report/
 test-results/
+
+# Project owner's raw photograph library (~3 GB of camera originals).
+# `npm run images` reads from here and writes the committed derivatives into
+# public/images/. The handwritten client notes in reference/ ARE tracked.
+reference/Pictures/
+
+# Local scratch space
+scratch/
+reference/legacy-assets/

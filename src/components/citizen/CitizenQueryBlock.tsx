@@ -44,10 +44,10 @@ export function CitizenQueryBlock({ department, locale }: CitizenQueryBlockProps
     <section
       id="citizen-query"
       aria-labelledby="citizen-query-heading"
-      className="bg-maroon-800 px-gutter py-section text-white"
+      className="bg-accent-hover px-gutter py-section text-white"
     >
       <div className="mx-auto flex max-w-[62rem] flex-col items-start gap-6">
-        <span aria-hidden="true" className="u-eyebrow text-yellow-400">
+        <span aria-hidden="true" className="u-label text-status-pending">
           {locale === 'ta' ? 'குடிமக்கள் சேவை' : 'Citizen Service'}
         </span>
 
@@ -55,7 +55,7 @@ export function CitizenQueryBlock({ department, locale }: CitizenQueryBlockProps
           {label}
         </h2>
 
-        <p className="u-measure text-lead text-white/80">
+        <p className="max-w-text text-lead text-white/80">
           {locale === 'ta'
             ? 'உங்கள் கோரிக்கை ஒரு தனிப்பட்ட குறிப்பு எண்ணைப் பெறும். அதன் நிலையை நீங்கள் கண்காணிக்கலாம்.'
             : 'Your query receives a unique reference number. You can track its progress at any time.'}
@@ -64,8 +64,8 @@ export function CitizenQueryBlock({ department, locale }: CitizenQueryBlockProps
         <Link
           href={`/${locale}/citizen/queries?department=${department}`}
           className={[
-            'inline-flex min-h-[44px] items-center rounded-[2px] bg-yellow-400 px-6 py-3',
-            'text-meta font-medium text-charcoal-900 no-underline',
+            'inline-flex min-h-[44px] items-center rounded-[2px] bg-accent-soft px-6 py-3',
+            'text-small font-medium text-ink no-underline',
             'transition-opacity duration-[160ms] hover:opacity-90',
           ].join(' ')}
         >

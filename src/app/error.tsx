@@ -3,12 +3,12 @@
 import { useEffect } from 'react';
 
 /**
- * Route-level error boundary. Spec §32.
+ * Route-level error boundary.
  *
- * The `digest` is shown because it is the only thing that links what a citizen
- * saw to what an operator can find in the logs. The error MESSAGE is not shown
- * — it can carry internal detail, and §36 requires that observability never
- * leak information to the public.
+ * The `digest` is shown because it is the only thing that links what a reader
+ * saw to what an operator can find in the logs. The error MESSAGE is not shown:
+ * it can carry internal detail, and observability must never leak information
+ * to the public.
  */
 export default function ErrorBoundary({
   error,
@@ -22,36 +22,50 @@ export default function ErrorBoundary({
   }, [error]);
 
   return (
-    <main id="main" className="flex min-h-dvh items-center bg-sand-100 px-gutter py-section">
-      <div className="mx-auto flex max-w-[46rem] flex-col gap-6">
-        <span aria-hidden="true" className="u-eyebrow text-maroon-700">
-          Error
-        </span>
+    <main id="main" className="flex min-h-dvh items-center bg-paper px-gutter py-section">
+      <div className="mx-auto w-full max-w-text" role="alert">
+        <p className="u-label">Error</p>
 
-        <h1 className="font-display text-h1 text-charcoal-900">Something went wrong</h1>
-        <p lang="ta" className="font-display text-h2 text-charcoal-700">
-          ஏதோ தவறு நடந்தது
+        <h1 className="mt-sm text-h1">Something went wrong</h1>
+        <p lang="ta" className="mt-sm font-display text-h2 text-ink-muted">
+          ஏதோ தவறு நேர்ந்துள்ளது
         </p>
 
-        <p className="u-measure text-lead text-charcoal-700">
-          This page could not be loaded. Your data has not been lost.
+        <p className="mt-lg text-lead text-ink-muted">
+          The page could not be displayed. Trying again may work; if it does not, the
+          reference below will help the office trace what happened.
+        </p>
+        <p lang="ta" className="mt-sm text-ink-muted">
+          இப்பக்கத்தைக் காட்ட முடியவில்லை. மீண்டும் முயற்சிக்கலாம்; அது பலனளிக்கவில்லை எனில்,
+          கீழே உள்ள குறிப்பு எண் அலுவலகத்திற்கு உதவும்.
         </p>
 
-        <div className="flex flex-wrap gap-4">
+        {error.digest ? (
+          <p className="u-meta mt-lg">
+            Reference · குறிப்பு: <span className="font-mono">{error.digest}</span>
+          </p>
+        ) : null}
+
+        <div className="mt-xl flex flex-wrap gap-md">
           <button
             type="button"
             onClick={reset}
-            className="inline-flex min-h-[44px] items-center rounded-[2px] bg-maroon-700 px-6 py-3 text-meta text-white transition-opacity duration-[160ms] hover:opacity-90"
+            className="inline-flex items-center rounded-sm border border-ink bg-ink px-lg py-3 text-small font-medium text-ink-inverse transition-colors duration-fast hover:border-accent-hover hover:bg-accent-hover"
           >
-            Try again · மீண்டும் முயற்சிக்கவும்
+            Try again · மீண்டும் முயற்சி
           </button>
+          {/* A plain anchor on purpose. This boundary catches render failures,
+              and a client-side route transition would reuse the same router
+              state that just failed. A full document load is the reliable
+              escape hatch. */}
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+          <a
+            href="/en"
+            className="inline-flex items-center rounded-sm border border-border-strong px-lg py-3 text-small no-underline transition-colors duration-fast hover:border-ink hover:bg-surface"
+          >
+            Home · முகப்பு
+          </a>
         </div>
-
-        {error.digest ? (
-          <p className="u-tabular text-meta text-charcoal-500">
-            Reference: {error.digest}
-          </p>
-        ) : null}
       </div>
     </main>
   );

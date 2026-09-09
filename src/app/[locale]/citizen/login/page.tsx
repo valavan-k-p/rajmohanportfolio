@@ -26,16 +26,16 @@ export default async function CitizenLoginPage({
   const ta = locale === 'ta';
 
   return (
-    <main id="main" className="min-h-dvh bg-sand-100 px-gutter py-section">
+    <main id="main" className="min-h-dvh bg-paper px-gutter py-section">
       <div className="mx-auto flex max-w-[46rem] flex-col gap-10">
         <header className="flex flex-col gap-4">
-          <span aria-hidden="true" className="u-eyebrow text-maroon-700">
+          <span aria-hidden="true" className="u-label text-accent">
             {ta ? 'குடிமக்கள் சேவை' : 'Citizen Service'}
           </span>
-          <h1 className="font-display text-h1 text-charcoal-900">
+          <h1 className="font-display text-h1 text-ink">
             {ta ? 'உள்நுழைக' : 'Sign in'}
           </h1>
-          <p className="u-measure text-lead text-charcoal-700">
+          <p className="max-w-text text-lead text-ink-muted">
             {ta
               ? 'கடவுச்சொல் தேவையில்லை. உங்கள் கைபேசி எண்ணுக்கு அனுப்பப்படும் குறியீட்டைப் பயன்படுத்தி உள்நுழையவும்.'
               : 'No password needed. Sign in with a code sent to your mobile number.'}

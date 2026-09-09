@@ -192,9 +192,9 @@ export default async function AdminSectionPage({
           <table className="w-full min-w-[44rem] border-collapse text-left">
             <caption className="sr-only">{config.title}</caption>
             <thead>
-              <tr className="border-b border-sand-300">
+              <tr className="border-b border-border">
                 {config.columns.map((column) => (
-                  <th key={column.key} scope="col" className="u-eyebrow py-3 text-charcoal-700">
+                  <th key={column.key} scope="col" className="u-label py-3 text-ink-muted">
                     {column.label}
                   </th>
                 ))}
@@ -202,9 +202,9 @@ export default async function AdminSectionPage({
             </thead>
             <tbody>
               {rows.map((row, index) => (
-                <tr key={String(row.id ?? row.key ?? index)} className="border-b border-sand-300">
+                <tr key={String(row.id ?? row.key ?? index)} className="border-b border-border">
                   {config.columns.map((column) => (
-                    <td key={column.key} className="py-3 pr-6 text-meta text-charcoal-900">
+                    <td key={column.key} className="py-3 pr-6 text-small text-ink">
                       {format(row[column.key])}
                     </td>
                   ))}
@@ -228,7 +228,7 @@ function format(value: unknown): string {
 function Shell({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <>
-      <h1 className="mb-8 font-display text-h1 text-charcoal-900">{title}</h1>
+      <h1 className="mb-8 font-display text-h1 text-ink">{title}</h1>
       {children}
     </>
   );

@@ -3,53 +3,37 @@ import type { Locale } from '@/lib/i18n/routing';
 /**
  * CONTENT GOVERNANCE — binding across the whole platform.
  *
- * Both specifications forbid inventing achievements, statistics, schemes,
- * quotes, dates, awards, orders or ministerial actions. No research or content
- * source was supplied with the project (docs/PHASE-0-AUDIT.md §H-7), so every
- * content record carries its provenance and the renderer enforces it.
+ * The brief forbids inventing achievements, statistics, schemes, quotes, dates,
+ * awards, orders or ministerial actions. Every content record therefore carries
+ * its provenance, and the renderer enforces it.
  *
  * `unverified` never reaches production. That is a build-level guarantee, not
- * an editorial convention — see `isPublishable`.
+ * an editorial convention — see `isPublishable` and `npm run validate:content`.
  */
 export type Verification =
-  /** Confirmed against an official source recorded in `source`. */
+  /** Confirmed against a primary official source recorded in `source`. */
   | 'verified'
-  /** Reported by a credible third party; attribute, never state as fact. */
+  /** Reported by a credible third party. Attribute; never state as fact. */
   | 'reported'
   /** Announced or planned. Must not be presented as delivered. */
   | 'proposed'
-  /** Editorial framing written by the communications team. Carries no claim. */
+  /** Framing written by this office. Carries no factual claim of its own. */
   | 'editorial'
-  /** Structure only. Placeholder. Blocked from production. */
+  /** A known gap. Structure without content. Blocked from production. */
   | 'unverified';
 
-/** A string that exists in both locales. Never a single-language string. */
+/** A string that exists in both locales. A single-language string cannot be expressed. */
 export type Bilingual = Readonly<Record<Locale, string>>;
 
+/**
+ * The minimum any record must state about itself.
+ *
+ * Deliberately structural rather than a base class: `NewsItem`, `Metric` and
+ * `Ward` all satisfy it without sharing an inheritance chain, so the gate below
+ * applies uniformly to collections that otherwise have nothing in common.
+ */
 export interface Provenance {
   readonly verification: Verification;
-  /** Required whenever verification is 'verified' or 'reported'. */
-  readonly source?: string;
-  /** ISO date the claim was checked. */
-  readonly checkedAt?: string;
-}
-
-export interface ContentBlock extends Provenance {
-  readonly id: string;
-  readonly heading: Bilingual;
-  readonly body?: Bilingual;
-}
-
-/**
- * A statistic is the highest-risk content type in the project — a wrong number
- * on an official portal is a serious harm. The type makes a bare number
- * impossible: a value cannot exist without provenance and a label.
- */
-export interface Statistic extends Provenance {
-  readonly id: string;
-  readonly label: Bilingual;
-  readonly value: string;
-  readonly unit?: Bilingual;
 }
 
 export const PUBLISHABLE: readonly Verification[] = [
@@ -60,11 +44,11 @@ export const PUBLISHABLE: readonly Verification[] = [
 ];
 
 /**
- * The single gate every content renderer must pass through.
+ * The single gate every content renderer passes through.
  *
  * In production, `unverified` is withheld. In development and staging it
- * renders behind a visible marker so authors can see the structure they need
- * to fill.
+ * renders behind a visible marker so authors can see the structure that still
+ * needs filling.
  */
 export function isPublishable(
   item: Provenance,
@@ -80,12 +64,15 @@ export function needsVerificationMarker(item: Provenance): boolean {
 }
 
 /**
- * Guards against a `verified`/`reported` record shipping without a source.
+ * Guards against a `verified` or `reported` record shipping without a named
+ * source — an unsourced factual claim wearing a badge that says it was checked.
  * Run by `npm run validate:content` in CI.
  */
-export function hasRequiredSource(item: Provenance): boolean {
-  if (item.verification === 'verified' || item.verification === 'reported') {
-    return typeof item.source === 'string' && item.source.trim().length > 0;
-  }
-  return true;
+export function hasRequiredSource(item: {
+  readonly verification: Verification;
+  readonly source?: { readonly sourceName: Bilingual } | undefined;
+}): boolean {
+  if (item.verification !== 'verified' && item.verification !== 'reported') return true;
+  const name = item.source?.sourceName;
+  return Boolean(name?.en?.trim() && name?.ta?.trim());
 }

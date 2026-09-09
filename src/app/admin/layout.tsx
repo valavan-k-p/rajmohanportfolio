@@ -33,14 +33,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <div className="min-h-dvh bg-white">
       <a
         href="#admin-main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-maroon-700 focus:px-4 focus:py-2 focus:text-white"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-accent focus:px-4 focus:py-2 focus:text-white"
       >
         Skip to main content
       </a>
 
       <div className="grid min-h-dvh grid-cols-1 md:grid-cols-[16rem_1fr]">
-        <aside className="border-b border-sand-300 bg-sand-50 px-6 py-6 md:border-b-0 md:border-r">
-          <Link href="/admin/dashboard" className="u-eyebrow text-maroon-700 no-underline">
+        <aside className="border-b border-border bg-paper px-6 py-6 md:border-b-0 md:border-r">
+          <Link href="/admin/dashboard" className="u-label text-accent no-underline">
             Rajmohan · Admin
           </Link>
 
@@ -50,7 +50,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="inline-flex min-h-[44px] items-center text-meta text-charcoal-700 no-underline hover:text-maroon-700"
+                    className="inline-flex min-h-[44px] items-center text-small text-ink-muted no-underline hover:text-accent"
                   >
                     {item.label}
                   </Link>

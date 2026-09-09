@@ -13,9 +13,9 @@ export function EmptyState({
   readonly action?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-start gap-3 border border-sand-300 bg-white p-8">
-      <h2 className="font-display text-h3 text-charcoal-900">{title}</h2>
-      <p className="u-measure text-body text-charcoal-700">{body}</p>
+    <div className="flex flex-col items-start gap-3 border border-border bg-white p-8">
+      <h2 className="font-display text-h3 text-ink">{title}</h2>
+      <p className="max-w-text text-body text-ink-muted">{body}</p>
       {action}
     </div>
   );

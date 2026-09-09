@@ -32,7 +32,7 @@ export default async function AdminQueriesPage() {
   if (!isSupabaseConfigured) {
     return (
       <>
-        <h1 className="mb-8 font-display text-h1 text-charcoal-900">Queries</h1>
+        <h1 className="mb-8 font-display text-h1 text-ink">Queries</h1>
         <EmptyState
           title="Not connected"
           body="Connect Supabase and run supabase/migrations to work the query queue."
@@ -47,7 +47,7 @@ export default async function AdminQueriesPage() {
   if (!can(session.role, 'queries.viewAll') && !can(session.role, 'queries.viewDepartment')) {
     return (
       <>
-        <h1 className="mb-8 font-display text-h1 text-charcoal-900">Queries</h1>
+        <h1 className="mb-8 font-display text-h1 text-ink">Queries</h1>
         <EmptyState
           title="Not permitted"
           body={`The ${session.role} role does not include query access.`}
@@ -70,8 +70,8 @@ export default async function AdminQueriesPage() {
   return (
     <>
       <header className="mb-8">
-        <h1 className="font-display text-h1 text-charcoal-900">Queries</h1>
-        <p className="mt-2 text-meta text-charcoal-700">
+        <h1 className="font-display text-h1 text-ink">Queries</h1>
+        <p className="mt-2 text-small text-ink-muted">
           {rows.length} shown · scoped to your role by row-level security
         </p>
       </header>
@@ -83,28 +83,28 @@ export default async function AdminQueriesPage() {
           <table className="w-full min-w-[52rem] border-collapse text-left">
             <caption className="sr-only">Citizen queries, newest first</caption>
             <thead>
-              <tr className="border-b border-sand-300">
-                <th scope="col" className="u-eyebrow py-3 text-charcoal-700">Reference</th>
-                <th scope="col" className="u-eyebrow py-3 text-charcoal-700">Subject</th>
-                <th scope="col" className="u-eyebrow py-3 text-charcoal-700">Department</th>
-                <th scope="col" className="u-eyebrow py-3 text-charcoal-700">Status</th>
-                <th scope="col" className="u-eyebrow py-3 text-charcoal-700">Next</th>
+              <tr className="border-b border-border">
+                <th scope="col" className="u-label py-3 text-ink-muted">Reference</th>
+                <th scope="col" className="u-label py-3 text-ink-muted">Subject</th>
+                <th scope="col" className="u-label py-3 text-ink-muted">Department</th>
+                <th scope="col" className="u-label py-3 text-ink-muted">Status</th>
+                <th scope="col" className="u-label py-3 text-ink-muted">Next</th>
               </tr>
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr key={row.id} className="border-b border-sand-300 align-top">
-                  <td className="u-tabular py-4 text-meta text-maroon-700">
+                <tr key={row.id} className="border-b border-border align-top">
+                  <td className="u-tabular py-4 text-small text-accent">
                     {row.reference_number}
                   </td>
-                  <td className="py-4 pr-6 text-meta text-charcoal-900">{row.subject}</td>
-                  <td className="py-4 pr-6 text-meta text-charcoal-700">
+                  <td className="py-4 pr-6 text-small text-ink">{row.subject}</td>
+                  <td className="py-4 pr-6 text-small text-ink-muted">
                     {row.departments?.name_en ?? '—'}
                   </td>
                   <td className="py-4 pr-6">
                     <QueryStatusBadge status={row.status} locale="en" />
                   </td>
-                  <td className="py-4 text-meta text-charcoal-700">
+                  <td className="py-4 text-small text-ink-muted">
                     {can(session.role, 'queries.changeStatus')
                       ? (allowedTransitions(row.status).join(', ') || '—')
                       : 'read only'}

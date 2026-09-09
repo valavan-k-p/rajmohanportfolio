@@ -45,9 +45,9 @@ export function AdminLoginForm() {
     }
   }, [email, password]);
 
-  const label = 'mb-2 block text-meta font-medium text-charcoal-900';
+  const label = 'mb-2 block text-small font-medium text-ink';
   const field =
-    'w-full min-h-[48px] rounded-[2px] border border-sand-300 bg-white px-4 py-3 text-body text-charcoal-900';
+    'w-full min-h-[48px] rounded-[2px] border border-border bg-white px-4 py-3 text-body text-ink';
 
   return (
     <form
@@ -60,7 +60,7 @@ export function AdminLoginForm() {
     >
       <div role="alert" aria-live="polite" className="min-h-[1.5rem]">
         {error ? (
-          <p className="flex items-start gap-2 text-meta text-maroon-700">
+          <p className="flex items-start gap-2 text-small text-accent">
             <span aria-hidden="true">&#9888;</span>
             <span>{error}</span>
           </p>
@@ -100,7 +100,7 @@ export function AdminLoginForm() {
       <button
         type="submit"
         disabled={busy}
-        className="inline-flex min-h-[48px] items-center justify-center rounded-[2px] bg-maroon-700 px-6 py-3 text-meta font-medium text-white disabled:opacity-50"
+        className="inline-flex min-h-[48px] items-center justify-center rounded-[2px] bg-accent px-6 py-3 text-small font-medium text-white disabled:opacity-50"
       >
         {busy ? 'Signing in…' : 'Sign in'}
       </button>

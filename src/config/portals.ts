@@ -1,12 +1,15 @@
+import type { Bilingual } from '@/lib/content/types';
+
 /**
- * The four public portals.
+ * THE FOUR PORTALS
  *
- * `position` values are percentages against the navigation IMAGE, not the
- * viewport — they were derived from measured analysis of
- * public/images/navigation.jpeg (docs/PHASE-0-AUDIT.md §F) and keep the portals
- * locked to the composition at every width instead of drifting off it.
+ * This is the signature architecture of the site. Everything else — news,
+ * documents, media, services — is a cross-cut of these four.
  *
- * The subject occupies x 38–63%; every portal here clears that band.
+ * The previous version positioned the portals as absolute percentage boxes
+ * over a photograph. The client asked for that to go (handwritten note 1.3:
+ * "NO Need Nos. — change to Vertical"), so there are no coordinates here and
+ * no ordinal numerals. Order is document order; the list is vertical.
  */
 
 export const PORTAL_IDS = [
@@ -18,84 +21,109 @@ export const PORTAL_IDS = [
 
 export type PortalId = (typeof PORTAL_IDS)[number];
 
-/** Translation key for each portal, in `messages/*.json` under `nav.portals`. */
-export type PortalMessageKey =
-  | 'schoolEducation'
-  | 'tamilDevelopment'
-  | 'informationPublicity'
-  | 'mlaEgmore';
-
 export interface PortalDefinition {
   readonly id: PortalId;
-  readonly messageKey: PortalMessageKey;
-  /** Path segment appended to /[locale]/ */
-  readonly slug: PortalId;
-  /** Department key used by the shared Citizen Service Engine (Phase 9). */
-  readonly department: PortalId;
-  /** Which flanking stack this portal sits in — drives arrow-key navigation. */
-  readonly column: 'left' | 'right';
-  /** Row within its stack, 0 = upper. */
-  readonly row: 0 | 1;
-  /** Percentage box against the image. Verified clear of the subject. */
-  readonly position: {
-    readonly left: `${number}%`;
-    readonly top: `${number}%`;
-    readonly width: `${number}%`;
-  };
+  /** URL segment under /[locale]/. Note: `mla-egmore` is addressed as `egmore`. */
+  readonly slug: string;
+  readonly title: Bilingual;
+  /** Four words, the portal's remit. Replaces the old "01 —" numeral. */
+  readonly facets: readonly Bilingual[];
+  readonly standfirst: Bilingual;
+  /**
+   * The one Tailwind colour token this portal is allowed to use, as a 2px
+   * rule and an eyebrow. Nothing else in the portal is coloured.
+   */
+  readonly accentVar: string;
+  /** Cover image. One per portal — the brief forbids reusing a single photo. */
+  readonly cover: string;
+  /** The department this portal reports on, where one exists. */
+  readonly officialSite?: string;
 }
 
 export const PORTALS: readonly PortalDefinition[] = [
   {
     id: 'school-education',
-    messageKey: 'schoolEducation',
     slug: 'school-education',
-    department: 'school-education',
-    column: 'left',
-    row: 0,
-    position: { left: '4%', top: '8%', width: '28%' },
+    title: { en: 'School Education', ta: 'பள்ளிக் கல்வி' },
+    facets: [
+      { en: 'Schools', ta: 'பள்ளிகள்' },
+      { en: 'Students', ta: 'மாணவர்கள்' },
+      { en: 'Teachers', ta: 'ஆசிரியர்கள்' },
+      { en: 'Learning', ta: 'கற்றல்' },
+    ],
+    standfirst: {
+      en: 'Departmental news, proceedings, government orders, budget papers and programmes for the schools of Tamil Nadu.',
+      ta: 'தமிழ்நாட்டுப் பள்ளிகளுக்கான துறைச் செய்திகள், செயல்முறை ஆணைகள், அரசு ஆணைகள், நிதிநிலை ஆவணங்கள் மற்றும் திட்டங்கள்.',
+    },
+    accentVar: 'var(--color-portal-education)',
+    cover: '/images/portals/school-education-cover.webp',
+    officialSite: 'https://tnschools.gov.in/welcome',
   },
   {
     id: 'tamil-development',
-    messageKey: 'tamilDevelopment',
     slug: 'tamil-development',
-    department: 'tamil-development',
-    column: 'left',
-    row: 1,
-    position: { left: '4%', top: '27%', width: '28%' },
+    title: { en: 'Tamil Development', ta: 'தமிழ் வளர்ச்சி' },
+    facets: [
+      { en: 'Language', ta: 'மொழி' },
+      { en: 'Literature', ta: 'இலக்கியம்' },
+      { en: 'Culture', ta: 'பண்பாடு' },
+      { en: 'Heritage', ta: 'பாரம்பரியம்' },
+    ],
+    standfirst: {
+      en: 'The language, its literature and the institutions that carry them — books, publications, awards, research and cultural programmes.',
+      ta: 'மொழி, அதன் இலக்கியம், அவற்றைச் சுமக்கும் நிறுவனங்கள் — நூல்கள், வெளியீடுகள், விருதுகள், ஆய்வு மற்றும் பண்பாட்டுத் திட்டங்கள்.',
+    },
+    accentVar: 'var(--color-portal-tamil)',
+    cover: '/images/portals/tamil-development-cover.webp',
+    officialSite: 'https://tamilvalarchithurai.tn.gov.in/',
   },
   {
     id: 'information-publicity',
-    messageKey: 'informationPublicity',
     slug: 'information-publicity',
-    department: 'information-publicity',
-    column: 'right',
-    row: 0,
-    position: { left: '68%', top: '8%', width: '28%' },
+    title: { en: 'Information & Publicity', ta: 'தகவல் மற்றும் விளம்பரம்' },
+    facets: [
+      { en: 'News', ta: 'செய்திகள்' },
+      { en: 'Press', ta: 'பத்திரிகை' },
+      { en: 'Announcements', ta: 'அறிவிப்புகள்' },
+      { en: 'Media', ta: 'ஊடகம்' },
+    ],
+    standfirst: {
+      en: 'Press releases, press notes, announcements and the photo and video record of government events.',
+      ta: 'செய்திக்குறிப்புகள், பத்திரிகைக் குறிப்புகள், அறிவிப்புகள் மற்றும் அரசு நிகழ்வுகளின் ஒளிப்பட, காணொலிப் பதிவுகள்.',
+    },
+    accentVar: 'var(--color-portal-information)',
+    cover: '/images/portals/information-publicity-cover.webp',
+    officialSite: 'https://dipr.tn.gov.in/',
   },
   {
     id: 'mla-egmore',
-    messageKey: 'mlaEgmore',
-    slug: 'mla-egmore',
-    department: 'mla-egmore',
-    column: 'right',
-    row: 1,
-    position: { left: '68%', top: '27%', width: '28%' },
+    slug: 'egmore',
+    title: { en: 'MLA · Egmore', ta: 'சட்டமன்ற உறுப்பினர் · எழும்பூர்' },
+    facets: [
+      { en: 'People', ta: 'மக்கள்' },
+      { en: 'Constituency', ta: 'தொகுதி' },
+      { en: 'Development', ta: 'மேம்பாடு' },
+      { en: 'Representation', ta: 'பிரதிநிதித்துவம்' },
+    ],
+    standfirst: {
+      en: 'The constituency and its representation — wards, development works, Assembly business and citizen services.',
+      ta: 'தொகுதியும் அதன் பிரதிநிதித்துவமும் — வார்டுகள், மேம்பாட்டுப் பணிகள், சட்டமன்றப் பணிகள் மற்றும் குடிமக்கள் சேவைகள்.',
+    },
+    accentVar: 'var(--color-portal-egmore)',
+    cover: '/images/portals/egmore-cover.webp',
   },
 ] as const;
 
-/**
- * Spatial map for roving-tabindex arrow navigation. Returns the portal index
- * reached by pressing `key` from `from`, or null if the move is a no-op.
- */
-export function resolveArrowTarget(from: number, key: string): number | null {
-  const current = PORTALS[from];
-  if (!current) return null;
+const BY_ID = new Map(PORTALS.map((p) => [p.id, p] as const));
+const BY_SLUG = new Map(PORTALS.map((p) => [p.slug, p] as const));
 
-  const wantColumn =
-    key === 'ArrowLeft' ? 'left' : key === 'ArrowRight' ? 'right' : current.column;
-  const wantRow =
-    key === 'ArrowUp' ? 0 : key === 'ArrowDown' ? 1 : current.row;
+export function getPortal(id: PortalId): PortalDefinition {
+  const portal = BY_ID.get(id);
+  // Unreachable via the type system; thrown so a bad dynamic lookup fails loudly.
+  if (!portal) throw new Error(`Unknown portal: ${id}`);
+  return portal;
+}
 
-  const target = PORTALS.findIndex((p) => p.column === wantColumn && p.row === wantRow);
-  return target === -1 || target === from ? null : target;
+export function getPortalBySlug(slug: string): PortalDefinition | undefined {
+  return BY_SLUG.get(slug);
 }
