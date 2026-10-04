@@ -112,7 +112,7 @@ export function GalleryGrid({
 
       <Dialog.Root
         open={openIndex !== null}
-        onOpenChange={(next) => {
+        onOpenChange={(next: boolean) => {
           if (!next) setOpenIndex(null);
         }}
       >
